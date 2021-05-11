@@ -18,8 +18,8 @@ def get_equipment():
 	1 Smoke Bomb
 
 Your choice of a consumable item.
-	1. Potion (heals 2-4 health)
-	2. Knife (deals a guaranteed 2-4 damage)
+	1. Potion (heals 4-8 health)
+	2. Knife (deals a guaranteed 2-5 damage)
 	3. Oil (your next attack deals 200% damage)
 	4. Smoke Bombs (instantly lets you flee combat)
 
