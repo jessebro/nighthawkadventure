@@ -102,7 +102,7 @@ You have a chance to make a second attack based on your agility.
 
 Parry: You cause the enemy to attack you, but with a penalty to their accuracy. If they miss the attack, you strike with increased damage.
 
-Distract: Your next attack has a considerable bonus to accuracy.
+Distract: You have a chance to make an attack with significantly increased accuracy. If the distract fails, it does nothing.
 
 Use item: You expend one of your items. Potions restore some health, knives deal guaranteed damage, oils cause you to make an attack 
 with increased damage, and smoke bombs cause you to instantly flee.
