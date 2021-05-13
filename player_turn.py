@@ -20,7 +20,6 @@ f"""The {reference["object"]} lunges. You jumps aside at the last second."""]
 	3. Distract        {ability.ability["health"]} / {ability.ability["maxhealth"]} health
 	4. Use Item
 	5. Check Inventory
-	6. Flee
 > """)
 	return action
 
@@ -40,11 +39,9 @@ def turn(enemy):
 		inventory_shown = inventory.show()
 		if not inventory_shown:
 			turn(enemy)
-	elif action == "6":
-		flee(enemy)
 
 
-def strike(enemy, damage_mod=1.0):
+def strike(enemy, damage_mod=100.0, smoke=False):
 	reference = enemy["reference"]
 	initial_script = ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
@@ -79,10 +76,13 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 	roll = random.randrange(1,101)
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
-	if agility_roll <= (30 + (ability.ability["agility"])):
+	if agility_roll <= (25 + (ability.ability["agility"])):
 		attacks = 3
+	if smoke:
+		attacks = 4
+		counter = -1
 	while counter < attacks:
-		if roll <= (70 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
+		if roll <= (700 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
 			if roll <= (10 + (weapon.weapon["finesse"] * 2)):
@@ -90,7 +90,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 				time.sleep(3)
 				damage_mod += 1
 			min_damage = int((ability.ability["strength"] / 2) * damage_mod)
-			max_damage = int((ability.ability["strength"] + 2) * damage_mod)
+			max_damage = int((ability.ability["strength"] + 3) * damage_mod)
 			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"]
 			enemy["hp"] -= player_damage
 			print(f"You hit for {player_damage} damage!")
@@ -115,6 +115,11 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 			attacks -= 1
 			print(random.choice(agility_script))
 			time.sleep(5)
+		elif attacks == 4:
+			attacks -= 1
+			print("You use the smoke to disappear, then emerge again suddenly.")
+			time.sleep(5)
+
 
 def parry(enemy):
 	reference = enemy["reference"]
@@ -165,6 +170,7 @@ f"Your opponent brings down {reference['his']} blade. You raised your own at the
 		return False
 
 
+
 def use_item(enemy):
 	reference = enemy["reference"]
 	potion_script = [f"You jump away from the melee and pull a potion from your belt. You drain the liquid in a few seconds, and toss the empty bottle away. You feel strength lost return to you.",
@@ -174,7 +180,7 @@ f"As your opponent charges towards you, you pull out a throwing knife, throwing 
 	oil_script = [f"You produce a vial of blade oil and quickly splash it on your sword. It will not last long, but it will make your enemy feel pain.",
 f"The {reference['object']} stops as you pull a vial of liquid from your belt. You pour it onto your blade, and attack."]
 	smoke_bomb_script = ["Closing your eyes and mouth, you throw down a smoke bomb. Thick, grey smoke covers the battle area, making seeing impossible.",
-"You light the fuse of a smoke bomb and hurl it at your enemy. There's a bang and suddenly everything is covered by grey smoke. You use the distraction to make your escape."]
+"You light the fuse of a smoke bomb and hurl it at your enemy. There's a bang and suddenly everything is covered by grey smoke."]
 	plurals = {
 		"potions": "Potions",
 		"knives": "Knives",
@@ -205,6 +211,12 @@ Enter 'b' to go back
 			equipment.equipment["potions"] = 0
 			time.sleep(2)
 			use_item(enemy)
+			return False
+		elif ability.ability["health"] == ability.ability["maxhealth"]:
+			print("You're on max health, and a potion would have no effect.")
+			time.sleep(5)
+			use_item(enemy)
+			return False
 		else:
 			print(random.choice(potion_script))
 			healing = random.randrange(4,9)
@@ -234,6 +246,7 @@ Enter 'b' to go back
 			equipment.equipment["oils"] = 0
 			time.sleep(2)
 			use_item(enemy)
+			return False
 		else:
 			print(random.choice(oil_script))
 			time.sleep(5)
@@ -247,30 +260,11 @@ Enter 'b' to go back
 			equipment.equipment["smoke bombs"] = 0
 			time.sleep(2)
 			use_item(enemy)
+			return False
 		else:
 			print(random.choice(smoke_bomb_script))
 			time.sleep(5)
-			flee(enemy, smoke=True)
-	else:
+			strike(enemy,smoke=True)
+	if item_use == "b":
 		turn(enemy)
-
-
-def flee(enemy, smoke = False):
-	reference = enemy["reference"]
-	flee_script = ["You backpedal swiftly, before turning and breaking into a full run."]
-	success_script = ["You stumble away from the combat, your enemy's jeers at your back."]
-	fail_script = [f"You try to run, but your opponent won't let you escape that easily. {reference['he'].capitalize()} gives chase and catches you, once again engaging you in combat."]
-	print(random.choice(flee_script))
-	time.sleep(5)
-	if smoke == False:
-		escape_chance = random.randrange(1,101)
-		if escape_chance <= (75 + (ability.ability["agility"] * 2)):
-			print(random.choice(success_script))
-			return False
-		else:
-			print(random.choice(fail_script))
-			enemy["modifier"] = 10
-			enemy_round.enemy_attack(enemy)
-	else:
-		print(random.choice(success_script))
 		return False

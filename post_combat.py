@@ -12,6 +12,7 @@ def end_combat(enemy):
 	if choice == "1":
 		generate_loot(enemy)
 	else:
+		ability.gain_xp(enemy)
 		return False
 
 
@@ -64,6 +65,6 @@ def generate_loot(enemies):
 			print(f"You find {gold} gold on the {reference['object']}'s body.")
 			time.sleep(4)
 			equipment.equipment['gold'] += gold
-		ability.gain_xp(enemy)
+	ability.gain_xp(enemies)
 	victory("victory")
 	return False

@@ -32,14 +32,14 @@ Type the number of the item you want
 	if equipment_confirm != "y":
 		get_equipment()
 
-	if equipment_choice == 1:
+	elif equipment_choice == 1:
 		equipment["potions"] += 1
 
-	if equipment_choice == 2:
+	elif equipment_choice == 2:
 		equipment["knives"] += 1
 
-	if equipment_choice == 3:
+	elif equipment_choice == 3:
 		equipment["oils"] += 1
 
-	if equipment_choice == 4:
+	elif equipment_choice == 4:
 		equipment["smoke bombs"] += 1

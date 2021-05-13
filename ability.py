@@ -106,10 +106,13 @@ Do you want these to be your ability scores? y/n
 	ability["health"] = ability["maxhealth"]
 
 
-def gain_xp(enemy):
-	exp = enemy['xp']
-	ability['xp'] += exp
-	print(f'You gained {exp} xp!')
+def gain_xp(enemies):
+	gained_exp = 0
+	for enemy in enemies:
+		exp = enemy['xp']
+		gained_exp += exp
+	ability['xp'] += gained_exp
+	print(f'You gained {gained_exp} xp!')
 	time.sleep(3)
 	levels = int(ability['xp'] / 100)
 	if levels > 0:
