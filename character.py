@@ -3,6 +3,15 @@ character = {
 	"lastname": "",
 	"fullname": "",
 	"gender": "",
+	"titles": {
+			"he": "",
+			"his": "",
+			"him": "",
+			"casual": "",
+			"formal": "",
+			"insult": "",
+			"whore": ""
+	}
 }
 
 
@@ -45,6 +54,7 @@ def get_gender():
 
 
 def get_title():
+	global character
 	if character["gender"] == "male":
 		character["titles"] = {
 			"he": "he",

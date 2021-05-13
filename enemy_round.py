@@ -5,7 +5,6 @@ import ability
 import post_combat
 import player_turn
 
-gang_size = 0
 
 
 def generate_enemy(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
@@ -50,18 +49,17 @@ def generate_reference(type, gender, name):
 	else:
 		reference["pain"] = "howl"
 		reference["curse"] = "growl"
+	reference["insult"] = character.character["titles"]['insult']
+	reference["whore"] = character.character["titles"]["whore"]
 	return reference
 
 
-def intro(enemies):
-	global gang_size
-	for enemy in enemies:
-		gang_size += 1
-		reference = enemy["reference"]
-		script = f"""You come across a {reference["object"]}. {reference["he"].capitalize()} readies {reference["him"]}self for a fight and you draw your sword."""
-		print(script)
-		time.sleep(3)
-		player_turn.turn(enemy)
+def intro(enemy):
+	reference = enemy["reference"]
+	script = f"""You come across a {reference["object"]}. {reference["he"].capitalize()} readies {reference["him"]}self for a fight and you draw your sword."""
+	print(script)
+	time.sleep(3)
+	player_turn.turn(enemy)
 
 
 def enemy_turn(enemy):
@@ -83,6 +81,7 @@ def enemy_turn(enemy):
 			enemy_parry(enemy)
 		else:
 			enemy_attack(enemy)
+	player_turn.turn(enemy)
 
 
 def enemy_attack(enemy,damage_modi = 1):
@@ -118,7 +117,6 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 		time.sleep(5)
 		print(f"Your enemy misses!")
 		time.sleep(3)
-		player_turn.turn(enemy)
 
 
 def enemy_parry(enemy):
@@ -128,12 +126,11 @@ f"The {reference['object']} braces {reference['him']}self, and glares at you, da
 f"The other combatant raises {reference['his']} weapon, covering {reference['him']}self.",
 f"Your opponent assumes a defensive stance, flattening {reference['his']} feet and barely moving."]
 	if enemy["type"] == "human":
-		initial_script.append(f"""Your opponent smiles at you wickedly. "Come on, {character.character["titles"]["whore"]}!" {reference['he']} yells.""")
+		initial_script.append(f"""Your opponent smiles at you wickedly. "Come on, {reference["whore"]}!" {reference['he']} yells.""")
 	print(random.choice(initial_script))
 	enemy["playermod"] -= (10 - enemy["agility"])
 	enemy["parry"] = True
 	time.sleep(5)
-	player_turn.turn(enemy)
 
 
 def enemy_distract(enemy):
@@ -145,7 +142,6 @@ f"Suddenly, the {reference['object']} jumps forward, shoving your chest with one
 	enemy["modifier"] += (10 + enemy["agility"])
 	enemy["distract"] = True
 	time.sleep(5)
-	player_turn.turn(enemy)
 
 
 def kill(enemy):
@@ -156,7 +152,7 @@ f"The {reference['object']} stares at you for a moment. Then a trickle of blood 
 f"You pull your sword from your adversary's chest, and {reference['he']} topples over backwards instantly, dead before {reference['he']} hits the ground.",
 f"You bury your sword up to the hilt into the {reference['object']}, the blade protruding from {reference['his']} back. You kick {reference['him']} from your sword, and the body falls, blood pooling.",
 f"For a moment, {reference['he']} stays standing. But then {reference['he']} crashes down to the ground, a scarlet blossom growing around {reference['his']} body.",
-f"The {reference['object']} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bring your sword down like an executioners axe, taking the head from {reference['his']} shoulders.",
+f"The {reference['object']} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bringing your sword down like an executioner's axe, taking the head from {reference['his']} shoulders.",
 f"You cut the {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry."]
 	monster_death = [f"The {reference['object']} growls one last time, then falls to the ground.",
 f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue."]

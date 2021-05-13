@@ -1,6 +1,5 @@
 import time
 import random
-import character
 import ability
 import inventory
 import weapon
@@ -9,37 +8,13 @@ import enemy_round
 
 def get_turn_choice(enemy):
 	reference = enemy["reference"]
-	initial_script = [f"""You circle each other, sizing each other up. Do you...
-	1. Strike
-	2. Parry
-	3. Distract
-	4. Use Item
-	5. Check Inventory
-	6. Flee
-> """, f"""You ready your weapon and glare at your opponent. Do you...
-	1. Strike
-	2. Parry
-	3. Distract
-	4. Use Item
-	5. Check Inventory
-	6. Flee
-> """, f"""You feel your heart pounding, feel your chest rising with smooth, even breaths. Do you...
-	1. Strike
-	2. Parry
-	3. Distract
-	4. Use Item
-	5. Check Inventory
-	6. Flee
-> """, f"""The {reference["object"]} lunges. You jumps aside at the last second. Do you...
-	1. Strike
-	2. Parry
-	3. Distract
-	4. Use Item
-	5. Check Inventory
-	6. Flee
-> """]
+	initial_script = [f"""You circle each other, sizing each other up.""",
+f"""You ready your weapon and glare at your opponent.""",
+f"""You feel your heart pounding, feel your chest rising with smooth, even breaths.""",
+f"""The {reference["object"]} lunges. You jumps aside at the last second."""]
 	if enemy["type"] == "human":
-		initial_script.append("""Steel meets, and you stare at each other, blades locked in a clinch. Do you...
+		initial_script.append("""Steel meets, and you stare at each other, blades locked in a clinch.""")
+	action = input(random.choice(initial_script) + """ Do you...
 	1. Strike
 	2. Parry
 	3. Distract
@@ -47,14 +22,12 @@ def get_turn_choice(enemy):
 	5. Check Inventory
 	6. Flee
 > """)
-	action = input(random.choice(initial_script))
 	return action
 
 
 def turn(enemy):
 	enemy["modifier"] = 0
 	action = get_turn_choice(enemy)
-
 	if action == "1":
 		strike(enemy)
 	elif action == "2":
@@ -99,14 +72,14 @@ f"As you charge forwards, the {reference['object']} slams into you, pushing you 
 		success_script.extend([f"{reference['he'].capitalize()} moves to block your blow, but you bring your foot up suddenly in a kick. Then you strike, {reference['his']} staggering form an easy victim to your blade.",
 f"""You feel your sword find its target, and hear a scream of pain. "A pox on you!" the {reference['object']} spits. """])
 		fail_script.extend([f"There's the ring of steel on steel as the {reference['object']} brings {reference['his']} sword up just in time.",
-f"""The {reference['object']} pushes your attack aside and grins wickedly. "What now, you {character.character['titles']['insult']}?" {reference['he']} hisses. """])
+f"""The {reference['object']} pushes your attack aside and grins wickedly. "What now, you {reference['insult']}?" {reference['he']} hisses. """])
 	print(random.choice(initial_script))
 	time.sleep(5)
 	counter = 0
 	roll = random.randrange(1,101)
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
-	if agility_roll <= (20 + (ability.ability["agility"])):
+	if agility_roll <= (35 + (ability.ability["agility"])):
 		attacks = 3
 	while counter < attacks:
 		if roll <= (70 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
