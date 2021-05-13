@@ -15,6 +15,12 @@ def end_combat(enemy):
 		return False
 
 
+def victory(result):
+	if result == "victory":
+		return True
+	else:
+		return False
+
 def generate_loot(enemies):
 	for enemy in enemies:
 		reference = enemy["reference"]
@@ -59,4 +65,5 @@ def generate_loot(enemies):
 			time.sleep(4)
 			equipment.equipment['gold'] += gold
 		ability.gain_xp(enemy)
+	victory("victory")
 	return False

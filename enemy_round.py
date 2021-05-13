@@ -4,6 +4,7 @@ import character
 import ability
 import post_combat
 import player_turn
+import equipment
 
 gang_size = 0
 gang_lads = []
@@ -17,6 +18,8 @@ def combat_flow(enemy):
 		if dead_check(enemy):
 			continue
 		enemy_turn(enemy)
+		if player_defeat():
+			continue
 
 
 def generate_enemy(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
@@ -160,6 +163,21 @@ def dead_check(enemy):
 		return True
 	else:
 		return False
+
+def player_defeat():
+	global combat
+	if ability.ability["health"] <= 0:
+		combat = False
+		if equipment.equipment["potions"] > 0:
+			equipment.equipment["potions"] -= 1
+			print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
+			time.sleep(5)
+			print("A potion was used to prevent defeat.")
+			ability.ability["health"] = 0
+			ability.ability["health"] += random.randrange(4,9)
+		else:
+			print("You are struck by your opponent, and the next thing you know, you have fallen. Everything begins to go dark, and there is nothing you can do to stop it.")
+			post_combat.victory("defeat")
 
 
 def kill(enemy):

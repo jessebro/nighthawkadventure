@@ -3,6 +3,7 @@ import ability
 import enemy_round
 import equipment
 import random
+import post_combat
 
 monsters = {
 	"mbandit": enemy_round.generate_enemy(*[15, 2, 6, 50, 5, random.randrange(8, 16), "human", "male", "bandit"]),
