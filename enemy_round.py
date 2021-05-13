@@ -6,6 +6,7 @@ import post_combat
 import player_turn
 
 gang_size = 0
+gang_lads = []
 
 def generate_enemy(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
 	enemy = {}
@@ -56,7 +57,9 @@ def generate_reference(type, gender, name):
 
 def intro(enemies):
 	global gang_size
+	global gang_lads
 	gang_size = len(enemies)
+	gang_lads = enemies
 	for enemy in enemies:
 		reference = enemy["reference"]
 		script = f"""You come across a {reference["object"]}. {reference["he"].capitalize()} readies {reference["him"]}self for a fight and you draw your sword."""
@@ -149,6 +152,7 @@ f"Suddenly, the {reference['object']} jumps forward, shoving your chest with one
 
 def kill(enemy):
 	global gang_size
+	global gang_lads
 	gang_size -= 1
 	reference = enemy['reference']
 	human_death = [
@@ -168,6 +172,6 @@ f"With a sickening squelch, you tear your sword from the monster, and it topples
 		print(random.choice(monster_death))
 		time.sleep(5)
 	if gang_size <= 0:
-		post_combat.end_combat(enemy)
+		post_combat.end_combat(gang_lads)
 	else:
 		return False

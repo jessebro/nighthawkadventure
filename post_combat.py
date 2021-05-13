@@ -52,8 +52,9 @@ def generate_loot(enemies):
 				time.sleep(4)
 				weapon.weapon["stability"] = weapon.weapon["max stability"]
 		else:
-			print(f"Though the monster does not carry equipment, you find some coins in its stomach, no doubt the remains of the {reference['object']}'s victims.")
+			print(f"Though the {reference['object']} does not carry equipment, you find some coins in its stomach, no doubt the remains of the {reference['object']}'s victims.")
 			gold = random.randrange(1, 5)
+			time.sleep(4)
 			print(f"You find {gold} gold on the {reference['object']}'s body.")
 			time.sleep(4)
 			equipment.equipment['gold'] += gold
