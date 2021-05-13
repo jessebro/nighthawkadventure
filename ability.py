@@ -102,7 +102,7 @@ Do you want these to be your ability scores? y/n
 			ability["endurance"] = random_assign[3]
 			ability["persona"] = random_assign[4]
 
-	ability["maxhealth"] = ability["endurance"] + 10
+	ability["maxhealth"] = ability["endurance"] + 15
 	ability["health"] = ability["maxhealth"]
 
 

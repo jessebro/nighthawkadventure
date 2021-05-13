@@ -14,10 +14,10 @@ f"""You feel your heart pounding, feel your chest rising with smooth, even breat
 f"""The {reference["object"]} lunges. You jumps aside at the last second."""]
 	if enemy["type"] == "human":
 		initial_script.append("""Steel meets, and you stare at each other, blades locked in a clinch.""")
-	action = input(random.choice(initial_script) + """ Do you...
+	action = input(random.choice(initial_script) + f""" Do you...
 	1. Strike
 	2. Parry
-	3. Distract
+	3. Distract        {ability.ability["health"]} / {ability.ability["maxhealth"]} health
 	4. Use Item
 	5. Check Inventory
 	6. Flee
@@ -62,7 +62,7 @@ f"You enemy tries to step backwards, but {reference['his']} heel hits a raised s
 f"With a deft sword movement you explode into action, striking with your whirling sword, spilling the blood of the {reference['object']}."]
 	fail_script = ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
 "You swing your sword in a cruel lateral strike, but your opponent ducks just in time, the wind chasing the blade making a whistling sound."
-,f"""You swing you sword downwards, grunting with the effort. The {reference["object"]} jumps back as the last second, the tip of your sword barely a inch from {reference["his"]} body."""]
+,f"""You swing you sword downwards, grunting with the effort. The {reference["object"]} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body."""]
 	agility_script = ["You're quick enough to strike a second time.",
 "You bring your blade back quickly for a second attempt.",
 "You spin with the momentum of the sword, whirling and attacking again swiftly."]
@@ -79,7 +79,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 	roll = random.randrange(1,101)
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
-	if agility_roll <= (35 + (ability.ability["agility"])):
+	if agility_roll <= (30 + (ability.ability["agility"])):
 		attacks = 3
 	while counter < attacks:
 		if roll <= (70 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
@@ -90,7 +90,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 				time.sleep(3)
 				damage_mod += 1
 			min_damage = int((ability.ability["strength"] / 2) * damage_mod)
-			max_damage = int((ability.ability["strength"] + 1) * damage_mod)
+			max_damage = int((ability.ability["strength"] + 2) * damage_mod)
 			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"]
 			enemy["hp"] -= player_damage
 			print(f"You hit for {player_damage} damage!")
@@ -111,14 +111,10 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 				print(f"You miss your attack!")
 				time.sleep(5)
 				counter += 1
-		if enemy['hp'] <= 0:
-			enemy_round.kill(enemy)
-			return False
-		elif attacks == 3:
+		if attacks == 3:
 			attacks -= 1
 			print(random.choice(agility_script))
 			time.sleep(5)
-	enemy_round.enemy_turn(enemy)
 
 def parry(enemy):
 	reference = enemy["reference"]
@@ -130,7 +126,7 @@ f"As your opponent charges, you sidestep. {reference['he'].capitalize()} runs st
 f"""The {reference['object']} attacks, but you spin away from the blow, ending your twirl on your opponent's flank.""",
 f"Your adversary closes in, but at the last second you lunge forwards, slamming your shoulder into {reference['him']}. {reference['he'].capitalize()} stumbles backwards, sputtering for breath."]
 	fail_script = ["You raise your sword against the expected attack, but it comes quicker than you thought. You feel a cut upon your face.",
-"Your opponent rushes forwards. You try and duck to the side as the last second, but are too slow. Pain racks your body and you jump away, cursing.",
+"Your opponent rushes forwards. You try and duck to the side at the last second, but are too slow. Pain racks your body and you jump away, cursing.",
 "You deflect the first attack, but the second comes in quicker than you can react. You manage to avoid the worst of the blow, but still, it hurts."]
 	print(random.choice(initial_script))
 	enemy["modifier"] -= (10 + ability.ability["agility"] + ability.ability["parry_lvl"])
@@ -166,7 +162,7 @@ f"Your opponent brings down {reference['his']} blade. You raised your own at the
 		print("Your enemy's loss of focus allows you to make an attack!")
 		strike(enemy)
 	else:
-		enemy_round.enemy_turn(enemy)
+		return False
 
 
 def use_item(enemy):
@@ -231,11 +227,6 @@ Enter 'b' to go back
 			time.sleep(5)
 			print(f"Your knife hits for {knife_damage} damage!")
 			time.sleep(5)
-			if enemy['hp'] <= 0:
-				enemy_round.kill(enemy)
-				return False
-			else:
-				enemy_round.enemy_turn(enemy)
 	if item_use == "3":
 		equipment.equipment["oils"] -= 1
 		if equipment.equipment["oils"] <0:

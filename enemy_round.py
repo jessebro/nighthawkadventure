@@ -7,6 +7,17 @@ import player_turn
 
 gang_size = 0
 gang_lads = []
+combat = True
+
+def combat_flow(enemy):
+	global combat
+	combat = True
+	while combat:
+		player_turn.turn(enemy)
+		if dead_check(enemy):
+			continue
+		enemy_turn(enemy)
+
 
 def generate_enemy(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
 	enemy = {}
@@ -55,25 +66,18 @@ def generate_reference(type, gender, name):
 	return reference
 
 
-def intro(enemies):
+def initialize(enemies):
 	global gang_size
 	global gang_lads
 	gang_size = len(enemies)
 	gang_lads = enemies
 	for enemy in enemies:
-		reference = enemy["reference"]
-		script = f"""You come across a {reference["object"]}. {reference["he"].capitalize()} readies {reference["him"]}self for a fight and you draw your sword."""
-		print(script)
-		time.sleep(3)
-		player_turn.turn(enemy)
+		combat_flow(enemy)
 
 
 def enemy_turn(enemy):
 	enemy["playermod"] = 0
-	if enemy['hp'] <= 0:
-		kill(enemy)
-		return False
-	elif enemy["type"] == "human":
+	if enemy["type"] == "human":
 		action = random.randrange(1,6)
 		if action == 1 and enemy["parry"] == False:
 			enemy_parry(enemy)
@@ -87,10 +91,9 @@ def enemy_turn(enemy):
 			enemy_parry(enemy)
 		else:
 			enemy_attack(enemy)
-	player_turn.turn(enemy)
 
 
-def enemy_attack(enemy,damage_modi = 1):
+def enemy_attack(enemy, damage_modi = 1):
 	reference = enemy["reference"]
 	initial_script = [f"The {reference['object']} lunges in, ready to strike.",
 "You ready yourself as your adversary charges forward, teeth bared in savage fury.",
@@ -117,7 +120,6 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")
 		time.sleep(5)
-		player_turn.turn(enemy)
 	else:
 		print(random.choice(fail_script))
 		time.sleep(5)
@@ -150,9 +152,20 @@ f"Suddenly, the {reference['object']} jumps forward, shoving your chest with one
 	time.sleep(5)
 
 
+def dead_check(enemy):
+	global combat
+	if enemy['hp'] <= 0:
+		kill(enemy)
+		combat = False
+		return True
+	else:
+		return False
+
+
 def kill(enemy):
 	global gang_size
 	global gang_lads
+	global combat
 	gang_size -= 1
 	reference = enemy['reference']
 	human_death = [
@@ -172,6 +185,22 @@ f"With a sickening squelch, you tear your sword from the monster, and it topples
 		print(random.choice(monster_death))
 		time.sleep(5)
 	if gang_size <= 0:
+		combat = False
 		post_combat.end_combat(gang_lads)
 	else:
+		next_victim(gang_lads)
 		return False
+
+
+def next_victim(enemies):
+	gang_index = 0
+	gang_index += 1  # This will always equal 1, so why not just set it to 1?
+	enemy = enemies[gang_index]
+	reference = enemy['reference']
+	friend_approach = [
+f"The {reference['object']} rushes forward, {reference['pain']}ing with rage at {reference['his']} companion's death.",
+f"The {reference['object']} approaches you know, more wary than your previous, now deceased opponent.",
+f"You ready your sword, now stained with blood, shouting a challenge to your next opponent. {reference['he'].capitalize()} responds to the challenge and moves forwards."]
+	print(random.choice(friend_approach))
+	time.sleep(5)
+	return False
