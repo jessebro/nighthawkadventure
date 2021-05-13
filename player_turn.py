@@ -44,7 +44,7 @@ def turn(enemy):
 		flee(enemy)
 
 
-def strike(enemy, damage_mod=1.0):
+def strike(enemy, damage_mod=100.0):
 	reference = enemy["reference"]
 	initial_script = ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
@@ -82,7 +82,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 	if agility_roll <= (35 + (ability.ability["agility"])):
 		attacks = 3
 	while counter < attacks:
-		if roll <= (70 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
+		if roll <= (700 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
 			if roll <= (10 + (weapon.weapon["finesse"] * 2)):
@@ -90,7 +90,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 				time.sleep(3)
 				damage_mod += 1
 			min_damage = int((ability.ability["strength"] / 2) * damage_mod)
-			max_damage = int((ability.ability["strength"] + 3) * damage_mod)
+			max_damage = int((ability.ability["strength"] + 1) * damage_mod)
 			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"]
 			enemy["hp"] -= player_damage
 			print(f"You hit for {player_damage} damage!")
@@ -142,6 +142,7 @@ f"Your adversary closes in, but at the last second you lunge forwards, slamming 
 		ability.ability["health"] -= enemy_damage
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")
+		time.sleep(5)
 		turn(enemy)
 	else:
 		print(random.choice(success_script))

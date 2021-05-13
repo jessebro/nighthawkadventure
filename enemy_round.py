@@ -5,7 +5,7 @@ import ability
 import post_combat
 import player_turn
 
-
+gang_size = 0
 
 def generate_enemy(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
 	enemy = {}
@@ -54,12 +54,15 @@ def generate_reference(type, gender, name):
 	return reference
 
 
-def intro(enemy):
-	reference = enemy["reference"]
-	script = f"""You come across a {reference["object"]}. {reference["he"].capitalize()} readies {reference["him"]}self for a fight and you draw your sword."""
-	print(script)
-	time.sleep(3)
-	player_turn.turn(enemy)
+def intro(enemies):
+	global gang_size
+	gang_size = len(enemies)
+	for enemy in enemies:
+		reference = enemy["reference"]
+		script = f"""You come across a {reference["object"]}. {reference["he"].capitalize()} readies {reference["him"]}self for a fight and you draw your sword."""
+		print(script)
+		time.sleep(3)
+		player_turn.turn(enemy)
 
 
 def enemy_turn(enemy):
@@ -123,7 +126,7 @@ def enemy_parry(enemy):
 	reference = enemy["reference"]
 	initial_script = [
 f"The {reference['object']} braces {reference['him']}self, and glares at you, daring you to fight.",
-f"The other combatant raises {reference['his']} weapon, covering {reference['him']}self.",
+f"The other combatant raises {reference['his']} defenses, covering {reference['him']}self.",
 f"Your opponent assumes a defensive stance, flattening {reference['his']} feet and barely moving."]
 	if enemy["type"] == "human":
 		initial_script.append(f"""Your opponent smiles at you wickedly. "Come on, {reference["whore"]}!" {reference['he']} yells.""")
@@ -145,6 +148,8 @@ f"Suddenly, the {reference['object']} jumps forward, shoving your chest with one
 
 
 def kill(enemy):
+	global gang_size
+	gang_size -= 1
 	reference = enemy['reference']
 	human_death = [
 f"As your sword bites deeply into your enemy, {reference['he']} moans in pain, then crumples to the ground, dark blood flowing onto the ground.",
@@ -162,4 +167,7 @@ f"With a sickening squelch, you tear your sword from the monster, and it topples
 	else:
 		print(random.choice(monster_death))
 		time.sleep(5)
-	post_combat.end_combat(enemy)
+	if gang_size <= 0:
+		post_combat.end_combat(enemy)
+	else:
+		return False
