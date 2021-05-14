@@ -3,7 +3,8 @@ import equipment
 import inventory
 import time
 import weapon
-
+import ability
+import blackjack
 
 def town(name, objective,firsttime=False):
 	print(f"""{name}'s citizens are up and about. Merchant's shout their wares, guttersnipes pick the pockets of unsuspecting
@@ -32,10 +33,9 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 		return False
 
 def market(name, objective):
-	purchasing = True
 	print("You enter the market, and immediately start browsing, looking for things you could use on your travels.")
 	time.sleep(4)
-	while purchasing:
+	while True:
 		purchase = input(f"""What would you like to purchase?
 	1. Potions (25 gold)
 	2. Knives (20 gold)
@@ -67,11 +67,10 @@ Enter 'b' to leave
 
 
 def blacksmith(name, objective):
-	purchasing = True
 	print("""There's the ring of hammer and anvil as you come into the blacksmith.
 Weapons, tools and blades hang on racks, the place smells of sweat and fire.""")
 	time.sleep(4)
-	while purchasing:
+	while True:
 		purchase = input(f"""What would you like smithed?
 	1. Upgrade Sharpness (20 gold)
 	2. Upgrade Finesse (30 gold)
@@ -105,8 +104,39 @@ Enter 'b' to leave
 
 
 def inn(name, objective):
-	pass
+	print("""You enter the inn, and immediately the smell of food and drink hits you. The inn is well lit, and everywhere
+people sit around tables, eating, drinking, talking or playing cards""")
+	time.sleep(6)
+	while True:
+		purchase = input(f"""What would you like to do?
+	1. Get a meal (10 gold)
+	2. Join a game of cards
+	3. Listen for rumours
 
+Enter 'b' to leave
+> """)
+		if purchase == "b":
+			break
+		elif purchase == "1":
+			if equipment.equipment["gold"] < 10:
+				print("You don't have enough gold for that.")
+				continue
+			else:
+				equipment.equipment["gold"] -= 10
+				print("You enjoy a good meal, and feel refreshed and more energised.")
+				time.sleep(4)
+				print("You regain all health you've lost!")
+				time.sleep(2)
+				ability.ability["health"] = ability.ability["maxhealth"]
+		elif purchase == "2":
+			blackjack.cards(name, objective)
+		elif purchase == "3":
+			rumours(name, objective)
+	town(name, objective)
+
+
+def rumours(name, objective):
+	pass
 
 def rest(name, objective):
-	pass
+	town(name, objective)
