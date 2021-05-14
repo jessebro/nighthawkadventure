@@ -73,7 +73,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 	print(random.choice(initial_script))
 	time.sleep(5)
 	counter = 0
-	roll = random.randrange(1,101)
+	roll = random.randrange(1, 101)
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
 	if agility_roll <= (25 + (ability.ability["agility"])):
