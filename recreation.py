@@ -1,5 +1,4 @@
 import random
-import ability
 import equipment
 import inventory
 import time
@@ -15,7 +14,8 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 1. Look at the markets
 2. Visit the blacksmith        {equipment.equipment["gold"]} gold
 3. Rest at the inn
-4. {objective}
+4. Check your inventory
+5. {objective}
 
 > """)
 	if activity == "1":
@@ -24,7 +24,11 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 		blacksmith(name, objective)
 	elif activity == "3":
 		inn(name, objective)
-	elif activity == "4":
+	elif activity == "5":
+		inventory_shown = inventory.show()
+		if not inventory_shown:
+			town(name, objective)
+	elif activity == "5":
 		return False
 
 def market(name, objective):

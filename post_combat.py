@@ -55,7 +55,7 @@ def generate_loot(enemies):
 				time.sleep(4)
 				boosted = random.choice(["sharpness", "sharpness", "max stability", "finesse"])
 				weapon.weapon[boosted] += 1
-				print(f"{weapon.weapon['weaponname']}'s stability has been restored and its {boosted} has been increased by 1!")
+				print(f"{weapon.weapon['weaponname'].capitalize()}'s stability has been restored and its {boosted} has been increased by 1!")
 				time.sleep(4)
 				weapon.weapon["stability"] = weapon.weapon["max stability"]
 		else:

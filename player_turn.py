@@ -41,7 +41,7 @@ def turn(enemy):
 			turn(enemy)
 
 
-def strike(enemy, damage_mod=100.0, smoke=False):
+def strike(enemy, damage_mod=1.0, smoke=False):
 	reference = enemy["reference"]
 	initial_script = ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
@@ -82,7 +82,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 		attacks = 4
 		counter = -1
 	while counter < attacks:
-		if roll <= (700 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
+		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
 			if roll <= (10 + (weapon.weapon["finesse"] * 2)):
