@@ -50,7 +50,7 @@ Your stats are:
 def weapon_stats():
 	menu = input(f""" ~ {weapon.weapon["weaponname"]} ~
 	
-{weapon.weapon["weaponname"]}'s stats are:"
+{weapon.weapon["weaponname"]}'s stats are:
 		Sharpness {weapon.weapon["sharpness"]}
 		Finesse {weapon.weapon["finesse"]}
 		Stability {weapon.weapon["stability"]} / {weapon.weapon["max stability"]}

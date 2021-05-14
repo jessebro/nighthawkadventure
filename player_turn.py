@@ -17,7 +17,7 @@ f"""The {reference["object"]} lunges. You jumps aside at the last second."""]
 	action = input(random.choice(initial_script) + f""" Do you...
 	1. Strike
 	2. Parry
-	3. Distract        {ability.ability["health"]} / {ability.ability["maxhealth"]} health
+	3. Distract       ~ {ability.ability["health"]} / {ability.ability["maxhealth"]} health ~
 	4. Use Item
 	5. Check Inventory
 > """)
