@@ -5,7 +5,7 @@ weapon = {
 	"finesse": 0,
 	"stability": 5,
 	"max stability": 5,
-	"weaponname": "Your weapon"
+	"weaponname": "your weapon"
 }
 
 def lose_stability():
@@ -18,4 +18,4 @@ def lose_stability():
 			if weapon["sharpness"] < 1:
 				weapon["sharpness"] = 1
 			else:
-				print("Your weapon lost a level of sharpness!")
+				print(f"{weapon['weaponname'].capitalize()} lost a level of sharpness!")

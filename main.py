@@ -3,7 +3,7 @@ import ability
 import enemy_round
 import equipment
 import random
-import post_combat
+import recreation
 
 monsters = {
 	"mbandit": enemy_round.generate_enemy(*[15, 2, 6, 50, 5, random.randrange(8, 16), "human", "male", "bandit"]),
@@ -19,4 +19,4 @@ character.get_gender()
 character.get_title()
 ability.get_ability()
 equipment.get_equipment()
-enemy_round.initialize(gang)
+recreation.town("Riverwick", "Leave on your treasure hunt", True)
