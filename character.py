@@ -34,7 +34,7 @@ def get_name():
 
 
 def get_gender():
-	genderlist = ["male", "m", "female", "f"]
+	genderlist = ["male", "female"]
 	gender = input(f"""What is your gender? ({" / ".join(genderlist)})
 > """)
 	gender = gender.lower()
