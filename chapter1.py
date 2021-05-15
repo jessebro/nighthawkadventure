@@ -45,3 +45,5 @@ def ghouls_at_farm():
 	"You accept the man's offer and he brings you into his small house. He gives you a bowl of green soup. You eat it, and it tastes good enough.",
 	"The soup reenergizes you, despite its mediocre taste. Once you have finished eating, the farmer bids you farwell, and you continue towards the Lizardtongue Mountains"])
 			ability.ability["health"] += 5
+			ability.gain_xp(encounters.xp_handouts["small"])
+
