@@ -16,7 +16,6 @@ weapon.get_weapon_name()
 ability.get_ability()
 equipment.get_equipment()
 
-chapter1.hag_lair()
 print_stuff([f"""In this text based adventure, you will be taking on the role of a Nighthawk, an elite monster hunter, a sword
 for hire when the ordinary folk can't handle the danger.""",
 """The adventure begins in the town of Blackburrow, a bustling place just East of the Lizardtongue Mountains, and South of 

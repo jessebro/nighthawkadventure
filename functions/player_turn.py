@@ -91,7 +91,7 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 				time.sleep(3)
 				damage_multi += 1
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
-			max_damage = int((ability.ability["strength"] + 3) * damage_multi)
+			max_damage = int((ability.ability["strength"] + 2) * damage_multi)
 			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"]
 			enemy["hp"] -= player_damage
 			print(f"You hit for {player_damage} damage!")
@@ -181,7 +181,7 @@ f"You kick your opponent, sending {reference['him']} backwards. While {reference
 f"As your opponent charges towards you, you pull out a throwing knife, throwing it at {reference['him']}. Your aim is true and {reference['he']} stumbles, a bloodstain on {reference['his']} leg."]
 	oil_script = [f"You produce a vial of blade oil and quickly splash it on your sword. It will not last long, but it will make your enemy feel pain.",
 f"The {reference['object']} stops as you pull a vial of liquid from your belt. You pour it onto your blade, and attack."]
-	smoke_bomb_script = ["Closing your eyes and mouth, you throw down a smoke bomb. Thick, grey smoke covers the battle area, making seeing impossible.",
+	smoke_bomb_script = ["Closing your eyes and mouth, you throw down a smoke bomb. Thick, grey smoke covers the battle area, making sight impossible.",
 "You light the fuse of a smoke bomb and hurl it at your enemy. There's a bang and suddenly everything is covered by grey smoke."]
 	plurals = {
 		"potions": "Potions",

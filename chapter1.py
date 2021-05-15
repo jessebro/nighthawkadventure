@@ -116,14 +116,16 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 	____________________________________________________""")
 				if treasure == 1:
 					option = input("""1. Search under the chest.
-2. Step away.""")
+2. Step away.
+> """)
 					if option == "1":
 						equipment.equipment["gold"] += 50
 						print_stuff(["You obey the instructions in the note, lifting the chest and peering under it.",
-"Underneath you see a resonably large bag of money, as well as a ring.",
+"Underneath you see a reasonably large bag of money, as well as a silver ring etched with runes.",
 "You take the money, counting 50 gold coins."])
 						ring = input("""1. Put on the ring.
-2. Step away.""")
+2. Leave the ring.
+>""")
 						if ring == "1":
 							ability.ability["strength"] += 1
 							print_stuff(["You feel a tingling sensation as you slip the ring on, and a sudden burst of power.",
