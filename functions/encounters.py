@@ -1,4 +1,4 @@
-import enemy_round
+from functions import enemy_round
 import random
 
 xp_handouts = {

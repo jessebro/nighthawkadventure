@@ -1,8 +1,8 @@
-import ability
-import weapon
-import inventory
+from functions import encounters
+from functions import inventory
+from functions import weapon
+from functions import ability
 import time
-import encounters
 
 def rest():
 	activity = input(f"""What would you like to do?

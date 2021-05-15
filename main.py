@@ -1,8 +1,8 @@
-import town
-import character
-import equipment
-import encounters
-import ability
+from functions import ability
+from functions import equipment
+from functions import character
+from functions import town
+from functions import encounters
 
 gang = [encounters.monsters["fbandit"], encounters.monsters["ghoul"]]
 
@@ -11,7 +11,6 @@ character.get_gender()
 character.get_title()
 ability.get_ability()
 equipment.get_equipment()
-
 
 print(f"""In this text based adventure, you will be taking on the role of a Nighthawk, an elite monster hunter, a sword
 for hire when the ordinary folk can't handle the danger.

@@ -1,7 +1,7 @@
-import ability
-import character
-import equipment
-import weapon
+from functions import ability
+from functions import character
+from functions import equipment
+from functions import weapon
 
 
 def show():

@@ -1,10 +1,10 @@
 import time
 import random
-import ability
-import inventory
-import weapon
-import equipment
-import enemy_round
+from functions import ability
+from functions import inventory
+from functions import weapon
+from functions import equipment
+from functions import enemy_round
 
 def get_turn_choice(enemy):
 	reference = enemy["reference"]

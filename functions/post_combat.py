@@ -1,8 +1,8 @@
 import random
 import time
-import equipment
-import weapon
-import ability
+from functions import equipment
+from functions import weapon
+from functions import ability
 
 def end_combat(enemy):
 	choice = input(f"""All danger has gone. The ground has been spattered with blood, and the adrenaline has left you feeling a bit weak. Do you...

@@ -1,10 +1,10 @@
 import random
-import equipment
-import inventory
 import time
-import weapon
-import ability
-import blackjack
+from functions import equipment
+from functions import inventory
+from functions import weapon
+from functions import ability
+from functions import blackjack
 
 def town(name, objective,firsttime=False):
 	print(f"""{name}'s citizens are up and about. Merchant's shout their wares, guttersnipes pick the pockets of unsuspecting

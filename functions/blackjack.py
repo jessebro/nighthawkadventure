@@ -1,6 +1,6 @@
 import random
-import character
-import equipment
+from functions import character
+from functions import equipment
 import time
 
 def cards():

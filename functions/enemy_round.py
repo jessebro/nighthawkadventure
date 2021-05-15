@@ -1,10 +1,10 @@
 import time
 import random
-import character
-import ability
-import post_combat
-import player_turn
-import equipment
+from functions import character
+from functions import ability
+from functions import post_combat
+from functions import player_turn
+from functions import equipment
 
 gang_size = 0
 gang_lads = []
