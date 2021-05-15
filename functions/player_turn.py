@@ -73,7 +73,6 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 	print(random.choice(initial_script))
 	time.sleep(5)
 	counter = 0
-	roll = random.randrange(1, 101)
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
 	if agility_roll <= (25 + (ability.ability["agility"])):
@@ -82,15 +81,17 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 		attacks = 4
 		counter = -1
 	while counter < attacks:
+		damage_multi = damage_mod
+		roll = random.randrange(1, 101)
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
 			if roll <= (10 + (weapon.weapon["finesse"] * 2)):
 				print("The strike was well aimed, and scored a critical hit!")
 				time.sleep(3)
-				damage_mod += 1
-			min_damage = int((ability.ability["strength"] / 2) * damage_mod)
-			max_damage = int((ability.ability["strength"] + 3) * damage_mod)
+				damage_multi += 1
+			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
+			max_damage = int((ability.ability["strength"] + 3) * damage_multi)
 			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"]
 			enemy["hp"] -= player_damage
 			print(f"You hit for {player_damage} damage!")
