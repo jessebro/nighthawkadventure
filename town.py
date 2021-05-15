@@ -68,7 +68,7 @@ Enter 'b' to leave
 
 def blacksmith(name, objective):
 	print("""There's the ring of hammer and anvil as you come into the blacksmith.
-Weapons, tools and blades hang on racks, the place smells of sweat and fire.""")
+Weapons, tools and blades hang on racks, and the place smells of sweat and fire.""")
 	time.sleep(4)
 	while True:
 		purchase = input(f"""What would you like smithed?
@@ -136,7 +136,11 @@ Enter 'b' to leave
 
 
 def rumours(name, objective):
-	pass
+	rumour_scripts = ["You hear that there's talk of a rise in an organisation known as the Daughters of Chaos. People say that more and more women join their ranks.",
+"From eavesdropping on conversations, you hear a rumour that treasure hunters are becoming more and more unsuccesful, and that some have even disappeared in mysterious circumstances.",
+"You hear nothing of use; only the superstitious ramblings of worried townsfolk.", "There is nothing out of the ordinary in the conversations of people at the moment.",
+"There's talk of magic items being held securely being stolen by an unknown person or persons."]
+	print(random.choice(rumour_scripts))
+	time.sleep(6)
+	return False
 
-def rest(name, objective):
-	town(name, objective)

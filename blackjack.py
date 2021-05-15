@@ -2,7 +2,7 @@ import random
 import character
 import equipment
 import time
-import recreation
+import town
 
 def cards(name, objective):
 	gamble = False
@@ -20,7 +20,7 @@ Before you begin, your opponent speaks to you.
 2. Leave the table
 > """)
 			if redo == 2:
-				recreation.inn(name, objective)
+				town.inn(name, objective)
 				return False
 		else:
 			gamble = True
