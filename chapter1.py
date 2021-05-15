@@ -141,7 +141,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 "Second, the bones have been scraped clean of all flesh, due to the knicks and scratches of something being drawn along them."])
 			else:
 				break
-		print_stuff(["You leave the cabin, satisfied with what you achieved"])
-	print_stuff([""])
+		print_stuff(["You leave the cabin, satisfied with what you achieved. You head back along the trail, and back to the junction."])
+	print_stuff(["You turn onto the path to the Lizardtongue Mountains, and continue your trek."])
 
 
