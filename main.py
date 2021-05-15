@@ -1,13 +1,8 @@
-import pickle
-import character
-import ability
-import enemy_round
-import equipment
-import random
-import inventory
 import town
-import rest
+import character
+import equipment
 import encounters
+import ability
 
 gang = [encounters.monsters["fbandit"], encounters.monsters["ghoul"]]
 
@@ -16,6 +11,8 @@ character.get_gender()
 character.get_title()
 ability.get_ability()
 equipment.get_equipment()
+
+
 print(f"""In this text based adventure, you will be taking on the role of a Nighthawk, an elite monster hunter, a sword
 for hire when the ordinary folk can't handle the danger.
 

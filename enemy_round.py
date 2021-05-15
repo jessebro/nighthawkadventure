@@ -174,7 +174,7 @@ def player_defeat():
 			time.sleep(5)
 			print("A potion was used to prevent defeat.")
 			ability.ability["health"] = 0
-			ability.ability["health"] += random.randrange(4,9)
+			ability.ability["health"] += random.randrange(4, 9)
 		else:
 			print("You are struck by your opponent, and the next thing you know, you have fallen. Everything begins to go dark, and there is nothing you can do to stop it.")
 			post_combat.victory("defeat")
