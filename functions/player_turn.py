@@ -59,7 +59,7 @@ f"You enemy tries to step backwards, but {reference['his']} heel hits a raised s
 f"With a deft sword movement you explode into action, striking with your whirling sword, spilling the blood of the {reference['object']}."]
 	fail_script = ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
 "You swing your sword in a cruel lateral strike, but your opponent ducks just in time, the wind chasing the blade making a whistling sound."
-,f"""You swing you sword downwards, grunting with the effort. The {reference["object"]} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body."""]
+,f"""You swing your sword downwards, grunting with the effort. The {reference["object"]} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body."""]
 	agility_script = ["You're quick enough to strike a second time.",
 "You bring your blade back quickly for a second attempt.",
 "You spin with the momentum of the sword, whirling and attacking again swiftly."]

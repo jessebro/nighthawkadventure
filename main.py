@@ -16,6 +16,7 @@ weapon.get_weapon_name()
 ability.get_ability()
 equipment.get_equipment()
 
+chapter1.ghouls_at_farm()
 print_stuff([f"""In this text based adventure, you will be taking on the role of a Nighthawk, an elite monster hunter, a sword
 for hire when the ordinary folk can't handle the danger.""",
 """The adventure begins in the town of Blackburrow, a bustling place just East of the Lizardtongue Mountains, and South of 
@@ -50,5 +51,5 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 		equipment.equipment["gold"] = 0
 		ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
-chapter1.ghouls_at_farm()
+
 chapter1.hag_lair()

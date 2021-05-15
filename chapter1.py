@@ -10,7 +10,7 @@ from functions.utils import print_stuff
 def ghouls_at_farm():
 	print_stuff(["You make your way outside of Blackburrow. It is late morning, and the sky is a cobalt blue.",
 	"Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
-	"You stear off the main road and onto a dirt track leading to the Lizardtongue Mountains. About an hour into the journey you come across a farm.",
+	"You steer off the main road and onto a dirt track leading to the Lizardtongue Mountains. About an hour into the journey you come across a farm.",
 	"Wheat stalks stand golden against the pale grass. You decide to cut through the wheat field, rather than take a detour around it.",
 	"That's when you hear shouting and cursing. You begin to run, and see a man standing in the front door of his house. He is swinging a pitchfork to and fro.",
 	"Standing before him are four ghouls; pale, lanky, short and hairless humanoids that feed on rotting flesh. Two other ghouls lie dead and bleeding.",
@@ -18,8 +18,8 @@ def ghouls_at_farm():
 	"You know that the man will not be able to hold the ghouls back forever."])
 
 	choice = input("""1. Help the farmer.
-	2. Continue on your way.
-	> """)
+2. Continue on your way.
+> """)
 	if choice == "1":
 		print_stuff([f"You rush forwards, {weapon.weapon['weaponname']} in hand. The ghouls turn to face you now, but one of them continues to focus on the farmer",
 	"One of the ghouls lunges forward suddenly, and you ready your sword."])
@@ -37,17 +37,18 @@ def ghouls_at_farm():
 > """)
 		if choice == "1":
 			print_stuff(["You take the gold bid the farmer farewell, before continuing on your way.",
-"You recieved 10 gold!"])
+"You received 10 gold!"])
 			equipment.equipment["gold"] += 10
 		else:
 			print_stuff(["You push the money bag away, and you notice the man seems to relax a bit. Clearly he was hoping you would refuse.",
 f'''"Thank you again. But at least let me give you a meal before you leave."''',
 "You accept the man's offer and he brings you into his small house. He gives you a bowl of green soup. You eat it, and it tastes good enough.",
-"The soup reenergizes you, despite its mediocre taste. Once you have finished eating, the farmer bids you farwell, and you continue towards the Lizardtongue Mountains"])
+"The soup energises you, despite its mediocre taste. Once you have finished eating, the farmer bids you farewell, and you continue towards the Lizardtongue Mountains"])
 			ability.ability["health"] += 5
-			ability.gain_xp(encounters.xp_handouts["small"])
+			ability.gain_xp([encounters.xp_handouts["small"]])
 
 def hag_lair():
+	treasure = 0
 	print_stuff(['You continue along the trail, and you pass by a few more farms, and sometimes the people maintaining them, nodding in greeting as you pass.',
 '''Finally, the track becomes wilder, the farms become less, before disappearing altogether. Small pockets of trees and undergrowth now dot the countryside.''',
 'It is late in the afternoon when the trail splits suddenly. It is clear which path will lead to the mountains. The other pass leads into a small forest.'])
@@ -79,6 +80,68 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 			print_stuff(['Deciding not to disturb the inhabitants - whoever they may be - you trace your steps back to the junction in the trail.'])
 			return False
 		enemy_round.initialize([encounters.monster_access("bone_hag")])
-
+		if post_combat.victory == False:
+			print("No one knows you came here, and no one can save you now. Unfortunately, you'll probably end up in the hag's cooking pot.")
+			exit()
+		print_stuff(["With the bone hag dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
+		while True:
+			investigate = input("""1. Search the chest.
+2. Investigate the cauldron.
+3. Check the papers
+4. Examine the bones.
+5. Leave
+> """)
+			if investigate == "1":
+				print_stuff(["You open the chest, and are slightly disappointed when all you find are worn clothes, riddled with moth holes."])
+			elif investigate == "2":
+				while True:
+					option = input("""The cauldron contains some meat soup. It is still warm, and a wooden stirring spoon sticks out from its depths.
+1. Taste the soup.
+2. Step away.
+> """)
+					if option == "1":
+						print_stuff(["The soup tastes fresh, and has chunks of meat in it. The meat itself tastes similar to pork."])
+						continue
+					else:
+						break
+			elif investigate == "3":
+				treasure += 1
+				print("""You pick up a piece of paper and read.
+	____________________________________________________
+		My dearest Chana,
+	If I am to die prematurely, you must lift the chest 
+	and take the belongings below it. That should be
+	enough to keep you alive, and perhaps flourish.
+		Denvar
+	____________________________________________________""")
+				if treasure == 1:
+					option = input("""1. Search under the chest.
+2. Step away.""")
+					if option == "1":
+						equipment.equipment["gold"] += 50
+						print_stuff(["You obey the instructions in the note, lifting the chest and peering under it.",
+"Underneath you see a resonably large bag of money, as well as a ring.",
+"You take the money, counting 50 gold coins."])
+						ring = input("""1. Put on the ring.
+2. Step away.""")
+						if ring == "1":
+							ability.ability["strength"] += 1
+							print_stuff(["You feel a tingling sensation as you slip the ring on, and a sudden burst of power.",
+"Your Strength has been increased by 1!"])
+						else:
+							continue
+					else:
+						treasure = 0
+						continue
+				else:
+					print_stuff([""])
+					continue
+			elif investigate == "4":
+				print_stuff(["You discover two things about the bones. First, it is that of a woman, due to the shape of the bones and the scraps of woman's clothing lying nearby.",
+"Second, the bones have been scraped clean of all flesh, due to the knicks and scratches of something being drawn along them."])
+			else:
+				break
+		print_stuff(["You leave the cabin, satisfied with what you achieved"])
+	print_stuff([""])
 
 
