@@ -38,5 +38,6 @@ def sharpen():
 def train():
 	print(f"You draw {weapon.weapon['weaponname']} and practice attack routines, honing your skills.")
 	time.sleep(3)
-	ability.gain_xp(encounters.xp_handouts["practice"])
+	training_xp = [encounters.xp_handouts["practice"]]
+	ability.gain_xp(training_xp)
 
