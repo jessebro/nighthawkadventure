@@ -5,8 +5,12 @@ from functions import weapon
 from functions import ability
 
 def end_combat(enemy):
+	if len(enemy) == 1:
+		loot = "corpse"
+	else:
+		loot = "corpses"
 	choice = input(f"""All danger has gone. The ground has been spattered with blood, and the adrenaline has left you feeling a bit weak. Do you...
-1. Loot the corpses
+1. Loot the {loot}
 2. Step away
 > """)
 	if choice == "1":

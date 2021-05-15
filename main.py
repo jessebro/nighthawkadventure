@@ -6,14 +6,8 @@ from functions import encounters
 from functions import enemy_round
 from functions import post_combat
 from functions import weapon
+from functions.utils import print_stuff
 import chapter1
-
-
-
-def print_stuff(scripts):
-	for script in scripts:
-		print(script)
-		input("~~ ")
 
 character.get_name()
 character.get_gender()
@@ -55,7 +49,6 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 "You lost all gold!"])
 		equipment.equipment["gold"] = 0
 		ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
-
 
 chapter1.ghouls_at_farm()
 chapter1.hag_lair()

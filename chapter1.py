@@ -5,7 +5,7 @@ from functions import encounters
 from functions import enemy_round
 from functions import post_combat
 from functions import weapon
-from main import print_stuff
+from functions.utils import print_stuff
 
 def ghouls_at_farm():
 	print_stuff(["You make your way outside of Blackburrow. It is late morning, and the sky is a cobalt blue.",
@@ -33,17 +33,17 @@ def ghouls_at_farm():
 	f'"Thank you, kind stranger," the man says. He bites his lip for a second, then pulls a money bag from his belt and holds it out to you.',
 	f'''"It's not much, but you deserve a reward, {character.character['titles']['casual']}."'''])
 		choice = input("""1. "Thank you. Take care."
-	2. "Keep the money. Your children need it."
-	> """)
+2. "Keep the money. Your children need it."
+> """)
 		if choice == "1":
 			print_stuff(["You take the gold bid the farmer farewell, before continuing on your way.",
-	"You recieved 10 gold!"])
+"You recieved 10 gold!"])
 			equipment.equipment["gold"] += 10
 		else:
 			print_stuff(["You push the money bag away, and you notice the man seems to relax a bit. Clearly he was hoping you would refuse.",
-	f'''"Thank you again. But at least let me give you a meal before you leave."''',
-	"You accept the man's offer and he brings you into his small house. He gives you a bowl of green soup. You eat it, and it tastes good enough.",
-	"The soup reenergizes you, despite its mediocre taste. Once you have finished eating, the farmer bids you farwell, and you continue towards the Lizardtongue Mountains"])
+f'''"Thank you again. But at least let me give you a meal before you leave."''',
+"You accept the man's offer and he brings you into his small house. He gives you a bowl of green soup. You eat it, and it tastes good enough.",
+"The soup reenergizes you, despite its mediocre taste. Once you have finished eating, the farmer bids you farwell, and you continue towards the Lizardtongue Mountains"])
 			ability.ability["health"] += 5
 			ability.gain_xp(encounters.xp_handouts["small"])
 
@@ -51,14 +51,16 @@ def hag_lair():
 	print_stuff(['You continue along the trail, and you pass by a few more farms, and sometimes the people maintaining them, nodding in greeting as you pass.',
 '''Finally, the track becomes wilder, the farms become less, before disappearing altogether. Small pockets of trees and undergrowth now dot the countryside.''',
 'It is late in the afternoon when the trail splits suddenly. It is clear which path will lead to the mountains. The other pass leads into a small forest.'])
-	choice = input("1. Explore the forest trail."
-"2. Take the path to the Lizardtongue Mountains")
+	choice = input("""1. Explore the forest trail.
+2. Take the path to the Lizardtongue Mountains
+> """)
 	if choice == "1":
 		print_stuff(['You walk down the forest path. Light from the afternoon sun slants through the thin canopy of leaves, and small critters rustle in the leaflitter.',
 'After following the trail for about ten minutes, it ends in a small log cabin. No lights shine through the glass windows, but you can detect some movement from inside.',])
 		choice = input("""1. "Is anyone home?!"
 2. Try to open the door.
-3. Turn back and head for the Lizardtongue Mountains.""")
+3. Turn back and head for the Lizardtongue Mountains.
+> """)
 		if choice == "1":
 			print_stuff(["You see the movement stop for a moment, then a creature comes hurtling out the door.",
 '''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a bone hag.''',
@@ -70,13 +72,13 @@ f"You also know that hags enjoy to the taste of living flesh, especially that of
 "Almost everything here is broken or decayed. Only two things seem solid here; a cauldron of meat soup, and a hunched form. The form turns to see, and grins toothily.",
 '''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a bone hag.''',
 """It takes on the form of an elderly woman with grey skin that hangs and droops in strange folds, dull black hair and dressed in nothing but a loincloth. 
-They have sharp claws on their fingers and toes.""",
+It has sharp claws on their fingers and toes.""",
 """You also know that hags enjoy to the taste of living flesh. Before you can react, the hag lunges forwards, crashing into you. 
 The two of you tumble outside of the cabin and into the forest. You roll to your feet and draw your sword, and the hag rises to its feet, snarling."""])
 		else:
 			print_stuff(['Deciding not to disturb the inhabitants - whoever they may be - you trace your steps back to the junction in the trail.'])
 			return False
-		enemy_round.initialize(encounters.monster_access("bone_hag"))
+		enemy_round.initialize([encounters.monster_access("bone_hag")])
 
 
 
