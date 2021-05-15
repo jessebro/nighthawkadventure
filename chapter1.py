@@ -64,7 +64,19 @@ def hag_lair():
 '''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a bone hag.''',
 """It takes on the form of an elderly woman with grey skin that hangs and droops in strange folds, dull black hair and dressed in nothing but a loincloth. 
 They have sharp claws on their fingers and toes.""",
-f"You also know that hags enjoy to the taste of living flesh, especially that of young people or elves. You draw {weapon.weapon['weaponname']}"])
+f"You also know that hags enjoy to the taste of living flesh, especially that of young people or elves. You draw {weapon.weapon['weaponname']} and ready yourself."])
 		elif choice == "2":
+			print_stuff(["You move to the door and twist the doorknob. The door swings open, and immediately the smell of rot assaults your nose.",
+"Almost everything here is broken or decayed. Only two things seem solid here; a cauldron of meat soup, and a hunched form. The form turns to see, and grins toothily.",
+'''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a bone hag.''',
+"""It takes on the form of an elderly woman with grey skin that hangs and droops in strange folds, dull black hair and dressed in nothing but a loincloth. 
+They have sharp claws on their fingers and toes.""",
+"""You also know that hags enjoy to the taste of living flesh. Before you can react, the hag lunges forwards, crashing into you. 
+The two of you tumble outside of the cabin and into the forest. You roll to your feet and draw your sword, and the hag rises to its feet, snarling."""])
+		else:
+			print_stuff(['Deciding not to disturb the inhabitants - whoever they may be - you trace your steps back to the junction in the trail.'])
+			return False
+		enemy_round.initialize(encounters.monster_access("bone_hag"))
+
 
 

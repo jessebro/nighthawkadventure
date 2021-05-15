@@ -9,7 +9,8 @@ weapon = {
 }
 
 def get_weapon_name():
-	name = input("What do you want your weapon to be called?")
+	name = input("""What do you want your weapon to be called?
+> """)
 	confirm = input(f"Are you sure you want you weapon to be called {name}? y/n")
 	if confirm != "y":
 		get_weapon_name()
