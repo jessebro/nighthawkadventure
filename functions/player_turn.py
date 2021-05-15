@@ -54,7 +54,7 @@ f"You charge forwards, spin on one foot, and bring your sword crashing down on t
 "Your opponent tries to duck away from the blow, but you feel a bit of resistance, and see a spurt of blood.",
 f"""You're too fast for your opponent. {reference['he'].capitalize()} raises {reference['his']} defenses weakly, but you easily bat away the blockage and cut into {reference["him"]} with your sword deeply.""",
 f"""You twirl your sword in a silver spiral, feeling with satisfaction as the sword bites deeply into the {reference["object"]}.""",
-f"The {reference['object']} readies {reference['him']}self for your attack. At the last second you duck and roll behind {reference['him']}, under {reference['his']} guard and slashing {reference['him']} across the back.",
+f"The {reference['object']} readies {reference['him']}self for your attack. At the last second you duck and roll behind {reference['him']}, under {reference['his']} guard and slash {reference['him']} across the back.",
 f"You enemy tries to step backwards, but {reference['his']} heel hits a raised section of ground. {reference['he'].capitalize()} staggers, and you slash {reference['him']} easily.",
 f"With a deft sword movement you explode into action, striking with your whirling sword, spilling the blood of the {reference['object']}."]
 	fail_script = ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
@@ -165,6 +165,7 @@ f"Your opponent brings down {reference['his']} attack. You raised your blade at 
 	attack_chance = random.randrange(1,101)
 	if attack_chance <= (50 + ability.ability['agility']):
 		print("Your enemy's loss of focus allows you to make an attack!")
+		time.sleep(3)
 		strike(enemy)
 	else:
 		return False
@@ -215,6 +216,7 @@ Enter 'b' to go back
 		elif ability.ability["health"] == ability.ability["maxhealth"]:
 			print("You're on max health, and a potion would have no effect.")
 			time.sleep(5)
+			equipment.equipment["potions"] += 1
 			use_item(enemy)
 			return False
 		else:
