@@ -1,4 +1,5 @@
 import enemy_round
+import random
 
 xp_handouts = {
 	"practice": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, 10, " ", " ", " "])

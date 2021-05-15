@@ -31,8 +31,9 @@ def rest():
 def sharpen():
 	print(f"You pull out a whetstone and sharpen {weapon.weapon['weaponname']}, cleaning off the rust and filing down the nicks and chips.")
 	time.sleep(4)
-	print(f"{weapon.weapon['name'].capitalize()}'s Sharpness increased by 1!")
+	print(f"{weapon.weapon['weaponname'].capitalize()}'s Sharpness increased by 1!")
 	weapon.weapon["sharpness"] += 1
+	time.sleep(3)
 
 def train():
 	print(f"You draw {weapon.weapon['weaponname']} and practice attack routines, honing your skills.")
