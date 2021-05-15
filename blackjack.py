@@ -2,9 +2,8 @@ import random
 import character
 import equipment
 import time
-import town
 
-def cards(name, objective):
+def cards():
 	gamble = False
 	stakes = input(f"""You find some people who are willing to play cards with you. Three of you sit down, and one of the strangers deals you both two cards.
 Before you begin, your opponent speaks to you.
@@ -13,14 +12,13 @@ Before you begin, your opponent speaks to you.
 1. No stakes game
 2. Play for money (10 gold)
 > """)
-	if stakes == 2:
+	if stakes == "2":
 		if equipment.equipment['gold'] < 10:
 			redo = input("""You don't have enough gold for that! Will you...
 1. Play a no stakes game
 2. Leave the table
 > """)
 			if redo == 2:
-				town.inn(name, objective)
 				return False
 		else:
 			gamble = True
@@ -39,7 +37,7 @@ Before you begin, your opponent speaks to you.
 			print("You win! Your opponent gruffly congratulates, and the other people nearby roar with laughter.")
 			time.sleep(3)
 			if gamble == True:
-				print("You pull in the pile of twenty gold pieces, and leave the table.")
+				print("You pull in the pile of twenty gold coins and leave the table.")
 				time.sleep(3)
 				equipment.equipment["gold"] += 20
 			break
@@ -89,21 +87,22 @@ def enemy_turn(deck, target):
 	deck.remove(estart2)
 	ehand = [estart1, estart2]
 	action = random.randrange(15,21)
-	if action < sum(ehand) and sum(ehand) > target:
-		print(f"Your opponent locks in their hand.")
-		time.sleep(5)
-		enemy_result = sum(ehand)
-		return enemy_result
-	else:
-		print("Your opponent draws.")
-		time.sleep(5)
-		drawn = random.choice(deck)
-		deck.remove(drawn)
-		ehand.append(drawn)
-		if sum(ehand) > 21:
-			print("Your enemy went over twenty one, so you win!")
-			enemy_result = -1
+	while True:
+		if action < sum(ehand) and sum(ehand) > target:
+			print(f"Your opponent locks in their hand.")
+			time.sleep(5)
+			enemy_result = sum(ehand)
 			return enemy_result
-		elif sum(ehand) == 21:
-			enemy_result = 21
-			return enemy_result
+		else:
+			print("Your opponent draws.")
+			time.sleep(5)
+			drawn = random.choice(deck)
+			deck.remove(drawn)
+			ehand.append(drawn)
+			if sum(ehand) > 21:
+				print("Your enemy went over twenty one, so you win!")
+				enemy_result = -1
+				return enemy_result
+			elif sum(ehand) == 21:
+				enemy_result = 21
+				return enemy_result

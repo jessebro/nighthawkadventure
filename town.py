@@ -129,7 +129,7 @@ Enter 'b' to leave
 				time.sleep(2)
 				ability.ability["health"] = ability.ability["maxhealth"]
 		elif purchase == "2":
-			blackjack.cards(name, objective)
+			blackjack.cards()
 		elif purchase == "3":
 			rumours(name, objective)
 	town(name, objective)
