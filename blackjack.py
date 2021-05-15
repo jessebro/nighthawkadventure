@@ -25,7 +25,9 @@ Before you begin, your opponent speaks to you.
 			equipment.equipment["gold"] -= 10
 			print("You hand over the gold, and a pile forms of twenty gold coins. If you win, it will be yours.")
 	while True:
-		deck = list(range(1, 14)) * 4
+		predeck = [10] * 12
+		deck = list(range(1, 11)) * 4
+		deck = deck + predeck
 		start1 = random.choice(deck)
 		deck.remove(start1)
 		start2 = random.choice(deck)
@@ -45,6 +47,9 @@ Before you begin, your opponent speaks to you.
 			print(f"""You lose! Your opponent leans over the table and shakes your hand.
 "It was a pleasure to play with you, {character.character["titles"]['casual']}," they say cheerfully.""")
 			time.sleep(5)
+			if gamble == True:
+				print("He rakes in the pile of coins and puts them in his money bag, grinning broadly.")
+				time.sleep(3)
 			break
 		else:
 			print("It's a draw, so you must rematch.")
@@ -94,11 +99,11 @@ def enemy_turn(deck, target):
 			enemy_result = sum(ehand)
 			return enemy_result
 		else:
-			print("Your opponent draws.")
-			time.sleep(5)
 			drawn = random.choice(deck)
 			deck.remove(drawn)
 			ehand.append(drawn)
+			print(f"Your opponent draws a card.")
+			time.sleep(5)
 			if sum(ehand) > 21:
 				print("Your enemy went over twenty one, so you win!")
 				enemy_result = -1
