@@ -6,6 +6,7 @@ from functions import encounters
 from functions import enemy_round
 from functions import post_combat
 from functions import weapon
+import chapter1
 
 
 
@@ -53,3 +54,6 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 "You lost all gold!"])
 		equipment.equipment["gold"] = 0
 		ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
+
+
+chapter1.ghouls_at_farm()
