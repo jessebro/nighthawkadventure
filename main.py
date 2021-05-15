@@ -6,6 +6,7 @@ from functions import encounters
 from functions import enemy_round
 from functions import post_combat
 from functions import weapon
+from functions import rest
 from functions.utils import print_stuff
 import chapter1
 
@@ -52,3 +53,5 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 
 chapter1.ghouls_at_farm()
 chapter1.hag_lair()
+chapter1.bandit_camp()
+rest.rest()

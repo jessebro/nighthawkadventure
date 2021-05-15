@@ -7,6 +7,7 @@ from functions import post_combat
 from functions import weapon
 from functions.utils import print_stuff
 
+
 def ghouls_at_farm():
 	print_stuff(["You make your way outside of Blackburrow. It is late morning, and the sky is a cobalt blue.",
 	"Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
@@ -46,6 +47,7 @@ f'''"Thank you again. But at least let me give you a meal before you leave."''',
 "The soup energises you, despite its mediocre taste. Once you have finished eating, the farmer bids you farewell, and you continue towards the Lizardtongue Mountains"])
 			ability.ability["health"] += 5
 			ability.gain_xp([encounters.xp_handouts["small"]])
+
 
 def hag_lair():
 	treasure = 0
@@ -145,5 +147,51 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 				break
 		print_stuff(["You leave the cabin, satisfied with what you achieved. You head back along the trail, and back to the junction."])
 	print_stuff(["You turn onto the path to the Lizardtongue Mountains, and continue your trek."])
+
+
+def campers():
+	print_stuff(["The sky is growing darker. The bird song is giving way to the chirp of the crickets, and the air grows cold.",
+"Even as you begin to consider a place to stop for the night, you see a flickering orange light from behind a clump of high bushes."])
+	choice = input("""1. Investigate the sources of the fire.
+2. Keep walking until you find somewhere to rest.
+> """)
+	if choice == "1":
+		print_stuff(["You walk over to the source of the fire. Once you reach it, you see two men, and two large backpacks surrounding a campfire.",
+"One of the men, large and muscular, jumps to his feet at the sight of you, drawing his sword. The other, who is shorter, slender and lean, also rises to his feet.",
+'''"Who are you?" the large man demands. "Friend or foe?" The other man places a hand on his companion's shoulder and smiles at you.''',
+f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoothly. "We're just on guard, as we have learnt to be."''',
+'''The large man continues to eye you warily and doesn't sheath his sword. The lean one gestures to the campfire.''',
+'''"Share a fire?" he offers kindly.'''])
+		choice = input("""1. "Yes, thank you."
+2. "I'd best be on my way." 
+> """)
+		if choice == "1":
+			print_stuff(["""The lean man's smile increases. "Excellent," he says. You take a seat by the fire, and bask in its warmth.""",
+"""The lean man takes a seat beside you, but the large man grumbles something about taking a walk and leaves.""",
+""""I do not believe we have been properly introduced," the lean man says kindly. He lays a hand on his chest. "I'm Eladris. And you are?"
+"""])
+			reply = input(f"""1. "I'm {character.character["name"]}."
+2. "I'd rather not tell you."
+> """)
+			if reply == "1":
+				print_stuff([f""""{character.character['name']}," Eladris says, testing your name on his tongue."""])
+			else:
+				print_stuff(["""Eladris laughs. "Keep your secrets then," he chuckles. "But you should learn to be more trusting." """])
+			print_stuff(["So what brings you here? Monsters are roaming the countryside in even great numbers these days."])
+			reply = input(f"""1. "I'm looking for some missing people."
+2. "I do not fear monsters. It is the other way around." 
+> """)
+			if reply == "1":
+				print_stuff([f""""I see," Eladris says. "I will not pry, though my curiosity demands me to do so." """])
+			else:
+				print_stuff([""""You're a confident one," he says. "Be wary it doesn't become hubris." """])
+			while True:
+				question = input(f"""1. "So... what's a half-elf doing out here?"
+2. "Who's your cheerful friend?" 
+3. "You said monsters were increasing in numbers..."
+4. "I'm going to get some sleep." 
+> """)
+		else:
+			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])
 
 
