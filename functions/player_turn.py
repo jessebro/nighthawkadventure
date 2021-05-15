@@ -158,7 +158,7 @@ def distract(enemy):
 f"You yell fiercely into the face of your opponent. {reference['he'].capitalize()} recoils at the sudden noise.",
 f"""You feint sideways, then come back to your previous position. The {reference['object']} staggers slightly at the sudden move.""",
 f"As your enemy moves closer, you swiftly kick {reference['him']} painfully in the shin.",
-f"Your opponent brings down {reference['his']} blade. You raised your own at the last second, and with your free hand punch {reference['him']} in the face, sending {reference['him']} staggering away."]
+f"Your opponent brings down {reference['his']} attack. You raised your blade at the last second, and with your free hand punch {reference['him']} in the face, sending {reference['him']} staggering away."]
 	print(random.choice(initial_script))
 	time.sleep(5)
 	enemy["playermod"] += (10 + ability.ability["agility"] + ability.ability["distract_lvl"] * 2)

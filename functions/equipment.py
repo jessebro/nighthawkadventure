@@ -21,7 +21,7 @@ Your choice of a consumable item.
 	1. Potion (heals 4-8 health)
 	2. Knife (deals a guaranteed 2-5 damage)
 	3. Oil (your next attack deals 200% damage)
-	4. Smoke Bombs (instantly lets you flee combat)
+	4. Smoke Bombs (your next attack makes an extra attack)
 
 Type the number of the item you want
 > """))
