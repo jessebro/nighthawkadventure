@@ -2,7 +2,7 @@ import ability
 import weapon
 import inventory
 import time
-import main
+import encounters
 
 def rest():
 	activity = input(f"""What would you like to do?
@@ -37,5 +37,5 @@ def sharpen():
 def train():
 	print(f"You draw {weapon.weapon['weaponname']} and practice attack routines, honing your skills.")
 	time.sleep(3)
-	ability.gain_xp(main.xp_handouts["practice"])
+	ability.gain_xp(encounters.xp_handouts["practice"])
 
