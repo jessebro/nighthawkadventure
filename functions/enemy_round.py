@@ -216,8 +216,8 @@ def next_victim(enemies):
 	enemy = enemies[gang_index]
 	reference = enemy['reference']
 	friend_approach = [
-f"The {reference['object']} rushes forward, {reference['pain']}ing with rage at {reference['his']} companion's death.",
-f"The {reference['object']} approaches you now, more wary than your previous, now deceased opponent.",
+f"A {reference['object']} rushes forward, {reference['pain']}ing with rage at {reference['his']} companion's death.",
+f"A {reference['object']} approaches you now, more wary than your previous, now deceased opponent.",
 f"You ready your sword, now stained with blood, shouting a challenge to your next opponent. {reference['he'].capitalize()} responds to the challenge and moves forwards."]
 	print(random.choice(friend_approach))
 	time.sleep(5)
