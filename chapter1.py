@@ -47,3 +47,24 @@ def ghouls_at_farm():
 			ability.ability["health"] += 5
 			ability.gain_xp(encounters.xp_handouts["small"])
 
+def hag_lair():
+	print_stuff(['You continue along the trail, and you pass by a few more farms, and sometimes the people maintaining them, nodding in greeting as you pass.',
+'''Finally, the track becomes wilder, the farms become less, before disappearing altogether. Small pockets of trees and undergrowth now dot the countryside.''',
+'It is late in the afternoon when the trail splits suddenly. It is clear which path will lead to the mountains. The other pass leads into a small forest.'])
+	choice = input("1. Explore the forest trail."
+"2. Take the path to the Lizardtongue Mountains")
+	if choice == "1":
+		print_stuff(['You walk down the forest path. Light from the afternoon sun slants through the thin canopy of leaves, and small critters rustle in the leaflitter.',
+'After following the trail for about ten minutes, it ends in a small log cabin. No lights shine through the glass windows, but you can detect some movement from inside.',])
+		choice = input("""1. "Is anyone home?!"
+2. Try to open the door.
+3. Turn back and head for the Lizardtongue Mountains.""")
+		if choice == "1":
+			print_stuff(["You see the movement stop for a moment, then a creature comes hurtling out the door.",
+'''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a bone hag.''',
+"""It takes on the form of an elderly woman with grey skin that hangs and droops in strange folds, dull black hair and dressed in nothing but a loincloth. 
+They have sharp claws on their fingers and toes.""",
+f"You also know that hags enjoy to the taste of living flesh, especially that of young people or elves. You draw {weapon.weapon['weaponname']}"])
+		elif choice == "2":
+
+

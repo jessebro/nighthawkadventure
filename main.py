@@ -13,11 +13,12 @@ import chapter1
 def print_stuff(scripts):
 	for script in scripts:
 		print(script)
-		input(">>> ")
+		input("~~ ")
 
 character.get_name()
 character.get_gender()
 character.get_title()
+weapon.get_weapon_name()
 ability.get_ability()
 equipment.get_equipment()
 
@@ -57,3 +58,4 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 
 
 chapter1.ghouls_at_farm()
+chapter1.hag_lair()

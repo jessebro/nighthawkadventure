@@ -8,6 +8,16 @@ weapon = {
 	"weaponname": "your weapon"
 }
 
+def get_weapon_name():
+	name = input("What do you want your weapon to be called?")
+	confirm = input(f"Are you sure you want you weapon to be called {name}? y/n")
+	if confirm != "y":
+		get_weapon_name()
+		return False
+	else:
+		weapon["weaponname"] = name
+
+
 def lose_stability():
 	breakchance = random.randrange(1,3)
 	if breakchance == 2:
