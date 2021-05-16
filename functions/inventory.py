@@ -12,6 +12,7 @@ def show():
 		{character.character["gender"].capitalize()}
 
 		Health: {ability.ability["health"]}/{ability.ability["maxhealth"]}
+		Armour: {ability.ability["armour"]}
 		Gold: {equipment.equipment["gold"]}
 		1. Character Stats
 		2. Weapon

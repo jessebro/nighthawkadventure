@@ -118,7 +118,7 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 	time.sleep(5)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
 		print(random.choice(success_script))
-		enemy_damage = random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1)
+		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"])
 		ability.ability["health"] -= enemy_damage
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")

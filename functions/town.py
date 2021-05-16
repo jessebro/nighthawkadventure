@@ -75,12 +75,15 @@ def blacksmith(name, objective):
 Weapons, tools and blades hang on racks, and the place smells of sweat and fire.""")
 	time.sleep(4)
 	while True:
-		options = ['1', '2', '3', '4', 'b']
+		options = ['1', '2', '3', '4', '5', '6', '7', 'b']
 		purchase = input(f"""What would you like smithed?
 	1. Upgrade Sharpness (20 gold)
 	2. Upgrade Finesse (30 gold)
 	3. Upgrade Stability (15 gold)
 	4. Repair Weapon (10 gold)
+	5. Enhance Armour: Defense (20 gold)
+	6. Enhance Armour: Toughness (35 gold)
+	7. Enhance Armour: Flexibility (25 gold)
 
 Enter 'b' to leave
 > """)
@@ -88,8 +91,14 @@ Enter 'b' to leave
 			continue
 		if purchase == "b":
 			break
-		word_keys = [f"increased {weapon.weapon['weaponname']}'s Sharpness", f"increased {weapon.weapon['weaponname']}'s Finesse", f"increased {weapon.weapon['weaponname']}'s Stability", f"restored {weapon.weapon['weaponname']}'s Stability"]
-		prices = [20, 30, 15, 10]
+		word_keys = [f"increased {weapon.weapon['weaponname']}'s Sharpness",
+f"increased {weapon.weapon['weaponname']}'s Finesse",
+f"increased {weapon.weapon['weaponname']}'s Stability",
+f"restored {weapon.weapon['weaponname']}'s Stability",
+"enhanced your armour's defense",
+"enhanced your armour's toughness",
+"enhanced your armour's flexibility"]
+		prices = [20, 30, 15, 10, 20, 35, 25]
 		choice = int(purchase) - 1
 		if equipment.equipment["gold"] < prices[choice]:
 			print("You don't have enough gold for that.")
@@ -104,6 +113,13 @@ Enter 'b' to leave
 			weapon.weapon["stability"] += 1
 		elif purchase == "4":
 			weapon.weapon["stability"] = weapon.weapon["max stability"]
+		elif purchase == "5":
+			ability.ability["armour"] += 1
+		elif purchase == "6":
+			ability.ability["maxhealth"] += 5
+			ability.ability["health"] += 5
+		elif purchase == "7":
+			ability.ability["agility"] += 1
 		equipment.equipment["gold"] -= prices[choice]
 		print(f"""You {word_keys[choice]} for {prices[choice]} gold.""")
 		time.sleep(4)

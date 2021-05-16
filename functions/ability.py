@@ -11,6 +11,7 @@ ability = {
 	"persona": 0,
 	"maxhealth": 0,
 	"health": 0,
+	"armour": 0,
 	"level": 1,
 	"xp": 0,
 	"strike_lvl": 0,
