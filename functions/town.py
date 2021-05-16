@@ -15,8 +15,9 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 1. Look at the markets
 2. Visit the blacksmith       ~ {equipment.equipment["gold"]} gold ~
 3. Rest at the inn
-4. Check your inventory
-5. {objective}
+4. Train
+5. Check your inventory
+6. {objective}
 
 > """)
 	if activity == "1":
@@ -26,10 +27,12 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 	elif activity == "3":
 		inn(name, objective)
 	elif activity == "4":
+		trainer(name, objective)
+	elif activity == "5":
 		inventory_shown = inventory.show()
 		if not inventory_shown:
 			town(name, objective)
-	elif activity == "5":
+	elif activity == "6":
 		return False
 
 def market(name, objective):
@@ -167,3 +170,40 @@ def rumours(name, objective):
 	time.sleep(6)
 	return False
 
+
+def trainer(name, objective):
+	print("You find someone who is willing to help you hone your skills, but not for free.")
+	time.sleep(4)
+	while True:
+		options = ['1', '2', '3', '4', 'b']
+		purchase = input(f"""What would you like to train?
+	1. Strength training (15 gold)
+	2. Technical training (25 gold)
+	3. Parry: Defensive stance (35 gold)
+	4. Distract: Dirty tactics (35 gold)
+
+Enter 'b' to leave
+> """)
+		if purchase not in options:
+			continue
+		if purchase == "b":
+			break
+		word_keys = ["increased your Strength", "gained experience", "upgraded your parry", "upgraded your distract"]
+		prices = [15, 25, 35, 35]
+		choice = int(purchase)
+		choice -= 1
+		if equipment.equipment["gold"] < prices[choice]:
+			print("You don't have enough gold for that.")
+			continue
+		elif purchase == "1":
+			ability.ability["strength"] += 1
+		elif purchase == "2":
+			ability.ability["xp"] += 5
+		elif purchase == "3":
+			equipment.equipment["parry_lvl"] += 1
+		elif purchase == "4":
+			equipment.equipment["distract_lvl"] += 1
+		equipment.equipment["gold"] -= prices[choice]
+		print(f"""You {word_keys[choice]} for {prices[choice]} gold.""")
+		time.sleep(4)
+	town(name, objective)

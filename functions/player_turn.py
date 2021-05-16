@@ -86,7 +86,7 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
-			if roll <= (10 + (weapon.weapon["finesse"] * 2)):
+			if roll <= (10 + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"]):
 				print("The strike was well aimed, and scored a critical hit!")
 				time.sleep(3)
 				damage_multi += 1
@@ -138,7 +138,7 @@ f"Your adversary closes in, but at the last second you lunge forwards, slamming 
 	enemy["modifier"] -= (10 + ability.ability["agility"] + ability.ability["parry_lvl"])
 	enemy_roll = random.randrange(1,101)
 	time.sleep(5)
-	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
+	if enemy_roll <= (enemy["skill"] + enemy["modifier"] - ability.ability['agility']):
 		print(random.choice(fail_script))
 		enemy_damage = random.randrange(enemy["mindamage"], enemy["maxdamage"])
 		ability.ability["health"] -= enemy_damage
@@ -164,7 +164,7 @@ f"Your opponent brings down {reference['his']} attack. You raised your blade at 
 	time.sleep(5)
 	enemy["playermod"] += (10 + ability.ability["agility"] + ability.ability["distract_lvl"] * 2)
 	attack_chance = random.randrange(1,101)
-	if attack_chance <= (50 + ability.ability['agility']):
+	if attack_chance <= (50 + ability.ability['agility'] + ability.ability["distract_lvl"]):
 		print("Your enemy's loss of focus allows you to make an attack!")
 		time.sleep(3)
 		strike(enemy)
