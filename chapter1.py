@@ -1,5 +1,4 @@
 import random
-
 from functions import ability
 from functions import equipment
 from functions import character
@@ -8,9 +7,11 @@ from functions import enemy_round
 from functions import post_combat
 from functions import weapon
 from functions.utils import print_stuff
+from functions.loading import save
 
 
 def ghouls_at_farm():
+	save("chapter1.ghouls_at_farm")
 	print_stuff(["You make your way outside of Blackburrow. It is late morning, and the sky is a cobalt blue.",
 	"Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
 	"You steer off the main road and onto a dirt track leading to the Lizardtongue Mountains. About an hour into the journey you come across a farm.",
@@ -231,8 +232,10 @@ f"""Once you return, you notice that both Eladris and {man_name} are speaking to
 			else:
 				print_stuff(["You are unable to hear what they are saying. You move closer to try and listen."])
 				agility_roll = random.randrange(1,101)
-				if agility_roll < (75 + ability.ability['agility']):
+				if agility_roll <= (75 + ability.ability['agility']):
 					print_stuff(["You enter earshot of them without being noticed."])
+				else:
+					print_stuff()
 
 		else:
 			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])

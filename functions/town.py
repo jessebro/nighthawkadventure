@@ -36,6 +36,7 @@ def market(name, objective):
 	print("You enter the market, and immediately start browsing, looking for things you could use on your travels.")
 	time.sleep(4)
 	while True:
+		options = ['1', '2', '3', '4', 'b']
 		purchase = input(f"""What would you like to purchase?
 	1. Potions (25 gold)
 	2. Knives (20 gold)
@@ -44,11 +45,14 @@ def market(name, objective):
 
 Enter 'b' to leave
 > """)
+		if purchase not in options:
+			continue
 		if purchase == "b":
 			break
 		word_keys = ["Potion", "Knife", "Oil", "Smoke bomb"]
 		prices = [25, 20, 50, 40]
-		choice = int(purchase) - 1
+		choice = int(purchase)
+		choice -= 1
 		if equipment.equipment["gold"] < prices[choice]:
 			print("You don't have enough gold for that.")
 			continue
@@ -71,6 +75,7 @@ def blacksmith(name, objective):
 Weapons, tools and blades hang on racks, and the place smells of sweat and fire.""")
 	time.sleep(4)
 	while True:
+		options = ['1', '2', '3', '4', 'b']
 		purchase = input(f"""What would you like smithed?
 	1. Upgrade Sharpness (20 gold)
 	2. Upgrade Finesse (30 gold)
@@ -79,6 +84,8 @@ Weapons, tools and blades hang on racks, and the place smells of sweat and fire.
 
 Enter 'b' to leave
 > """)
+		if purchase not in options:
+			continue
 		if purchase == "b":
 			break
 		word_keys = [f"increased {weapon.weapon['weaponname']}'s Sharpness", f"increased {weapon.weapon['weaponname']}'s Finesse", f"increased {weapon.weapon['weaponname']}'s Stability", f"restored {weapon.weapon['weaponname']}'s Stability"]

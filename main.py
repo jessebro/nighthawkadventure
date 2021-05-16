@@ -8,7 +8,30 @@ from functions import post_combat
 from functions import weapon
 from functions import rest
 from functions.utils import print_stuff
+from functions.loading import save
+from functions.utils import boot
 import chapter1
+
+
+story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers"]
+position = boot()
+if position in story:
+	idx = story.index(position)
+	story = story[idx:]
+elif not position:
+	print_stuff("Your save file could not be accessed, or has been corrupted. You will have to start again.")
+
+
+def run_adventure(steps):
+	# Each step looks like this "module.function", e.g. "chapter1.hag_lair"
+	for step in steps:
+		# split on '.' give us a list, like this: ['chapter1', 'hag_lair']
+		step_parts = step.split('.')
+		# dynamically load the module in step_parts[0], e.g. 'chapter1' (step_module would now be chapter1 module)
+		step_module = __import__(step_parts[0])
+		# getattr loads a member of a module by name, e.g. get_attr(chapter1, 'hag_lair') - note the module is not a string, it is the actual module
+		step_func = getattr(step_module, step_parts[1])
+		step_func()
 
 character.get_name()
 character.get_gender()
@@ -16,6 +39,7 @@ character.get_title()
 weapon.get_weapon_name()
 ability.get_ability()
 equipment.get_equipment()
+
 
 print_stuff([f"""In this text based adventure, you will be taking on the role of a Nighthawk, an elite monster hunter, a sword
 for hire when the ordinary folk can't handle the danger.""",
@@ -51,7 +75,5 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 		equipment.equipment["gold"] = 0
 		ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
-chapter1.ghouls_at_farm()
-chapter1.hag_lair()
-chapter1.bandit_camp()
-rest.rest()
+
+run_adventure(story)
