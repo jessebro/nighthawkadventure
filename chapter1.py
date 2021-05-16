@@ -53,6 +53,7 @@ f'''"Thank you again. But at least let me give you a meal before you leave."''',
 
 
 def hag_lair():
+	save("chapter1.hag_lair")
 	treasure = 0
 	print_stuff(['You continue along the trail, and you pass by a few more farms, and sometimes the people maintaining them, nodding in greeting as you pass.',
 '''Finally, the track becomes wilder, the farms become less, before disappearing altogether. Small pockets of trees and undergrowth now dot the countryside.''',
@@ -153,6 +154,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 
 
 def campers():
+	save("chapter1.campers")
 	man_name = "the large man"
 	print_stuff(["The sky is growing darker. The bird song is giving way to the chirp of the crickets, and the air grows cold.",
 "Even as you begin to consider a place to stop for the night, you see a flickering orange light from behind a clump of high bushes."])
@@ -174,11 +176,11 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 """The lean man takes a seat beside you, but the large man grumbles something about taking a walk and leaves.""",
 """"I do not believe we have been properly introduced," the lean man says kindly. He lays a hand on his chest. "I'm Eladris. And you are?"
 """])
-			reply = input(f"""1. "I'm {character.character["name"]}."
+			reply = input(f"""1. "I'm {character.character["firstname"]}."
 2. "I'd rather not tell you."
 > """)
 			if reply == "1":
-				print_stuff([f""""{character.character['name']}," Eladris says, testing your name on his tongue."""])
+				print_stuff([f""""{character.character['firstname']}," Eladris says, testing your name on his tongue."""])
 			else:
 				print_stuff(["""Eladris laughs. "Keep your secrets then," he chuckles. "But you should learn to be more trusting." """])
 			print_stuff(["So what brings you here? Monsters are roaming the countryside in even great numbers these days."])
@@ -217,7 +219,8 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 					break
 			reply = input("""1. "Big words for a man with a small prick."
 2. "You need not worry."
-3. "Get out of my face before I smash yours in." """)
+3. "Get out of my face before I smash yours in." 
+> """)
 			if reply == "1":
 				print_stuff([f"""{man_name.capitalize()} glares at you. "Watch your words, {character.character['titles']['contempt']}," he spits."""])
 			elif reply == "2":
@@ -228,16 +231,59 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 """You wake up in the middle of the night, tormented by a full bladder. Silently, you move away to find somewhere to relive yourself.""",
 f"""Once you return, you notice that both Eladris and {man_name} are speaking to each other."""])
 			if ability.ability['awareness'] > 5:
-				print_stuff(["You able to hear what they are saying."])
+				print_stuff(["You able to hear what they are saying.",])
 			else:
 				print_stuff(["You are unable to hear what they are saying. You move closer to try and listen."])
 				agility_roll = random.randrange(1,101)
 				if agility_roll <= (75 + ability.ability['agility']):
-					print_stuff(["You enter earshot of them without being noticed."])
-				else:
-					print_stuff()
-
+					print_stuff(["You enter earshot of them without being noticed.",
+f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
+f""""Not this one," Eladris says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
+""""It's not about what they deserve. It's about what we need!" """])
+					speech = input("""1. "Greetings, gentlemen."
+2. Escape to the main trail.
+> """)
+					if speech == "2":
+						print_stuff(["""You use their chatter to make your escape, silently thanking yourself for taking your equipment with you to the lavatory."""])
+						return False
+					print_stuff([f"The two men turn as you step on a pile of dried leaves. {man_name.capitalize()} jumps to his feet, drawing his sword.",
+f""""The ploughing {character.character['titles']['insult']} is spying on us!" he yells, running forward, sword raised."""])
+					choice = input(f"""1. Use a smoke bomb to incapacitate {man_name}.
+2. Draw {weapon.weapon['weaponname']} and do battle.""")
+					if choice == "1" and equipment.equipment['smoke bombs'] > 0:
+						equipment.equipment["smoke bombs"] -= 1
+						print_stuff([f"""You hurl a smoke bomb at {man_name}. He coughs and splutters and you seize your chance.""",
+"""Lunging forwards, you hook your leg behind his, throwing him to the ground. His cry of rage is cut short as he lands on his back and the breath is knocked from him.""",
+"""To make sure he causes no more trouble, you kick him in the side of the head, and his body goes still, apart from his chest rising and falling."""])
+					else:
+						enemy_round.initialize([encounters.monster_access("mbandit")])
+						if post_combat.victory == False:
+							print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the campsight.",
+"You also realise that almost all your belongings are gone. Your sword, your food, and your items remain. However, you money and knives are gone.",
+"You pick yourself up and gather your equipment. It is day time, and despite being knocked unconscious, you feel slightly refreshed.",
+"You continue on your journey, despite the sour defeat."])
+							equipment.equipment['gold'] = 0
+							equipment.equipment['knives'] = 0
+							return False
+						else:
+							print_stuff([f"""You stand over {man_name}'s corpse. You stop when you here the sound of clapping.""",
+""""That was quite a show you put on," Eladris says. "Where did you learn that?" """])
+							reply = input("""1. "Don't look so cocky. You're next."
+2. "Why did he attack me?" 
+> """)
+							if reply == "1":
+								print_stuff(["""At this, Eladris chuckles. "Kill me then. I do not fear death. At least let me explain." """])
+						print_stuff([f""""Please forgive Garurt," Eladris says cooly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
+""""We're bandits. We were thrown out of society because of my half-blood status and his friendship with me. We've had to live robbing and hiding for many years.""",
+"""Eladris looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
+						action = input("""1. Kill Eladris
+2. Walk away.
+> """)
+						if action == "1":
+							print_stuff(["""You step forward, sword in hand. Eladris closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
+"""You search Eladris' bags and come away with 27 gold coins, a healing potion, and two throwing knives."""])
+						print_stuff(["""You walk away from the camp, and return to the trail."""])
 		else:
 			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])
-
-
+	print_stuff(["""You follow the trail a bit longer. You manage to find a small glade, which seems like a good spot to rest for the night.""",
+"""You light a small fire and shrug off your backpack, sighing with relief at the break from walking."""])
