@@ -256,7 +256,7 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 """Lunging forwards, you hook your leg behind his, throwing him to the ground. His cry of rage is cut short as he lands on his back and the breath is knocked from him.""",
 """To make sure he causes no more trouble, you kick him in the side of the head, and his body goes still, apart from his chest rising and falling."""])
 					else:
-						enemy_round.initialize([encounters.monster_access("mbandit")])
+						enemy_round.initialize([encounters.special_access("garurt")])
 						if post_combat.victory == False:
 							print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the campsight.",
 "You also realise that almost all your belongings are gone. Your sword, your food, and your items remain. However, you money and knives are gone.",

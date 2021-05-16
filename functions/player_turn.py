@@ -11,7 +11,7 @@ def get_turn_choice(enemy):
 	initial_script = [f"""You circle each other, sizing each other up.""",
 f"""You ready your weapon and glare at your opponent.""",
 f"""You feel your heart pounding, feel your chest rising with smooth, even breaths.""",
-f"""The {reference["object"]} lunges. You jumps aside at the last second."""]
+f"""{reference['object'].capitalize()} lunges. You jumps aside at the last second."""]
 	if enemy["type"] == "human":
 		initial_script.append("""Steel meets, and you stare at each other, blades locked in a clinch.""")
 	action = input(random.choice(initial_script) + f""" Do you...
@@ -45,31 +45,31 @@ def strike(enemy, damage_mod=1.0, smoke=False):
 	reference = enemy["reference"]
 	initial_script = ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
-f"""You rush towards the {reference["object"]}, sword grasped firmly.""",
-f"You approach the {reference['object']}, attacking when you are only a few paces away.",
+f"""You rush towards {reference["object"]}, sword grasped firmly.""",
+f"You approach {reference['object']}, attacking when you are only a few paces away.",
 f"Your opponent jumps towards you. You parry the blow easily, spin your sword, and riposte swiftly.",
-f"You charge forwards, spin on one foot, and bring your sword crashing down on the {reference['object']}.",
+f"You charge forwards, spin on one foot, and bring your sword crashing down on {reference['object']}.",
 "Your opponent moves to attack, but stumbles on some irregular terrain. You seize your chance and lunge forwards."]
 	success_script = [f"You feel the tip of your sword bury in your enemy's flesh, accompanied by a {reference['pain']} of pain.",
 "Your opponent tries to duck away from the blow, but you feel a bit of resistance, and see a spurt of blood.",
 f"""You're too fast for your opponent. {reference['he'].capitalize()} raises {reference['his']} defenses weakly, but you easily bat away the blockage and cut into {reference["him"]} with your sword deeply.""",
-f"""You twirl your sword in a silver spiral, feeling with satisfaction as the sword bites deeply into the {reference["object"]}.""",
-f"The {reference['object']} readies {reference['him']}self for your attack. At the last second you duck and roll behind {reference['him']}, under {reference['his']} guard and slash {reference['him']} across the back.",
+f"""You twirl your sword in a silver spiral, feeling with satisfaction as the sword bites deeply into {reference["object"]}.""",
+f"{reference['object'].capitalize()} readies {reference['him']}self for your attack. At the last second you duck and roll behind {reference['him']}, under {reference['his']} guard and slash {reference['him']} across the back.",
 f"You enemy tries to step backwards, but {reference['his']} heel hits a raised section of ground. {reference['he'].capitalize()} staggers, and you slash {reference['him']} easily.",
-f"With a deft sword movement you explode into action, striking with your whirling sword, spilling the blood of the {reference['object']}."]
+f"With a deft sword movement you explode into action, striking with your whirling sword, spilling the blood of {reference['object']}."]
 	fail_script = ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
 "You swing your sword in a cruel lateral strike, but your opponent ducks just in time, the wind chasing the blade making a whistling sound."
-,f"""You swing your sword downwards, grunting with the effort. The {reference["object"]} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body."""]
+,f"""You swing your sword downwards, grunting with the effort. {reference["object"].capitalize()} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body."""]
 	agility_script = ["You're quick enough to strike a second time.",
 "You bring your blade back quickly for a second attempt.",
 "You spin with the momentum of the sword, whirling and attacking again swiftly."]
-	parry_script = [f"You swing your sword, but the {reference['object']} is ready, dodging sideways at the last second.",
-f"As you charge forwards, the {reference['object']} slams into you, pushing you back, staggering."]
+	parry_script = [f"You swing your sword, but {reference['object']} is ready, dodging sideways at the last second.",
+f"As you charge forwards, {reference['object']} slams into you, pushing you back, staggering."]
 	if enemy["type"] == "human":
 		success_script.extend([f"{reference['he'].capitalize()} moves to block your blow, but you bring your foot up suddenly in a kick. Then you strike, {reference['his']} staggering form an easy victim to your blade.",
-f"""You feel your sword find its target, and hear a scream of pain. "A pox on you!" the {reference['object']} spits. """])
-		fail_script.extend([f"There's the ring of steel on steel as the {reference['object']} brings {reference['his']} sword up just in time.",
-f"""The {reference['object']} pushes your attack aside and grins wickedly. "What now, you {reference['insult']}?" {reference['he']} hisses. """])
+f"""You feel your sword find its target, and hear a scream of pain. "A pox on you!" {reference['object']} spits. """])
+		fail_script.extend([f"There's the ring of steel on steel as {reference['object']} brings {reference['his']} sword up just in time.",
+f"""{reference['object'].capitalize()} pushes your attack aside and grins wickedly. "What now, you {reference['insult']}?" {reference['he']} hisses. """])
 	print(random.choice(initial_script))
 	time.sleep(5)
 	counter = 0
@@ -125,11 +125,11 @@ f"""The {reference['object']} pushes your attack aside and grins wickedly. "What
 def parry(enemy):
 	reference = enemy["reference"]
 	initial_script = ["You raise your sword in a defensive position.",
-"You brace yourself for your charging adversary, ready and waiting", f"You bring your sword to bare, watching the {reference['object']} closely."]
+"You brace yourself for your charging adversary, ready and waiting", f"You bring your sword to bare, watching {reference['object']} closely."]
 	success_script = [f"Your enemy runs forward, but at the last second you kick {reference['him']} back, knocking the breath from {reference['his']} body.",
 f"{reference['he'].capitalize()} runs forward suddenly, but you are ready. {reference['his'].capitalize()} attack is caught on your sword and you twirl the blade swifty, knocking {reference['him']} off balance.",
 f"As your opponent charges, you sidestep. {reference['he'].capitalize()} runs straight past you, back exposed, almost asking to be slashed.",
-f"""The {reference['object']} attacks, but you spin away from the blow, ending your twirl on your opponent's flank.""",
+f"""{reference['object'].capitalize()} attacks, but you spin away from the blow, ending your twirl on your opponent's flank.""",
 f"Your adversary closes in, but at the last second you lunge forwards, slamming your shoulder into {reference['him']}. {reference['he'].capitalize()} stumbles backwards, sputtering for breath."]
 	fail_script = ["You raise your sword against the expected attack, but it comes quicker than you thought. You feel a cut upon your face.",
 "Your opponent rushes forwards. You try and duck to the side at the last second, but are too slow. Pain racks your body and you jump away, cursing.",
@@ -157,7 +157,7 @@ def distract(enemy):
 	reference = enemy["reference"]
 	initial_script = ["Suddenly, you lean down, scoop up a handful of dirt and throw it in your enemy's face.",
 f"You yell fiercely into the face of your opponent. {reference['he'].capitalize()} recoils at the sudden noise.",
-f"""You feint sideways, then come back to your previous position. The {reference['object']} staggers slightly at the sudden move.""",
+f"""You feint sideways, then come back to your previous position. {reference['object'].capitalize()} staggers slightly at the sudden move.""",
 f"As your enemy moves closer, you swiftly kick {reference['him']} painfully in the shin.",
 f"Your opponent brings down {reference['his']} attack. You raised your blade at the last second, and with your free hand punch {reference['him']} in the face, sending {reference['him']} staggering away."]
 	print(random.choice(initial_script))
@@ -180,7 +180,7 @@ f"You kick your opponent, sending {reference['him']} backwards. While {reference
 	knife_script = [f"Your foe lunges forwards. At the last moment you jump away, sliding across the ground. You twist and hurl a throwing knife with all your strength. The projectile finds its mark.",
 f"As your opponent charges towards you, you pull out a throwing knife, throwing it at {reference['him']}. Your aim is true and {reference['he']} stumbles, a bloodstain on {reference['his']} leg."]
 	oil_script = [f"You produce a vial of blade oil and quickly splash it on your sword. It will not last long, but it will make your enemy feel pain.",
-f"The {reference['object']} stops as you pull a vial of liquid from your belt. You pour it onto your blade, and attack."]
+f"{reference['object'].capitalize()} stops as you pull a vial of liquid from your belt. You pour it onto your blade, and attack."]
 	smoke_bomb_script = ["Closing your eyes and mouth, you throw down a smoke bomb. Thick, grey smoke covers the battle area, making sight impossible.",
 "You light the fuse of a smoke bomb and hurl it at your enemy. There's a bang and suddenly everything is covered by grey smoke."]
 	plurals = {

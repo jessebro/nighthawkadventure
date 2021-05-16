@@ -98,17 +98,17 @@ def enemy_turn(enemy):
 
 def enemy_attack(enemy, damage_modi = 1):
 	reference = enemy["reference"]
-	initial_script = [f"The {reference['object']} lunges in, ready to strike.",
+	initial_script = [f"{reference['object'].capitalize()} lunges in, ready to strike.",
 "You ready yourself as your adversary charges forward, teeth bared in savage fury.",
-f"The {reference['object']} charges, {reference['his']} eyes gleaming."]
+f"{reference['object'].capitalize()} charges, {reference['his']} eyes gleaming."]
 	success_script = [
-f"You are too slow to react. The {reference['object']} strikes you a blow. You hit the ground hard but roll to your feet, panting for breath.",
+f"You are too slow to react. {reference['object'].capitalize()} strikes you a blow. You hit the ground hard but roll to your feet, panting for breath.",
 f"{reference['he'].capitalize()} takes a swing at you, and the attack finds its mark. You feel blood on your skin, and jump away before further harm.",
 f"Your opponent lunges forwards. Before you can avoid the attack, you are dealt a glancing blow.",
 f"You are beaten down by a hail of strikes, blocking one after the other. Finally, one makes its way through your defenses and you feel a sharp pain."]
 	fail_script = [
 f"Though your opponent comes in with speed and ferocity, you avoid everything {reference['he']} tries to strike you with.",
-f"A strike is aimed at your head, but you are too quick for the {reference['object']}. You kick {reference['him']} and {reference['he']} staggers before {reference['he']} gets another chance to attack.",
+f"A strike is aimed at your head, but you are too quick for {reference['object']}. You kick {reference['him']} and {reference['he']} staggers before {reference['he']} gets another chance to attack.",
 f"{reference['he'].capitalize()} lunges forwards, missing you and stumbling past you. But {reference['he']} whirls again in another attack. You duck at the last second, the hair on your head whipping with the passing attack.",
 f"As the attack passes to within a hair's breadth of your face, you twist and jump away in a diving roll, coming back to your feet, staring angrily at your opponent."]
 	enemy["parry"] = False
@@ -133,7 +133,7 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 def enemy_parry(enemy):
 	reference = enemy["reference"]
 	initial_script = [
-f"The {reference['object']} braces {reference['him']}self, and glares at you, daring you to fight.",
+f"{reference['object'].capitalize()} braces {reference['him']}self, and glares at you, daring you to fight.",
 f"The other combatant raises {reference['his']} defenses, covering {reference['him']}self.",
 f"Your opponent assumes a defensive stance, flattening {reference['his']} feet and barely moving."]
 	if enemy["type"] == "human":
@@ -148,7 +148,7 @@ def enemy_distract(enemy):
 	reference = enemy["reference"]
 	initial_script = [f"You close in, sword leading the way. But at the last second, {reference['he']} jumps away, leaving you staggering past.",
 "Your adversary lunges unexpectedly, and you only recognize the feint when it's too late and have already lept to the side, leaving yourself off balance.",
-f"Suddenly, the {reference['object']} jumps forward, shoving your chest with one hand. You stagger, the breath knocked from your body."]
+f"Suddenly, {reference['object']} jumps forward, shoving your chest with one hand. You stagger, the breath knocked from your body."]
 	print(random.choice(initial_script))
 	enemy["modifier"] += (10 + enemy["agility"])
 	enemy["distract"] = True
@@ -188,14 +188,14 @@ def kill(enemy):
 	reference = enemy['reference']
 	human_death = [
 f"As your sword bites deeply into your enemy, {reference['he']} moans in pain, then crumples to the ground, dark blood flowing onto the ground.",
-f"The {reference['object']} stares at you for a moment. Then a trickle of blood comes from the corner of {reference['his']} mouth, and {reference['he']} falls, dead.",
+f"{reference['object'].capitalize()} stares at you for a moment. Then a trickle of blood comes from the corner of {reference['his']} mouth, and {reference['he']} falls, dead.",
 f"You pull your sword from your adversary's chest, and {reference['he']} topples over backwards instantly, dead before {reference['he']} hits the ground.",
-f"You bury your sword up to the hilt into the {reference['object']}, the blade protruding from {reference['his']} back. You kick {reference['him']} from your sword, and the body falls, blood pooling.",
+f"You bury your sword up to the hilt into {reference['object']}, the blade protruding from {reference['his']} back. You kick {reference['him']} from your sword, and the body falls, blood pooling.",
 f"For a moment, {reference['he']} stays standing. But then {reference['he']} crashes down to the ground, a scarlet blossom growing around {reference['his']} body.",
-f"The {reference['object']} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bringing your sword down like an executioner's axe, taking the head from {reference['his']} shoulders.",
-f"You cut the {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry.",
-f"The {reference['object']} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood."]
-	monster_death = [f"The {reference['object']} growls one last time, then falls to the ground.",
+f"{reference['object'].capitalize()} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bringing your sword down like an executioner's axe, taking the head from {reference['his']} shoulders.",
+f"You cut {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry.",
+f"{reference['object'].capitalize()} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood."]
+	monster_death = [f"{reference['object'].capitalize()} growls one last time, then falls to the ground.",
 f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue."]
 	if enemy["type"] == "human":
 		print(random.choice(human_death))
