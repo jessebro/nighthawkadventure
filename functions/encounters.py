@@ -16,7 +16,8 @@ def monster_access(key):
 		"fbandit": enemy_round.generate_enemy(*[12, 2, 6, 50, 8, random.randrange(8, 16), "human", "female", "the female bandit"]),
 		"chaos_daughter": enemy_round.generate_enemy(*[20, 3, 8, 65, 15, random.randrange(18, 29), "human", "female", "the daughter of chaos"]),
 		"ghoul": enemy_round.generate_enemy(*[9, 3, 5, 45, 10, random.randrange(5, 11), "monster", "it", "the ghoul"]),
-		"bone_hag": enemy_round.generate_enemy(*[25, 4, 7, 45, 0, random.randrange(15, 24), "monster", "it", "the bone hag"])
+		"bone_hag": enemy_round.generate_enemy(*[25, 4, 7, 45, 0, random.randrange(15, 24), "monster", "it", "the bone hag"]),
+		"lalikin": enemy_round.generate_enemy(*[17, 3, 6, 55, 5, random.randrange(12, 21), "monster", "it", "the bone hag"])
 	}
 	return monsters[key]
 

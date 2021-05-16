@@ -172,9 +172,9 @@ def player_defeat():
 			equipment.equipment["potions"] -= 1
 			print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
 			time.sleep(5)
-			print("A potion was used to prevent defeat.")
+			print("A potion was used to prevent defeat, but only at half it's potency.")
 			ability.ability["health"] = 0
-			ability.ability["health"] += random.randrange(4, 9)
+			ability.ability["health"] += random.randrange(2, 6)
 		else:
 			print("You are struck by your opponent, and the next thing you know, you have fallen. Everything begins to go dark, and there is nothing you can do to stop it.")
 			post_combat.victory("defeat")

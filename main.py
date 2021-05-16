@@ -42,7 +42,7 @@ the vast jungles of Corocana.""", """Your current task is to look for the missin
 baron. If there is a threat to the town that was the cause of their disappearing, then you must eliminate it.""",
 """You know the following things:
 - The son and daughter were aspiring adventurers, and were seeking adventure in the Lizardtongue Mountains, where a treasure
-hoard lay in a cave on the largest mountain.
+hoard was said to lie in a cave at the top of the largest mountain.
 - The son is called Micha and the daughter is called Elfa. The baron himself is Bertholt Omar.""",
 	"""Before setting off on your task, you have the chance to prepare."""])
 
@@ -69,7 +69,7 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 			equipment.equipment["gold"] = 0
 			ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
-story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "rest.rest"]
+story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "rest.rest", "chapter1.thief", "chapter1.ascent"]
 position = boot()
 if position in story:
 	idx = story.index(position)

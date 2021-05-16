@@ -13,20 +13,20 @@ from functions.loading import save
 def ghouls_at_farm():
 	save("chapter1.ghouls_at_farm")
 	print_stuff(["You make your way outside of Blackburrow. It is late morning, and the sky is a cobalt blue.",
-	"Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
-	"You steer off the main road and onto a dirt track leading to the Lizardtongue Mountains. About an hour into the journey you come across a farm.",
-	"Wheat stalks stand golden against the pale grass. You decide to cut through the wheat field, rather than take a detour around it.",
-	"That's when you hear shouting and cursing. You begin to run, and see a man standing in the front door of his house. He is swinging a pitchfork to and fro.",
-	"Standing before him are four ghouls; pale, lanky, short and hairless humanoids that feed on rotting flesh. Two other ghouls lie dead and bleeding.",
-	"The man sees you and screams for help. You see a little girl and a teenage boy standing behind the man, expressions of terror on their faces.",
-	"You know that the man will not be able to hold the ghouls back forever."])
+"Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
+"You steer off the main road and onto a dirt track leading to the Lizardtongue Mountains. About an hour into the journey you come across a farm.",
+"Wheat stalks stand golden against the pale grass. You decide to cut through the wheat field, rather than take a detour around it.",
+"That's when you hear shouting and cursing. You begin to run, and see a man standing in the front door of his house. He is swinging a pitchfork to and fro.",
+"Standing before him are four ghouls; pale, lanky, short and hairless humanoids that feed on rotting flesh. Two other ghouls lie dead and bleeding.",
+"The man sees you and screams for help. You see a little girl and a teenage boy standing behind the man, expressions of terror on their faces.",
+"You know that the man will not be able to hold the ghouls back forever."])
 
 	choice = input("""1. Help the farmer.
 2. Continue on your way.
 > """)
 	if choice == "1":
 		print_stuff([f"You rush forwards, {weapon.weapon['weaponname']} in hand. The ghouls turn to face you now, but one of them continues to focus on the farmer",
-	"One of the ghouls lunges forward suddenly, and you ready your sword."])
+"One of the ghouls lunges forward suddenly, and you ready your sword."])
 		enemies = [encounters.monster_access("ghoul"), encounters.monster_access("ghoul"), encounters.monster_access("ghoul")]
 		gang = enemies
 		enemy_round.initialize(gang)
@@ -34,8 +34,8 @@ def ghouls_at_farm():
 			print("There is no one to save you. The farmer cannot hold the ghouls back for much longer, and the ghouls will show no mercy to those in the way of their food.")
 			exit()
 		print_stuff([f"You wipe ghoul blood from your sword with a cloth. The farmer approaches you, his own pitchfork stained a dark red.",
-	f'"Thank you, kind stranger," the man says. He bites his lip for a second, then pulls a money bag from his belt and holds it out to you.',
-	f'''"It's not much, but you deserve a reward, {character.character['titles']['casual']}."'''])
+f'"Thank you, kind stranger," the man says. He bites his lip for a second, then pulls a money bag from his belt and holds it out to you.',
+f'''"It's not much, but you deserve a reward, {character.character['titles']['casual']}."'''])
 		choice = input("""1. "Thank you. Take care."
 2. "Keep the money. Your children need it."
 > """)
@@ -231,7 +231,10 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 """You wake up in the middle of the night, tormented by a full bladder. Silently, you move away to find somewhere to relive yourself.""",
 f"""Once you return, you notice that both Eladris and {man_name} are speaking to each other."""])
 			if ability.ability['awareness'] > 5:
-				print_stuff(["You able to hear what they are saying.",])
+				print_stuff(["You able to hear what they are saying.",
+f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
+f""""Not this one," Eladris says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
+""""It's not about what they deserve. It's about what we need!" """])
 			else:
 				print_stuff(["You are unable to hear what they are saying. You move closer to try and listen."])
 				agility_roll = random.randrange(1,101)
@@ -240,50 +243,104 @@ f"""Once you return, you notice that both Eladris and {man_name} are speaking to
 f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
 f""""Not this one," Eladris says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
 """"It's not about what they deserve. It's about what we need!" """])
-					speech = input("""1. "Greetings, gentlemen."
+				speech = input("""1. "Greetings, gentlemen."
 2. Escape to the main trail.
 > """)
-					if speech == "2":
-						print_stuff(["""You use their chatter to make your escape, silently thanking yourself for taking your equipment with you to the lavatory."""])
-						return False
-					print_stuff([f"The two men turn as you step on a pile of dried leaves. {man_name.capitalize()} jumps to his feet, drawing his sword.",
+				if speech == "2":
+					print_stuff(["""You use their chatter to make your escape, silently thanking yourself for taking your equipment with you to the lavatory."""])
+					return False
+				print_stuff([f"The two men turn as you step on a pile of dried leaves. {man_name.capitalize()} jumps to his feet, drawing his sword.",
 f""""The ploughing {character.character['titles']['insult']} is spying on us!" he yells, running forward, sword raised."""])
-					choice = input(f"""1. Use a smoke bomb to incapacitate {man_name}.
+				choice = input(f"""1. Use a smoke bomb to incapacitate {man_name}.
 2. Draw {weapon.weapon['weaponname']} and do battle.""")
-					if choice == "1" and equipment.equipment['smoke bombs'] > 0:
-						equipment.equipment["smoke bombs"] -= 1
-						print_stuff([f"""You hurl a smoke bomb at {man_name}. He coughs and splutters and you seize your chance.""",
+				if choice == "1" and equipment.equipment['smoke bombs'] > 0:
+					equipment.equipment["smoke bombs"] -= 1
+					print_stuff([f"""You hurl a smoke bomb at {man_name}. He coughs and splutters and you seize your chance.""",
 """Lunging forwards, you hook your leg behind his, throwing him to the ground. His cry of rage is cut short as he lands on his back and the breath is knocked from him.""",
 """To make sure he causes no more trouble, you kick him in the side of the head, and his body goes still, apart from his chest rising and falling."""])
-					else:
-						enemy_round.initialize([encounters.special_access("garurt")])
-						if post_combat.victory == False:
-							print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the campsight.",
+				else:
+					enemy_round.initialize([encounters.special_access("garurt")])
+					if post_combat.victory == False:
+						print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the campsight.",
 "You also realise that almost all your belongings are gone. Your sword, your food, and your items remain. However, you money and knives are gone.",
 "You pick yourself up and gather your equipment. It is day time, and despite being knocked unconscious, you feel slightly refreshed.",
 "You continue on your journey, despite the sour defeat."])
-							equipment.equipment['gold'] = 0
-							equipment.equipment['knives'] = 0
-							return False
-						else:
-							print_stuff([f"""You stand over {man_name}'s corpse. You stop when you here the sound of clapping.""",
+						equipment.equipment['gold'] = 0
+						equipment.equipment['knives'] = 0
+						return False
+					else:
+						print_stuff([f"""You stand over {man_name}'s corpse. You stop when you here the sound of clapping.""",
 """"That was quite a show you put on," Eladris says. "Where did you learn that?" """])
-							reply = input("""1. "Don't look so cocky. You're next."
+						reply = input("""1. "Don't look so cocky. You're next."
 2. "Why did he attack me?" 
 > """)
-							if reply == "1":
-								print_stuff(["""At this, Eladris chuckles. "Kill me then. I do not fear death. At least let me explain." """])
-						print_stuff([f""""Please forgive Garurt," Eladris says cooly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
+						if reply == "1":
+							print_stuff(["""At this, Eladris chuckles. "Kill me then. I do not fear death. At least let me explain." """])
+					print_stuff([f""""Please forgive Garurt," Eladris says cooly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
 """"We're bandits. We were thrown out of society because of my half-blood status and his friendship with me. We've had to live robbing and hiding for many years.""",
 """Eladris looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
-						action = input("""1. Kill Eladris
+					action = input("""1. Kill Eladris
 2. Walk away.
 > """)
-						if action == "1":
-							print_stuff(["""You step forward, sword in hand. Eladris closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
+					if action == "1":
+						print_stuff(["""You step forward, sword in hand. Eladris closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
 """You search Eladris' bags and come away with 27 gold coins, a healing potion, and two throwing knives."""])
-						print_stuff(["""You walk away from the camp, and return to the trail."""])
+					print_stuff(["""You walk away from the camp, and return to the trail."""])
 		else:
 			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])
 	print_stuff(["""You follow the trail a bit longer. You manage to find a small glade, which seems like a good spot to rest for the night.""",
 """You light a small fire and shrug off your backpack, sighing with relief at the break from walking."""])
+
+
+def thief():
+	save("chapter1.thief")
+	equipment.equipment["gold"] -= 15
+	if equipment.equipment["gold"] < 0:
+		equipment.equipment["gold"] = 0
+	print_stuff(["You wake up the following morning. You sling on your backpack and strap on your belt.",
+"It is then that you realise that some of your gold has vanished.",
+"You look around to see if you dropped it. Quickly, you notice something else. Footprints."])
+	direction = input("""1. Follow the footprints.
+2. Accept the loss and continue to the Lizardtongue mountains.
+> """)
+	if direction == "1":
+		print_stuff(["You begin to follow the footsteps. The thief, whoever they are, is not an expert and has not covered their tracks well.",
+"The trail moves off the main path, and into a valley between two large hills. At the base of the valley, you see a young woman hunched over a campfire.",
+"Her clothes are ragged, and she has no weapon to speak of. She doesn't look older than twenty.",
+"As if alerted by your mere presence, the woman turns, gives a start and runs over the hill opposite and into some trees.",
+"Before you can react, you here a scream and a growl."])
+		choice = input("""1. Give chase to the thief.
+2. Let her go and return to the trail.""")
+		if choice == "1":
+			print_stuff(["You run after the woman, and stop after cresting the next hill. What you see makes you draw your sword.",
+"The woman is lying dead in a pool of blood, staring blankly at the sky. Gnawing on her leg is are two strange creature.",
+"Each lanky, and uses both its arms and legs to move, unless it is grabbing something. They are covered in brown fur, and have yellow, reptilian eyes.",
+"Two pointy ears like those of a wolf adorn each head, as well as a long snout. You recognise the monsters as lalikins."
+"The lalikins turn to you and growl, showing off white, pointy teeth. They flex their claws and begin to approach you.",
+f"You hold {weapon.weapon['weaponname']} at the ready, and the lalikins charge."])
+			enemy_round.initialize([encounters.monster_access("lalikin"), encounters.monster_access("lalikin")])
+			if post_combat.victory == False:
+				print_stuff(["The lalikins were already feeding on the woman. They will not complain about extra food."])
+				exit()
+			print_stuff(["You search the body of the woman and find the money she stole from you."])
+			equipment.equipment["gold"] += 15
+			action = input("""1. "Rest in piece." 
+2. Walk away.
+3. Spit on her body.
+> """)
+			if action == "1":
+				print_stuff(["You kneel down and close the woman's eyes with two fingers, before turning and walking back to the trial."])
+			elif action == "3":
+				print_stuff(["You hawk and spit on the woman's corpse, and you feel like you've gotten some revenge for the trouble she caused.",
+"With your meager payback complete, you return to the trail."])
+	print_stuff(["You continue along the trail to the Lizardtongue Mountains, wondering when you'll get a day of piece and quiet."])
+
+def ascent():
+	save("chapter1.ascent")
+	print_stuff(["It's the middle of the day when you finally reach the base of the Lizardtongue Mountains.",
+"As you climb the largest mountain, the terrain gets steeper and rockier. Many times you stumble on loose gravel.",
+"The wind becomes stronger as you climb, and the air becomes cooler. You know the cave that is your objective is close to the summit.",
+"Finally, after an hour of scrambling over boulders, you have had enough. You throw down your pack and take out some of your supplies.",
+"Your intention is to take a quick rest before continuing."])
+
+
