@@ -1,3 +1,5 @@
+import random
+
 from functions import ability
 from functions import equipment
 from functions import character
@@ -142,7 +144,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 					continue
 			elif investigate == "4":
 				print_stuff(["You discover two things about the bones. First, it is that of a woman, due to the shape of the bones and the scraps of woman's clothing lying nearby.",
-"Second, the bones have been scraped clean of all flesh, due to the knicks and scratches of something being drawn along them."])
+"Second, the bones have been scraped clean of all flesh, due to the nicks and scratches of something being drawn along them."])
 			else:
 				break
 		print_stuff(["You leave the cabin, satisfied with what you achieved. You head back along the trail, and back to the junction."])
@@ -150,6 +152,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 
 
 def campers():
+	man_name = "the large man"
 	print_stuff(["The sky is growing darker. The bird song is giving way to the chirp of the crickets, and the air grows cold.",
 "Even as you begin to consider a place to stop for the night, you see a flickering orange light from behind a clump of high bushes."])
 	choice = input("""1. Investigate the sources of the fire.
@@ -184,13 +187,53 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 			if reply == "1":
 				print_stuff([f""""I see," Eladris says. "I will not pry, though my curiosity demands me to do so." """])
 			else:
-				print_stuff([""""You're a confident one," he says. "Be wary it doesn't become hubris." """])
+				print_stuff([""""You're a confident one," Eladris says. "Be wary it doesn't become hubris." """])
 			while True:
 				question = input(f"""1. "So... what's a half-elf doing out here?"
 2. "Who's your cheerful friend?" 
 3. "You said monsters were increasing in numbers..."
 4. "I'm going to get some sleep." 
 > """)
+				if question == "1":
+					print_stuff(["""Eladris grins at you. "You noticed?" he says. "Was it the name, or my appearance?" """,
+"""He shrugs. "Honestly, it's reason enough to escape the racists. But you are a 'doyana', so you wouldn't understand." """,
+""""Travelling has always calmed my nerves. I do it for the simple purpose of enjoyment." """])
+					continue
+				elif question == "2":
+					print_stuff([""""And good looking too!" he adds, chuckling to himself. "His name is Garurt. Don't mind him; a more distrustful man was never born." """,
+""""I keep him around because he's a good fighter. My escort, so to speak." """])
+					man_name = "Garurt"
+					continue
+				elif question == "3":
+					print_stuff(["""So I did," he sighs. "There's talk of magical fluctions, and that's what attracting them." """,
+""""The source of the disturbances remains unknown, but I'm sure someone will figure it out eventually." """,
+""""They are merely rumours, of course," Eladris adds quickly. "But rumours can be built on truth." """])
+					continue
+				else:
+					print_stuff([f"""Eladris nods. "Sweet dreams," he says. Just as you are beginning to pull out your blankets, {man_name} returns from his walk.""",
+"He remains silent, until Eladris is fast asleep, at which point he approaches you.",
+""""I know what you are," he says. "You're a fighter; that much is clear to see. But I'm warning you that if you pull a fast one, we'll soon see who's the better fighter." """,])
+					break
+			reply = input("""1. "Big words for a man with a small prick."
+2. "You need not worry."
+3. "Get out of my face before I smash yours in." """)
+			if reply == "1":
+				print_stuff([f"""{man_name.capitalize()} glares at you. "Watch your words, {character.character['titles']['contempt']}," he spits."""])
+			elif reply == "2":
+				print_stuff([f"""{man_name.capitalize()} smiles wickedly. "Good. Then there's no need for trouble," he says. """])
+			else:
+				print_stuff([f"""{man_name.capitalize()} spits in your face. "You want to go here and now?," he says. "Because I'll fight you anytime." """])
+			print_stuff([f"""{man_name.capitalize()} then stalks off, pulling out his own bedroll. It is not long before you fall asleep, staring up at the stars.""",
+"""You wake up in the middle of the night, tormented by a full bladder. Silently, you move away to find somewhere to relive yourself.""",
+f"""Once you return, you notice that both Eladris and {man_name} are speaking to each other."""])
+			if ability.ability['awareness'] > 5:
+				print_stuff(["You able to hear what they are saying."])
+			else:
+				print_stuff(["You are unable to hear what they are saying. You move closer to try and listen."])
+				agility_roll = random.randrange(1,101)
+				if agility_roll < (75 + ability.ability['agility']):
+					print_stuff(["You enter earshot of them without being noticed."])
+
 		else:
 			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])
 

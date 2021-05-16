@@ -10,7 +10,8 @@ character = {
 			"casual": "",
 			"formal": "",
 			"insult": "",
-			"whore": ""
+			"whore": "",
+			"contempt": ""
 	}
 }
 
@@ -63,7 +64,8 @@ def get_title():
 			"casual": "mister",
 			"formal": "sir",
 			"insult": "bastard",
-			"whore": "whoreson"
+			"whore": "whoreson",
+			"contempt": "boy"
 		}
 
 	elif character["gender"] == "female":
@@ -74,5 +76,6 @@ def get_title():
 			"casual": "miss",
 			"formal": "m'lady",
 			"insult": "bitch",
-			"whore": "you whore"
+			"whore": "you whore",
+			"contempt": "girlie"
 		}
