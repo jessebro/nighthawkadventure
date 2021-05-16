@@ -6,11 +6,9 @@ from functions import encounters
 from functions import enemy_round
 from functions import post_combat
 from functions import weapon
-from functions import rest
 from functions.utils import print_stuff
-from functions.loading import save
 from functions.utils import boot
-import chapter1
+from functions.utils import input_stuff
 
 
 def run_adventure(steps):
@@ -49,9 +47,9 @@ hoard was said to lie in a cave at the top of the largest mountain.
 	town.town("Blackburrow", "Leave to look for the Omar children", True)
 	print_stuff(["Your preparations complete, you head towards the main gates of Blackburrow.",
 "You stop when you hear the sound of a woman crying in an alley, and the harsh voice of a man."])
-	choice = input("""1. Investigate the sounds.
+	choice = input_stuff("""1. Investigate the sounds.
 2. Continue on your way.
-> """)
+> """, ["1", '2'])
 
 	if choice == "1":
 		print_stuff(["You move into the dark alley. Ahead, you can see a trembling, feminine form and a man holding a sword.",
@@ -69,7 +67,7 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 			equipment.equipment["gold"] = 0
 			ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
-story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "rest.rest", "chapter1.thief", "chapter1.ascent"]
+story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent"]
 position = boot()
 if position in story:
 	idx = story.index(position)

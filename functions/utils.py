@@ -14,4 +14,12 @@ def boot():
 def print_stuff(scripts):
 	for script in scripts:
 		print(script)
-		input("~~ ")
+		input("""
+~ Enter to continue ~""")
+
+
+def input_stuff(prompt, options):
+	while True:
+		choice = input(prompt)
+		if choice in options:
+			return choice
