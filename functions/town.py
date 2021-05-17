@@ -12,9 +12,9 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 	if firsttime:
 		time.sleep(6)
 	activity = input(f"""What would you like to do?
-1. Look at the markets
+1. Look at the markets        ~ [{ability.ability["health"]}/{ability.ability["maxhealth"]}] xp ~
 2. Visit the blacksmith       ~ {equipment.equipment["gold"]} gold ~
-3. Rest at the inn
+3. Rest at the inn            ~ [{ability.ability["xp"]}/100] xp ~
 4. Train
 5. Check your inventory
 6. {objective}

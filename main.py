@@ -53,7 +53,7 @@ hoard was said to lie in a cave at the top of the largest mountain.
 
 	if choice == "1":
 		print_stuff(["You move into the dark alley. Ahead, you can see a trembling, feminine form and a man holding a sword.",
-"The man turns as you approaches and shoves the woman into you. You push the woman away, and only then realise that you don't need to.",
+"The man turns as you approach and shoves the woman into you. You push the woman away, and only then realise that you don't need to.",
 "The woman moves to the alley wall and picks up a sword leaning against it. She turns to you, grinning.",
 f'''"It's amazing how effective that old gag is," she laughes, raising her weapon.''',
 f"""The man behind you speaks up. "Strip the {character.character["titles"]["insult"]} of {character.character['titles']['his']} loot!" """])
