@@ -15,7 +15,7 @@ def print_stuff(scripts):
 	for script in scripts:
 		print(script)
 		input("""
-~ Enter to continue ~""")
+~ ENTER TO CONTINUE ~""")
 
 
 def input_stuff(prompt, options):

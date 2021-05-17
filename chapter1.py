@@ -362,7 +362,56 @@ def ascent():
 "The crag swings at you, but you drop and slid between it's legs. The crag's fist hits the ground, blasting rocks to pieces.",
 "You realise that the creature may be slow, but if you get hit, your situation will be grave indeed."])
 		enemy_round.initialize([encounters.monster_access("crag")])
+		if post_combat.victory == False:
+			print_stuff(["The crag cares nothing for food, but it does enjoy killing. Unconscious, you do not see the crag raise it's might fists."])
+			exit()
+		print_stuff(["Panting for breath, you watch the crag's body crumble into a pile of boulders and dust.",
+"You continue your climb, and soon reach the place where you fell, careful not to step in any more gravel patches."])
+	print_stuff(["You continue to climb up the mountain, the final remains of sleepiness gone from you, due to the intense events.",
+"Once more, you find yourself out of breath and in need of rest. You turn and look out over the nearby countrtside.",
+"The view is spectacular. Everything is tiny, as if you were staring at an embroided tapestry. Blackburrow is a dark cluster in the distance.",
+"When the sun begins to set, you begin to search for a place to rest. Climbing higher, you find a small mountain trail.",
+"You follow it along for a short distance, and find yourself beside a large cabin. There is no sign of movement inside.",
+"Firewood stands stacked against the side of the cabin. A hunting bow and a quiver of arrows lean against the side.",
+"The cabin seems fresh and looked after; it is clear that someone lives or lived here recently."])
+	while True:
+		choice = input_stuff("""1. Try to open the cabin door.
+2. Knock on the door.
+3. Find somewhere else to rest.
+> """, ["1","2", '3'])
 
-
-
-
+		if choice == "2":
+			print_stuff(["You knock on the door, but nothing stirs inside."])
+			continue
+		elif choice == "1":
+			print_stuff(["To move for the cabin door and test the doorknob. It twists full and you hear a click. You open the door and step inside.",
+"The interior is simple. A single table, a small kitchen area, a bed with a box of clothes next to it and two chairs.",
+"An unlit lantern hangs from the ceiling."])
+			choice = input_stuff("""1. Light the lantern.
+2. Leave the lantern unlit.
+> """, ["1", "2"])
+			if choice == "1":
+				print_stuff(["You pull out a match and light the lantern. Warm light flows over the cabin.",
+"You are settling down to sleep when suddenly a rough looking man with prominent muscles, tangled beard, and a bow enters the cabin.",
+"""He stares at you for a second, then speaks. His voice is deep and carrying, but somewhat fatherly.""",
+""""Who are you?" he demands. "Why are you here?" He does not sound angry, only curious, and a bit wary. """])
+			else:
+				print_stuff(["You leave the lantern unlit and settle down to sleep. You pull out your bedroll and lay it down.",
+"You are woken from your slumber by a boot tapping your ribs. The sky is black and an owl is hooting.",
+"You look up and see a rough looking man with prominent muscles, tangled beard, and a bow enters the cabin.",
+"""He stares at you for a second, then speaks. His voice is deep and carrying, but somewhat fatherly.""",
+""""Who are you?" he demands. "Why are you here?" He does not sound angry, only curious, and a bit wary. """])
+			reply = input_stuff("""1. "I came for rest."
+2. "I came to loot the place."
+3. "I got lost."
+> """, ["1", "2", "3"])
+			if reply == "1":
+				print_stuff(["""The man smiles. "Then rest and be welcome," he says. """])
+			elif reply == "2":
+				print_stuff(["""The man raises an eyebrow. "This is my home," he says. "And I will not let you take anything." """])
+			elif reply == "3":
+				print_stuff([""""In that case, I'll help you as best as I can." """])
+			print_stuff([""""In any case, you have entered my home without my permission. All I ask in return is answers." """,
+""""First of all, where are you going on this cold evening." Before you can even begin to answer, he raises a hand and chuckles. """,
+""""Before you answer, allow me to introduce myself. I'm Denvar. Who are you?" """])
+			input_stuff()
