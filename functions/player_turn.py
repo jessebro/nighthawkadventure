@@ -11,7 +11,7 @@ def get_turn_choice(enemy):
 	initial_script = [f"""You circle each other, sizing each other up.""",
 f"""You ready your weapon and glare at your opponent.""",
 f"""You feel your heart pounding, feel your chest rising with smooth, even breaths.""",
-f"""{reference['object'].capitalize()} lunges. You jumps aside at the last second."""]
+f"""{reference['object'].capitalize()} lunges. You jump aside at the last second."""]
 	if enemy["type"] == "human":
 		initial_script.append("""Steel meets, and you stare at each other, blades locked in a clinch.""")
 	action = input(random.choice(initial_script) + f""" Do you...
