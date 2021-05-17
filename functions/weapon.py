@@ -42,6 +42,19 @@ weapon = {
 	             }]
 }
 
+def get_active():
+	return [known for known in weapon["attacks"] if known['enabled']]
+
+def get_inactive():
+	return [known for known in weapon["attacks"] if not known['enabled']]
+
+
+def get_by_name(name):
+	for next in weapon["attacks"]:
+		if next['name'] == name:
+			return next
+	return name
+
 
 def get_weapon_name():
 	name = input("""What do you want your weapon to be called?

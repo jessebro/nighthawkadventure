@@ -12,10 +12,10 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 	if firsttime:
 		time.sleep(6)
 	activity = input(f"""What would you like to do?
-1. Look at the markets        ~ [{ability.ability["health"]}/{ability.ability["maxhealth"]}] xp ~
+1. Look at the markets        ~ {ability.ability["health"]}/{ability.ability["maxhealth"]} health ~
 2. Visit the blacksmith       ~ {equipment.equipment["gold"]} gold ~
 3. Rest at the inn            ~ [{ability.ability["xp"]}/100] xp ~
-4. Train
+4. Train                      ~ {weapon.weapon["stability"]}/{weapon.weapon["max stability"]} weapon stability ~
 5. Check your inventory
 6. {objective}
 
@@ -157,11 +157,11 @@ Enter 'b' to leave
 		elif purchase == "2":
 			blackjack.cards()
 		elif purchase == "3":
-			rumours(name, objective)
+			rumours()
 	town(name, objective)
 
 
-def rumours(name, objective):
+def rumours():
 	rumour_scripts = ["You hear that there's talk of a rise in an organisation known as the Daughters of Chaos. People say that more and more women join their ranks.",
 "From eavesdropping on conversations, you hear a rumour that treasure hunters are becoming more and more unsuccesful, and that some have even disappeared in mysterious circumstances.",
 "You hear nothing of use; only the superstitious ramblings of worried townsfolk.", "There is nothing out of the ordinary in the conversations of people at the moment.",
@@ -179,8 +179,8 @@ def trainer(name, objective):
 		purchase = input(f"""What would you like to train?
 	1. Strength training (15 gold)
 	2. Technical training (25 gold)
-	3. Parry: Defensive stance (35 gold)
-	4. Distract: Dirty tactics (35 gold)
+	3. Strike: Precision Strike (75 gold)
+	4. Strike: Rending Strike (100 gold)
 
 Enter 'b' to leave
 > """)
@@ -188,8 +188,8 @@ Enter 'b' to leave
 			continue
 		if purchase == "b":
 			break
-		word_keys = ["increased your Strength", "gained experience", "upgraded your parry", "upgraded your distract"]
-		prices = [15, 25, 35, 35]
+		word_keys = ["increased your Strength", "gained experience", "unlocked Precision Strike", "unlocked Rending Strike"]
+		prices = [15, 25, 75, 100]
 		choice = int(purchase)
 		choice -= 1
 		if equipment.equipment["gold"] < prices[choice]:
@@ -198,11 +198,11 @@ Enter 'b' to leave
 		elif purchase == "1":
 			ability.ability["strength"] += 1
 		elif purchase == "2":
-			ability.ability["xp"] += 5
+			ability.ability["xp"] += random.randrange(10,16)
 		elif purchase == "3":
-			equipment.equipment["parry_lvl"] += 1
+			weapon.get_by_name("Precision Strike")["enabled"] = True
 		elif purchase == "4":
-			equipment.equipment["distract_lvl"] += 1
+			weapon.get_by_name("Rending Strike")["enabled"] = True
 		equipment.equipment["gold"] -= prices[choice]
 		print(f"""You {word_keys[choice]} for {prices[choice]} gold.""")
 		time.sleep(4)

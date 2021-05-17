@@ -50,8 +50,12 @@ def get_gender():
 		gender = "female"
 	while gender not in genderlist:
 		print(f""" The gender {gender} does not exist, or you entered a typo. Try again.""")
-		gender = input(f"""What is your gender? ({" / ".join(genderlist)}. Type full word, case sensitive)
+		gender = input(f"""What is your gender? ({" / ".join(genderlist)}.)
 > """)
+		if gender == "m":
+			gender = "male"
+		if gender == "f":
+			gender = "female"
 	genderchoice = input(f"""Are you sure you want to be {gender}? y/n
 > """)
 	if genderchoice != "y":
