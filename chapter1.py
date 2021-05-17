@@ -160,7 +160,7 @@ def campers():
 	man_name = "the large man"
 	print_stuff(["The sky is growing darker. The bird song is giving way to the chirp of the crickets, and the air grows cold.",
 "Even as you begin to consider a place to stop for the night, you see a flickering orange light from behind a clump of high bushes."])
-	choice = input_stuff("""1. Investigate the sources of the fire.
+	choice = input_stuff("""1. Investigate the source of the fire.
 2. Keep walking until you find somewhere to rest.
 > """, ['1', "2"])
 	if choice == "1":
@@ -185,7 +185,7 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 				print_stuff([f""""{character.character['firstname']}," Eladris says, testing your name on his tongue."""])
 			else:
 				print_stuff(["""Eladris laughs. "Keep your secrets then," he chuckles. "But you should learn to be more trusting." """])
-			print_stuff(["So what brings you here? Monsters are roaming the countryside in even great numbers these days."])
+			print_stuff([""""So what brings you here? Monsters are roaming the countryside in even greater numbers these days." """])
 			reply = input_stuff(f"""1. "I'm looking for some missing people."
 2. "I do not fear monsters. It is the other way around." 
 > """, ['1', "2"])
@@ -210,7 +210,7 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 					man_name = "Garurt"
 					continue
 				elif question == "3":
-					print_stuff(["""So I did," he sighs. "There's talk of magical fluctions, and that's what attracting them." """,
+					print_stuff([""""So I did," he sighs. "There's talk of magical fluctions, and that's what attracting them." """,
 """"The source of the disturbances remains unknown, but I'm sure someone will figure it out eventually." """,
 """"They are merely rumours, of course," Eladris adds quickly. "But rumours can be built on truth." """])
 					continue
@@ -230,7 +230,7 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 			else:
 				print_stuff([f"""{man_name.capitalize()} spits in your face. "You want to go here and now?," he says. "Because I'll fight you anytime." """])
 			print_stuff([f"""{man_name.capitalize()} then stalks off, pulling out his own bedroll. It is not long before you fall asleep, staring up at the stars.""",
-"""You wake up in the middle of the night, tormented by a full bladder. Silently, you move away to find somewhere to relive yourself.""",
+"""You wake up in the middle of the night, tormented by a full bladder. Silently, you move away to find somewhere to relieve yourself.""",
 f"""Once you return, you notice that both Eladris and {man_name} are speaking to each other."""])
 			if ability.ability['awareness'] > 5:
 				print_stuff(["You able to hear what they are saying.",
@@ -245,49 +245,52 @@ f""""Not this one," Eladris says. "I've talked with {character.character["titles
 f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
 f""""Not this one," Eladris says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
 """"It's not about what they deserve. It's about what we need!" """])
-				speech = input_stuff("""1. "Greetings, gentlemen."
+			speech = input_stuff("""1. "Greetings, gentlemen."
 2. Escape to the main trail.
 > """, ['1', "2"])
-				if speech == "2":
-					print_stuff(["""You use their chatter to make your escape, silently thanking yourself for taking your equipment with you to the lavatory."""])
-					return False
-				print_stuff([f"The two men turn as you step on a pile of dried leaves. {man_name.capitalize()} jumps to his feet, drawing his sword.",
+			if speech == "2":
+				print_stuff(["""You use their chatter to make your escape, silently thanking yourself for taking your equipment with you to the lavatory.""",
+"""You follow the trail a bit longer. You manage to find a small glade, which seems like a good spot to rest for the night.""",
+"""You light a small fire and shrug off your backpack, sighing with relief at the break from walking."""])
+				return False
+			print_stuff([f"The two men turn to you. {man_name.capitalize()} jumps to his feet, drawing his sword.",
 f""""The ploughing {character.character['titles']['insult']} is spying on us!" he yells, running forward, sword raised."""])
-				choice = input_stuff(f"""1. Use a smoke bomb to incapacitate {man_name}.
-2. Draw {weapon.weapon['weaponname']} and do battle.""", ['1', "2"])
-				if choice == "1" and equipment.equipment['smoke bombs'] > 0:
-					equipment.equipment["smoke bombs"] -= 1
-					print_stuff([f"""You hurl a smoke bomb at {man_name}. He coughs and splutters and you seize your chance.""",
+			choice = input_stuff(f"""1. Use a smoke bomb to incapacitate {man_name}.
+2. Draw {weapon.weapon['weaponname']} and do battle.
+> """, ['1', "2"])
+			if choice == "1" and equipment.equipment['smoke bombs'] > 0:
+				equipment.equipment["smoke bombs"] -= 1
+				print_stuff([f"""You hurl a smoke bomb at {man_name}. He coughs and splutters and you seize your chance.""",
 """Lunging forwards, you hook your leg behind his, throwing him to the ground. His cry of rage is cut short as he lands on his back and the breath is knocked from him.""",
 """To make sure he causes no more trouble, you kick him in the side of the head, and his body goes still, apart from his chest rising and falling."""])
-				else:
-					enemy_round.initialize([encounters.special_access("garurt")])
-					if post_combat.victory == False:
-						print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the campsight.",
+			else:
+				enemy_round.initialize([encounters.special_access("garurt")])
+				if post_combat.victory == False:
+					print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the campsight.",
 "You also realise that almost all your belongings are gone. Your sword, your food, and your items remain. However, you money and knives are gone.",
 "You pick yourself up and gather your equipment. It is day time, and despite being knocked unconscious, you feel slightly refreshed.",
 "You continue on your journey, despite the sour defeat."])
-						equipment.equipment['gold'] = 0
-						equipment.equipment['knives'] = 0
-						return False
-					else:
-						print_stuff([f"""You stand over {man_name}'s corpse. You stop when you here the sound of clapping.""",
+					equipment.equipment['gold'] = 0
+					equipment.equipment['knives'] = 0
+					return False
+				else:
+					print_stuff([f"""You stand over {man_name}'s corpse. You stop when you here the sound of clapping.""",
 """"That was quite a show you put on," Eladris says. "Where did you learn that?" """])
-						reply = input_stuff("""1. "Don't look so cocky. You're next."
+					reply = input_stuff("""1. "Don't look so cocky. You're next."
 2. "Why did he attack me?" 
 > """, ['1', "2"])
-						if reply == "1":
-							print_stuff(["""At this, Eladris chuckles. "Kill me then. I do not fear death. At least let me explain." """])
-					print_stuff([f""""Please forgive Garurt," Eladris says cooly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
+					if reply == "1":
+						print_stuff(["""At this, Eladris chuckles. "Kill me then. I do not fear death. At least let me explain." """])
+				print_stuff([f""""Please forgive Garurt," Eladris says cooly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
 """"We're bandits. We were thrown out of society because of my half-blood status and his friendship with me. We've had to live robbing and hiding for many years.""",
 """Eladris looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
-					action = input_stuff("""1. Kill Eladris
+				action = input_stuff("""1. Kill Eladris
 2. Walk away.
 > """, ['1', "2"])
-					if action == "1":
-						print_stuff(["""You step forward, sword in hand. Eladris closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
+				if action == "1":
+					print_stuff(["""You step forward, sword in hand. Eladris closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
 """You search Eladris' bags and come away with 27 gold coins, a healing potion, and two throwing knives."""])
-					print_stuff(["""You walk away from the camp, and return to the trail."""])
+				print_stuff(["""You walk away from the camp, and return to the trail."""])
 		else:
 			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])
 	print_stuff(["""You follow the trail a bit longer. You manage to find a small glade, which seems like a good spot to rest for the night.""",
@@ -363,12 +366,12 @@ def ascent():
 "You realise that the creature may be slow, but if you get hit, your situation will be grave indeed."])
 		enemy_round.initialize([encounters.monster_access("crag")])
 		if post_combat.victory == False:
-			print_stuff(["The crag cares nothing for food, but it does enjoy killing. Unconscious, you do not see the crag raise it's might fists."])
+			print_stuff(["The crag cares nothing for food, but it does enjoy killing. Unconscious, you do not see the crag raise it's mighty fists."])
 			exit()
 		print_stuff(["Panting for breath, you watch the crag's body crumble into a pile of boulders and dust.",
 "You continue your climb, and soon reach the place where you fell, careful not to step in any more gravel patches."])
 	print_stuff(["You continue to climb up the mountain, the final remains of sleepiness gone from you, due to the intense events.",
-"Once more, you find yourself out of breath and in need of rest. You turn and look out over the nearby countrtside.",
+"Once more, you find yourself out of breath and in need of rest. You turn and look out over the nearby countryside.",
 "The view is spectacular. Everything is tiny, as if you were staring at an embroided tapestry. Blackburrow is a dark cluster in the distance.",
 "When the sun begins to set, you begin to search for a place to rest. Climbing higher, you find a small mountain trail.",
 "You follow it along for a short distance, and find yourself beside a large cabin. There is no sign of movement inside.",
