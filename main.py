@@ -30,6 +30,10 @@ def new_game():
 	weapon.get_weapon_name()
 	ability.get_ability()
 	equipment.get_equipment()
+	enemy_1 = encounters.monster_access("fbandit")
+	enemy_2 = encounters.monster_access("mbandit")
+	gang = [enemy_1, enemy_2]
+	enemy_round.initialize(gang)
 
 
 def prologue():

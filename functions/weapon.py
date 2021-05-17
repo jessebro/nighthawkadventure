@@ -5,8 +5,43 @@ weapon = {
 	"finesse": 0,
 	"stability": 5,
 	"max stability": 5,
-	"weaponname": "your weapon"
+	"weaponname": "your weapon",
+	"attacks": [{"name": "Dueler's Strike",
+	             "description": " (basic attack)",
+	             "enabled": True,
+	             "damage": 0,
+	             "accuracy": 0},
+	            {"name": "Power Strike",
+	             "description": " (higher damage, lower accuracy)",
+	             "enabled": True,
+	             "damage": 1.5,
+	             "accuracy": -10},
+				{"name": "Precision Strike",
+	             "description": " (lower damage, higher accuracy)",
+	             "enabled": False,
+	             "damage": 0.75,
+	             "accuracy": 10
+	             },
+	            {"name": "Rending Strike",
+				 "description": " (lower accuracy, guaranteed two levels of bleeding)",
+	             "enabled": False,
+	             "damage": 1,
+	             "accuracy": -10
+	             },
+	            {"name": "Dancing Strike",
+				"description": " (lower damage, always makes two attacks)",
+	             "enabled": False,
+	             "damage": 0.75,
+	             "accuracy": 0
+	             },
+	            {"name": "Vampire Strike",
+				"description": " (lower damage, chance to heal damage dealt)",
+				"enabled": False,
+	            "damage": 0.75,
+	            "accuracy": 0
+	             }]
 }
+
 
 def get_weapon_name():
 	name = input("""What do you want your weapon to be called?
@@ -21,7 +56,7 @@ def get_weapon_name():
 
 
 def lose_stability():
-	breakchance = random.randrange(1,3)
+	breakchance = random.randrange(1, 3)
 	if breakchance == 2:
 		weapon["stability"] -= 1
 		if weapon["stability"] == 0:

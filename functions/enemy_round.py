@@ -38,6 +38,7 @@ def generate_enemy(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type
 	enemy["playermod"] = 0
 	enemy["parry"] = False
 	enemy["distract"] = False
+	enemy["bleeding"] = 0
 	enemy["xp"] = xp
 	enemy["reference"] = generate_reference(type, gender, name)
 	return enemy
@@ -79,6 +80,11 @@ def initialize(enemies):
 
 
 def enemy_turn(enemy):
+	if enemy['bleeding'] > 0:
+		damage = random.randrange(2,6)
+		print(f"Your enemy bleeds for {damage} damage!")
+		time.sleep(4)
+		enemy["bleeding"] -= 1
 	enemy["playermod"] = 0
 	if enemy["type"] == "human":
 		action = random.randrange(1,6)

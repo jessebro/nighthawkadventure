@@ -5,6 +5,7 @@ from functions import inventory
 from functions import weapon
 from functions import equipment
 from functions import enemy_round
+from functions.utils import input_stuff
 
 def get_turn_choice(enemy):
 	reference = enemy["reference"]
@@ -42,7 +43,42 @@ def turn(enemy):
 
 
 def strike(enemy, damage_mod=1.0, smoke=False):
+	critical = 10
+	bleeding = 20
+	bleed_lvl = 1
+	vampiric = False
+	agility_check = 30
 	reference = enemy["reference"]
+	attacks = [known for known in weapon.weapon["attacks"] if known['enabled']]
+	prompt = ""
+	counter = 0
+	options = []
+	for attack in attacks:
+		counter += 1
+		prompt = prompt + str(counter) + ". " + attack["name"] + attack["description"] + """
+"""
+		options.append(str(counter))
+	prompt = prompt + "> "
+	attack = input_stuff(prompt, options)
+	if attack == "2":
+		enemy["playermod"] -= 10
+		damage_mod += 0.5
+	elif attack == "3":
+		enemy["playermod"] += 10
+		damage_mod -= 0.25
+	elif attack == "4":
+		enemy["playermod"] -= 10
+		damage_mod += 1
+		bleeding = 1000
+		bleed_lvl = 2
+	elif attack == "5":
+		damage_mod -= 0.25
+		agility_check = 1000
+	elif attack == "6":
+		damage_mod -= 0.25
+		vampiric = True
+
+
 	initial_script = ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
 f"""You rush towards {reference["object"]}, sword grasped firmly.""",
@@ -75,7 +111,7 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 	counter = 0
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
-	if agility_roll <= (25 + (ability.ability["agility"])):
+	if agility_roll <= (agility_check + (ability.ability["agility"])):
 		attacks = 3
 	if smoke:
 		attacks = 4
@@ -86,13 +122,24 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
-			if roll <= (10 + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"]):
+			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"]):
 				print("The strike was well aimed, and scored a critical hit!")
 				time.sleep(3)
 				damage_multi += 1
+			if roll <= (bleeding + (weapon.weapon["sharpness"] + ability.ability["strength"])):
+				enemy["bleeding"] += bleed_lvl
+				print("Your attack cuts deep, and causes your enemy to bleed!")
+				time.sleep(4)
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
 			max_damage = int((ability.ability["strength"] + 2) * damage_multi)
 			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"]
+			if vampiric:
+				healing = random.randrange(1,101)
+				if healing <= 50:
+					ability.ability["health"] += player_damage
+					print(f"You regained {player_damage} health from your vampiric attack!")
+					if ability.ability["health"] > ability.ability["maxhealth"]:
+						ability.ability["health"] = ability.ability["maxhealth"]
 			enemy["hp"] -= player_damage
 			print(f"You hit for {player_damage} damage!")
 			time.sleep(5)
