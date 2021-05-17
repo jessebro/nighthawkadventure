@@ -1,4 +1,4 @@
-START_GOLD = 100000
+START_GOLD = 20
 
 equipment = {
 	"potions": 1,
