@@ -92,6 +92,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 			print("No one knows you came here, and no one can save you now. Unfortunately, you'll probably end up in the hag's cooking pot.")
 			exit()
 		print_stuff(["With the bone hag dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
+		character.story["hag_lair"] = True
 		while True:
 			investigate = input_stuff("""1. Search the chest.
 2. Investigate the cauldron.
@@ -290,6 +291,10 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 				if action == "1":
 					print_stuff(["""You step forward, sword in hand. Eladris closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
 """You search Eladris' bags and come away with 27 gold coins, a healing potion, and two throwing knives."""])
+					equipment.equipment["gold"] += 27
+					equipment.equipment["potions"] += 1
+					equipment.equipment["knives"] += 2
+					character.story["eladris"] = False
 				print_stuff(["""You walk away from the camp, and return to the trail."""])
 		else:
 			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])

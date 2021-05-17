@@ -12,6 +12,7 @@ def save(position):
 		"ability": ability.ability,
 		"equipment": equipment.equipment,
 		"weapon": weapon.weapon,
+		"story": character.story,
 		"position": position
 	}
 	with open('savefile.dat', 'wb') as f:
@@ -22,6 +23,7 @@ def load():
 	with open('savefile.dat', 'rb') as f:
 		data = pickle.load(f)
 	character.character = data['character']
+	character.story = data['story']
 	ability.ability = data['ability']
 	equipment.equipment = data['equipment']
 	weapon.weapon = data['weapon']

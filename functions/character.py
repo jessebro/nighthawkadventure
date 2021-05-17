@@ -15,6 +15,11 @@ character = {
 	}
 }
 
+story = {
+	"hag_lair": False,
+	"eladris": True
+
+}
 
 def get_name():
 	firstname = input("""What is your name?
