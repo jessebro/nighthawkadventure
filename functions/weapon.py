@@ -41,13 +41,22 @@ weapon = {
 	            "accuracy": 0
 	             }],
 	"parries": [{"name": "Counter Parry",
-	             "description": " (basic parry)",
+	             "description": " (make an attack for 150% damage on a successful parry)",
 	             "enabled": True},
 				{"name": "Opportunist's Parry",
 	             "description": " (take an extra turn after a succesful parry)",
 	             "enabled": False},
 				{"name": "Vengeance Parry",
-	             "description": " (make an attack after parrying. If parry failed, the attack gains bonus damage depending on damage taken)",
+	             "description": " (make an attack after parrying. If parry failed, the attack gains bonus damage equal to damage taken)",
+	             "enabled": False}],
+	"distracts": [{"name": "Dirty Distract",
+	             "description": " (successfully distracting makes you perform a more accurate attack)",
+	             "enabled": True},
+				{"name": "Lacerating Distract",
+	             "description": " (successfully distracting inflicts two levels of bleeding)",
+	             "enabled": False},
+				{"name": "Deadly Distract",
+	             "description": " (successfully distracting increases your critical hit chance and damage)",
 	             "enabled": False}]
 
 }
@@ -59,8 +68,22 @@ def get_inactive():
 	return [known for known in weapon["attacks"] if not known['enabled']]
 
 
-def get_by_name(name):
+def attack_by_name(name):
 	for next in weapon["attacks"]:
+		if next['name'] == name:
+			return next
+	return name
+
+
+def parry_by_name(name):
+	for next in weapon["parries"]:
+		if next['name'] == name:
+			return next
+	return name
+
+
+def distract_by_name(name):
+	for next in weapon["distracts"]:
 		if next['name'] == name:
 			return next
 	return name

@@ -132,7 +132,7 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
-			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + buffs[1]):
+			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + (buffs[1] * 5)):
 				print("The strike was well aimed, and scored a critical hit!")
 				time.sleep(3)
 				damage_multi += 1
@@ -142,7 +142,7 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 				time.sleep(4)
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
 			max_damage = int((ability.ability["strength"] + 2) * damage_multi)
-			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"] + damage_bonus + buffs[0]
+			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"] + damage_bonus + (buffs[0] * 2)
 			if vampiric:
 				healing = random.randrange(1,101)
 				if healing <= 50:
@@ -240,6 +240,23 @@ f"Your adversary closes in, but at the last second you lunge forwards, slamming 
 
 def distract(enemy):
 	reference = enemy["reference"]
+	distracts = [known for known in weapon.weapon["distracts"] if known['enabled']]
+	lacerating = False
+	deadly = False
+	prompt = ""
+	counter = 0
+	options = []
+	for distract in distracts:
+		counter += 1
+		prompt = prompt + str(counter) + ". " + distract["name"] + distract["description"] + """
+		"""
+		options.append(str(counter))
+	prompt = prompt + "> "
+	distract = input_stuff(prompt, options)
+	if distract == "2":
+		lacerating = True
+	elif distract == "3":
+		deadly = True
 	initial_script = ["Suddenly, you lean down, scoop up a handful of dirt and throw it in your enemy's face.",
 f"You yell fiercely into the face of your opponent. {reference['he'].capitalize()} recoils at the sudden noise.",
 f"""You feint sideways, then come back to your previous position. {reference['object'].capitalize()} staggers slightly at the sudden move.""",
@@ -247,12 +264,22 @@ f"As your enemy moves closer, you swiftly kick {reference['him']} painfully in t
 f"Your opponent brings down {reference['his']} attack. You raised your blade at the last second, and with your free hand punch {reference['him']} in the face, sending {reference['him']} staggering away."]
 	print(random.choice(initial_script))
 	time.sleep(5)
-	enemy["playermod"] += (10 + ability.ability["agility"] + ability.ability["distract_lvl"] * 2)
 	attack_chance = random.randrange(1,101)
 	if attack_chance <= (50 + ability.ability['agility'] + ability.ability["distract_lvl"]):
-		print("Your enemy's loss of focus allows you to make an attack!")
-		time.sleep(3)
-		strike(enemy)
+		if lacerating == True:
+			enemy["bleeding"] += 2
+			print("Your enemy's loss of focus allows you to cut them, causing them to bleed!")
+			time.sleep(3)
+		elif deadly == True:
+			buffs[0] += 2
+			buffs[1] += 2
+			print("Your enemy's loss of focus opens them up to significant damage!")
+			time.sleep(3)
+		else:
+			enemy["playermod"] += (10 + ability.ability["agility"] + ability.ability["distract_lvl"] * 2)
+			print("Your enemy's loss of focus allows you to make an attack!")
+			time.sleep(3)
+			strike(enemy)
 	else:
 		return False
 

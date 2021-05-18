@@ -85,6 +85,7 @@ def enemy_turn(enemy):
 		damage = random.randrange(2,6)
 		print(f"Your enemy bleeds for {damage} damage!")
 		time.sleep(4)
+		enemy["modifier"] -= (10 * enemy['bleeding'])
 		enemy["bleeding"] -= 1
 	enemy["playermod"] = 0
 	if enemy["type"] == "human":

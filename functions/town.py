@@ -187,12 +187,16 @@ def trainer(name, objective):
 	print("You find someone who is willing to help you hone your skills, but not for free.")
 	time.sleep(4)
 	while True:
-		options = ['1', '2', '3', '4', 'b']
+		options = ['1', '2', '3', '4', '5', '6', 'b']
 		purchase = input(f"""What would you like to train?
 	1. Strength training (15 gold)
 	2. Technical training (25 gold)
 	3. Strike: Precision Strike (75 gold)
 	4. Strike: Rending Strike (100 gold)
+	5. Parry: Opportunist's Parry (60 gold)
+	6. Parry: Vengeance Parry (85 gold)
+	7. Distract: Lacerating Distract (50 gold)
+	8. Distract: Deadly Distract (80 gold)
 
 Enter 'b' to leave
 > """)
@@ -201,7 +205,7 @@ Enter 'b' to leave
 		if purchase == "b":
 			break
 		word_keys = ["increased your Strength", "gained experience", "unlocked Precision Strike", "unlocked Rending Strike"]
-		prices = [15, 25, 75, 100]
+		prices = [15, 25, 75, 100, 60, 85]
 		choice = int(purchase)
 		choice -= 1
 		if equipment.equipment["gold"] < prices[choice]:
@@ -212,9 +216,13 @@ Enter 'b' to leave
 		elif purchase == "2":
 			ability.ability["xp"] += random.randrange(10,16)
 		elif purchase == "3":
-			weapon.get_by_name("Precision Strike")["enabled"] = True
+			weapon.attack_by_name("Precision Strike")["enabled"] = True
 		elif purchase == "4":
-			weapon.get_by_name("Rending Strike")["enabled"] = True
+			weapon.attack_by_name("Rending Strike")["enabled"] = True
+		elif purchase == "4":
+			weapon.parry_by_name("Opportunist's Parry")["enabled"] = True
+		elif purchase == "4":
+			weapon.parry_by_name("Vengeance Parry")["enabled"] = True
 		equipment.equipment["gold"] -= prices[choice]
 		print(f"""You {word_keys[choice]} for {prices[choice]} gold.""")
 		time.sleep(4)
