@@ -7,6 +7,9 @@ from functions import equipment
 from functions import enemy_round
 from functions.utils import input_stuff
 
+buffs = [0, 0, 0]
+
+
 def get_turn_choice(enemy):
 	reference = enemy["reference"]
 	initial_script = [f"""You circle each other, sizing each other up.""",
@@ -26,7 +29,12 @@ f"""{reference['object'].capitalize()} lunges. You jump aside at the last second
 
 
 def turn(enemy):
+	global buffs
 	enemy["modifier"] = 0
+	for buff in buffs:
+		buff -= 1
+		if buff < 0:
+			buff = 0
 	action = get_turn_choice(enemy)
 	if action == "1":
 		strike(enemy)
@@ -42,8 +50,10 @@ def turn(enemy):
 			turn(enemy)
 
 
-def strike(enemy, damage_mod=1.0, smoke=False):
-	critical = 10
+def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
+	global buffs
+	damage_bonus = bonus
+	critical = critical_bonus
 	bleeding = 20
 	bleed_lvl = 1
 	vampiric = False
@@ -122,7 +132,7 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			print(random.choice(success_script))
 			time.sleep(5)
-			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"]):
+			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + buffs[1]):
 				print("The strike was well aimed, and scored a critical hit!")
 				time.sleep(3)
 				damage_multi += 1
@@ -132,7 +142,7 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 				time.sleep(4)
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
 			max_damage = int((ability.ability["strength"] + 2) * damage_multi)
-			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"]
+			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"] + damage_bonus + buffs[0]
 			if vampiric:
 				healing = random.randrange(1,101)
 				if healing <= 50:
@@ -171,6 +181,23 @@ f"""{reference['object'].capitalize()} pushes your attack aside and grins wicked
 
 def parry(enemy):
 	reference = enemy["reference"]
+	parries = [known for known in weapon.weapon["parries"] if known['enabled']]
+	opportunist = False
+	vengeance = False
+	prompt = ""
+	counter = 0
+	options = []
+	for parry in parries:
+		counter += 1
+		prompt = prompt + str(counter) + ". " + parry["name"] + parry["description"] + """
+	"""
+		options.append(str(counter))
+	prompt = prompt + "> "
+	parry = input_stuff(prompt, options)
+	if parry == "2":
+		opportunist = True
+	elif parry == "3":
+		vengeance = True
 	initial_script = ["You raise your sword in a defensive position.",
 "You brace yourself for your charging adversary, ready and waiting", f"You bring your sword to bare, watching {reference['object']} closely."]
 	success_script = [f"Your enemy runs forward, but at the last second you kick {reference['him']} back, knocking the breath from {reference['his']} body.",
@@ -192,13 +219,24 @@ f"Your adversary closes in, but at the last second you lunge forwards, slamming 
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")
 		time.sleep(5)
+		enemy_round.player_defeat()
+		if vengeance:
+			print("You shrug off the pain and lunge forwards in an attempt to take revenge!")
+			time.sleep(3)
+			strike(enemy, bonus=enemy_damage)
 		turn(enemy)
 	else:
 		print(random.choice(success_script))
 		time.sleep(5)
 		print("Your parry succeeds and you riposte!")
 		time.sleep(3)
-		strike(enemy, damage_mod=1.5)
+		if opportunist:
+			turn(enemy)
+			return False
+		if vengeance:
+			strike(enemy)
+		else:
+			strike(enemy, damage_mod=1.5)
 
 def distract(enemy):
 	reference = enemy["reference"]
@@ -221,6 +259,7 @@ f"Your opponent brings down {reference['his']} attack. You raised your blade at 
 
 
 def use_item(enemy):
+	global buffs
 	reference = enemy["reference"]
 	potion_script = [f"You jump away from the melee and pull a potion from your belt. You drain the liquid in a few seconds, and toss the empty bottle away. You feel strength lost return to you.",
 f"You kick your opponent, sending {reference['him']} backwards. While {reference['he']} staggers, you drink a potion, and pain leaves your body."]
@@ -274,7 +313,12 @@ Enter 'b' to go back
 			time.sleep(5)
 			print(f"You regained {healing} health!")
 			time.sleep(5)
-			enemy_round.enemy_turn(enemy)
+			if equipment.equipment["empowering"] == True:
+				boost = random.choice([0, 1, 2])
+				words = ["damage", "critical chance", "damage resistance"]
+				buffs[boost] += 3
+				print(f"Your {words[boost]} has been boosted!")
+				time.sleep(3)
 	if item_use == "2":
 		equipment.equipment["knives"] -= 1
 		if equipment.equipment["knives"] <0:
@@ -289,6 +333,10 @@ Enter 'b' to go back
 			time.sleep(5)
 			print(f"Your knife hits for {knife_damage} damage!")
 			time.sleep(5)
+			if equipment.equipment["serrated"] == True:
+				enemy["bleeding"] += 1
+				print(f"Your knife causes the enemy to bleed!")
+				time.sleep(3)
 	if item_use == "3":
 		equipment.equipment["oils"] -= 1
 		if equipment.equipment["oils"] <0:
@@ -300,7 +348,14 @@ Enter 'b' to go back
 		else:
 			print(random.choice(oil_script))
 			time.sleep(5)
-			strike(enemy, damage_mod=2)
+			oil = 2
+			fatal = random.randrange(1,101)
+			if equipment.equipment["fatal"] == True and fatal <= 5:
+				enemy["hp"] = 0
+				print(f"You strike home with your oil, and it burns {reference['object']} from the inside, killing {reference['him']} instantly.")
+				time.sleep(5)
+			else:
+				strike(enemy, damage_mod=oil)
 			if enemy['hp'] <= 0:
 				return False
 	if item_use == "4":
@@ -314,6 +369,8 @@ Enter 'b' to go back
 		else:
 			print(random.choice(smoke_bomb_script))
 			time.sleep(5)
+			if equipment.equipment["disorientating"] == True:
+				enemy["modifier"] -= 10
 			strike(enemy,smoke=True)
 	if item_use == "b":
 		turn(enemy)

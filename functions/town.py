@@ -39,12 +39,16 @@ def market(name, objective):
 	print("You enter the market, and immediately start browsing, looking for things you could use on your travels.")
 	time.sleep(4)
 	while True:
-		options = ['1', '2', '3', '4', 'b']
+		options = ['1', '2', '3', '4', '5', '6', '7', '8', 'b']
 		purchase = input(f"""What would you like to purchase?
 	1. Potions (25 gold)
 	2. Knives (20 gold)
 	3. Oils (50 gold)
 	4. Smoke bombs (40 gold)
+	5. Potions: Empowering Solution (80 gold)
+	6. Knives: Serrated Edge (50 gold)
+	7. Oils: Poisoned Edge (150 gold)
+	8. Smoke bombs: Disorientating Vapour (70 gold)
 
 Enter 'b' to leave
 > """)
@@ -53,7 +57,7 @@ Enter 'b' to leave
 		if purchase == "b":
 			break
 		word_keys = ["Potion", "Knife", "Oil", "Smoke bomb"]
-		prices = [25, 20, 50, 40]
+		prices = [25, 20, 50, 40, 80, 50, 150, 70]
 		choice = int(purchase)
 		choice -= 1
 		if equipment.equipment["gold"] < prices[choice]:
@@ -67,6 +71,14 @@ Enter 'b' to leave
 			equipment.equipment["oils"] += 1
 		elif purchase == "4":
 			equipment.equipment["smoke bombs"] += 1
+		elif purchase == "5":
+			equipment.equipment["empowering"] = True
+		elif purchase == "6":
+			equipment.equipment["serrated"] = True
+		elif purchase == "7":
+			equipment.equipment["fatal"] = True
+		elif purchase == "8":
+			equipment.equipment["disorientating"] = True
 		equipment.equipment["gold"] -= prices[choice]
 		print(f"""You bought a {word_keys[choice]} for {prices[choice]} gold.""")
 		time.sleep(4)

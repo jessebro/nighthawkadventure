@@ -5,6 +5,7 @@ from functions import ability
 from functions import post_combat
 from functions import player_turn
 from functions import equipment
+from functions.player_turn import buffs
 
 gang_size = 0
 gang_lads = []
@@ -103,6 +104,7 @@ def enemy_turn(enemy):
 
 
 def enemy_attack(enemy, damage_modi = 1):
+
 	reference = enemy["reference"]
 	initial_script = [f"{reference['object'].capitalize()} lunges in, ready to strike.",
 "You ready yourself as your adversary charges forward, teeth bared in savage fury.",
@@ -124,7 +126,7 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 	time.sleep(5)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
 		print(random.choice(success_script))
-		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"])
+		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
 		ability.ability["health"] -= enemy_damage
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")

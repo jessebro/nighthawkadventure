@@ -5,7 +5,11 @@ equipment = {
 	"knives": 2,
 	"oils": 0,
 	"smoke bombs": 1,
-	"gold": START_GOLD
+	"gold": START_GOLD,
+	"empowering": False,
+	"serrated": False,
+	"fatal": False,
+	"disorientating": False
 }
 
 def get_equipment():

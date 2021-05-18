@@ -39,7 +39,17 @@ weapon = {
 				"enabled": False,
 	            "damage": 0.75,
 	            "accuracy": 0
-	             }]
+	             }],
+	"parries": [{"name": "Counter Parry",
+	             "description": " (basic parry)",
+	             "enabled": True},
+				{"name": "Opportunist's Parry",
+	             "description": " (take an extra turn after a succesful parry)",
+	             "enabled": False},
+				{"name": "Vengeance Parry",
+	             "description": " (make an attack after parrying. If parry failed, the attack gains bonus damage depending on damage taken)",
+	             "enabled": False}]
+
 }
 
 def get_active():
