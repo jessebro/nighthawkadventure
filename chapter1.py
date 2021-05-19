@@ -92,7 +92,6 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 			print("No one knows you came here, and no one can save you now. Unfortunately, you'll probably end up in the hag's cooking pot.")
 			exit()
 		print_stuff(["With the bone hag dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
-		character.story["hag_lair"] = True
 		while True:
 			investigate = input_stuff("""1. Search the chest.
 2. Investigate the cauldron.
@@ -114,15 +113,16 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 					else:
 						break
 			elif investigate == "3":
+				character.story["hag_lair"] = True
 				treasure += 1
 				print_stuff(["""You pick up a piece of paper and read.
-	____________________________________________________
-		My dearest Chana,
-	If I am to die prematurely, you must lift the chest 
-	and take the belongings below it. That should be
-	enough to keep you alive, and perhaps flourish.
-		Denvar
-	____________________________________________________"""])
+	______________________________________________________
+	|	My dearest Chana,                                |
+	| If I am to die prematurely, you must lift the chest| 
+	| and take the belongings below it. That should be   |
+	| enough to keep you alive, and perhaps flourish.    |
+	|	Denvar                                           |
+	|____________________________________________________|"""])
 				if treasure == 1:
 					option = input_stuff("""1. Search under the chest.
 2. Step away.
@@ -198,7 +198,7 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 				question = input_stuff(f"""1. "So... what's a half-elf doing out here?"
 2. "Who's your cheerful friend?" 
 3. "You said monsters were increasing in numbers..."
-4. "I'm going to get some sleep." 
+4. "I'm going to get some sleep." (leave dialogue) 
 > """, ['1', "2", '3', '4'])
 				if question == "1":
 					print_stuff(["""Eladris grins at you. "You noticed?" he says. "Was it the name, or my appearance?" """,
@@ -422,4 +422,137 @@ def ascent():
 			print_stuff([""""In any case, you have entered my home without my permission. All I ask in return is answers." """,
 """"First of all, where are you going on this cold evening." Before you can even begin to answer, he raises a hand and chuckles. """,
 """"Before you answer, allow me to introduce myself. I'm Denvar. Who are you?" """])
-			input_stuff()
+			reply = input_stuff(f"""1. "I'm {character.character['firstname']}."
+2. "..."
+> """, ["1", "2"])
+			if reply == "1":
+				print_stuff([f"""Denvar smiles. "So, {character.character['firstname']}, I have some questions for you." """])
+			elif reply == "2":
+				print_stuff([f"""Denvar shrugs. "Fine, suit yourself. But I still have some questions for you. Answer them at least." """])
+			print_stuff([""""First of all, who are you? I don't mean your name; I mean your profession. Your sword indicates you're a warrior." """])
+			reply = input_stuff(f"""1. "I'm a Nighthawk."
+2. "I'm a mercenary."
+3. "I'm an adventurer."
+> """, ["1", "2", "3"])
+			if reply == "1":
+				print_stuff([f""""A Nighthawk? Fascinating. I've heard many tales of your kind's exploits." """])
+			elif reply == "2":
+				print_stuff([f""""I see. I won't comment... but I don't approve of your method of employment." """])
+			elif reply == "3":
+				print_stuff([f""""Ah... The toughest and most unpredictable occupation." """])
+			print_stuff([""""Second, what are you doing climbing the mountain? I hardly get people visiting." """])
+			reply = input_stuff(f"""1. "I'm looking for missing people."
+2. "I'm just enjoying the mountain air."
+3. "I'm searching for treasure."
+> """, ["1", "2", "3"])
+			if reply == "1":
+				print_stuff([f""""Well I wish you the best of luck on your search." """])
+			elif reply == "2":
+				print_stuff([f""""Of course!" Denvar laughs. "That's why everyone traverses this treacherous landscape." """])
+			elif reply == "3":
+				print_stuff([f""""Be wary. The pursuit of gold has led many to their deaths." """])
+			print_stuff(["""Denvar thinks for a bit, then nods his head. """,
+""""I think that's all the questions I have," he says. "Now I'll let you ask me some." """])
+			while True:
+				if character.story["hag_lair"] == True:
+					question = input_stuff("""1. "Who are you exactly?" 
+	2. "Have you seen a young man and woman pass this way?" 
+	3. "I'm going to get some rest. Can I stay here?" (leave dialogue) 
+	4. "Do you know someone who lives in a forest cabin near here?" 
+	> """, ["1", "2", "3", "4"])
+				else:
+					question = input_stuff("""1. "Who are you exactly?" 
+	2. "Have you seen a young man and woman pass this way?" 
+	3. "I'm going to get some rest. Can I stay here?" (leave dialogue) 
+	> """, ["1", "2", "3"])
+				if question == "1":
+					print_stuff([""""I'm a simple mountain man. I hunt and forage for food, but sometimes I go down to the lower plains." """,
+""""However, I have a wife down there; she lives in a cabin not unlike this one. The mountain did not call to her as it called to me, though." """])
+					continue
+				elif question == "2":
+					print_stuff([""""Hm... Ah, yes. A few days ago, a young man and woman came by. They were armed and laden with bags." """,
+""""They seemed to be about sixteen years old each, and they looked related. I didn't meet them in person, though." """,
+"""Suddenly, Denvar leans over to you. "But then there were these other people, heading the same way as those two travellers," he murmurs. """,
+""""All of them were female, and they were dressed strangely. Thigh length tights, a midriff top... scantily clad for hikers. They were also all armed with curved swords." """,
+""""They looked like trouble, so I didn't go to meet them. Still, I'm curious about their intentions." """])
+					continue
+				elif question == "3":
+					print_stuff([""""Of course you can stay. Rest, eat, I've plenty to share. I have extra space for my wife." """])
+					break
+				elif question == "4":
+					print_stuff([""""Yes, she's my wife. Chana is her name. Why do you ask?" """])
+					reply = input_stuff("""1. "I'm afraid she's dead." 
+2. "Met her on the way here. Seems well enough." (Persona roll for lying) 
+> """, ["1", "2"])
+					while True:
+						if reply == "1":
+							death = True
+							break
+						elif reply == "2":
+							persona_roll = random.randrange(1, 101)
+							if persona_roll <= (60 + ability.ability["persona"]):
+								print_stuff("""Denvar smiles. "That is good to know," he says.""")
+								death = False
+								break
+							else:
+								print_stuff("""Denvar examines you for a moment. "You're lying," he says. He closes his eyes. "Chana's dead, isn't she?" """)
+								death = True
+								break
+					if death:
+						print_stuff(["""You see Denvar stare at you for a moment, then he turns away. You see his shoulders tremble.""",
+""""How did she die?" he says. "Do not soften the blow for me." """])
+						reply = input_stuff("""1. "A bone hag scraped the flesh from her bones and consumed her. Her death was avenged." 
+2. "Details do not matter. But know her death was avenged."
+> """, ["1", "2"])
+						if reply == "1":
+							print_stuff(["""Denvar closes his eyes for a moment. "Forgive me," he says, and he seems to compose himself. """,
+""""Do you have more questions? Do not hesitate to ask." """])
+						elif reply == "2":
+							print_stuff(["""Denvar shrugs sadly. "Perhaps I do not want to know. But forgive me, do you have more questions?" """])
+			ability.ability["health"] = ability.ability["maxhealth"]
+			print_stuff(["""Denvar nods. "Before you fall asleep, let me give you some food." He moves to the kitchen area and produces a basket of various foods.""",
+"""He lays the food down beside you. You see the basket contains bread, a small bottle of wine, and a various fruits.""",
+""""The bounty from my last trip to market," Denvar says. "Eat and rest, my friend." """,
+"""You eat the food and drink the wine, and it is delicious and refreshing.""",
+"""You regained all lost health!""",
+"""The following morning, you wake up and look around. Denvar has gone, but a piece of paper is lying next to you. You pick it up and read it.""",
+"""
+	______________________________________________________
+	| I've left to go hunting,                           |
+	| You may leave whenever you wish.                   |
+	|	Denvar                                           |
+	|____________________________________________________|"""])
+			action = input_stuff("""1. Write your thanks on the paper.
+2. Leave the cabin.
+> """, ["1", "2"])
+			if action == "1":
+				print_stuff("You quickly scribble down your thanks to Denvar for his hospitality, then step outside the cabin.")
+			print_stuff(["Today, the sky is overcast, the wind colder and stronger than before. Rain is coming.",
+"Wanting to be off the mountain before the rain starts, you make haste up the side of the mountain."])
+			break
+		else:
+			print_stuff(["You walk away from the cabin. It doesn't take you long to realise that night is falling fast. You begin to get desperate.",
+"You come across a cave. It seems like it will make a good shelter, so you enter. You hold your sword ready, just in case.",
+"However, nothing jumps out at you, and you manage to make camp peacefully.",
+"The light of the fire illuminates the stone walls, but is sheltered by the cave's entrance. You see strange carvings on the walls.",
+"Though age has worn away most of the carvings, you see depictions of swordsmen and women, large monsters, and huge battles.",
+"While looking around, you see a pedestal at the far end of the cave. Runes are carved into the side of it, and it sits flush with the ground.",
+"There's a thin hole in the middle that you think you could fit your sword into."])
+			choice = input_stuff("""1. Push your sword into the pedestal.
+2. Rest straight away.
+> """, ["1", "2"])
+			if choice == "1":
+				weapon.weapon["sharpness"] += 1
+				weapon.weapon["finesse"] += 1
+				weapon.weapon["stability"] = weapon.weapon["max stability"]
+				print_stuff(["You slid your sword neatly into the hole, and there's the hiss of steel on stone. Then the runes begin to glow.",
+"You feel a surging energy travel up the sword and into the grip. You try to pull away, but cannot.",
+"Just as quickly as the sensation starts, it stops. You pull your sword from the hole, and it feels easier the manage.",
+"The edge of the blade seems to shine more, and you realise that your sword has been improved and repaired.",
+f"""{weapon.weapon["weaponname"]}'s Sharpness and Finesse increased by 1 and all lost Stability has been restored!""",])
+			rest.rest()
+			print_stuff(["You settle down to sleep, watching the dancing flames of the fire. Then you drift off into blackness.",
+"Today, the sky is overcast, the wind colder and stronger than before. Rain is coming.",
+"Wanting to be off the mountain before the rain starts, you make haste up the side of the mountain."])
+
+
