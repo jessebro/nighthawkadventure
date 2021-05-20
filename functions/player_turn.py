@@ -312,10 +312,10 @@ f"{reference['object'].capitalize()} stops as you pull a vial of liquid from you
 		plurals["smoke bombs"] = "Smoke Bomb"
 
 	item_use = input(f"""
-		1. {equipment.equipment["potions"]} {plurals["potions"]}
-		2. {equipment.equipment["knives"]} {plurals["knives"]}
-		3. {equipment.equipment["oils"]} {plurals["oils"]}
-		4. {equipment.equipment["smoke bombs"]} {plurals["smoke bombs"]}
+		1. {plurals["potions"]} x{equipment.equipment["potions"]} 
+		2. {plurals["knives"]} x{equipment.equipment["knives"]} 
+		3. {plurals["oils"]} x{equipment.equipment["oils"]}
+		4. {plurals["smoke bombs"]} x{equipment.equipment["smoke bombs"]}
 
 Enter 'b' to go back
 > """)

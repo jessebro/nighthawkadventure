@@ -211,7 +211,7 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 					man_name = "Garurt"
 					continue
 				elif question == "3":
-					print_stuff([""""So I did," he sighs. "There's talk of magical fluctions, and that's what attracting them." """,
+					print_stuff([""""So I did," he sighs. "There's talk of magical fluctuations, and that's what attracting them." """,
 """"The source of the disturbances remains unknown, but I'm sure someone will figure it out eventually." """,
 """"They are merely rumours, of course," Eladris adds quickly. "But rumours can be built on truth." """])
 					continue
@@ -267,7 +267,7 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 			else:
 				enemy_round.initialize([encounters.special_access("garurt")])
 				if post_combat.victory == False:
-					print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the campsight.",
+					print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the camp sight.",
 "You also realise that almost all your belongings are gone. Your sword, your food, and your items remain. However, you money and knives are gone.",
 "You pick yourself up and gather your equipment. It is day time, and despite being knocked unconscious, you feel slightly refreshed.",
 "You continue on your journey, despite the sour defeat."])
@@ -282,7 +282,7 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 > """, ['1', "2"])
 					if reply == "1":
 						print_stuff(["""At this, Eladris chuckles. "Kill me then. I do not fear death. At least let me explain." """])
-				print_stuff([f""""Please forgive Garurt," Eladris says cooly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
+				print_stuff([f""""Please forgive Garurt," Eladris says coolly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
 """"We're bandits. We were thrown out of society because of my half-blood status and his friendship with me. We've had to live robbing and hiding for many years.""",
 """Eladris looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
 				action = input_stuff("""1. Kill Eladris
@@ -359,7 +359,7 @@ def ascent():
 "Desperately, you try to jump to safety."])
 	agility_roll = random.randrange(1,9)
 	if agility_roll <= ability.ability["agility"]:
-		print_stuff(["You fall, but hit the ground in a roll. You are agile enough to roll to you feet and avoid the tunbling gravel."])
+		print_stuff(["You fall, but hit the ground in a roll. You are agile enough to roll to you feet and avoid the tumbling gravel."])
 	else:
 		print_stuff(["You slip and fall. You try to roll back to your feet, but you are not agile enough.",
 "You tumble down the side of the mountain, but somehow avoid serious harm. Suddenly, you find yourself lying on the ground.",
@@ -377,7 +377,7 @@ def ascent():
 "You continue your climb, and soon reach the place where you fell, careful not to step in any more gravel patches."])
 	print_stuff(["You continue to climb up the mountain, the final remains of sleepiness gone from you, due to the intense events.",
 "Once more, you find yourself out of breath and in need of rest. You turn and look out over the nearby countryside.",
-"The view is spectacular. Everything is tiny, as if you were staring at an embroided tapestry. Blackburrow is a dark cluster in the distance.",
+"The view is spectacular. Everything is tiny, as if you were staring at an embroidered tapestry. Blackburrow is a dark cluster in the distance.",
 "When the sun begins to set, you begin to search for a place to rest. Climbing higher, you find a small mountain trail.",
 "You follow it along for a short distance, and find yourself beside a large cabin. There is no sign of movement inside.",
 "Firewood stands stacked against the side of the cabin. A hunting bow and a quiver of arrows lean against the side.",
@@ -583,7 +583,7 @@ def cave():
 "You notice you have walked into a huge spiderweb. Your sword is out of reach, and you know there is no hope of escape.",
 "A giant spider could already be on its way to feast. Struggling will not help you. Nothing will."])
 		exit()
-	print_stuff(["You take the left turn and found yourself walking through a relatively straight tunnel. The air is warmer and the human soudns are getting louder.",
+	print_stuff(["You take the left turn and found yourself walking through a relatively straight tunnel. The air is warmer and the human sounds are getting louder.",
 "You continue along the tunnel, and then another junction stands before you."])
 	choice = input_stuff("""1. Turn right
 2. Turn left.
@@ -608,7 +608,7 @@ def cave():
 "Your agility has been decreased by 1!",
 "Unaware that the effect is due to the necklace, you turn around and go back the way you came."])
 		print_stuff(["You go down the right tunnel. Along the way, you come across the corpse of a woman. You frown at her strange garments.",
-"She has an exposed cleavage, thigh length leggings and a shirt with sleaves that barely reach her elbows.",
+"She has an exposed cleavage, thigh length leggings and a shirt with sleeves that barely reach her elbows.",
 "Her clothes remind you somewhat of Zecherian dancers, but her skin is not sun browned. Lying still clutched in her hand is a curved sword."])
 		while True:
 			choice = input_stuff("""1. Loot the corpse.
@@ -691,16 +691,16 @@ def cave():
 "Each path has a different floor. You cannot see far down an individual path. The blue light comes from one of the tunnels, which is full of glowing blue mushrooms."])
 		while True:
 			path = input_stuff("""1. Go down the path carpeted by red fungus.
-	2. Go down the path with a flickering crystal floor.
-	3. Go down the path bordered by glowing blue mushrooms.
-	4. Go down the path full of fire flies.
-	> """, ["1", "2", "3", "4"])
+2. Go down the path with a flickering crystal floor.
+3. Go down the path bordered by glowing blue mushrooms.
+4. Go down the path full of fire flies.
+> """, ["1", "2", "3", "4"])
 			if path == "1":
 				print_stuff(["You walk down the path for a while, the red fungus squelching under your boots. Then you reach a dead end.",
 	"At the end of the tunnel lies a man's corpse. Red fungus is sprouting from his mouth, nose, ears and the corners of his eyes."])
 				choice = input_stuff("""1. Loot the corpse.
-	2. Go back.
-	> """, ["1", "2"])
+2. Go back.
+> """, ["1", "2"])
 				if choice == "1":
 					print_stuff(["You lower yourself down to search the body. As you do, your hand brushes some of the fungus.",
 "Suddenly, it feels as if your hand is on fire. You jump to your feet, and before your eyes you see red fungus start sprouting from you hand."])
@@ -708,13 +708,14 @@ def cave():
 2. Scrape the fungus off with your knife.
 > """, ["1", "2"])
 					if choice == "1":
-						print_stuff(["You quickly light a torch and hold your hand over the flame. With horror, you see the funus begin to spread up your arm.",
+						print_stuff(["You quickly light a torch and hold your hand over the flame. With horror, you see the fungus begin to spread up your arm.",
 "But the fire seems to do the trick. Though it's agony to hold your hand over the open flame, the fungus begins to wither and die, dropping off like dried mud.",
 "Not wishing to stay in the cave any longer, you turn back."])
 					else:
-						print_stuff(["You scrape the fungus off with your sword, but new fungus sprouts up. With horror, you see the funus begin to spread up your arm.",
-"Then the fungus speads into your torso, and you feel spasms of agony rench your body back and forth. You are grateful when you black out, never you wake up again."])
+						print_stuff(["You scrape the fungus off with your sword, but new fungus sprouts up. With horror, you see the fungus begin to spread up your arm.",
+"Then the fungus spreads into your torso, and you feel spasms of agony wrench your body back and forth. You are grateful when you black out, never you wake up again."])
 						exit()
 			elif path == "2":
-				print_stuff([""])
-
+				break
+			elif path == "3":
+				print_stuff(["You walk down the cave full of blue mushrooms."])
