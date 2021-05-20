@@ -734,13 +734,70 @@ def cave():
 2. Jump in the lake.
 3. Go back the way to you came.
 > """, ["1", "2", "3"])
-				if choice == "2":
-					print_stuff(["You jump in the lake. It is deeper than you thought, and the black waters swirl up to your neck.",
-"You hear a shout and turn. The man is running towards you, shouting and waving his hands. Suddenly, you feel something slimy wrap around your ankle."])
-					agility_roll = random.randrange(1, 9)
-					if agility_roll <= ability.ability["agility"]:
-						print_stuff(["Twist out of the grasping thing and roll onto shore. The man grabs your wrists and hauls you onto dry land, grunting with the effort."])
+				while True:
+					if choice == "1":
+						print_stuff(["""You approach the man and he turns to face you. "Greetings!" he says merrily. "Take a seat." """,
+	"""You sit down and he grins toothily at you. "I don't get many visitors here," he says. "Please, stay a while and rest." """])
+					elif choice == "2":
+						print_stuff(["You jump in the lake. It is deeper than you thought, and the black waters swirl up to your neck.",
+	"You hear a shout and turn. The man is running towards you, shouting and waving his hands. Suddenly, you feel something slimy wrap around your ankle."])
+						agility_roll = random.randrange(1, 9)
+						if agility_roll <= ability.ability["agility"]:
+							print_stuff(["Twist out of the grasping thing and roll onto shore. The man grabs your wrists and hauls you onto dry land, grunting with the effort."])
+						else:
+							print_stuff(["You are unable to escape the grip and you feel yourself being dragged under. Your head disappears under the black waters, never to emerge again."])
+							exit()
+						print_stuff([""""You ploughing idiot!" the man growls. "What were you thinking jumping in the lake? Eels swim there." """])
+						reply = input_stuff("""1. "Thank you."
+2. "Eels?" 
+3. "I'm not in the mood to be lectured." 
+> """, ["1", "2", "3"])
+						if reply == "1":
+							print_stuff([""""Your welcome, just don't do anything like that again." """])
+						elif reply == "2":
+							print_stuff(["""The man waves his hand. "Something like that," he says. "Not many who get grabbed by them live to tell the tale." """])
+						elif reply == "3":
+							print_stuff([f""""I saved your arse, {character.character['titles']['casual']}," the man grumbles. "A little gratitude would be appreciated." """])
+						print_stuff(["The man grasps your arm and pulls you over to his campfire. He none too gently drags you to sit beside him."])
 					else:
-						print_stuff(["You are unable to escape the grip and you feel yourself being dragged under. Your head disappears under the black waters, never to emerge again."])
-						exit()
+						break
+					print_stuff(["The man pours a cup of some sort of herbal tea into a cup and hands it to you. You take a sip and it tastes good enough.",
+""""I'm Alvyn. I come into this cave for peace and quiet. Who are you?" """])
+					reply = input_stuff(f"""1. "They call me {character.character["firstname"]}."
+2. "I don't share my name with strangers." 
+> """, ["1", "2"])
+					if reply == "1":
+						print_stuff([f""""So, {character.character["firstname"]}, bless me with conversation." """])
+					if reply == "2":
+						print_stuff([""""A paranoid loner, eh? Well, keep your secrets. But do bless me with some conversation." """])
+					while True:
+						question = input_stuff("""1. "Who are you?" 
+2. "Have you seen a man and a woman pass through here, about sixteen years old?" 
+3. "How did you manage to get through the monsters?"
+4. "What do you like about this cave?"
+5. "I think I'll leave now. Thank you for the tea." 
+> """, ["1", "2", "3", "4", "5"])
+						if question == "1":
+							print_stuff(["""Alvyn grins. "I'm simply a man who likes nature more than towns. In society I'm poor, but in spirit..." """,
+"""Alvyn trails off. "I'm happy. I love the world, and the natural beauty of caves. Spelunking is a hobby of mine." """,
+""""This place I love escpecially. The calm waters, the blue mushrooms. And the micro-crystals..." He gets up and brings a lantern to bare. """,
+""])
+						elif question == "2":
+							print_stuff(["""Alvyn frowns. "Yes, they came through. Stopped by my fire just as you are doing. They said they were treasure hunting." """,
+""""I haven't seen them since. It was a while ago I met them. Why do you ask?" """])
+							reply = input_stuff("""1. "I've been tasked to look for them." 
+2. "That's my private business." 
+> """, ["1", "2"])
+							if reply == "1":
+								print_stuff([""""Mhm. Well I can't help you more than I already have." """])
+							if reply == "2":
+								print_stuff([""""Alright. I won't pry, in that case." """])
+						elif question == "3":
+							print_stuff([""])
+						elif question == "4":
+							print_stuff([""])
+						elif question == "5":
+							print_stuff([""])
+
+
 
