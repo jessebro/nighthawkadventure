@@ -517,11 +517,11 @@ def ascent():
 """You regained all lost health!""",
 """The following morning, you wake up and look around. Denvar has gone, but a piece of paper is lying next to you. You pick it up and read it.""",
 """
-	______________________________________________________
-	| I've left to go hunting,                           |
-	| You may leave whenever you wish.                   |
-	|	Denvar                                           |
-	|____________________________________________________|"""])
+	____________________________________
+	| I've left to go hunting,         |
+	| You may leave whenever you wish. |
+	|	Denvar                         |
+	|__________________________________|"""])
 			action = input_stuff("""1. Write your thanks on the paper.
 2. Leave the cabin.
 > """, ["1", "2"])
@@ -555,4 +555,135 @@ f"""{weapon.weapon["weaponname"]}'s Sharpness and Finesse increased by 1 and all
 "Today, the sky is overcast, the wind colder and stronger than before. Rain is coming.",
 "Wanting to be off the mountain before the rain starts, you make haste up the side of the mountain."])
 
+
+def cave():
+	loot = False
+	save("chapter1.cave")
+	print_stuff(["After another half hour of trekking, clambering over boulders and glancing at the cloudy sky, you reach your goal.",
+"The summit of the mountain is not far away now, but looming before you is a dark cave. Next to the round, stony entrance is a tablet with words on it.",
+"You walk over and read the tablet.", """
+	____________________________________________
+	| A cave of wonders stands ahead           |
+	| But read these words, or you'll be dead  |
+	| Left then right then left again          |
+	| Stars below will light your way          |
+	| Friend is foe and foe is friend          |
+	| But if you wish to reach the end         |
+	| Turn with time, or yours will cease      |
+	| And the reward you seek will be released |
+	|__________________________________________|""", """After reading the words carefully, you enter the cave.""",
+"From somewhere deep inside the cave, you hear the dripping of water, and what you think may be human footsteps.",
+"After less than a minute, you reach a junction. One path leads left, the other leads right."])
+	choice = input_stuff("""1. Turn right
+2. Turn left.
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff(["""You take the right turn and walk down it for a while. Suddenly, you realise something's wrong.""",
+"The voices and footsteps have gotten quieter, not louder. You take another step, and suddenly you are unable to move.",
+"You notice you have walked into a huge spiderweb. Your sword is out of reach, and you know there is no hope of escape.",
+"A giant spider could already be on its way to feast. Struggling will not help you. Nothing will."])
+		exit()
+	print_stuff(["You take the left turn and found yourself walking through a relatively straight tunnel. The air is warmer and the human soudns are getting louder.",
+"You continue along the tunnel, and then another junction stands before you."])
+	choice = input_stuff("""1. Turn right
+2. Turn left.
+> """, ["1", "2"])
+	if choice == "2":
+		ability.ability["health"] -= 3
+		print_stuff(["""You take the left path again. Suddenly, the air seems to become denser. You peer ahead and see a pair of glowing yellow eyes.""",
+"Suddenly, a monster jumps out at you, cutting you painfully across the arm with its claws. You jump away and draw your sword.",
+"The monster is tall and appears to be a wolf-like bipedal creature. You know it to be a moracka.",
+"It has razor sharp teeth, claws, and for its size is extremely fast. The moracka bares down on you, teeth bared."])
+		enemy_round.initialize([encounters.monster_access("moracka")])
+		if post_combat.victory == False:
+			print_stuff(["The moracka is a carnivore, and is not picky about what it eats. It will drag you into some dark corner to enjoy its meal undisturbed."])
+			exit()
+		print_stuff(["You continue along the tunnel, and find yourself at a dead end. However, sitting before you is a skeleton wearing a necklace with a black gem."])
+		choice = input_stuff("""1. Try on the necklace.
+2. Go back the way you came.
+> """, ["1", "2"])
+		if choice == "1":
+			ability.ability["agility"] -= 1
+			print_stuff(["You wrap the necklace around you neck. Suddenly, you feel a strange heaviness in your legs.",
+"Your agility has been decreased by 1!",
+"Unaware that the effect is due to the necklace, you turn around and go back the way you came."])
+		print_stuff(["You go down the right tunnel. Along the way, you come across the corpse of a woman. You frown at her strange garments.",
+"She has an exposed cleavage, thigh length leggings and a shirt with sleaves that barely reach her elbows.",
+"Her clothes remind you somewhat of Zecherian dancers, but her skin is not sun browned. Lying still clutched in her hand is a curved sword."])
+		while True:
+			choice = input_stuff("""1. Loot the corpse.
+2. Examine her wounds.
+3. Step away.
+> """)
+			if choice == "1" and loot == False:
+				equipment.equipment["gold"] += 7
+				equipment.equipment["potions"] += 1
+				print_stuff(["A search of her body yields 7 gold coins and a healing potion."])
+				loot = True
+			elif choice == "2":
+				print_stuff(["You noticed that her ribs have been broken and she has large bruises. She was bludgeoned to death.",
+"Nearby, you notice some large footprints. You realise an ogre could be nearby."])
+			elif choice == "3":
+				break
+		print_stuff(["You step away from the woman's remains and continue along the tunnel. You come across yet another junction."])
+		choice = input_stuff("""1. Continue straight ahead.
+2. Turn left.
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff(["You continue to walk straight ahead. After a minute of walking, a foul smell hits your nose.",
+"You round a bend and come into a large cavern. There you find the source of the stench.",
+"A large humanoid creature with baggy, fatty skin, piggy eyes and a flat face lies asleep, scratching its belly in a dream.",
+"It smells pungent, and you see a bit of blood on the creature's knuckles. Clearly it has killed recently.",
+"The creature is an ogre, no doubt. This cavern is lit by a large bonfire. You see a chest on the other end of the cavern."])
+			input_stuff("""1. Attempt to sneak in to loot the chest without being detected. (agility roll for sneaking)
+2. Attack the ogre in its sleep.
+3. Go back the way you came.
+> """, ["1", "2"])
+			if choice == "1":
+				agility_roll = random.randrange(1, 101)
+				if agility_roll <= (80 + ability.ability["agility"]):
+					equipment.equipment["gold"] += 75
+					equipment.equipment["knives"] += 3
+					equipment.equipment["oils"] += 2
+					equipment.equipment["smoke bombs"] += 1
+					print_stuff(["You manage to traverse the floor without waking the ogre. You carefully open the chest and peer inside. You gasp with what you see",
+"Many gold coins lie before you, no doubt taken from the corpses of the ogre's victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
+"You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
+"You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
+					ability.gain_xp(encounters.xp_handouts["small"])
+					print_stuff(["Satisfied, you leave the cavern and take the other route."])
+				else:
+					print_stuff(["You are not careful enough, and you kick a stone, which clatters across the floor with alarming loudness.",
+"The ogre wakes with a roar and looks around, sees you and jumps to its feet. Growling with anger, it charges."])
+					enemy_round.initialize([encounters.monster_access("ogre")])
+					if post_combat.victory == False:
+						print_stuff(["Ogre's like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
+						exit()
+					equipment.equipment["gold"] += 75
+					equipment.equipment["knives"] += 3
+					equipment.equipment["oils"] += 2
+					equipment.equipment["smoke bombs"] += 1
+					print_stuff(["You step away from the ogre's corpse, and carefully open the chest. You gasp with what you see",
+"Many gold coins lie before you, no doubt taken from the corpses of the ogre's victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
+"You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
+"You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
+					ability.gain_xp(encounters.xp_handouts["small"])
+					print_stuff(["Satisfied, you leave the cavern and take the other route."])
+			elif choice == "2":
+				print_stuff(["You rush forwards and slash the ogre as it sleeps. Though it doesn't die, it roars with a howl of pain.",
+"Growling with anger, it turns to face you. It springs to its feet and rushes forwards, hands outstretched, teeth bared."])
+				enemy_round.initialize([encounters.monster_access("injured ogre")])
+				if post_combat.victory == False:
+					print_stuff(["Ogre's like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
+					exit()
+				equipment.equipment["gold"] += 75
+				equipment.equipment["knives"] += 3
+				equipment.equipment["oils"] += 2
+				equipment.equipment["smoke bombs"] += 1
+				print_stuff(["You step away from the ogre's corpse, and carefully open the chest. You gasp with what you see",
+"Many gold coins lie before you, no doubt taken from the corpses of the ogre's victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
+"You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
+"You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
+				ability.gain_xp(encounters.xp_handouts["small"])
+				print_stuff(["Satisfied, you leave the cavern and take the other route."])
 
