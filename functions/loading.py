@@ -3,10 +3,22 @@ from functions import ability
 from functions import equipment
 from functions import character
 from functions import weapon
+from functions.utils import print_it
+from functions.utils import Color
+
+
+def boot():
+	start = input("""Do you want to start a new game, or load your previous save?
+1. New Game
+2. Load Game
+> """)
+	if start != "1":
+		return load()
+	return True
 
 
 def save(position):
-	print("Your game has been saved!")
+	print_it("Your game has been saved!", Color.CYAN)
 	data = {
 		"character": character.character,
 		"ability": ability.ability,

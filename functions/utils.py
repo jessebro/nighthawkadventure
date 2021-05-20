@@ -1,27 +1,9 @@
-from functions import loading
 from enum import Enum
 import os
 
 # System call - apparently needed for color, see
 # https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
 os.system('')
-
-
-def boot():
-	start = input("""Do you want to start a new game, or load your previous save?
-1. New Game
-2. Load Game
-> """)
-	if start != "1":
-		return loading.load()
-	return True
-
-
-def print_stuff(scripts):
-	for script in scripts:
-		print(script)
-		input("""
-~~""")
 
 
 def input_stuff(prompt, options):
@@ -45,7 +27,18 @@ class Color(Enum):
 
 
 # Usage: print_it('Hello', Color.RED)
-def print_it(msg, color=Color.RESET):
+def colour_it(msg, color=Color.RESET):
 	if not isinstance(color, Color):
 		color = Color.RESET
-	print(color.value + msg + Color.RESET.value)
+	return color.value + msg + Color.RESET.value
+
+
+def print_it(msg, color):
+	print(colour_it(msg, color))
+
+
+def print_stuff(scripts):
+	for script in scripts:
+		print(script)
+		input(f"""
+{colour_it("~~", Color.YELLOW)}""")

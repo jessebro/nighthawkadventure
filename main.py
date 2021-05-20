@@ -7,7 +7,7 @@ from functions import enemy_round
 from functions import post_combat
 from functions import weapon
 from functions.utils import print_stuff
-from functions.utils import boot
+from functions.loading import boot
 from functions.utils import input_stuff
 
 
