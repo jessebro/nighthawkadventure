@@ -2,6 +2,8 @@ import random
 import time
 from functions.utils import print_stuff
 from functions.utils import input_stuff
+from functions.utils import Color
+from functions.utils import colour_it
 
 MAX_ABILITY_SCORE = 27
 
@@ -115,7 +117,7 @@ def gain_xp(enemies):
 		exp = enemy['xp']
 		gained_exp += exp
 	ability['xp'] += gained_exp
-	print_stuff([f'You gained {gained_exp} xp!'])
+	print_stuff([colour_it(f'You gained {gained_exp} xp!', Color.FUNCTION)])
 	levels = int(ability['xp'] / 100)
 	if levels > 0:
 		level_up(levels)
@@ -127,7 +129,7 @@ def level_up(levels):
 		plurals = "time"
 	else:
 		plurals = "times"
-	print(f"You've leveled up {int(levels)} {plurals}!")
+	print_stuff([colour_it(f"You've leveled up {int(levels)} {plurals}!", Color.FUNCTION)])
 	time.sleep(3)
 	ability['level'] += levels
 	ability['xp'] %= 100

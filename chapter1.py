@@ -302,8 +302,10 @@ f"""{eladris} looks up at you. "Kill me if you will," he says. "My existence can
 2. Walk away.
 > """, ['1', "2"])
 				if action == "1":
+					potion = colour_it("potion", Color.LOOT)
+					knives = colour_it("knives", Color.LOOT)
 					print_stuff([f"""You step forward, sword in hand. {eladris} closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
-f"""You search {eladris}' bags and come away with 27 gold coins, a healing potion, and two throwing knives."""])
+f"""You search {eladris}' bags and come away with 27 gold coins, a healing {potion}, and two throwing {knives}."""])
 					equipment.equipment["gold"] += 27
 					equipment.equipment["potions"] += 1
 					equipment.equipment["knives"] += 2
@@ -532,7 +534,7 @@ f"""Suddenly, {denvar} leans over to you. "But then there were these other peopl
 """He lays the food down beside you. You see the basket contains bread, a small bottle of wine, and a various fruits.""",
 f""""The bounty from my last trip to market," {denvar} says. "Eat and rest, my friend." """,
 """You eat the food and drink the wine, and it is delicious and refreshing.""",
-"""You regained all lost health!""",
+f"""{colour_it("You regained all lost health!", Color.FUNCTION)}""",
 """The following morning, you wake up and look around. Denvar has gone, but a piece of paper is lying next to you. You pick it up and read it.""",
 """
 	____________________________________
@@ -641,7 +643,8 @@ f"It has razor sharp teeth, claws, and for its size is extremely fast. The {mora
 			if choice == "1" and loot == False:
 				equipment.equipment["gold"] += 7
 				equipment.equipment["potions"] += 1
-				print_stuff(["A search of her body yields 7 gold coins and a healing potion."])
+				potion = colour_it("potion", Color.LOOT)
+				print_stuff([f"A search of her body yields 7 gold coins and a healing {potion}."])
 				loot = True
 			elif choice == "2":
 				print_stuff(["You noticed that her ribs have been broken and she has large bruises. She was bludgeoned to death.",
@@ -669,9 +672,12 @@ f"The creature is an {ogre}, no doubt. This cavern is lit by a large bonfire. Yo
 					equipment.equipment["knives"] += 3
 					equipment.equipment["oils"] += 2
 					equipment.equipment["smoke bombs"] += 1
+					knives = colour_it("knives", Color.LOOT)
+					oil = colour_it("oil", Color.LOOT)
+					smoke_bomb = colour_it("smoke bomb", Color.LOOT)
 					print_stuff([f"You manage to traverse the floor without waking the {ogre}. You carefully open the chest and peer inside. You gasp with what you see",
 f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
-"You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
+f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 					ability.gain_xp(encounters.xp_handouts["small"])
 					print_stuff(["Satisfied, you leave the cavern and take the other route."])
@@ -686,9 +692,12 @@ f"The {ogre} wakes with a roar and looks around, sees you and jumps to its feet.
 					equipment.equipment["knives"] += 3
 					equipment.equipment["oils"] += 2
 					equipment.equipment["smoke bombs"] += 1
+					knives = colour_it("knives", Color.LOOT)
+					oil = colour_it("oil", Color.LOOT)
+					smoke_bomb = colour_it("smoke bomb", Color.LOOT)
 					print_stuff([f"You step away from the {ogre}'s corpse, and carefully open the chest. You gasp with what you see",
 f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
-"You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
+f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 					ability.gain_xp(encounters.xp_handouts["small"])
 					print_stuff(["Satisfied, you leave the cavern and take the other route."])
@@ -703,9 +712,12 @@ f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'
 				equipment.equipment["knives"] += 3
 				equipment.equipment["oils"] += 2
 				equipment.equipment["smoke bombs"] += 1
+				knives = colour_it("knives", Color.LOOT)
+				oil = colour_it("oil", Color.LOOT)
+				smoke_bomb = colour_it("smoke bomb", Color.LOOT)
 				print_stuff([f"You step away from the {ogre}'s corpse, and carefully open the chest. You gasp with what you see",
 f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
-"You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
+f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 				ability.gain_xp(encounters.xp_handouts["small"])
 				print_stuff(["Satisfied, you leave the cavern and take the other route."])
@@ -736,7 +748,7 @@ f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'
 "Not wishing to stay in the cave any longer, you turn back."])
 					else:
 						print_stuff(["You scrape the fungus off with your sword, but new fungus sprouts up. With horror, you see the fungus begin to spread up your arm.",
-"Then the fungus spreads into your torso, and you feel spasms of agony wrench your body back and forth. You are grateful when you black out, never you wake up again."])
+"Then the fungus spreads into your torso, and you feel spasms of agony wrench your body back and forth. Then you black out, never you wake up again."])
 						exit()
 			elif path == "2":
 				break
@@ -795,16 +807,17 @@ f""""I'm {alvyn}. I come into this cave for peace and quiet. Who are you?" """])
 					if reply == "2":
 						print_stuff([""""A paranoid loner, eh? Well, keep your secrets. But do bless me with some conversation." """])
 					while True:
-						question = input_stuff("""1. "Who are you?" 
+						quest = colour_it(""""I think I'll leave now. Thank you for the tea." """, Color.QUEST)
+						question = input_stuff(f"""1. "Who are you?" 
 2. "Have you seen a man and a woman pass through here, about sixteen years old?" 
 3. "How did you manage to get through the monsters?"
 4. "What do you like about this cave?"
-5. "I think I'll leave now. Thank you for the tea." 
+5. {quest}
 > """, ["1", "2", "3", "4", "5"])
 						if question == "1":
 							print_stuff([f"""{alvyn} grins. "I'm simply a man who likes nature more than towns. In society I'm poor, but in spirit..." """,
 f"""{alvyn} trails off. "I'm happy. I love the world, and the natural beauty of caves. Spelunking is a hobby of mine." """,
-""""This place I love escpecially. The calm waters, the blue mushrooms. And the micro-crystals..." He gets up and brings a lantern to bare. """,
+""""This place I love escpecially. The calm waters, the fire flies. And the micro-crystals..." He gets up and brings a lantern to bare. """,
 ""])
 						elif question == "2":
 							print_stuff([f"""{alvyn} frowns. "Yes, they came through. Stopped by my fire just as you are doing. They said they were treasure hunting." """,
