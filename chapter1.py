@@ -13,13 +13,17 @@ from functions.utils import colour_it
 from functions.utils import Color
 from functions.loading import save
 
+lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
+blackburrow = colour_it("Blackburrow", Color.PLACE)
 
 def ghouls_at_farm():
-	ghouls = colour_it("ghouls", Color.RED)
+	global lizardtongue
+	global blackburrow
+	ghouls = colour_it("ghouls", Color.ENEMY)
 	save("chapter1.ghouls_at_farm")
-	print_stuff(["You make your way outside of Blackburrow. It is late morning, and the sky is a cobalt blue.",
+	print_stuff([f"You make your way outside of {blackburrow}. It is late morning, and the sky is a cobalt blue.",
 "Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
-"You steer off the main road and onto a dirt track leading to the Lizardtongue Mountains. About an hour into the journey you come across a farm.",
+f"You steer off the main road and onto a dirt track leading to the {lizardtongue}. About an hour into the journey you come across a farm.",
 "Wheat stalks stand golden against the pale grass. You decide to cut through the wheat field, rather than take a detour around it.",
 "That's when you hear shouting and cursing. You begin to run, and see a man standing in the front door of his house. He is swinging a pitchfork to and fro.",
 f"Standing before him are four {ghouls}; pale, lanky, short and hairless humanoids that feed on rotting flesh. Two other {ghouls} lie dead and bleeding.",
@@ -57,21 +61,23 @@ f'''"Thank you again. But at least let me give you a meal before you leave."''',
 
 
 def hag_lair():
+	global lizardtongue
+	global blackburrow
 	save("chapter1.hag_lair")
 	treasure = 0
-	bone_hag = colour_it("bone hag", Color.RED)
+	bone_hag = colour_it("bone hag", Color.ENEMY)
 	print_stuff(['You continue along the trail, and you pass by a few more farms, and sometimes the people maintaining them, nodding in greeting as you pass.',
 '''Finally, the track becomes wilder, the farms become less, before disappearing altogether. Small pockets of trees and undergrowth now dot the countryside.''',
 'It is late in the afternoon when the trail splits suddenly. It is clear which path will lead to the mountains. The other pass leads into a small forest.'])
-	choice = input_stuff("""1. Explore the forest trail.
-2. Take the path to the Lizardtongue Mountains
+	choice = input_stuff(f"""1. Explore the forest trail.
+2. Take the path to the {lizardtongue}.
 > """, ['1', "2"])
 	if choice == "1":
 		print_stuff(['You walk down the forest path. Light from the afternoon sun slants through the thin canopy of leaves, and small critters rustle in the leaflitter.',
 'After following the trail for about ten minutes, it ends in a small log cabin. No lights shine through the glass windows, but you can detect some movement from inside.',])
-		choice = input_stuff("""1. "Is anyone home?!"
+		choice = input_stuff(f"""1. "Is anyone home?!"
 2. Try to open the door.
-3. Turn back and head for the Lizardtongue Mountains.
+3. Turn back and head for the {lizardtongue}.
 > """, ['1', "2", "3"])
 		if choice == "1":
 			print_stuff(["You see the movement stop for a moment, then a creature comes hurtling out the door.",
@@ -96,11 +102,12 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 			exit()
 		print_stuff([f"With the {bone_hag} dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
 		while True:
-			investigate = input_stuff("""1. Search the chest.
+			quest = colour_it(""""Leave""", Color.QUEST)
+			investigate = input_stuff(f"""1. Search the chest.
 2. Investigate the cauldron.
 3. Check the papers
 4. Examine the bones.
-5. Leave
+5. {quest}
 > """, ['1', "2", '3', '4', '5'])
 			if investigate == "1":
 				print_stuff(["You open the chest, and are slightly disappointed when all you find are worn clothes, riddled with moth holes."])
@@ -139,9 +146,10 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 2. Leave the ring.
 > """, ['1', "2"])
 						if ring == "1":
+							boost = colour_it("Your Strength has been increased by 1!", Color.FUNCTION)
 							ability.ability["strength"] += 1
 							print_stuff(["You feel a tingling sensation as you slip the ring on, and a sudden burst of power.",
-"Your Strength has been increased by 1!"])
+{boost}])
 						else:
 							continue
 					else:
@@ -156,14 +164,14 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 			else:
 				break
 		print_stuff(["You leave the cabin, satisfied with what you achieved. You head back along the trail, and back to the junction."])
-	print_stuff(["You turn onto the path to the Lizardtongue Mountains, and continue your trek."])
+	print_stuff([f"You turn onto the path to the {lizardtongue}, and continue your trek."])
 
 
 def campers():
 	save("chapter1.campers")
 	man_name = "the large man"
-	eladris = colour_it("Eladris", Color.GREEN)
-	garurt = colour_it("Garurt", Color.GREEN)
+	eladris = colour_it("Eladris", Color.NPC)
+	garurt = colour_it("Garurt", Color.NPC)
 	print_stuff(["The sky is growing darker. The bird song is giving way to the chirp of the crickets, and the air grows cold.",
 "Even as you begin to consider a place to stop for the night, you see a flickering orange light from behind a clump of high bushes."])
 	choice = input_stuff("""1. Investigate the source of the fire.
@@ -309,6 +317,7 @@ f"""You search {eladris}' bags and come away with 27 gold coins, a healing potio
 
 
 def thief():
+	lalikins = colour_it("lalikins", Color.ENEMY)
 	save("chapter1.thief")
 	equipment.equipment["gold"] -= 15
 	if equipment.equipment["gold"] < 0:
@@ -316,8 +325,8 @@ def thief():
 	print_stuff(["You wake up the following morning. You sling on your backpack and strap on your belt.",
 "It is then that you realise that some of your gold has vanished.",
 "You look around to see if you dropped it. Quickly, you notice something else. Footprints."])
-	direction = input_stuff("""1. Follow the footprints.
-2. Accept the loss and continue to the Lizardtongue mountains.
+	direction = input_stuff(f"""1. Follow the footprints.
+2. Accept the loss and continue to the {lizardtongue}.
 > """, ['1', "2"])
 	if direction == "1":
 		print_stuff(["You begin to follow the footsteps. The thief, whoever they are, is not an expert and has not covered their tracks well.",
@@ -332,12 +341,12 @@ def thief():
 			print_stuff(["You run after the woman, and stop after cresting the next hill. What you see makes you draw your sword.",
 "The woman is lying dead in a pool of blood, staring blankly at the sky. Gnawing on her leg is are two strange creature.",
 "Each lanky, and uses both its arms and legs to move, unless it is grabbing something. They are covered in brown fur, and have yellow, reptilian eyes.",
-"Two pointy ears like those of a wolf adorn each head, as well as a long snout. You recognise the monsters as lalikins."
-"The lalikins turn to you and growl, showing off white, pointy teeth. They flex their claws and begin to approach you.",
-f"You hold {weapon.weapon['weaponname']} at the ready, and the lalikins charge."])
+f"Two pointy ears like those of a wolf adorn each head, as well as a long snout. You recognise the monsters as {lalikins}."
+f"The {lalikins} turn to you and growl, showing off white, pointy teeth. They flex their claws and begin to approach you.",
+f"You hold {weapon.weapon['weaponname']} at the ready, and the {lalikins} charge."])
 			enemy_round.initialize([encounters.monster_access("lalikin"), encounters.monster_access("lalikin")])
 			if post_combat.victory == False:
-				print_stuff(["The lalikins were already feeding on the woman. They will not complain about extra food."])
+				print_stuff([f"The {lalikins} were already feeding on the woman. They will not complain about extra food."])
 				exit()
 			print_stuff(["You search the body of the woman and find the money she stole from you."])
 			equipment.equipment["gold"] += 15
@@ -350,11 +359,14 @@ f"You hold {weapon.weapon['weaponname']} at the ready, and the lalikins charge."
 			elif action == "3":
 				print_stuff(["You hawk and spit on the woman's corpse, and you feel like you've gotten some revenge for the trouble she caused.",
 "With your meager payback complete, you return to the trail."])
-	print_stuff(["You continue along the trail to the Lizardtongue Mountains, wondering when you'll get a day of piece and quiet."])
+	print_stuff([f"You continue along the trail to the {lizardtongue}, wondering when you'll get a day of piece and quiet."])
 
 def ascent():
+	crag = colour_it("crag", Color.ENEMY)
+	denvar = colour_it("Denvar", Color.NPC)
+	chana = colour_it("Chana", Color.NPC)
 	save("chapter1.ascent")
-	print_stuff(["It's the middle of the day when you finally reach the base of the Lizardtongue Mountains.",
+	print_stuff([f"It's the middle of the day when you finally reach the base of the {lizardtongue}.",
 "As you climb the largest mountain, the terrain gets steeper and rockier. Many times you stumble on loose gravel.",
 "The wind becomes stronger as you climb, and the air becomes cooler. You know the cave that is your objective is close to the summit.",
 "Finally, after an hour of scrambling over boulders, you have had enough. You throw down your pack and take out some of your supplies.",
@@ -370,15 +382,15 @@ def ascent():
 "You tumble down the side of the mountain, but somehow avoid serious harm. Suddenly, you find yourself lying on the ground.",
 "Dazed, you rise to your feet. You look around, and that's when you see it; a hulking mass of rock approaching you.",
 "The creature appears to be a large, bald humanoid, ten feet tall at least. It is made completely of boulders at least the size of your head."
-"Every step it takes send vibrations in the ground. You know this monster to be a crag.",
-"A beast of animated rock, a crag will attack all living creatures it encounters.", "Sword in hand you run forwards.",
-"The crag swings at you, but you drop and slid between it's legs. The crag's fist hits the ground, blasting rocks to pieces.",
+f"Every step it takes send vibrations in the ground. You know this monster to be a {crag}.",
+f"A beast of animated rock, a {crag} will attack all living creatures it encounters.", "Sword in hand you run forwards.",
+f"The {crag} swings at you, but you drop and slid between it's legs. The {crag}'s fist hits the ground, blasting rocks to pieces.",
 "You realise that the creature may be slow, but if you get hit, your situation will be grave indeed."])
 		enemy_round.initialize([encounters.monster_access("crag")])
 		if post_combat.victory == False:
-			print_stuff(["The crag cares nothing for food, but it does enjoy killing. Unconscious, you do not see the crag raise it's mighty fists."])
+			print_stuff([f"The {crag} cares nothing for food, but it does enjoy killing. Unconscious, you do not see the {crag} raise it's mighty fists."])
 			exit()
-		print_stuff(["Panting for breath, you watch the crag's body crumble into a pile of boulders and dust.",
+		print_stuff([f"Panting for breath, you watch the {crag}'s body crumble into a pile of boulders and dust.",
 "You continue your climb, and soon reach the place where you fell, careful not to step in any more gravel patches."])
 	print_stuff(["You continue to climb up the mountain, the final remains of sleepiness gone from you, due to the intense events.",
 "Once more, you find yourself out of breath and in need of rest. You turn and look out over the nearby countryside.",
@@ -426,14 +438,14 @@ def ascent():
 				print_stuff([""""In that case, I'll help you as best as I can." """])
 			print_stuff([""""In any case, you have entered my home without my permission. All I ask in return is answers." """,
 """"First of all, where are you going on this cold evening." Before you can even begin to answer, he raises a hand and chuckles. """,
-""""Before you answer, allow me to introduce myself. I'm Denvar. Who are you?" """])
+f""""Before you answer, allow me to introduce myself. I'm {denvar}. Who are you?" """])
 			reply = input_stuff(f"""1. "I'm {character.character['firstname']}."
 2. "..."
 > """, ["1", "2"])
 			if reply == "1":
-				print_stuff([f"""Denvar smiles. "So, {character.character['firstname']}, I have some questions for you." """])
+				print_stuff([f"""{denvar} smiles. "So, {character.character['firstname']}, I have some questions for you." """])
 			elif reply == "2":
-				print_stuff([f"""Denvar shrugs. "Fine, suit yourself. But I still have some questions for you. Answer them at least." """])
+				print_stuff([f"""{denvar} shrugs. "Fine, suit yourself. But I still have some questions for you. Answer them at least." """])
 			print_stuff([""""First of all, who are you? I don't mean your name; I mean your profession. Your sword indicates you're a warrior." """])
 			reply = input_stuff(f"""1. "I'm a Nighthawk."
 2. "I'm a mercenary."
@@ -453,23 +465,24 @@ def ascent():
 			if reply == "1":
 				print_stuff([f""""Well I wish you the best of luck on your search." """])
 			elif reply == "2":
-				print_stuff([f""""Of course!" Denvar laughs. "That's why everyone traverses this treacherous landscape." """])
+				print_stuff([f""""Of course!" {denvar} laughs. "That's why everyone traverses this treacherous landscape." """])
 			elif reply == "3":
 				print_stuff([f""""Be wary. The pursuit of gold has led many to their deaths." """])
-			print_stuff(["""Denvar thinks for a bit, then nods his head. """,
+			print_stuff([f"""{denvar} thinks for a bit, then nods his head. """,
 """"I think that's all the questions I have," he says. "Now I'll let you ask me some." """])
 			while True:
+				quest = colour_it(""""I'm going to get some rest. Can I stay here?" """, Color.QUEST)
 				if character.story["hag_lair"] == True:
-					question = input_stuff("""1. "Who are you exactly?" 
-	2. "Have you seen a young man and woman pass this way?" 
-	3. "I'm going to get some rest. Can I stay here?" (leave dialogue) 
-	4. "Do you know someone who lives in a forest cabin near here?" 
-	> """, ["1", "2", "3", "4"])
+					question = input_stuff(f"""1. "Who are you exactly?" 
+2. "Have you seen a young man and woman pass this way?" 
+3. {quest}
+4. "Do you know someone who lives in a forest cabin near here?" 
+> """, ["1", "2", "3", "4"])
 				else:
-					question = input_stuff("""1. "Who are you exactly?" 
-	2. "Have you seen a young man and woman pass this way?" 
-	3. "I'm going to get some rest. Can I stay here?" (leave dialogue) 
-	> """, ["1", "2", "3"])
+					question = input_stuff(f"""1. "Who are you exactly?" 
+2. "Have you seen a young man and woman pass this way?" 
+3. {quest}
+> """, ["1", "2", "3"])
 				if question == "1":
 					print_stuff([""""I'm a simple mountain man. I hunt and forage for food, but sometimes I go down to the lower plains." """,
 """"However, I have a wife down there; she lives in a cabin not unlike this one. The mountain did not call to her as it called to me, though." """])
@@ -477,7 +490,7 @@ def ascent():
 				elif question == "2":
 					print_stuff([""""Hm... Ah, yes. A few days ago, a young man and woman came by. They were armed and laden with bags." """,
 """"They seemed to be about sixteen years old each, and they looked related. I didn't meet them in person, though." """,
-"""Suddenly, Denvar leans over to you. "But then there were these other people, heading the same way as those two travellers," he murmurs. """,
+f"""Suddenly, {denvar} leans over to you. "But then there were these other people, heading the same way as those two travellers," he murmurs. """,
 """"All of them were female, and they were dressed strangely. Thigh length tights, a midriff top... scantily clad for hikers. They were also all armed with curved swords." """,
 """"They looked like trouble, so I didn't go to meet them. Still, I'm curious about their intentions." """])
 					continue
@@ -485,7 +498,7 @@ def ascent():
 					print_stuff([""""Of course you can stay. Rest, eat, I've plenty to share. I have extra space for my wife." """])
 					break
 				elif question == "4":
-					print_stuff([""""Yes, she's my wife. Chana is her name. Why do you ask?" """])
+					print_stuff([f""""Yes, she's my wife. {chana} is her name. Why do you ask?" """])
 					reply = input_stuff("""1. "I'm afraid she's dead." 
 2. "Met her on the way here. Seems well enough." (Persona roll for lying) 
 > """, ["1", "2"])
@@ -496,28 +509,28 @@ def ascent():
 						elif reply == "2":
 							persona_roll = random.randrange(1, 101)
 							if persona_roll <= (60 + ability.ability["persona"]):
-								print_stuff("""Denvar smiles. "That is good to know," he says.""")
+								print_stuff(f"""{denvar} smiles. "That is good to know," he says.""")
 								death = False
 								break
 							else:
-								print_stuff("""Denvar examines you for a moment. "You're lying," he says. He closes his eyes. "Chana's dead, isn't she?" """)
+								print_stuff(f"""{denvar} examines you for a moment. "You're lying," he says. He closes his eyes. "{chana}'s dead, isn't she?" """)
 								death = True
 								break
 					if death:
-						print_stuff(["""You see Denvar stare at you for a moment, then he turns away. You see his shoulders tremble.""",
+						print_stuff([f"""You see {denvar} stare at you for a moment, then he turns away. You see his shoulders tremble.""",
 """"How did she die?" he says. "Do not soften the blow for me." """])
 						reply = input_stuff("""1. "A bone hag scraped the flesh from her bones and consumed her. Her death was avenged." 
 2. "Details do not matter. But know her death was avenged."
 > """, ["1", "2"])
 						if reply == "1":
-							print_stuff(["""Denvar closes his eyes for a moment. "Forgive me," he says, and he seems to compose himself. """,
+							print_stuff([f"""{denvar} closes his eyes for a moment. "Forgive me," he says, and he seems to compose himself. """,
 """"Do you have more questions? Do not hesitate to ask." """])
 						elif reply == "2":
-							print_stuff(["""Denvar shrugs sadly. "Perhaps I do not want to know. But forgive me, do you have more questions?" """])
+							print_stuff([f"""{denvar} shrugs sadly. "Perhaps I do not want to know. But forgive me, do you have more questions?" """])
 			ability.ability["health"] = ability.ability["maxhealth"]
-			print_stuff(["""Denvar nods. "Before you fall asleep, let me give you some food." He moves to the kitchen area and produces a basket of various foods.""",
+			print_stuff([f"""{denvar} nods. "Before you fall asleep, let me give you some food." He moves to the kitchen area and produces a basket of various foods.""",
 """He lays the food down beside you. You see the basket contains bread, a small bottle of wine, and a various fruits.""",
-""""The bounty from my last trip to market," Denvar says. "Eat and rest, my friend." """,
+f""""The bounty from my last trip to market," {denvar} says. "Eat and rest, my friend." """,
 """You eat the food and drink the wine, and it is delicious and refreshing.""",
 """You regained all lost health!""",
 """The following morning, you wake up and look around. Denvar has gone, but a piece of paper is lying next to you. You pick it up and read it.""",
@@ -547,6 +560,7 @@ def ascent():
 2. Rest straight away.
 > """, ["1", "2"])
 			if choice == "1":
+				boost = colour_it(f"""{weapon.weapon["weaponname"]}'s Sharpness and Finesse increased by 1 and all lost Stability has been restored!""", Color.FUNCTION)
 				weapon.weapon["sharpness"] += 1
 				weapon.weapon["finesse"] += 1
 				weapon.weapon["stability"] = weapon.weapon["max stability"]
@@ -554,7 +568,7 @@ def ascent():
 "You feel a surging energy travel up the sword and into the grip. You try to pull away, but cannot.",
 "Just as quickly as the sensation starts, it stops. You pull your sword from the hole, and it feels easier the manage.",
 "The edge of the blade seems to shine more, and you realise that your sword has been improved and repaired.",
-f"""{weapon.weapon["weaponname"]}'s Sharpness and Finesse increased by 1 and all lost Stability has been restored!""",])
+f"""{boost}"""])
 			rest.rest()
 			print_stuff(["You settle down to sleep, watching the dancing flames of the fire. Then you drift off into blackness.",
 "Today, the sky is overcast, the wind colder and stronger than before. Rain is coming.",
@@ -562,6 +576,10 @@ f"""{weapon.weapon["weaponname"]}'s Sharpness and Finesse increased by 1 and all
 
 
 def cave():
+	moracka = colour_it("moracka", Color.ENEMY)
+	wolves = colour_it("wolves", Color.ENEMY)
+	ogre = colour_it("ogre", Color.ENEMY)
+	alvyn = colour_it("Alvyn", Color.NPC)
 	loot = False
 	save("chapter1.cave")
 	print_stuff(["After another half hour of trekking, clambering over boulders and glancing at the cloudy sky, you reach your goal.",
@@ -597,11 +615,11 @@ def cave():
 		ability.ability["health"] -= 3
 		print_stuff(["""You take the left path again. Suddenly, the air seems to become denser. You peer ahead and see a pair of glowing yellow eyes.""",
 "Suddenly, a monster jumps out at you, cutting you painfully across the arm with its claws. You jump away and draw your sword.",
-"The monster is tall and appears to be a wolf-like bipedal creature. You know it to be a moracka.",
-"It has razor sharp teeth, claws, and for its size is extremely fast. The moracka bares down on you, teeth bared."])
+f"The monster is tall and appears to be a wolf-like bipedal creature. You know it to be a {moracka}.",
+f"It has razor sharp teeth, claws, and for its size is extremely fast. The {moracka} bares down on you, teeth bared."])
 		enemy_round.initialize([encounters.monster_access("moracka")])
 		if post_combat.victory == False:
-			print_stuff(["The moracka is a carnivore, and is not picky about what it eats. It will drag you into some dark corner to enjoy its meal undisturbed."])
+			print_stuff([f"The {moracka} is a carnivore, and is not picky about what it eats. It will drag you into some dark corner to enjoy its meal undisturbed."])
 			exit()
 		print_stuff(["You continue along the tunnel, and find yourself at a dead end. However, sitting before you is a skeleton wearing a necklace with a black gem."])
 		choice = input_stuff("""1. Try on the necklace.
@@ -627,7 +645,7 @@ def cave():
 				loot = True
 			elif choice == "2":
 				print_stuff(["You noticed that her ribs have been broken and she has large bruises. She was bludgeoned to death.",
-"Nearby, you notice some large footprints. You realise an ogre could be nearby."])
+f"Nearby, you notice some large footprints. You realise an {ogre} could be nearby."])
 			elif choice == "3":
 				break
 		print_stuff(["You step away from the woman's remains and continue along the tunnel. You come across yet another junction."])
@@ -639,9 +657,9 @@ def cave():
 "You round a bend and come into a large cavern. There you find the source of the stench.",
 "A large humanoid creature with baggy, fatty skin, piggy eyes and a flat face lies asleep, scratching its belly in a dream.",
 "It smells pungent, and you see a bit of blood on the creature's knuckles. Clearly it has killed recently.",
-"The creature is an ogre, no doubt. This cavern is lit by a large bonfire. You see a chest on the other end of the cavern."])
-			input_stuff("""1. Attempt to sneak in to loot the chest without being detected. (agility roll for sneaking)
-2. Attack the ogre in its sleep.
+f"The creature is an {ogre}, no doubt. This cavern is lit by a large bonfire. You see a chest on the other end of the cavern."])
+			input_stuff(f"""1. Attempt to sneak in to loot the chest without being detected. (agility roll for sneaking)
+2. Attack the {ogre} in its sleep.
 3. Go back the way you came.
 > """, ["1", "2"])
 			if choice == "1":
@@ -651,42 +669,42 @@ def cave():
 					equipment.equipment["knives"] += 3
 					equipment.equipment["oils"] += 2
 					equipment.equipment["smoke bombs"] += 1
-					print_stuff(["You manage to traverse the floor without waking the ogre. You carefully open the chest and peer inside. You gasp with what you see",
-"Many gold coins lie before you, no doubt taken from the corpses of the ogre's victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
+					print_stuff([f"You manage to traverse the floor without waking the {ogre}. You carefully open the chest and peer inside. You gasp with what you see",
+f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
 "You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 					ability.gain_xp(encounters.xp_handouts["small"])
 					print_stuff(["Satisfied, you leave the cavern and take the other route."])
 				else:
 					print_stuff(["You are not careful enough, and you kick a stone, which clatters across the floor with alarming loudness.",
-"The ogre wakes with a roar and looks around, sees you and jumps to its feet. Growling with anger, it charges."])
+f"The {ogre} wakes with a roar and looks around, sees you and jumps to its feet. Growling with anger, it charges."])
 					enemy_round.initialize([encounters.monster_access("ogre")])
 					if post_combat.victory == False:
-						print_stuff(["Ogre's like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
+						print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
 						exit()
 					equipment.equipment["gold"] += 75
 					equipment.equipment["knives"] += 3
 					equipment.equipment["oils"] += 2
 					equipment.equipment["smoke bombs"] += 1
-					print_stuff(["You step away from the ogre's corpse, and carefully open the chest. You gasp with what you see",
-"Many gold coins lie before you, no doubt taken from the corpses of the ogre's victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
+					print_stuff([f"You step away from the {ogre}'s corpse, and carefully open the chest. You gasp with what you see",
+f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
 "You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 					ability.gain_xp(encounters.xp_handouts["small"])
 					print_stuff(["Satisfied, you leave the cavern and take the other route."])
 			elif choice == "2":
-				print_stuff(["You rush forwards and slash the ogre as it sleeps. Though it doesn't die, it roars with a howl of pain.",
+				print_stuff([f"You rush forwards and slash the {ogre} as it sleeps. Though it doesn't die, it roars with a howl of pain.",
 "Growling with anger, it turns to face you. It springs to its feet and rushes forwards, hands outstretched, teeth bared."])
 				enemy_round.initialize([encounters.monster_access("injured ogre")])
 				if post_combat.victory == False:
-					print_stuff(["Ogre's like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
+					print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
 					exit()
 				equipment.equipment["gold"] += 75
 				equipment.equipment["knives"] += 3
 				equipment.equipment["oils"] += 2
 				equipment.equipment["smoke bombs"] += 1
-				print_stuff(["You step away from the ogre's corpse, and carefully open the chest. You gasp with what you see",
-"Many gold coins lie before you, no doubt taken from the corpses of the ogre's victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
+				print_stuff([f"You step away from the {ogre}'s corpse, and carefully open the chest. You gasp with what you see",
+f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
 "You take the gold coins, and also find three throwing knives, two vials of sword oil, and a smoke bomb. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 				ability.gain_xp(encounters.xp_handouts["small"])
@@ -725,12 +743,12 @@ def cave():
 			elif path == "3":
 				print_stuff(["You walk down the cave full of blue mushrooms. The air here is cooler than anywhere else in the cave system. The silence is palpable.",
 "The cave ends suddenly, and grave lies at the end. You peer at the grave, but it is in a strange language you don't understand.",
-"You find nothing of interest, and turn to leave. But you find yourself cut off by a group of three wolves. Clearly you have trespassed on their territory.",
+f"You find nothing of interest, and turn to leave. But you find yourself cut off by a group of three {wolves}. Clearly you have trespassed on their territory.",
 "They snarl at you and lunge forwards, teeth bared. You jump aside at the last second, drawing your sword."])
 				enemies = [encounters.monster_access("wolf"), encounters.monster_access("wolf"), encounters.monster_access("wolf")]
 				enemy_round.initialize(enemies)
 				if post_combat.victory == False:
-					print_stuff(["These wolves live deep in a cave don't get much food. They are grateful for your entrance."])
+					print_stuff([f"These {wolves} live deep in a cave don't get much food. They are grateful for your entrance."])
 					exit()
 				print_stuff(["Panting for breath after the fight, you walk back the way you came."])
 			elif path == "4":
@@ -768,7 +786,7 @@ def cave():
 					else:
 						break
 					print_stuff(["The man pours a cup of some sort of herbal tea into a cup and hands it to you. You take a sip and it tastes good enough.",
-""""I'm Alvyn. I come into this cave for peace and quiet. Who are you?" """])
+f""""I'm {alvyn}. I come into this cave for peace and quiet. Who are you?" """])
 					reply = input_stuff(f"""1. "They call me {character.character["firstname"]}."
 2. "I don't share my name with strangers." 
 > """, ["1", "2"])
@@ -784,12 +802,12 @@ def cave():
 5. "I think I'll leave now. Thank you for the tea." 
 > """, ["1", "2", "3", "4", "5"])
 						if question == "1":
-							print_stuff(["""Alvyn grins. "I'm simply a man who likes nature more than towns. In society I'm poor, but in spirit..." """,
-"""Alvyn trails off. "I'm happy. I love the world, and the natural beauty of caves. Spelunking is a hobby of mine." """,
+							print_stuff([f"""{alvyn} grins. "I'm simply a man who likes nature more than towns. In society I'm poor, but in spirit..." """,
+f"""{alvyn} trails off. "I'm happy. I love the world, and the natural beauty of caves. Spelunking is a hobby of mine." """,
 """"This place I love escpecially. The calm waters, the blue mushrooms. And the micro-crystals..." He gets up and brings a lantern to bare. """,
 ""])
 						elif question == "2":
-							print_stuff(["""Alvyn frowns. "Yes, they came through. Stopped by my fire just as you are doing. They said they were treasure hunting." """,
+							print_stuff([f"""{alvyn} frowns. "Yes, they came through. Stopped by my fire just as you are doing. They said they were treasure hunting." """,
 """"I haven't seen them since. It was a while ago I met them. Why do you ask?" """])
 							reply = input_stuff("""1. "I've been tasked to look for them." 
 2. "That's my private business." 

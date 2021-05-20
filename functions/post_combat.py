@@ -3,6 +3,8 @@ import time
 from functions import equipment
 from functions import weapon
 from functions import ability
+from functions.utils import colour_it
+from functions.utils import Color
 
 def end_combat(enemy):
 	if len(enemy) == 1:
@@ -37,23 +39,25 @@ def generate_loot(enemies):
 			equipment.equipment['gold'] += gold
 			item = random.randrange(1,11)
 			if item == 6 or item == 7:
-				print(f"You also find a knife.")
+				knife = colour_it("knife", Color.LOOT)
+				print(f"You also find a {knife}.")
 				time.sleep(4)
 				equipment.equipment['knives'] += 1
 			elif item == 8:
-				print(f"You also find a knife.")
+				potion = colour_it("potions", Color.LOOT)
+				print(f"You also find a {potion}.")
 				time.sleep(4)
-				equipment.equipment['knives'] += 1
+				equipment.equipment['potions'] += 1
 			elif item == 9:
-				print(f"You also find a sword oil.")
+				oil = colour_it("oil", Color.LOOT)
+				print(f"You also find a sword {oil}.")
 				time.sleep(4)
 				equipment.equipment['oils'] += 1
 			elif item == 10:
-				print(f"You also find a smoke bomb.")
+				smoke_bomb = colour_it("smoke bomb", Color.LOOT)
+				print(f"You also find a {smoke_bomb}.")
 				time.sleep(4)
 				equipment.equipment['smoke bombs'] += 1
-			else:
-				time.sleep(0.01)
 			sword_boost = random.randrange(1,11)
 			if sword_boost >= 8:
 				print(f"You find a whetstone to improve your weapon.")

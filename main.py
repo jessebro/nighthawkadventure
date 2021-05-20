@@ -9,6 +9,9 @@ from functions import weapon
 from functions.utils import print_stuff
 from functions.loading import boot
 from functions.utils import input_stuff
+from functions.utils import colour_it
+from functions.utils import Color
+from functions.utils import print_it
 
 
 def run_adventure(steps):
@@ -30,25 +33,29 @@ def new_game():
 	weapon.get_weapon_name()
 	ability.get_ability()
 	equipment.get_equipment()
-	enemy_1 = encounters.monster_access("fbandit")
-	enemy_2 = encounters.monster_access("mbandit")
-	gang = [enemy_1, enemy_2]
 
 
 def prologue():
+	elfa = colour_it("Elfa", Color.NPC)
+	micha = colour_it("Micha", Color.NPC)
+	bertholt = colour_it("Bertholt Omar", Color.NPC)
+	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
+	corocana = colour_it("Corocana", Color.PLACE)
+
 	print_stuff([f"""In this text based adventure, you will be taking on the role of a Nighthawk, an elite monster hunter, a sword
 for hire when the ordinary folk can't handle the danger.""",
-"""The adventure begins in the town of Blackburrow, a bustling place just East of the Lizardtongue Mountains, and South of 
-the vast jungles of Corocana.""", """Your current task is to look for the missing son and daughter of the very worried, very rich
+f"""The adventure begins in the town of {blackburrow}, a bustling place just East of the {lizardtongue}, and South of 
+the vast jungles of {corocana}.""", """Your current task is to look for the missing son and daughter of the very worried, very rich
 baron. If there is a threat to the town that was the cause of their disappearing, then you must eliminate it.""",
-"""You know the following things:
-- The son and daughter were aspiring adventurers, and were seeking adventure in the Lizardtongue Mountains, where a treasure
+f"""You know the following things:
+- The son and daughter were aspiring adventurers, and were seeking adventure in the {lizardtongue}, where a treasure
 hoard was said to lie in a cave at the top of the largest mountain.
-- The son is called Micha and the daughter is called Elfa. The baron himself is Bertholt Omar.""",
-	"""Before setting off on your task, you have the chance to prepare."""])
+- The son is called {micha} and the daughter is called {elfa}. The baron himself is {bertholt}.""",
+"""Before setting off on your task, you have the chance to prepare."""])
 
 	town.town("Blackburrow", "Leave to look for the Omar children", True)
-	print_stuff(["Your preparations complete, you head towards the main gates of Blackburrow.",
+	print_stuff([f"Your preparations complete, you head towards the main gates of {blackburrow}.",
 "You stop when you hear the sound of a woman crying in an alley, and the harsh voice of a man."])
 	choice = input_stuff("""1. Investigate the sounds.
 2. Continue on your way.
@@ -75,7 +82,7 @@ position = boot()
 if position in story:
 	idx = story.index(position)
 	story = story[idx:]
-	print_stuff(["Your game loaded successfully!"])
+	print_it("Your game loaded successfully!", Color.FUNCTION)
 elif not position:
 	print_stuff(["Your save file could not be accessed, or has been corrupted."])
 	new_game()

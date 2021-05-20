@@ -7,8 +7,12 @@ from functions import ability
 from functions import blackjack
 from functions.utils import print_stuff
 from functions.utils import input_stuff
+from functions.utils import colour_it
+from functions.utils import Color
 
 def town(name, objective,firsttime=False):
+	name = colour_it(name, Color.PLACE)
+	objective = colour_it(objective, Color.QUEST)
 	print(f"""{name}'s citizens are up and about. Merchant's shout their wares, guttersnipes pick the pockets of unsuspecting
 townsfolk, and those more fortunate in life look down their nose at those with less luck.""")
 	if firsttime:

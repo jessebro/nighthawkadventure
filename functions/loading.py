@@ -18,7 +18,7 @@ def boot():
 
 
 def save(position):
-	print_it("Your game has been saved!", Color.CYAN)
+	print_it("Your game has been saved!", Color.FUNCTION)
 	data = {
 		"character": character.character,
 		"ability": ability.ability,
