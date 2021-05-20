@@ -134,7 +134,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 "You take the money, counting 50 gold coins."])
 						ring = input_stuff("""1. Put on the ring.
 2. Leave the ring.
->""", ['1', "2"])
+> """, ['1', "2"])
 						if ring == "1":
 							ability.ability["strength"] += 1
 							print_stuff(["You feel a tingling sensation as you slip the ring on, and a sudden burst of power.",
