@@ -5,13 +5,15 @@ from functions import inventory
 from functions import weapon
 from functions import ability
 from functions import blackjack
+from functions.utils import print_stuff
+from functions.utils import input_stuff
 
 def town(name, objective,firsttime=False):
 	print(f"""{name}'s citizens are up and about. Merchant's shout their wares, guttersnipes pick the pockets of unsuspecting
 townsfolk, and those more fortunate in life look down their nose at those with less luck.""")
 	if firsttime:
 		time.sleep(6)
-	activity = input(f"""What would you like to do?
+	activity = input_stuff(f"""What would you like to do?
 1. Look at the markets        ~ {ability.ability["health"]}/{ability.ability["maxhealth"]} health ~
 2. Visit the blacksmith       ~ {equipment.equipment["gold"]} gold ~
 3. Rest at the inn            ~ [{ability.ability["xp"]}/100] xp ~
@@ -19,7 +21,7 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 5. Check your inventory
 6. {objective}
 
-> """)
+> """, ["1", "2", "3", "4", "5", "6"])
 	if activity == "1":
 		market(name, objective)
 	elif activity == "2":
@@ -36,8 +38,7 @@ townsfolk, and those more fortunate in life look down their nose at those with l
 		return False
 
 def market(name, objective):
-	print("You enter the market, and immediately start browsing, looking for things you could use on your travels.")
-	time.sleep(4)
+	print_stuff(["You enter the market, and immediately start browsing, looking for things you could use on your travels."])
 	while True:
 		options = ['1', '2', '3', '4', '5', '6', '7', '8', 'b']
 		purchase = input(f"""What would you like to purchase?
@@ -86,9 +87,8 @@ Enter 'b' to leave
 
 
 def blacksmith(name, objective):
-	print("""There's the ring of hammer and anvil as you come into the blacksmith.
-Weapons, tools and blades hang on racks, and the place smells of sweat and fire.""")
-	time.sleep(4)
+	print_stuff(["""There's the ring of hammer and anvil as you come into the blacksmith.
+Weapons, tools and blades hang on racks, and the place smells of sweat and fire."""])
 	while True:
 		options = ['1', '2', '3', '4', '5', '6', '7', 'b']
 		purchase = input(f"""What would you like smithed?
@@ -142,9 +142,8 @@ f"restored {weapon.weapon['weaponname']}'s Stability",
 
 
 def inn(name, objective):
-	print("""You enter the inn, and immediately the smell of food and drink hits you. The inn is well lit, and everywhere
-people sit around tables, eating, drinking, talking or playing cards""")
-	time.sleep(6)
+	print_stuff(["""You enter the inn, and immediately the smell of food and drink hits you. The inn is well lit, and everywhere
+people sit around tables, eating, drinking, talking or playing cards"""])
 	while True:
 		purchase = input(f"""What would you like to do?
 	1. Get a meal (10 gold)
@@ -178,14 +177,12 @@ def rumours():
 "From eavesdropping on conversations, you hear a rumour that treasure hunters are becoming more and more unsuccesful, and that some have even disappeared in mysterious circumstances.",
 "You hear nothing of use; only the superstitious ramblings of worried townsfolk.", "There is nothing out of the ordinary in the conversations of people at the moment.",
 "There's talk of magic items being held securely being stolen by an unknown person or persons."]
-	print(random.choice(rumour_scripts))
-	time.sleep(6)
+	print_stuff([random.choice(rumour_scripts)])
 	return False
 
 
 def trainer(name, objective):
-	print("You find someone who is willing to help you hone your skills, but not for free.")
-	time.sleep(4)
+	print_stuff(["You find someone who is willing to help you hone your skills, but not for free."])
 	while True:
 		options = ['1', '2', '3', '4', '5', '6', 'b']
 		purchase = input(f"""What would you like to train?

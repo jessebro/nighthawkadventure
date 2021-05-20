@@ -564,7 +564,7 @@ def cave():
 "You walk over and read the tablet.", """
 	____________________________________________
 	| A cave of wonders stands ahead           |
-	| But read these words, or you'll be dead  |
+	| But heed these words, or you'll be dead  |
 	| Left then right then left again          |
 	| Stars below will light your way          |
 	| Friend is foe and foe is friend          |
