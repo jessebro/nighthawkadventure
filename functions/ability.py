@@ -1,5 +1,7 @@
 import random
 import time
+from functions.utils import print_stuff
+from functions.utils import input_stuff
 
 MAX_ABILITY_SCORE = 27
 
@@ -113,8 +115,7 @@ def gain_xp(enemies):
 		exp = enemy['xp']
 		gained_exp += exp
 	ability['xp'] += gained_exp
-	print(f'You gained {gained_exp} xp!')
-	time.sleep(3)
+	print_stuff([f'You gained {gained_exp} xp!'])
 	levels = int(ability['xp'] / 100)
 	if levels > 0:
 		level_up(levels)
@@ -138,7 +139,7 @@ def level_up(levels):
 3. Awareness
 4. Endurance
 5. Persona""")
-		ability_boost = int(input('> '))
+		ability_boost = int(input_stuff('> ', ["1", "2", "3", "4", "5"]))
 		choices = ["strength", "agility", "awareness", "endurance", "persona"]
 		choice = choices[(ability_boost - 1)]
 		ability[choice] += 1
@@ -149,7 +150,7 @@ def level_up(levels):
 1. Strike
 2. Parry
 3. Distract""")
-		action_boost = int(input('> '))
+		action_boost = int(input_stuff('> ', ["1", "2", "3"]))
 		action_choices = ["strike", "parry", "distract"]
 		action_choice = action_choices[(action_boost - 1)]
 		ability[f"{action_choice}_lvl"] += 1

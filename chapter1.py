@@ -30,8 +30,7 @@ def ghouls_at_farm():
 		print_stuff([f"You rush forwards, {weapon.weapon['weaponname']} in hand. The ghouls turn to face you now, but one of them continues to focus on the farmer",
 "One of the ghouls lunges forward suddenly, and you ready your sword."])
 		enemies = [encounters.monster_access("ghoul"), encounters.monster_access("ghoul"), encounters.monster_access("ghoul")]
-		gang = enemies
-		enemy_round.initialize(gang)
+		enemy_round.initialize(enemies)
 		if post_combat.victory == False:
 			print("There is no one to save you. The farmer cannot hold the ghouls back for much longer, and the ghouls will show no mercy to those in the way of their food.")
 			exit()
@@ -718,4 +717,30 @@ def cave():
 			elif path == "2":
 				break
 			elif path == "3":
-				print_stuff(["You walk down the cave full of blue mushrooms."])
+				print_stuff(["You walk down the cave full of blue mushrooms. The air here is cooler than anywhere else in the cave system. The silence is palpable.",
+"The cave ends suddenly, and grave lies at the end. You peer at the grave, but it is in a strange language you don't understand.",
+"You find nothing of interest, and turn to leave. But you find yourself cut off by a group of three wolves. Clearly you have trespassed on their territory.",
+"They snarl at you and lunge forwards, teeth bared. You jump aside at the last second, drawing your sword."])
+				enemies = [encounters.monster_access("wolf"), encounters.monster_access("wolf"), encounters.monster_access("wolf")]
+				enemy_round.initialize(enemies)
+				if post_combat.victory == False:
+					print_stuff(["These wolves live deep in a cave don't get much food. They are grateful for your entrance."])
+					exit()
+				print_stuff(["Panting for breath after the fight, you walk back the way you came."])
+			elif path == "4":
+				print_stuff(["You walk into the cave full of fireflies. The orange pinpoints of light part as you walk forwards, making way for you.",
+"As you walk down the cave, you see it expands into a large underground lake with a soaring ceiling. More surprising, you see a man hunched over a campfire."])
+				choice = input_stuff("""1. Approach the man.
+2. Jump in the lake.
+3. Go back the way to you came.
+> """, ["1", "2", "3"])
+				if choice == "2":
+					print_stuff(["You jump in the lake. It is deeper than you thought, and the black waters swirl up to your neck.",
+"You hear a shout and turn. The man is running towards you, shouting and waving his hands. Suddenly, you feel something slimy wrap around your ankle."])
+					agility_roll = random.randrange(1, 9)
+					if agility_roll <= ability.ability["agility"]:
+						print_stuff(["Twist out of the grasping thing and roll onto shore. The man grabs your wrists and hauls you onto dry land, grunting with the effort."])
+					else:
+						print_stuff(["You are unable to escape the grip and you feel yourself being dragged under. Your head disappears under the black waters, never to emerge again."])
+						exit()
+
