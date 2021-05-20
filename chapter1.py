@@ -614,7 +614,7 @@ def cave():
 			choice = input_stuff("""1. Loot the corpse.
 2. Examine her wounds.
 3. Step away.
-> """)
+> """, ["1", "2", "3"])
 			if choice == "1" and loot == False:
 				equipment.equipment["gold"] += 7
 				equipment.equipment["potions"] += 1
@@ -686,4 +686,35 @@ def cave():
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 				ability.gain_xp(encounters.xp_handouts["small"])
 				print_stuff(["Satisfied, you leave the cavern and take the other route."])
+		print_stuff(["You take the left path, and you follow it without incident. Suddenly, the tunnel gets darker.",
+"Ahead, you see a glowing blue light. You continue on for a bit and see that the tunnel leads in four directions.",
+"Each path has a different floor. You cannot see far down an individual path. The blue light comes from one of the tunnels, which is full of glowing blue mushrooms."])
+		while True:
+			path = input_stuff("""1. Go down the path carpeted by red fungus.
+	2. Go down the path with a flickering crystal floor.
+	3. Go down the path bordered by glowing blue mushrooms.
+	4. Go down the path full of fire flies.
+	> """, ["1", "2", "3", "4"])
+			if path == "1":
+				print_stuff(["You walk down the path for a while, the red fungus squelching under your boots. Then you reach a dead end.",
+	"At the end of the tunnel lies a man's corpse. Red fungus is sprouting from his mouth, nose, ears and the corners of his eyes."])
+				choice = input_stuff("""1. Loot the corpse.
+	2. Go back.
+	> """, ["1", "2"])
+				if choice == "1":
+					print_stuff(["You lower yourself down to search the body. As you do, your hand brushes some of the fungus.",
+"Suddenly, it feels as if your hand is on fire. You jump to your feet, and before your eyes you see red fungus start sprouting from you hand."])
+					choice = input_stuff("""1. Try to burn the fungus of.
+2. Scrape the fungus off with your knife.
+> """, ["1", "2"])
+					if choice == "1":
+						print_stuff(["You quickly light a torch and hold your hand over the flame. With horror, you see the funus begin to spread up your arm.",
+"But the fire seems to do the trick. Though it's agony to hold your hand over the open flame, the fungus begins to wither and die, dropping off like dried mud.",
+"Not wishing to stay in the cave any longer, you turn back."])
+					else:
+						print_stuff(["You scrape the fungus off with your sword, but new fungus sprouts up. With horror, you see the funus begin to spread up your arm.",
+"Then the fungus speads into your torso, and you feel spasms of agony rench your body back and forth. You are grateful when you black out, never you wake up again."])
+						exit()
+			elif path == "2":
+				print_stuff([""])
 

@@ -206,7 +206,8 @@ f"{reference['object'].capitalize()} falls to {reference['his']} knees, head lea
 f"You cut {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry.",
 f"{reference['object'].capitalize()} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood."]
 	monster_death = [f"{reference['object'].capitalize()} growls one last time, then falls to the ground.",
-f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue."]
+f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue.",
+f"You lunge forwards, pinning {reference['object']} by the throat and holding it to the ground. You draw your knife and plunge it home into the monster's snarling mouth."]
 	if enemy["type"] == "human":
 		print(random.choice(human_death))
 		time.sleep(5)
