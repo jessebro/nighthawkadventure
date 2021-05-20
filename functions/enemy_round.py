@@ -87,6 +87,7 @@ def enemy_turn(enemy):
 		time.sleep(4)
 		enemy["modifier"] -= (10 * enemy['bleeding'])
 		enemy["bleeding"] -= 1
+		dead_check(enemy)
 	enemy["playermod"] = 0
 	if enemy["type"] == "human":
 		action = random.randrange(1,6)

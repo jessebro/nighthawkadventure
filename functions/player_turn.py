@@ -18,13 +18,13 @@ f"""You feel your heart pounding, feel your chest rising with smooth, even breat
 f"""{reference['object'].capitalize()} lunges. You jump aside at the last second."""]
 	if enemy["type"] == "human":
 		initial_script.append("""Steel meets, and you stare at each other, blades locked in a clinch.""")
-	action = input(random.choice(initial_script) + f""" Do you...
+	action = input_stuff(random.choice(initial_script) + f""" Do you...
 	1. Strike
 	2. Parry
 	3. Distract       ~ {ability.ability["health"]} / {ability.ability["maxhealth"]} health ~
 	4. Use Item
 	5. Check Inventory
-> """)
+> """, ["1", "2", "3", "4", "5"])
 	return action
 
 
@@ -190,7 +190,7 @@ def parry(enemy):
 	for parry in parries:
 		counter += 1
 		prompt = prompt + str(counter) + ". " + parry["name"] + parry["description"] + """
-	"""
+"""
 		options.append(str(counter))
 	prompt = prompt + "> "
 	parry = input_stuff(prompt, options)
