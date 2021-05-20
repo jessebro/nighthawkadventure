@@ -9,30 +9,33 @@ from functions import weapon
 from functions import rest
 from functions.utils import print_stuff
 from functions.utils import input_stuff
+from functions.utils import colour_it
+from functions.utils import Color
 from functions.loading import save
 
 
 def ghouls_at_farm():
+	ghouls = colour_it("ghouls", Color.RED)
 	save("chapter1.ghouls_at_farm")
 	print_stuff(["You make your way outside of Blackburrow. It is late morning, and the sky is a cobalt blue.",
 "Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
 "You steer off the main road and onto a dirt track leading to the Lizardtongue Mountains. About an hour into the journey you come across a farm.",
 "Wheat stalks stand golden against the pale grass. You decide to cut through the wheat field, rather than take a detour around it.",
 "That's when you hear shouting and cursing. You begin to run, and see a man standing in the front door of his house. He is swinging a pitchfork to and fro.",
-"Standing before him are four ghouls; pale, lanky, short and hairless humanoids that feed on rotting flesh. Two other ghouls lie dead and bleeding.",
+f"Standing before him are four {ghouls}; pale, lanky, short and hairless humanoids that feed on rotting flesh. Two other {ghouls} lie dead and bleeding.",
 "The man sees you and screams for help. You see a little girl and a teenage boy standing behind the man, expressions of terror on their faces.",
-"You know that the man will not be able to hold the ghouls back forever."])
+f"You know that the man will not be able to hold the {ghouls} back forever."])
 
 	choice = input_stuff("""1. Help the farmer.
 2. Continue on your way.
 > """, ['1', "2"])
 	if choice == "1":
-		print_stuff([f"You rush forwards, {weapon.weapon['weaponname']} in hand. The ghouls turn to face you now, but one of them continues to focus on the farmer",
-"One of the ghouls lunges forward suddenly, and you ready your sword."])
+		print_stuff([f"You rush forwards, {weapon.weapon['weaponname']} in hand. The {ghouls} turn to face you now, but one of them continues to focus on the farmer",
+f"One of the {ghouls} lunges forward suddenly, and you ready your sword."])
 		enemies = [encounters.monster_access("ghoul"), encounters.monster_access("ghoul"), encounters.monster_access("ghoul")]
 		enemy_round.initialize(enemies)
 		if post_combat.victory == False:
-			print("There is no one to save you. The farmer cannot hold the ghouls back for much longer, and the ghouls will show no mercy to those in the way of their food.")
+			print(f"There is no one to save you. The farmer cannot hold the {ghouls} back for much longer, and the {ghouls} will show no mercy to those in the way of their food.")
 			exit()
 		print_stuff([f"You wipe ghoul blood from your sword with a cloth. The farmer approaches you, his own pitchfork stained a dark red.",
 f'"Thank you, kind stranger," the man says. He bites his lip for a second, then pulls a money bag from his belt and holds it out to you.',
@@ -56,6 +59,7 @@ f'''"Thank you again. But at least let me give you a meal before you leave."''',
 def hag_lair():
 	save("chapter1.hag_lair")
 	treasure = 0
+	bone_hag = colour_it("bone hag", Color.RED)
 	print_stuff(['You continue along the trail, and you pass by a few more farms, and sometimes the people maintaining them, nodding in greeting as you pass.',
 '''Finally, the track becomes wilder, the farms become less, before disappearing altogether. Small pockets of trees and undergrowth now dot the countryside.''',
 'It is late in the afternoon when the trail splits suddenly. It is clear which path will lead to the mountains. The other pass leads into a small forest.'])
@@ -71,17 +75,17 @@ def hag_lair():
 > """, ['1', "2", "3"])
 		if choice == "1":
 			print_stuff(["You see the movement stop for a moment, then a creature comes hurtling out the door.",
-'''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a bone hag.''',
+f'''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a {bone_hag}.''',
 """It takes on the form of an elderly woman with grey skin that hangs and droops in strange folds, dull black hair and dressed in nothing but a loincloth. 
 They have sharp claws on their fingers and toes.""",
 f"You also know that hags enjoy to the taste of living flesh, especially that of young people or elves. You draw {weapon.weapon['weaponname']} and ready yourself."])
 		elif choice == "2":
 			print_stuff(["You move to the door and twist the doorknob. The door swings open, and immediately the smell of rot assaults your nose.",
 "Almost everything here is broken or decayed. Only two things seem solid here; a cauldron of meat soup, and a hunched form. The form turns to see, and grins toothily.",
-'''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a bone hag.''',
+f'''"Dinsers!" the creature shrieks with glee. "Dinsers has comses!" The creature is a {bone_hag}.''',
 """It takes on the form of an elderly woman with grey skin that hangs and droops in strange folds, dull black hair and dressed in nothing but a loincloth. 
 It has sharp claws on their fingers and toes.""",
-"""You also know that hags enjoy to the taste of living flesh. Before you can react, the hag lunges forwards, crashing into you. 
+f"""You also know that hags enjoy to the taste of living flesh. Before you can react, the {bone_hag} lunges forwards, crashing into you. 
 The two of you tumble outside of the cabin and into the forest. You roll to your feet and draw your sword, and the hag rises to its feet, snarling."""])
 		else:
 			print_stuff(['Deciding not to disturb the inhabitants - whoever they may be - you trace your steps back to the junction in the trail.'])
@@ -90,7 +94,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 		if post_combat.victory == False:
 			print("No one knows you came here, and no one can save you now. Unfortunately, you'll probably end up in the hag's cooking pot.")
 			exit()
-		print_stuff(["With the bone hag dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
+		print_stuff([f"With the {bone_hag} dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
 		while True:
 			investigate = input_stuff("""1. Search the chest.
 2. Investigate the cauldron.
@@ -158,6 +162,8 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 def campers():
 	save("chapter1.campers")
 	man_name = "the large man"
+	eladris = colour_it("Eladris", Color.GREEN)
+	garurt = colour_it("Garurt", Color.GREEN)
 	print_stuff(["The sky is growing darker. The bird song is giving way to the chirp of the crickets, and the air grows cold.",
 "Even as you begin to consider a place to stop for the night, you see a flickering orange light from behind a clump of high bushes."])
 	choice = input_stuff("""1. Investigate the source of the fire.
@@ -176,23 +182,23 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 		if choice == "1":
 			print_stuff(["""The lean man's smile increases. "Excellent," he says. You take a seat by the fire, and bask in its warmth.""",
 """The lean man takes a seat beside you, but the large man grumbles something about taking a walk and leaves.""",
-""""I do not believe we have been properly introduced," the lean man says kindly. He lays a hand on his chest. "I'm Eladris. And you are?"
+f""""I do not believe we have been properly introduced," the lean man says kindly. He lays a hand on his chest. "I'm {eladris}. And you are?"
 """])
 			reply = input_stuff(f"""1. "I'm {character.character["firstname"]}."
 2. "I'd rather not tell you."
 > """, ['1', "2"])
 			if reply == "1":
-				print_stuff([f""""{character.character['firstname']}," Eladris says, testing your name on his tongue."""])
+				print_stuff([f""""{character.character['firstname']}," {eladris} says, testing your name on his tongue."""])
 			else:
-				print_stuff(["""Eladris laughs. "Keep your secrets then," he chuckles. "But you should learn to be more trusting." """])
+				print_stuff([f"""{eladris} laughs. "Keep your secrets then," he chuckles. "But you should learn to be more trusting." """])
 			print_stuff([""""So what brings you here? Monsters are roaming the countryside in even greater numbers these days." """])
 			reply = input_stuff(f"""1. "I'm looking for some missing people."
 2. "I do not fear monsters. It is the other way around." 
 > """, ['1', "2"])
 			if reply == "1":
-				print_stuff([f""""I see," Eladris says. "I will not pry, though my curiosity demands me to do so." """])
+				print_stuff([f""""I see," {eladris} says. "I will not pry, though my curiosity demands me to do so." """])
 			else:
-				print_stuff([""""You're a confident one," Eladris says. "Be wary it doesn't become hubris." """])
+				print_stuff([f""""You're a confident one," {eladris} says. "Be wary it doesn't become hubris." """])
 			while True:
 				question = input_stuff(f"""1. "So... what's a half-elf doing out here?"
 2. "Who's your cheerful friend?" 
@@ -200,22 +206,22 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 4. "I'm going to get some sleep." (leave dialogue) 
 > """, ['1', "2", '3', '4'])
 				if question == "1":
-					print_stuff(["""Eladris grins at you. "You noticed?" he says. "Was it the name, or my appearance?" """,
+					print_stuff([f"""{eladris} grins at you. "You noticed?" he says. "Was it the name, or my appearance?" """,
 """He shrugs. "Honestly, it's reason enough to escape the racists. But you are a 'doyana', so you wouldn't understand." """,
 """"Travelling has always calmed my nerves. I do it for the simple purpose of enjoyment." """])
 					continue
 				elif question == "2":
-					print_stuff([""""And good looking too!" he adds, chuckling to himself. "His name is Garurt. Don't mind him; a more distrustful man was never born." """,
+					print_stuff([f""""And good looking too!" he adds, chuckling to himself. "His name is {garurt}. Don't mind him; a more distrustful man was never born." """,
 """"I keep him around because he's a good fighter. My escort, so to speak." """])
-					man_name = "Garurt"
+					man_name = garurt
 					continue
 				elif question == "3":
 					print_stuff([""""So I did," he sighs. "There's talk of magical fluctuations, and that's what attracting them." """,
 """"The source of the disturbances remains unknown, but I'm sure someone will figure it out eventually." """,
-""""They are merely rumours, of course," Eladris adds quickly. "But rumours can be built on truth." """])
+f""""They are merely rumours, of course," {eladris} adds quickly. "But rumours can be built on truth." """])
 					continue
 				else:
-					print_stuff([f"""Eladris nods. "Sweet dreams," he says. Just as you are beginning to pull out your blankets, {man_name} returns from his walk.""",
+					print_stuff([f"""{eladris} nods. "Sweet dreams," he says. Just as you are beginning to pull out your blankets, {man_name} returns from his walk.""",
 "He remains silent, until Eladris is fast asleep, at which point he approaches you.",
 """"I know what you are," he says. "You're a fighter; that much is clear to see. But I'm warning you that if you pull a fast one, we'll soon see who's the better fighter." """,])
 					break
@@ -231,11 +237,11 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 				print_stuff([f"""{man_name.capitalize()} spits in your face. "You want to go here and now?," he says. "Because I'll fight you anytime." """])
 			print_stuff([f"""{man_name.capitalize()} then stalks off, pulling out his own bedroll. It is not long before you fall asleep, staring up at the stars.""",
 """You wake up in the middle of the night, tormented by a full bladder. Silently, you move away to find somewhere to relieve yourself.""",
-f"""Once you return, you notice that both Eladris and {man_name} are speaking to each other."""])
+f"""Once you return, you notice that both {eladris} and {man_name} are speaking to each other."""])
 			if ability.ability['awareness'] > 5:
 				print_stuff(["You able to hear what they are saying.",
 f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
-f""""Not this one," Eladris says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
+f""""Not this one," {eladris} protests. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
 """"It's not about what they deserve. It's about what we need!" """])
 			else:
 				print_stuff(["You are unable to hear what they are saying. You move closer to try and listen."])
@@ -243,7 +249,7 @@ f""""Not this one," Eladris says. "I've talked with {character.character["titles
 				if agility_roll <= (75 + ability.ability['agility']):
 					print_stuff(["You enter earshot of them without being noticed.",
 f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
-f""""Not this one," Eladris says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
+f""""Not this one," {eladris} says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
 """"It's not about what they deserve. It's about what we need!" """])
 			speech = input_stuff("""1. "Greetings, gentlemen."
 2. Escape to the main trail.
@@ -275,21 +281,21 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 					return False
 				else:
 					print_stuff([f"""You stand over {man_name}'s corpse. You stop when you here the sound of clapping.""",
-""""That was quite a show you put on," Eladris says. "Where did you learn that?" """])
+f""""That was quite a show you put on," {eladris} says. "Where did you learn that?" """])
 					reply = input_stuff("""1. "Don't look so cocky. You're next."
 2. "Why did he attack me?" 
 > """, ['1', "2"])
 					if reply == "1":
-						print_stuff(["""At this, Eladris chuckles. "Kill me then. I do not fear death. At least let me explain." """])
+						print_stuff([f"""At this, {eladris} chuckles. "Kill me then. I do not fear death. At least let me explain." """])
 				print_stuff([f""""Please forgive Garurt," Eladris says coolly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
 """"We're bandits. We were thrown out of society because of my half-blood status and his friendship with me. We've had to live robbing and hiding for many years.""",
-"""Eladris looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
-				action = input_stuff("""1. Kill Eladris
+f"""{eladris} looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
+				action = input_stuff(f"""1. Kill {eladris}.
 2. Walk away.
 > """, ['1', "2"])
 				if action == "1":
-					print_stuff(["""You step forward, sword in hand. Eladris closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
-"""You search Eladris' bags and come away with 27 gold coins, a healing potion, and two throwing knives."""])
+					print_stuff([f"""You step forward, sword in hand. {eladris} closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
+f"""You search {eladris}' bags and come away with 27 gold coins, a healing potion, and two throwing knives."""])
 					equipment.equipment["gold"] += 27
 					equipment.equipment["potions"] += 1
 					equipment.equipment["knives"] += 2
