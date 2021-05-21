@@ -208,10 +208,11 @@ f""""I do not believe we have been properly introduced," the lean man says kindl
 			else:
 				print_stuff([f""""You're a confident one," {eladris} says. "Be wary it doesn't become hubris." """])
 			while True:
+				quest = colour_it(""""I'm going to get some sleep." """, Color.QUEST)
 				question = input_stuff(f"""1. "So... what's a half-elf doing out here?"
 2. "Who's your cheerful friend?" 
 3. "You said monsters were increasing in numbers..."
-4. "I'm going to get some sleep." (leave dialogue) 
+4. {quest}
 > """, ['1', "2", '3', '4'])
 				if question == "1":
 					print_stuff([f"""{eladris} grins at you. "You noticed?" he says. "Was it the name, or my appearance?" """,
@@ -288,7 +289,7 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 					equipment.equipment['knives'] = 0
 					return False
 				else:
-					print_stuff([f"""You stand over {man_name}'s corpse. You stop when you here the sound of clapping.""",
+					print_stuff([f"""You stand over {man_name}'s corpse. You stop when you hear the sound of clapping.""",
 f""""That was quite a show you put on," {eladris} says. "Where did you learn that?" """])
 					reply = input_stuff("""1. "Don't look so cocky. You're next."
 2. "Why did he attack me?" 
@@ -335,7 +336,7 @@ def thief():
 "The trail moves off the main path, and into a valley between two large hills. At the base of the valley, you see a young woman hunched over a campfire.",
 "Her clothes are ragged, and she has no weapon to speak of. She doesn't look older than twenty.",
 "As if alerted by your mere presence, the woman turns, gives a start and runs over the hill opposite and into some trees.",
-"Before you can react, you here a scream and a growl."])
+"Before you can react, you hear a scream and a growl."])
 		choice = input_stuff("""1. Give chase to the thief.
 2. Let her go and return to the trail.
 > """, ['1', "2"])
@@ -352,7 +353,7 @@ f"You hold {weapon.weapon['weaponname']} at the ready, and the {lalikins} charge
 				exit()
 			print_stuff(["You search the body of the woman and find the money she stole from you."])
 			equipment.equipment["gold"] += 15
-			action = input_stuff("""1. "Rest in piece." 
+			action = input_stuff("""1. "Rest in peace." 
 2. Walk away.
 3. Spit on her body.
 > """, ['1', "2", '3'])
@@ -361,7 +362,7 @@ f"You hold {weapon.weapon['weaponname']} at the ready, and the {lalikins} charge
 			elif action == "3":
 				print_stuff(["You hawk and spit on the woman's corpse, and you feel like you've gotten some revenge for the trouble she caused.",
 "With your meager payback complete, you return to the trail."])
-	print_stuff([f"You continue along the trail to the {lizardtongue}, wondering when you'll get a day of piece and quiet."])
+	print_stuff([f"You continue along the trail to the {lizardtongue}, wondering when you'll get a day of peace and quiet."])
 
 def ascent():
 	crag = colour_it("crag", Color.ENEMY)
@@ -816,9 +817,7 @@ f""""I'm {alvyn}. I come into this cave for peace and quiet. Who are you?" """])
 > """, ["1", "2", "3", "4", "5"])
 						if question == "1":
 							print_stuff([f"""{alvyn} grins. "I'm simply a man who likes nature more than towns. In society I'm poor, but in spirit..." """,
-f"""{alvyn} trails off. "I'm happy. I love the world, and the natural beauty of caves. Spelunking is a hobby of mine." """,
-""""This place I love escpecially. The calm waters, the fire flies. And the micro-crystals..." He gets up and brings a lantern to bare. """,
-""])
+f"""{alvyn} trails off. "I'm happy. I love the world, and the natural beauty of caves. Spelunking is a hobby of mine." """,])
 						elif question == "2":
 							print_stuff([f"""{alvyn} frowns. "Yes, they came through. Stopped by my fire just as you are doing. They said they were treasure hunting." """,
 """"I haven't seen them since. It was a while ago I met them. Why do you ask?" """])
@@ -830,11 +829,21 @@ f"""{alvyn} trails off. "I'm happy. I love the world, and the natural beauty of 
 							if reply == "2":
 								print_stuff([""""Alright. I won't pry, in that case." """])
 						elif question == "3":
-							print_stuff([""])
+							print_stuff([f""""That is a simple question to answer," says {alvyn}. "Fast running, and a crossbow." """,
+"With fondness, he pats a crossbow lying next to him."])
 						elif question == "4":
-							print_stuff([""])
+							print_stuff([f""""Everything. It's so calm and peaceful. Not many humans either." {alvyn} chuckles. """,
+""""I love all nature, but this place I love escpecially. The calm waters, the fire flies. And the micro-crystals..." He gets up and brings a lantern to bare. """,
+"""As the light of the lantern hits the walls, they begin to sparkle and shine like stars. "Beautiful, isn't it?" """])
 						elif question == "5":
-							print_stuff([""])
-
+							print_stuff([f""""Good fortune, {character.character['titles']['casual']}. Perhaps we shall meet again." """,
+f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
+							break
+	print_stuff(["You walk down the tunnel with a sparkling crystal floor. Some parts of the floor stick up at strange angles and crunch beneath your boots.",
+"A turn in the tunnel leads you out to a narrow expanse. It seems like a small straight tunnel. Before you are two rows of five tiles, each with a picture.",
+"Each slab looks like a pressure plate, and you see circular cranies in the rock next to each row of plates. The plates are flush with each other."])
+	plate1 = input_stuff("""1. Step onto the picture of a dog.
+2. Step onto the picture of a snake.
+> """, ["1", "2"])
 
 
