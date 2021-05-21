@@ -111,6 +111,12 @@ Do you want these to be your ability scores? y/n
 	ability["health"] = ability["maxhealth"]
 
 
+def heal(healing):
+	ability["health"] += healing
+	if ability["health"] >= ability["maxhealth"]:
+		ability["health"] = ability["maxhealth"]
+
+
 def gain_xp(enemies):
 	gained_exp = 0
 	for enemy in enemies:

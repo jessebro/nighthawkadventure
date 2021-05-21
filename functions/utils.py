@@ -6,11 +6,19 @@ import os
 # https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
 os.system('')
 
+default_actions = {}
 
-def input_stuff(prompt, options):
+
+def input_stuff(prompt, options, actions=None):
+	if not actions:
+		actions = default_actions
 	while True:
 		choice = input(prompt)
-		if choice in options:
+		if choice in actions:
+			actions[choice]()
+		if options == "*":
+			break
+		elif choice in options:
 			return choice
 
 
@@ -56,4 +64,4 @@ def print_it(msg, color):
 def print_stuff(scripts):
 	for script in scripts:
 		print(script)
-		input(f"""{colour_it("~~", Color.YELLOW)}""")
+		input_stuff(f"""{colour_it("~~", Color.YELLOW)}""", "*")

@@ -7,6 +7,7 @@ from functions import enemy_round
 from functions import post_combat
 from functions import weapon
 from functions import rest
+from functions import inventory
 from functions.utils import print_stuff
 from functions.utils import input_stuff
 from functions.utils import colour_it
@@ -56,7 +57,7 @@ f'''"It's not much, but you deserve a reward, {character.character['titles']['ca
 f'''"Thank you again. But at least let me give you a meal before you leave."''',
 "You accept the man's offer and he brings you into his small house. He gives you a bowl of green soup. You eat it, and it tastes good enough.",
 "The soup energises you, despite its mediocre taste. Once you have finished eating, the farmer bids you farewell, and you continue towards the Lizardtongue Mountains"])
-			ability.ability["health"] += 5
+			ability.heal(5)
 			ability.gain_xp([encounters.xp_handouts["small"]])
 
 

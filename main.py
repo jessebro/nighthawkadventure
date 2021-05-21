@@ -6,12 +6,21 @@ from functions import encounters
 from functions import enemy_round
 from functions import post_combat
 from functions import weapon
+from functions import inventory
 from functions.utils import print_stuff
 from functions.loading import boot
 from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import print_it
+from functions import utils
+
+
+def set_default_actions():
+	utils.default_actions = {
+		"e": inventory.show,
+		"i": inventory.show
+	}
 
 
 def run_adventure(steps):
@@ -91,4 +100,5 @@ else:
 	new_game()
 	prologue()
 
+set_default_actions()
 run_adventure(story)
