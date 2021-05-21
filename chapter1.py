@@ -7,7 +7,6 @@ from functions import enemy_round
 from functions import post_combat
 from functions import weapon
 from functions import rest
-from functions import inventory
 from functions.utils import print_stuff
 from functions.utils import input_stuff
 from functions.utils import colour_it
@@ -249,15 +248,15 @@ f""""They are merely rumours, of course," {eladris} adds quickly. "But rumours c
 """You wake up in the middle of the night, tormented by a full bladder. Silently, you move away to find somewhere to relieve yourself.""",
 f"""Once you return, you notice that both {eladris} and {man_name} are speaking to each other."""])
 			if ability.ability['awareness'] > 5:
-				print_stuff(["You able to hear what they are saying.",
+				print_stuff([f"You are {colour_it('aware', Color.AWARENESS)} enough to hear what they are saying.",
 f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
 f""""Not this one," {eladris} protests. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
 """"It's not about what they deserve. It's about what we need!" """])
 			else:
-				print_stuff(["You are unable to hear what they are saying. You move closer to try and listen."])
+				print_stuff([f"You are not {colour_it('aware', Color.AWARENESS)} enough to hear what they are saying. You move closer to try and listen."])
 				agility_roll = random.randrange(1,101)
 				if agility_roll <= (75 + ability.ability['agility']):
-					print_stuff(["You enter earshot of them without being noticed.",
+					print_stuff([f"You are {colour_it('agile', Color.AGILITY)} enough to enter earshot of them without being noticed.",
 f""""I say we kill {character.character["titles"]['him']}, grab the loot and run," {man_name} says. """,
 f""""Not this one," {eladris} says. "I've talked with {character.character["titles"]['him']}, and {character.character["titles"]['he']}'s a kind person. {character.character["titles"]['he'].capitalize()} doesn't deserve that." """,
 """"It's not about what they deserve. It's about what we need!" """])
@@ -365,6 +364,7 @@ f"You hold {weapon.weapon['weaponname']} at the ready, and the {lalikins} charge
 "With your meager payback complete, you return to the trail."])
 	print_stuff([f"You continue along the trail to the {lizardtongue}, wondering when you'll get a day of peace and quiet."])
 
+
 def ascent():
 	crag = colour_it("crag", Color.ENEMY)
 	denvar = colour_it("Denvar", Color.NPC)
@@ -380,9 +380,9 @@ def ascent():
 "Desperately, you try to jump to safety."])
 	agility_roll = random.randrange(1,9)
 	if agility_roll <= ability.ability["agility"]:
-		print_stuff(["You fall, but hit the ground in a roll. You are agile enough to roll to your feet and avoid the tumbling gravel."])
+		print_stuff([f"You fall, but hit the ground in a roll. You are {colour_it('agile', Color.AGILITY)} enough to roll to your feet and avoid the tumbling gravel."])
 	else:
-		print_stuff(["You slip and fall. You try to roll back to your feet, but you are not agile enough.",
+		print_stuff([f"You slip and fall. You try to roll back to your feet, but you are not {colour_it('agile', Color.AGILITY)} enough.",
 "You tumble down the side of the mountain, but somehow avoid serious harm. Suddenly, you find yourself lying on the ground.",
 "Dazed, you rise to your feet. You look around, and that's when you see it; a hulking mass of rock approaching you.",
 "The creature appears to be a large, bald humanoid, ten feet tall at least. It is made completely of boulders at least the size of your head."
@@ -503,8 +503,8 @@ f"""Suddenly, {denvar} leans over to you. "But then there were these other peopl
 					break
 				elif question == "4":
 					print_stuff([f""""Yes, she's my wife. {chana} is her name. Why do you ask?" """])
-					reply = input_stuff("""1. "I'm afraid she's dead." 
-2. "Met her on the way here. Seems well enough." (Persona roll for lying) 
+					reply = input_stuff(f"""1. "I'm afraid she's dead." 
+2. {colour_it('"Met her on the way here. Seems well enough."', Color.PERSONA)}
 > """, ["1", "2"])
 					while True:
 						if reply == "1":
@@ -616,7 +616,6 @@ def cave():
 2. Turn left.
 > """, ["1", "2"])
 	if choice == "2":
-		ability.ability["health"] -= 3
 		print_stuff(["""You take the left path again. Suddenly, the air seems to become denser. You peer ahead and see a pair of glowing yellow eyes.""",
 "Suddenly, a monster jumps out at you, cutting you painfully across the arm with its claws. You jump away and draw your sword.",
 f"The monster is tall and appears to be a wolf-like bipedal creature. You know it to be a {moracka}.",
@@ -663,10 +662,10 @@ f"Nearby, you notice some large footprints. You realise an {ogre} could be nearb
 "A large humanoid creature with baggy, fatty skin, piggy eyes and a flat face lies asleep, scratching its belly in a dream.",
 "It smells pungent, and you see a bit of blood on the creature's knuckles. Clearly it has killed recently.",
 f"The creature is an {ogre}, no doubt. This cavern is lit by a large bonfire. You see a chest on the other end of the cavern."])
-			input_stuff(f"""1. Attempt to sneak in to loot the chest without being detected. (agility roll for sneaking)
+			input_stuff(f"""1. {colour_it("Attempt to sneak in to loot the chest without being detected", Color.AGILITY)}.
 2. Attack the {ogre} in its sleep.
 3. Go back the way you came.
-> """, ["1", "2"])
+> """, ["1", "2", "3"])
 			if choice == "1":
 				agility_roll = random.randrange(1, 101)
 				if agility_roll <= (80 + ability.ability["agility"]):
@@ -781,9 +780,9 @@ f"You find nothing of interest, and turn to leave. But you find yourself cut off
 	"You hear a shout and turn. The man is running towards you, shouting and waving his hands. Suddenly, you feel something slimy wrap around your ankle."])
 						agility_roll = random.randrange(1, 9)
 						if agility_roll <= ability.ability["agility"]:
-							print_stuff(["Twist out of the grasping thing and roll onto shore. The man grabs your wrists and hauls you onto dry land, grunting with the effort."])
+							print_stuff([f"You are {colour_it('agile', Color.AGILITY)} enough to twist out of the grasping thing and roll onto shore. The man grabs your wrists and hauls you onto dry land, grunting with the effort."])
 						else:
-							print_stuff(["You are unable to escape the grip and you feel yourself being dragged under. Your head disappears under the black waters, never to emerge again."])
+							print_stuff([f"You are not {colour_it('agile', Color.AGILITY)} enough to escape the grip and you feel yourself being dragged under. Your head disappears under the black waters, never to emerge again."])
 							exit()
 						print_stuff([""""You ploughing idiot!" the man growls. "What were you thinking jumping in the lake? Eels swim there." """])
 						reply = input_stuff("""1. "Thank you."
@@ -843,8 +842,39 @@ f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 	print_stuff(["You walk down the tunnel with a sparkling crystal floor. Some parts of the floor stick up at strange angles and crunch beneath your boots.",
 "A turn in the tunnel leads you out to a narrow expanse. It seems like a small straight tunnel. Before you are two rows of five tiles, each with a picture.",
 "Each slab looks like a pressure plate, and you see circular cranies in the rock next to each row of plates. The plates are flush with each other."])
-	plate1 = input_stuff("""1. Step onto the picture of a dog.
+	while True:
+		plate1 = input_stuff("""1. Step onto the picture of a dog.
 2. Step onto the picture of a snake.
 > """, ["1", "2"])
+		if plate1 == "2":
+			print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+			plate2 = input_stuff("""1. Step onto the picture of a lion.
+2. Step onto the picture of a cat.
+> """, ["1", "2"])
+			if plate2 == "1":
+				print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+				plate3 = input_stuff("""1. Step onto the picture of a dragon.
+2. Step onto the picture of a unicorn.
+> """, ["1", "2"])
+				if plate3 == "1":
+					print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+					plate4 = input_stuff("""1. Step onto the picture of a sheep.
+2. Step onto the picture of a wolf.
+> """, ["1", "2"])
+					if plate4 == "2":
+						print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+						plate5 = input_stuff("""1. Step onto the picture of a vulture.
+2. Step onto the picture of a sparrow.
+> """, ["1", "2"])
+						if plate5 == "1":
+							print_stuff("""You step onto the last plate and quickly jump off to the other side.""")
+							break
+		print_stuff(["As you step onto the plate, it gives way and clicks. A jet of flame comes out of one of the round holes beside you.",
+"You stumble back to the start, cursing at your burns."])
+		damage = random.randrange(1,6)
+		print_stuff([f"You took {damage} damage!"])
+		if ability.ability["health"] <= 0:
+			print_stuff(["Your burns are serious. Suddenly, you body goes weak and you crash to the ground, even as the world goes dark around you."])
+			exit()
 
 

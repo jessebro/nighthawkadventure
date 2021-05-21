@@ -14,7 +14,7 @@ monster_entries = {
 
 def show_characters(characters):
 	for character in characters:
-		print_stuff(character_entries[character])
+		print(character_entries[character])
 
 
 def show_monsters(monsters):
