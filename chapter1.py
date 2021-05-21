@@ -895,4 +895,8 @@ f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 			exit()
 	print_stuff(["As you turn the knob clockwise, you hear a small click, followed by a tremendous grating sound. You look up and see that the flat wall is sliding away.",
 "As the wall completely moves aside, you see a large cavern. It's beautiful, covered by flowers, mushrooms, and even a few small trees.",
-"A hole far up in the ceiling lets slants of sunlight fall through. Milling around this cavern are"])
+"A hole far up in the ceiling lets slants of sunlight fall through. Milling around this cavern are women dressed similarly to the corpse you found.",
+"As the rock slides away, the grating sound alerts the women. Before you can even think, they are upon you. Two grab your arms and there are angry shouts.",
+"You see one of them approach you. She is different from the others; her sword has a golden pommel, her clothes are lined with silver.",
+"Her hair is not covered by a veil, unlike the others. She examined you for a second, then waves her hand.",
+f""""Take {character.character['titles']['him']}," she says. One of the women cracks you over the head, and everythings goes black."""])
