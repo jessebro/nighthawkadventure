@@ -29,7 +29,7 @@ class Color(Enum):
 
 	QUEST = '\033[93m'     # YELLOW
 	ENEMY = '\033[31m'     # RED
-	NPC = '\033[92m'       # GREEN
+	NPC = '\033[92m'       # GREEN2
 	CHECK = '\033[34m'     # BLUE
 	PLACE = '\033[35m'     # PURPLE
 	FUNCTION = '\033[36m'  # CYAN

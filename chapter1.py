@@ -375,11 +375,11 @@ def ascent():
 "Finally, after an hour of scrambling over boulders, you have had enough. You throw down your pack and take out some of your supplies.",
 "Your intention is to take a quick rest before continuing."])
 	rest.rest()
-	print_stuff(["As your making your way up the mountain, your foot finds a patch of loose gravel. You feet the ground slide out from under you.",
+	print_stuff(["As your making your way up the mountain, your foot finds a patch of loose gravel. You feel the ground slide out from under you.",
 "Desperately, you try to jump to safety."])
 	agility_roll = random.randrange(1,9)
 	if agility_roll <= ability.ability["agility"]:
-		print_stuff(["You fall, but hit the ground in a roll. You are agile enough to roll to you feet and avoid the tumbling gravel."])
+		print_stuff(["You fall, but hit the ground in a roll. You are agile enough to roll to your feet and avoid the tumbling gravel."])
 	else:
 		print_stuff(["You slip and fall. You try to roll back to your feet, but you are not agile enough.",
 "You tumble down the side of the mountain, but somehow avoid serious harm. Suddenly, you find yourself lying on the ground.",
@@ -547,7 +547,7 @@ f"""{colour_it("You regained all lost health!", Color.FUNCTION)}""",
 2. Leave the cabin.
 > """, ["1", "2"])
 			if action == "1":
-				print_stuff("You quickly scribble down your thanks to Denvar for his hospitality, then step outside the cabin.")
+				print_stuff(["You quickly scribble down your thanks to Denvar for his hospitality, then step outside the cabin."])
 			print_stuff(["Today, the sky is overcast, the wind colder and stronger than before. Rain is coming.",
 "Wanting to be off the mountain before the rain starts, you make haste up the side of the mountain."])
 			break
