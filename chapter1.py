@@ -876,5 +876,23 @@ f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 		if ability.ability["health"] <= 0:
 			print_stuff(["Your burns are serious. Suddenly, you body goes weak and you crash to the ground, even as the world goes dark around you."])
 			exit()
-
-
+	print_stuff(["The tunnel continues for a while longer, then ends suddenly in a round room with a flat opposite wall. Sitting the middle of the room is a chest.",
+"The chest is heavily decorated and has golden lining. Unlike a normal chest, this one has a doorknob on its lid. The room is lit by a blazing brazier.",
+"You approach the chest, and place your hand on the doorknob."])
+	choice = input_stuff("""1. Turn it clockwise.
+2. Turn it counterclockwise.
+> """, ["1", "2"])
+	if choice == "2":
+		print_stuff(["You turn the knob counterclockwise, and there's a click. Before you can react, a spray spores bursts from the lip of the lid."])
+		endurance_roll = random.randrange(1,9)
+		if endurance_roll <= ability.ability["endurance"]:
+			print_stuff([f"You {colour_it('endure'), Color.ENDURANCE} the spores, holding your breath before you suck any in.",
+"This time, you try turning the knob the other way."])
+		else:
+			print_stuff([f"You cannot {colour_it('endure'), Color.ENDURANCE} the spores, and hold you breath too late.",
+"As the spores enter your body, you feel a stiffening sensation in your body, escpecially your lungs. Then you collapse, all feeling lost.",
+"Then everything goes dark. The spores are lethal, and you have no antidode to their poison."])
+			exit()
+	print_stuff(["As you turn the knob clockwise, you hear a small click, followed by a tremendous grating sound. You look up and see that the flat wall is sliding away.",
+"As the wall completely moves aside, you see a large cavern. It's beautiful, covered by flowers, mushrooms, and even a few small trees.",
+"A hole far up in the ceiling lets slants of sunlight fall through. Milling around this cavern are"])
