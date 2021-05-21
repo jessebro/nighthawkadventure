@@ -27,12 +27,12 @@ ability = {
 def get_ability():
 	ability_samples = [0, 0, 0, 0, 0]
 	random_assign = [7, 6, 5, 5, 4]
-	print("""Next, determine your statistics. There are five abilities.
-	Strength determines your ability to fight, lift things and break things
-	Agility determines your ability to run away, dodge and your chance to make an extra attack
-	Awareness determines your ability to detect lies, notice things and identify things
-	Endurance determines your ability to withstand pain, hold your breath and determines your health points.
-	Persona determines your ability to persuade and interact with people to get what you want.
+	print(f"""Next, determine your statistics. There are five abilities.
+	{colour_it("Strength", Color.RED)} determines your ability to fight, lift things and break things
+	{colour_it("Agility", Color.GREEN)} determines your ability to run away, dodge and your chance to make an extra attack
+	{colour_it("Awareness", Color.BLUE)} determines your ability to detect lies, notice things and identify things
+	{colour_it("Endurance", Color.YELLOW)} determines your ability to withstand pain, hold your breath and determines your health points.
+	{colour_it("Persona", Color.PURPLE)} determines your ability to persuade and interact with people to get what you want.
 One by one, type in a number for each stat.
 The total must not exceed 27, and no individual stat can be less than 1 or greater than 10.""")
 	decide = input("""1. Select abilities manually.
@@ -40,10 +40,10 @@ The total must not exceed 27, and no individual stat can be less than 1 or great
 > """)
 	if decide == "1":
 		ability_choice = " "
-		ability_samples[0] = int(input("Strength: "))
-		ability_samples[1] = int(input("Agility: "))
-		ability_samples[2] = int(input("Awareness: "))
-		ability_samples[3] = int(input("Endurance: "))
+		ability_samples[0] = int(input(f"{colour_it('Strength', Color.STRENGTH)}: "))
+		ability_samples[1] = int(input(f"{colour_it('Agility', Color.AGILITY)}: "))
+		ability_samples[2] = int(input(f"{colour_it('Awareness', Color.AWARENESS)}: "))
+		ability_samples[3] = int(input(f"{colour_it('Endurance', Color.ENDURANCE)}: "))
 		ability_samples[4] = 27 - (ability_samples[0] + ability_samples[1] + ability_samples[2] + ability_samples[3])
 
 		powercheck = True in (ele > 10 for ele in ability_samples)
@@ -66,11 +66,11 @@ The total must not exceed 27, and no individual stat can be less than 1 or great
 
 		else:
 			ability_choice = input(f"""Your ability scores are:
-	Strength: {ability_samples[0]}
-	Agility: {ability_samples[1]}
-	Awareness: {ability_samples[2]}
-	Endurance: {ability_samples[3]}
-	Persona: {ability_samples[4]}
+	{colour_it("Strength", Color.STRENGTH)}: {ability_samples[0]}
+	{colour_it("Agility", Color.AGILITY)}: {ability_samples[1]}
+	{colour_it("Awareness", Color.AWARENESS)}: {ability_samples[2]}
+	{colour_it("Endurance", Color.ENDURANCE)}: {ability_samples[3]}
+	{colour_it("Persona", Color.PERSONA)}: {ability_samples[4]}
 			
 Do you want these to be your ability scores? y/n
 > """)
@@ -88,11 +88,11 @@ Do you want these to be your ability scores? y/n
 	else:
 		random.shuffle(random_assign)
 		ability_choice = input(f"""Your ability scores are:
-	Strength: {random_assign[0]}
-	Agility: {random_assign[1]}
-	Awareness: {random_assign[2]}
-	Endurance: {random_assign[3]}
-	Persona: {random_assign[4]}
+	{colour_it("Strength", Color.STRENGTH)}: {random_assign[0]}
+	{colour_it("Agility", Color.AGILITY)}: {random_assign[1]}
+	{colour_it("Awareness", Color.AWARENESS)}: {random_assign[2]}
+	{colour_it("Endurance", Color.ENDURANCE)}: {random_assign[3]}
+	{colour_it("Persona", Color.PERSONA)}: {random_assign[4]}
 
 Do you want these to be your ability scores? y/n
 > """)
@@ -135,12 +135,12 @@ def level_up(levels):
 	ability['xp'] %= 100
 	counter = 0
 	while counter < levels:
-		print("""Which ability do you want to increase?
-1. Strength
-2. Agility
-3. Awareness
-4. Endurance
-5. Persona""")
+		print(f"""Which ability do you want to increase?
+1. {colour_it("Strength", Color.STRENGTH)}
+2. {colour_it("Agility", Color.AGILITY)}
+3. {colour_it("Awareness", Color.AWARENESS)}
+4. {colour_it("Endurance", Color.ENDURANCE)}
+5. {colour_it("Persona", Color.PERSONA)}""")
 		ability_boost = int(input_stuff('> ', ["1", "2", "3", "4", "5"]))
 		choices = ["strength", "agility", "awareness", "endurance", "persona"]
 		choice = choices[(ability_boost - 1)]

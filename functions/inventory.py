@@ -2,7 +2,9 @@ from functions import ability
 from functions import character
 from functions import equipment
 from functions import weapon
-
+from functions.utils import input_stuff
+from functions.utils import colour_it
+from functions.utils import Color
 
 def show():
 	menu = input(f"""
@@ -24,11 +26,11 @@ def show():
 	if menu == "1":
 		leave1 = input(f"""
 Your stats are:
-		Strength {ability.ability["strength"]}
-		Agility {ability.ability["agility"]}
-		Awareness {ability.ability["awareness"]}
-		Endurance {ability.ability["endurance"]}
-		Persona {ability.ability["persona"]}
+		{colour_it('Strength', Color.STRENGTH)} {ability.ability["strength"]}
+		{colour_it('Agility', Color.AGILITY)} {ability.ability["agility"]}
+		{colour_it('Awareness', Color.AWARENESS)} {ability.ability["awareness"]}
+		{colour_it('Endurance', Color.ENDURANCE)} {ability.ability["endurance"]}
+		{colour_it('Persona', Color.PERSONA)} {ability.ability["persona"]}
 
 	Enter 'b' to go back
 > """)

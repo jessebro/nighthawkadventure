@@ -27,6 +27,12 @@ class Color(Enum):
 	RESET = '\033[0m'
 	BOLD = '\33[1m'
 
+	STRENGTH = '\033[31m'
+	AGILITY = '\033[93m'
+	AWARENESS = '\033[34m'
+	ENDURANCE = '\033[92m'
+	PERSONA = '\033[35m'
+
 	QUEST = '\033[93m'     # YELLOW
 	ENEMY = '\033[31m'     # RED
 	NPC = '\033[92m'       # GREEN2
