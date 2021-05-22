@@ -86,7 +86,7 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 			equipment.equipment["gold"] = 0
 			ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
-story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave"]
+story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave", "chapter2.beginning"]
 position = boot()
 if position in story:
 	idx = story.index(position)
