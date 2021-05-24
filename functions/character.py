@@ -17,7 +17,18 @@ character = {
 
 story = {
 	"hag_lair": False,
-	"eladris": True
+	"eladris": {
+		"exists": True,
+		"knows_name": False
+	},
+	"denvar": {
+		"exists": False,
+		"knows_name": False
+	},
+	"tamara": {
+		"name_known": "the woman",
+		"knows_name": False
+	}
 
 }
 

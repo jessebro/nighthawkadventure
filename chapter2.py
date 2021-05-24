@@ -42,3 +42,55 @@ f"These must be {micha} and {elfa}, the baron's children. You also realise that 
 3. "What's the escape plan?"
 4. {quest}
 > """, ["1", "2", "3", "4"])
+			if question == "1":
+				print_stuff([f"""{micha} shakes his head. "I don't have a clue," he says. "{elfa} and I were treasure hunting." """,
+""""Found this cavern, but soon after us, these women came. They took us prisoner and began to search the place, gathering all the treasures they found." """,
+f""""I asked them who they were and why they were here, but got no response. {elfa} insisted that they talked to her and..." He breaks of suddenly and swallows. """])
+			elif question == "2":
+				print_stuff([""""Treasure hunting, as father no doubt told you. There were tales of treasure, but all it has brought me is misery." """])
+			elif question == "3":
+				print_stuff([f""""There is none. I've tried many things, but nothing has yielded anything resembling success." {micha} sighs sadly.""",
+f""""{elfa} would have figured something out," he murmurs. He turns his head away."""])
+				choice = input_stuff("""1. "I'm sorry for your loss." 
+2. "Toughen up. There's nothing you can do for her."
+3. Say nothing. 
+> """, ["1", "2", "3"])
+				if choice == "1":
+					print_stuff([f"""{micha} nods. "I'm sorry too. I shouldn't let my grief dampen both of our spirits." """])
+				elif choice == "2":
+					print_stuff([f"""{micha} glares at you. "If you had any loved ones to lose, you wouldn't be saying that," he snaps. """])
+			elif question == "4":
+				print_stuff([f"""{micha} smiles weakly and closes his eyes. "I trust you, whoever you are," he says softly. Suddenly, he gives a start and looks over your shoulder. """])
+				break
+	print_stuff(["One of the women approach you know. But there is something different about this one."])
+	awareness_roll = random.randrange(1, 7)
+	if awareness_roll <= ability.ability["awareness"]:
+		print_stuff([f"You are {colour_it('aware', Color.AWARENESS)} enough to notice that her eyes are darting, and she looks nervous."])
+	else:
+		print_stuff([f"You are not {colour_it('aware', Color.AWARENESS)} enough to figure out the discrepancy."])
+	print_stuff(["The woman approaches the locked door, and pulls a key from the leg of her tights. Looking around cautiously, she begins to unlock the cage.",
+f"At this, {micha} moves forwards and opens his mouth to speak, but the woman pushes a finger to her lips. Slowly, the cage door opens.",
+f"She pulls two backpacks from behind a rock, one of them you recognise as yours. She tosses it to you, and throws the other to {micha}.",
+f""""We must leave this place," she says quietly. "Swiftly now!" """])
+	choice = input_stuff("""1. Follow the woman.
+2. Stay where you are.
+> """, ["1", "2"])
+	if choice == "2":
+		print_stuff([f"You stay put as {micha} and the woman run silently from the cavern. It is not long before some of the strangely dressed women find you.",
+"Furious at your escape, they attack without mercy. You are beaten down by a barrage of blows, with far too many opponents and no time to react."])
+		exit()
+	print_stuff([f"You run silently beside {micha} and behind the woman. She leads you through the cavern, mirroring the route you took. Within minutes, you are under the open sky.",
+f""""We must get off the mountain," says the woman rapidly. She looks between both you and {micha}. "Do either of you have a quick way of descending?" """
+f"""{micha} shakes his head, and the woman turns to you."""])
+	while True:
+		if character.story["denvar"]["exists"]:
+			choice = input_stuff("""1. "Unfortunately not." 
+	2. "Slow down. Who are you?"
+	3. "No, but I know a man named Denvar who may help us." 
+	> """, ["1", "2", "3"])
+		else:
+			choice = input_stuff("""1. "Unfortunately not." 
+	2. "Slow down. Who are you?" 
+	> """, ["1", "2"])
+
+

@@ -447,6 +447,7 @@ f""""Before you answer, allow me to introduce myself. I'm {denvar}. Who are you?
 2. "..."
 > """, ["1", "2"])
 			if reply == "1":
+				character.story["denvar"]["knows_name"] = True
 				print_stuff([f"""{denvar} smiles. "So, {character.character['firstname']}, I have some questions for you." """])
 			elif reply == "2":
 				print_stuff([f"""{denvar} shrugs. "Fine, suit yourself. But I still have some questions for you. Answer them at least." """])
@@ -475,6 +476,7 @@ f""""Before you answer, allow me to introduce myself. I'm {denvar}. Who are you?
 			print_stuff([f"""{denvar} thinks for a bit, then nods his head. """,
 """"I think that's all the questions I have," he says. "Now I'll let you ask me some." """])
 			while True:
+				character.story["denvar"]["exists"] = True
 				quest = colour_it(""""I'm going to get some rest. Can I stay here?" """, Color.QUEST)
 				if character.story["hag_lair"] == True:
 					question = input_stuff(f"""1. "Who are you exactly?" 
