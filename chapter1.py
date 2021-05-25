@@ -635,79 +635,59 @@ f"It has razor sharp teeth, claws, and for its size is extremely fast. The {mora
 			print_stuff(["You wrap the necklace around you neck. Suddenly, you feel a strange heaviness in your legs.",
 "Your agility has been decreased by 1!",
 "Unaware that the effect is due to the necklace, you turn around and go back the way you came."])
-		print_stuff(["You go down the right tunnel. Along the way, you come across the corpse of a woman. You frown at her strange garments.",
-"She has an exposed cleavage, thigh length leggings and a shirt with sleeves that barely reach her elbows.",
+	print_stuff(["You go down the right tunnel. Along the way, you come across the corpse of a woman. You frown at her strange garments.",
+"She has an exposed midriff, thigh length leggings and a shirt with sleeves that barely reach her elbows.",
 "Her clothes remind you somewhat of Zecherian dancers, but her skin is not sun browned. Lying still clutched in her hand is a curved sword."])
-		while True:
-			choice = input_stuff("""1. Loot the corpse.
+	while True:
+		choice = input_stuff("""1. Loot the corpse.
 2. Examine her wounds.
 3. Step away.
 > """, ["1", "2", "3"])
-			if choice == "1" and loot == False:
-				equipment.equipment["gold"] += 7
-				equipment.equipment["potions"] += 1
-				potion = colour_it("potion", Color.LOOT)
-				print_stuff([f"A search of her body yields 7 gold coins and a healing {potion}."])
-				loot = True
-			elif choice == "2":
-				print_stuff(["You noticed that her ribs have been broken and she has large bruises. She was bludgeoned to death.",
+		if choice == "1" and loot == False:
+			equipment.equipment["gold"] += 7
+			equipment.equipment["potions"] += 1
+			potion = colour_it("potion", Color.LOOT)
+			print_stuff([f"A search of her body yields 7 gold coins and a healing {potion}."])
+			loot = True
+		elif choice == "2":
+			print_stuff(["You noticed that her ribs have been broken and she has large bruises. She was bludgeoned to death.",
 f"Nearby, you notice some large footprints. You realise an {ogre} could be nearby."])
-			elif choice == "3":
-				break
-		print_stuff(["You step away from the woman's remains and continue along the tunnel. You come across yet another junction."])
-		choice = input_stuff("""1. Continue straight ahead.
+		elif choice == "3":
+			break
+	print_stuff(["You step away from the woman's remains and continue along the tunnel. You come across yet another junction."])
+	choice = input_stuff("""1. Continue straight ahead.
 2. Turn left.
 > """, ["1", "2"])
-		if choice == "1":
-			print_stuff(["You continue to walk straight ahead. After a minute of walking, a foul smell hits your nose.",
+	if choice == "1":
+		print_stuff(["You continue to walk straight ahead. After a minute of walking, a foul smell hits your nose.",
 "You round a bend and come into a large cavern. There you find the source of the stench.",
 "A large humanoid creature with baggy, fatty skin, piggy eyes and a flat face lies asleep, scratching its belly in a dream.",
 "It smells pungent, and you see a bit of blood on the creature's knuckles. Clearly it has killed recently.",
 f"The creature is an {ogre}, no doubt. This cavern is lit by a large bonfire. You see a chest on the other end of the cavern."])
-			input_stuff(f"""1. {colour_it("Attempt to sneak in to loot the chest without being detected", Color.AGILITY)}.
+		input_stuff(f"""1. {colour_it("Attempt to sneak in to loot the chest without being detected", Color.AGILITY)}.
 2. Attack the {ogre} in its sleep.
 3. Go back the way you came.
 > """, ["1", "2", "3"])
-			if choice == "1":
-				agility_roll = random.randrange(1, 101)
-				if agility_roll <= (80 + ability.ability["agility"]):
-					equipment.equipment["gold"] += 75
-					equipment.equipment["knives"] += 3
-					equipment.equipment["oils"] += 2
-					equipment.equipment["smoke bombs"] += 1
-					knives = colour_it("knives", Color.LOOT)
-					oil = colour_it("oil", Color.LOOT)
-					smoke_bomb = colour_it("smoke bomb", Color.LOOT)
-					print_stuff([f"You manage to traverse the floor without waking the {ogre}. You carefully open the chest and peer inside. You gasp with what you see",
+		if choice == "1":
+			agility_roll = random.randrange(1, 101)
+			if agility_roll <= (80 + ability.ability["agility"]):
+				equipment.equipment["gold"] += 75
+				equipment.equipment["knives"] += 3
+				equipment.equipment["oils"] += 2
+				equipment.equipment["smoke bombs"] += 1
+				knives = colour_it("knives", Color.LOOT)
+				oil = colour_it("oil", Color.LOOT)
+				smoke_bomb = colour_it("smoke bomb", Color.LOOT)
+				print_stuff([f"You manage to traverse the floor without waking the {ogre}. You carefully open the chest and peer inside. You gasp with what you see",
 f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
 f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
-					ability.gain_xp(encounters.xp_handouts["small"])
-					print_stuff(["Satisfied, you leave the cavern and take the other route."])
-				else:
-					print_stuff(["You are not careful enough, and you kick a stone, which clatters across the floor with alarming loudness.",
+				ability.gain_xp(encounters.xp_handouts["small"])
+				print_stuff(["Satisfied, you leave the cavern and take the other route."])
+			else:
+				print_stuff(["You are not careful enough, and you kick a stone, which clatters across the floor with alarming loudness.",
 f"The {ogre} wakes with a roar and looks around, sees you and jumps to its feet. Growling with anger, it charges."])
-					enemy_round.initialize([encounters.monster_access("ogre")])
-					if post_combat.victory == False:
-						print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
-						exit()
-					equipment.equipment["gold"] += 75
-					equipment.equipment["knives"] += 3
-					equipment.equipment["oils"] += 2
-					equipment.equipment["smoke bombs"] += 1
-					knives = colour_it("knives", Color.LOOT)
-					oil = colour_it("oil", Color.LOOT)
-					smoke_bomb = colour_it("smoke bomb", Color.LOOT)
-					print_stuff([f"You step away from the {ogre}'s corpse, and carefully open the chest. You gasp with what you see",
-f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
-f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
-"You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
-					ability.gain_xp(encounters.xp_handouts["small"])
-					print_stuff(["Satisfied, you leave the cavern and take the other route."])
-			elif choice == "2":
-				print_stuff([f"You rush forwards and slash the {ogre} as it sleeps. Though it doesn't die, it roars with a howl of pain.",
-"Growling with anger, it turns to face you. It springs to its feet and rushes forwards, hands outstretched, teeth bared."])
-				enemy_round.initialize([encounters.monster_access("injured ogre")])
+				enemy_round.initialize([encounters.monster_access("ogre")])
 				if post_combat.victory == False:
 					print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
 					exit()
@@ -724,123 +704,143 @@ f"You take the gold coins, and also find three throwing {knives}, two vials of s
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
 				ability.gain_xp(encounters.xp_handouts["small"])
 				print_stuff(["Satisfied, you leave the cavern and take the other route."])
-		print_stuff(["You take the left path, and you follow it without incident. Suddenly, the tunnel gets darker.",
+		elif choice == "2":
+			print_stuff([f"You rush forwards and slash the {ogre} as it sleeps. Though it doesn't die, it roars with a howl of pain.",
+"Growling with anger, it turns to face you. It springs to its feet and rushes forwards, hands outstretched, teeth bared."])
+			enemy_round.initialize([encounters.monster_access("injured ogre")])
+			if post_combat.victory == False:
+				print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
+				exit()
+			equipment.equipment["gold"] += 75
+			equipment.equipment["knives"] += 3
+			equipment.equipment["oils"] += 2
+			equipment.equipment["smoke bombs"] += 1
+			knives = colour_it("knives", Color.LOOT)
+			oil = colour_it("oil", Color.LOOT)
+			smoke_bomb = colour_it("smoke bomb", Color.LOOT)
+			print_stuff([f"You step away from the {ogre}'s corpse, and carefully open the chest. You gasp with what you see",
+f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
+f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
+"You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
+			ability.gain_xp(encounters.xp_handouts["small"])
+			print_stuff(["Satisfied, you leave the cavern and take the other route."])
+	print_stuff(["You take the left path, and you follow it without incident. Suddenly, the tunnel gets darker.",
 "Ahead, you see a glowing blue light. You continue on for a bit and see that the tunnel leads in four directions.",
 "Each path has a different floor. You cannot see far down an individual path. The blue light comes from one of the tunnels, which is full of glowing blue mushrooms."])
-		while True:
-			path = input_stuff("""1. Go down the path carpeted by red fungus.
+	while True:
+		path = input_stuff("""1. Go down the path carpeted by red fungus.
 2. Go down the path with a flickering crystal floor.
 3. Go down the path bordered by glowing blue mushrooms.
 4. Go down the path full of fire flies.
 > """, ["1", "2", "3", "4"])
-			if path == "1":
-				print_stuff(["You walk down the path for a while, the red fungus squelching under your boots. Then you reach a dead end.",
-	"At the end of the tunnel lies a man's corpse. Red fungus is sprouting from his mouth, nose, ears and the corners of his eyes."])
-				choice = input_stuff("""1. Loot the corpse.
+		if path == "1":
+			print_stuff(["You walk down the path for a while, the red fungus squelching under your boots. Then you reach a dead end.",
+"At the end of the tunnel lies a man's corpse. Red fungus is sprouting from his mouth, nose, ears and the corners of his eyes."])
+			choice = input_stuff("""1. Loot the corpse.
 2. Go back.
 > """, ["1", "2"])
-				if choice == "1":
-					print_stuff(["You lower yourself down to search the body. As you do, your hand brushes some of the fungus.",
+			if choice == "1":
+				print_stuff(["You lower yourself down to search the body. As you do, your hand brushes some of the fungus.",
 "Suddenly, it feels as if your hand is on fire. You jump to your feet, and before your eyes you see red fungus start sprouting from you hand."])
-					choice = input_stuff("""1. Try to burn the fungus of.
+				choice = input_stuff("""1. Try to burn the fungus of.
 2. Scrape the fungus off with your knife.
 > """, ["1", "2"])
-					if choice == "1":
-						print_stuff(["You quickly light a torch and hold your hand over the flame. With horror, you see the fungus begin to spread up your arm.",
+				if choice == "1":
+					print_stuff(["You quickly light a torch and hold your hand over the flame. With horror, you see the fungus begin to spread up your arm.",
 "But the fire seems to do the trick. Though it's agony to hold your hand over the open flame, the fungus begins to wither and die, dropping off like dried mud.",
 "Not wishing to stay in the cave any longer, you turn back."])
-					else:
-						print_stuff(["You scrape the fungus off with your sword, but new fungus sprouts up. With horror, you see the fungus begin to spread up your arm.",
+				else:
+					print_stuff(["You scrape the fungus off with your sword, but new fungus sprouts up. With horror, you see the fungus begin to spread up your arm.",
 "Then the fungus spreads into your torso, and you feel spasms of agony wrench your body back and forth. Then you black out, never you wake up again."])
-						exit()
-			elif path == "2":
-				break
-			elif path == "3":
-				print_stuff(["You walk down the cave full of blue mushrooms. The air here is cooler than anywhere else in the cave system. The silence is palpable.",
+					exit()
+		elif path == "2":
+			break
+		elif path == "3":
+			print_stuff(["You walk down the cave full of blue mushrooms. The air here is cooler than anywhere else in the cave system. The silence is palpable.",
 "The cave ends suddenly, and grave lies at the end. You peer at the grave, but it is in a strange language you don't understand.",
 f"You find nothing of interest, and turn to leave. But you find yourself cut off by a group of three {wolves}. Clearly you have trespassed on their territory.",
 "They snarl at you and lunge forwards, teeth bared. You jump aside at the last second, drawing your sword."])
-				enemies = [encounters.monster_access("wolf"), encounters.monster_access("wolf"), encounters.monster_access("wolf")]
-				enemy_round.initialize(enemies)
-				if post_combat.victory == False:
-					print_stuff([f"These {wolves} live deep in a cave don't get much food. They are grateful for your entrance."])
-					exit()
-				print_stuff(["Panting for breath after the fight, you walk back the way you came."])
-			elif path == "4":
-				print_stuff(["You walk into the cave full of fireflies. The orange pinpoints of light part as you walk forwards, making way for you.",
+			enemies = [encounters.monster_access("wolf"), encounters.monster_access("wolf"), encounters.monster_access("wolf")]
+			enemy_round.initialize(enemies)
+			if post_combat.victory == False:
+				print_stuff([f"These {wolves} live deep in a cave don't get much food. They are grateful for your entrance."])
+				exit()
+			print_stuff(["Panting for breath after the fight, you walk back the way you came."])
+		elif path == "4":
+			print_stuff(["You walk into the cave full of fireflies. The orange pinpoints of light part as you walk forwards, making way for you.",
 "As you walk down the cave, you see it expands into a large underground lake with a soaring ceiling. More surprising, you see a man hunched over a campfire."])
-				choice = input_stuff("""1. Approach the man.
+			choice = input_stuff("""1. Approach the man.
 2. Jump in the lake.
 3. Go back the way to you came.
 > """, ["1", "2", "3"])
-				while True:
-					if choice == "1":
-						print_stuff(["""You approach the man and he turns to face you. "Greetings!" he says merrily. "Take a seat." """,
-	"""You sit down and he grins toothily at you. "I don't get many visitors here," he says. "Please, stay a while and rest." """])
-					elif choice == "2":
-						print_stuff(["You jump in the lake. It is deeper than you thought, and the black waters swirl up to your neck.",
-	"You hear a shout and turn. The man is running towards you, shouting and waving his hands. Suddenly, you feel something slimy wrap around your ankle."])
-						agility_roll = random.randrange(1, 9)
-						if agility_roll <= ability.ability["agility"]:
-							print_stuff([f"You are {colour_it('agile', Color.AGILITY)} enough to twist out of the grasping thing and roll onto shore. The man grabs your wrists and hauls you onto dry land, grunting with the effort."])
-						else:
-							print_stuff([f"You are not {colour_it('agile', Color.AGILITY)} enough to escape the grip and you feel yourself being dragged under. Your head disappears under the black waters, never to emerge again."])
-							exit()
-						print_stuff([""""You ploughing idiot!" the man growls. "What were you thinking jumping in the lake? Eels swim there." """])
-						reply = input_stuff("""1. "Thank you."
+			while True:
+				if choice == "1":
+					print_stuff(["""You approach the man and he turns to face you. "Greetings!" he says merrily. "Take a seat." """,
+"""You sit down and he grins toothily at you. "I don't get many visitors here," he says. "Please, stay a while and rest." """])
+				elif choice == "2":
+					print_stuff(["You jump in the lake. It is deeper than you thought, and the black waters swirl up to your neck.",
+"You hear a shout and turn. The man is running towards you, shouting and waving his hands. Suddenly, you feel something slimy wrap around your ankle."])
+					agility_roll = random.randrange(1, 9)
+					if agility_roll <= ability.ability["agility"]:
+						print_stuff([f"You are {colour_it('agile', Color.AGILITY)} enough to twist out of the grasping thing and roll onto shore. The man grabs your wrists and hauls you onto dry land, grunting with the effort."])
+					else:
+						print_stuff([f"You are not {colour_it('agile', Color.AGILITY)} enough to escape the grip and you feel yourself being dragged under. Your head disappears under the black waters, never to emerge again."])
+						exit()
+					print_stuff([""""You ploughing idiot!" the man growls. "What were you thinking jumping in the lake? Eels swim there." """])
+					reply = input_stuff("""1. "Thank you."
 2. "Eels?" 
 3. "I'm not in the mood to be lectured." 
 > """, ["1", "2", "3"])
-						if reply == "1":
-							print_stuff([""""Your welcome, just don't do anything like that again." """])
-						elif reply == "2":
-							print_stuff(["""The man waves his hand. "Something like that," he says. "Not many who get grabbed by them live to tell the tale." """])
-						elif reply == "3":
-							print_stuff([f""""I saved your arse, {character.character['titles']['casual']}," the man grumbles. "A little gratitude would be appreciated." """])
-						print_stuff(["The man grasps your arm and pulls you over to his campfire. He none too gently drags you to sit beside him."])
-					else:
-						break
-					print_stuff(["The man pours a cup of some sort of herbal tea into a cup and hands it to you. You take a sip and it tastes good enough.",
+					if reply == "1":
+						print_stuff([""""Your welcome, just don't do anything like that again." """])
+					elif reply == "2":
+						print_stuff(["""The man waves his hand. "Something like that," he says. "Not many who get grabbed by them live to tell the tale." """])
+					elif reply == "3":
+						print_stuff([f""""I saved your arse, {character.character['titles']['casual']}," the man grumbles. "A little gratitude would be appreciated." """])
+					print_stuff(["The man grasps your arm and pulls you over to his campfire. He none too gently drags you to sit beside him."])
+				else:
+					break
+				print_stuff(["The man pours a cup of some sort of herbal tea into a cup and hands it to you. You take a sip and it tastes good enough.",
 f""""I'm {alvyn}. I come into this cave for peace and quiet. Who are you?" """])
-					reply = input_stuff(f"""1. "They call me {character.character["firstname"]}."
+				reply = input_stuff(f"""1. "They call me {character.character["firstname"]}."
 2. "I don't share my name with strangers." 
 > """, ["1", "2"])
-					if reply == "1":
-						print_stuff([f""""So, {character.character["firstname"]}, bless me with conversation." """])
-					if reply == "2":
-						print_stuff([""""A paranoid loner, eh? Well, keep your secrets. But do bless me with some conversation." """])
-					while True:
-						quest = colour_it(""""I think I'll leave now. Thank you for the tea." """, Color.QUEST)
-						question = input_stuff(f"""1. "Who are you?" 
+				if reply == "1":
+					print_stuff([f""""So, {character.character["firstname"]}, bless me with conversation." """])
+				if reply == "2":
+					print_stuff([""""A paranoid loner, eh? Well, keep your secrets. But do bless me with some conversation." """])
+				while True:
+					quest = colour_it(""""I think I'll leave now. Thank you for the tea." """, Color.QUEST)
+					question = input_stuff(f"""1. "Who are you?" 
 2. "Have you seen a man and a woman pass through here, about sixteen years old?" 
 3. "How did you manage to get through the monsters?"
 4. "What do you like about this cave?"
 5. {quest}
 > """, ["1", "2", "3", "4", "5"])
-						if question == "1":
-							print_stuff([f"""{alvyn} grins. "I'm simply a man who likes nature more than towns. In society I'm poor, but in spirit..." """,
+					if question == "1":
+						print_stuff([f"""{alvyn} grins. "I'm simply a man who likes nature more than towns. In society I'm poor, but in spirit..." """,
 f"""{alvyn} trails off. "I'm happy. I love the world, and the natural beauty of caves. Spelunking is a hobby of mine." """,])
-						elif question == "2":
-							print_stuff([f"""{alvyn} frowns. "Yes, they came through. Stopped by my fire just as you are doing. They said they were treasure hunting." """,
+					elif question == "2":
+						print_stuff([f"""{alvyn} frowns. "Yes, they came through. Stopped by my fire just as you are doing. They said they were treasure hunting." """,
 """"I haven't seen them since. It was a while ago I met them. Why do you ask?" """])
-							reply = input_stuff("""1. "I've been tasked to look for them." 
+						reply = input_stuff("""1. "I've been tasked to look for them." 
 2. "That's my private business." 
 > """, ["1", "2"])
-							if reply == "1":
-								print_stuff([""""Mhm. Well I can't help you more than I already have." """])
-							if reply == "2":
-								print_stuff([""""Alright. I won't pry, in that case." """])
-						elif question == "3":
-							print_stuff([f""""That is a simple question to answer," says {alvyn}. "Fast running, and a crossbow." """,
+						if reply == "1":
+							print_stuff([""""Mhm. Well I can't help you more than I already have." """])
+						if reply == "2":
+							print_stuff([""""Alright. I won't pry, in that case." """])
+					elif question == "3":
+						print_stuff([f""""That is a simple question to answer," says {alvyn}. "Fast running, and a crossbow." """,
 "With fondness, he pats a crossbow lying next to him."])
-						elif question == "4":
-							print_stuff([f""""Everything. It's so calm and peaceful. Not many humans either." {alvyn} chuckles. """,
+					elif question == "4":
+						print_stuff([f""""Everything. It's so calm and peaceful. Not many humans either." {alvyn} chuckles. """,
 """"I love all nature, but this place I love escpecially. The calm waters, the fire flies. And the micro-crystals..." He gets up and brings a lantern to bare. """,
 """As the light of the lantern hits the walls, they begin to sparkle and shine like stars. "Beautiful, isn't it?" """])
-						elif question == "5":
-							print_stuff([f""""Good fortune, {character.character['titles']['casual']}. Perhaps we shall meet again." """,
+					elif question == "5":
+						print_stuff([f""""Good fortune, {character.character['titles']['casual']}. Perhaps we shall meet again." """,
 f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
-							break
+						break
 	print_stuff(["You walk down the tunnel with a sparkling crystal floor. Some parts of the floor stick up at strange angles and crunch beneath your boots.",
 "A turn in the tunnel leads you out to a narrow expanse. It seems like a small straight tunnel. Before you are two rows of five tiles, each with a picture.",
 "Each slab looks like a pressure plate, and you see circular cranies in the rock next to each row of plates. The plates are flush with each other."])
@@ -849,27 +849,27 @@ f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 2. Step onto the picture of a snake.
 > """, ["1", "2"])
 		if plate1 == "2":
-			print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+			print_stuff(["You step onto the plate. It sinks and clicks, but nothing else happens."])
 			plate2 = input_stuff("""1. Step onto the picture of a lion.
 2. Step onto the picture of a cat.
 > """, ["1", "2"])
 			if plate2 == "1":
-				print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+				print_stuff(["You step onto the plate. It sinks and clicks, but nothing else happens."])
 				plate3 = input_stuff("""1. Step onto the picture of a dragon.
 2. Step onto the picture of a unicorn.
 > """, ["1", "2"])
 				if plate3 == "1":
-					print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+					print_stuff(["You step onto the plate. It sinks and clicks, but nothing else happens."])
 					plate4 = input_stuff("""1. Step onto the picture of a sheep.
 2. Step onto the picture of a wolf.
 > """, ["1", "2"])
 					if plate4 == "2":
-						print_stuff("You step onto the plate. It sinks and clicks, but nothing else happens.")
+						print_stuff(["You step onto the plate. It sinks and clicks, but nothing else happens."])
 						plate5 = input_stuff("""1. Step onto the picture of a vulture.
 2. Step onto the picture of a sparrow.
 > """, ["1", "2"])
 						if plate5 == "1":
-							print_stuff("""You step onto the last plate and quickly jump off to the other side.""")
+							print_stuff(["""You step onto the last plate and quickly jump off to the other side."""])
 							break
 		print_stuff(["As you step onto the plate, it gives way and clicks. A jet of flame comes out of one of the round holes beside you.",
 "You stumble back to the start, cursing at your burns."])
@@ -885,13 +885,14 @@ f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 2. Turn it counterclockwise.
 > """, ["1", "2"])
 	if choice == "2":
+		endure = colour_it('endure', Color.ENDURANCE)
 		print_stuff(["You turn the knob counterclockwise, and there's a click. Before you can react, a spray spores bursts from the lip of the lid."])
 		endurance_roll = random.randrange(1,9)
 		if endurance_roll <= ability.ability["endurance"]:
-			print_stuff([f"You {colour_it('endure'), Color.ENDURANCE} the spores, holding your breath before you suck any in.",
+			print_stuff([f"You {endure} the spores, holding your breath before you suck any in.",
 "This time, you try turning the knob the other way."])
 		else:
-			print_stuff([f"You cannot {colour_it('endure'), Color.ENDURANCE} the spores, and hold you breath too late.",
+			print_stuff([f"You cannot {endure} the spores, and hold you breath too late.",
 "As the spores enter your body, you feel a stiffening sensation in your body, escpecially your lungs. Then you collapse, all feeling lost.",
 "Then everything goes dark. The spores are lethal, and you have no antidode to their poison."])
 			exit()

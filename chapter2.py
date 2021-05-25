@@ -23,7 +23,8 @@ def beginning():
 "To your left is a man and a woman. Each looks only sixteen, and each is covered in blood. It only takes you a moment to realise two things.",
 f"These must be {micha} and {elfa}, the baron's children. You also realise that {elfa} is dead. {micha} looks like he's on his last legs also."])
 	choice = input_stuff(f"""1. Approach {micha}.
-2. Wait. """, ["1", "2"])
+2. Wait. 
+> """, ["1", "2"])
 	if choice == "1":
 		print_stuff([f"You approach {micha} and sit down next to him. He turns to you, and you see his eyes are red and puffy from tears.",
 """"What do you want?" he asks, almsot a bit angrily. """])
@@ -85,12 +86,18 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 	while True:
 		if character.story["denvar"]["exists"]:
 			choice = input_stuff("""1. "Unfortunately not." 
-	2. "Slow down. Who are you?"
-	3. "No, but I know a man named Denvar who may help us." 
-	> """, ["1", "2", "3"])
+2. "Slow down. Who are you?"
+3. "No, but I know a man named Denvar who may help us." 
+> """, ["1", "2", "3"])
 		else:
 			choice = input_stuff("""1. "Unfortunately not." 
-	2. "Slow down. Who are you?" 
-	> """, ["1", "2"])
+2. "Slow down. Who are you?" 
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff(f"""{character.story['tamara']['name_known'].capitalize()} curses under her breath. "Then we must move quickly. They could be onto us at any moment." """)
+		elif choice == "2":
+			print_stuff(f""" "" {character.story['tamara']['name_known'].capitalize()}""")
+		elif choice == "3":
+			pass
 
 
