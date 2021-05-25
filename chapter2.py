@@ -99,8 +99,9 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} curses under her breath. "Then we must move quickly. They could be onto us at any moment." """])
 			break
 		elif choice == "2":
-			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} gives an impatient groan. "I'm Tamara, if you insist," she says finally. """])
-			character.story["tamara"]["name_known"] = "Tamara"
+			tamara = colour_it("Tamara", Color.NPC)
+			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} gives an impatient groan. "I'm {tamara}, if you insist," she says finally. """])
+			character.story["tamara"]["name_known"] = colour_it("Tamara", Color.NPC)
 		elif choice == "3":
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} lifts an eyebrow. "Then let us meet this Denvar." """])
 			descent = "chapter2.descentb"
@@ -108,8 +109,33 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 
 
 def descenta():
-	print_stuff([""])
-
+	micha = colour_it("Micha", Color.NPC)
+	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} nods. "At least let us begone from this mountain," she says. "Even if the journey is long and hard." """,
+"""The three of you descend the mountain, haste making the journey a lot quicker. You meet with no dangers on the way down, and no one speaks.""",
+f"""As you put distance between yourselves and the cave, you see {character.story['tamara']['name_known']}'s face begin to relax.""",
+"""Suddenly, you've reached the base of the mountain. Already the air is warmed, and you feel far more relaxed, though questions still swim in your mind.""",
+f""""I'm going back to {blackburrow}," {micha} says. "To get some rest." He looks to both you and {character.story['tamara']['name_known']}. "Thank you. Both of you." """,
+f"""{micha} begins walking back towards {blackburrow}. {character.story['tamara']['name_known'].capitalize()} watches {micha} disappear along the trail. Then she turns to you."""])
+	if character.story["tamara"]["name_known"] != colour_it("Tamara", Color.NPC):
+		tamara = colour_it("Tamara", Color.NPC)
+		print_stuff([f""""I should probably introduce myself," she says. "I'm {tamara}." """])
+	print_stuff([""""Do you have any questions for me?" """])
+	while True:
+		quest = colour_it("I have no further questions.", Color.QUEST)
+		question = input_stuff(f"""1. "Who were those people?" 
+2. "Why did you save me?" 
+3. "Who are you?"
+4. "{quest}" 
+> """, ["1", "2", "3", "4"])
+		if question == "1":
+			print_stuff([""])
+		elif question == "2":
+			print_stuff([""])
+		elif question == "3":
+			print_stuff([""])
+		elif question == "4":
+			break
 
 def descentb():
 	print_stuff([""])
