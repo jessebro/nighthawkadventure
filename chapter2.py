@@ -13,6 +13,8 @@ from functions.utils import colour_it
 from functions.utils import Color
 from functions.loading import save
 
+descent = "chapter2.descenta"
+
 
 def beginning():
 	save('chapter2.beginning')
@@ -94,10 +96,20 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 2. "Slow down. Who are you?" 
 > """, ["1", "2"])
 		if choice == "1":
-			print_stuff(f"""{character.story['tamara']['name_known'].capitalize()} curses under her breath. "Then we must move quickly. They could be onto us at any moment." """)
+			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} curses under her breath. "Then we must move quickly. They could be onto us at any moment." """])
+			break
 		elif choice == "2":
-			print_stuff(f""" "" {character.story['tamara']['name_known'].capitalize()}""")
+			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} gives an impatient groan. "I'm Tamara, if you insist," she says finally. """])
+			character.story["tamara"]["name_known"] = "Tamara"
 		elif choice == "3":
-			pass
+			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} lifts an eyebrow. "Then let us meet this Denvar." """])
+			descent = "chapter2.descentb"
+			break
 
 
+def descenta():
+	print_stuff([""])
+
+
+def descentb():
+	print_stuff([""])

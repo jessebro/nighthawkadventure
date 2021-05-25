@@ -14,6 +14,7 @@ from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import print_it
 from functions import utils
+import chapter2
 
 
 def set_default_actions():
@@ -86,7 +87,8 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 			equipment.equipment["gold"] = 0
 			ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
-story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave", "chapter2.beginning"]
+story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave", "chapter2.beginning", chapter2.descent,
+]
 position = boot()
 if position in story:
 	idx = story.index(position)
