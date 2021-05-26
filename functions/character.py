@@ -27,7 +27,6 @@ story = {
 	},
 	"tamara": {
 		"name_known": "the woman",
-		"knows_name": False
 	}
 
 }
