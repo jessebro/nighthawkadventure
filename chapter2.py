@@ -102,7 +102,7 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 		elif choice == "2":
 			tamara = colour_it("Tamara", Color.NPC)
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} gives an impatient groan. "I'm {tamara}, if you insist," she says finally. """])
-			character.story["tamara"]["name_known"] = colour_it("Tamara", Color.NPC)
+			character.story["tamara"]["name_known"] = tamara
 		elif choice == "3":
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} lifts an eyebrow. "Then let us meet this Denvar." """])
 			descent = "chapter2.descentb"
@@ -112,13 +112,13 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 def descenta():
 	micha = colour_it("Micha", Color.NPC)
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	tamara = colour_it("Tamara", Color.NPC)
 	print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} nods. "At least let us begone from this mountain," she says. "Even if the journey is long and hard." """,
 """The three of you descend the mountain, haste making the journey a lot quicker. You meet with no dangers on the way down, and no one speaks.""",
 f"""As you put distance between yourselves and the cave, you see {character.story['tamara']['name_known']}'s face begin to relax.""",
 """Suddenly, you've reached the base of the mountain. Already the air is warmed, and you feel far more relaxed, though questions still swim in your mind.""",
 f""""I'm going back to {blackburrow}," {micha} says. "To get some rest." He looks to both you and {character.story['tamara']['name_known']}. "Thank you. Both of you." """,
 f"""{micha} begins walking back towards {blackburrow}. {character.story['tamara']['name_known'].capitalize()} watches {micha} disappear along the trail. Then she turns to you."""])
-	tamara = colour_it("Tamara", Color.NPC)
 	if character.story["tamara"]["name_known"] != colour_it("Tamara", Color.NPC):
 		print_stuff([f""""I should probably introduce myself," she says. "I'm {tamara}." """])
 	print_stuff(["What's your name?"])
@@ -160,6 +160,65 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 					print_stuff([f"""You see {tamara} give a start. "No reason," she says quickly. "Or at least, a reason that I do not wish to reveal currently." """])
 		elif question == "5":
 			break
+	print_stuff([""])
+
 
 def descentb():
+	micha = colour_it("Micha", Color.NPC)
+	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	tamara = colour_it("Tamara", Color.NPC)
+	denvar = colour_it("Denvar", Color.NPC)
+	print_stuff([f"The three of you make your way down the mountain. With your guidance you arrive at {denvar}'s cabin. You notice that {denvar} is home.",
+f"Light shines from the windows, and you see movement from inside. You approach the door and knock sharply. Almost instantly, {denvar} answers the knock."])
+	if character.story["denvar"]["knows_name"]:
+		print_stuff([f""""Greetings, {character.character["firstname"]}," {denvar} says warmly. "How may I help you?" """])
+	else:
+		print_stuff([f""""Greetings, traveller," {denvar} says warmly. "How may I help you?" """])
+	ability.heal(15)
+	print_stuff([f"Quickly, you usher {tamara} inside, but {micha} is shaking his head.",
+f""""I'm shall return to {blackburrow}," he says. "I've had enough madness for one day." After a brief farewell, {micha} leaves alone, descending the mountain. """,
+f"The next thing you know, you and {tamara} are sitting at a table with bowls of steaming meat stew. {denvar} crouches by the fireplace, coaxing a small blaze.",
+f"The stew restores 15 health!",
+f"""{tamara} looks up at you."""])
+	if character.story["tamara"]["name_known"] != tamara:
+		print_stuff([f""""I should probably introduce myself," she says. "I'm {tamara}." """])
+	print_stuff([f"What's your name, {character.character['titles']['casual']}?"])
+	choice = input_stuff(f"""1. "I'm {character.character['firstname']}." 
+2. "I'm not sure I trust you." 
+> """, ["1", "2"])
+	if choice == "2":
+		print_stuff([f"""{tamara} raises an eyebrow. "I can't trust you unless you trust me with your name," she warns. Reluctantly, you tell her your name."""])
+	print_stuff([f""""I'm glad you told me... {character.character['firstname']}," {tamara} says kindly. "Do you have any questions for me?" """])
+	while True:
+		quest = colour_it("I have no further questions.", Color.QUEST)
+		daughters = colour_it("Daughters of Chaos", Color.ENEMY)
+		question = input_stuff(f"""1. "Who were those people?" 
+2. "Why did you save me?" 
+3. "Who are you?"
+4. "You're dressed as those women are. Yet you oppose them?"
+5. "{quest}" 
+> """, ["1", "2", "3", "4", "5"])
+		if question == "1":
+			print_stuff([f""""They're called the {daughters}," {tamara} says. "An organisation that wants humanity to return to the old ways of hunting and gathering." """,
+""""They are not evil. They are... misguided. And at the moment their leader is more fanatical and insane than any other before them." """])
+		elif question == "2":
+			print_stuff([f"""{tamara} shrugs. "I figured you could help me. I've been following the {daughters} for a while. I stumbled upon you, and..." Tamara pauses awkwardly. """,
+""""I figured you could help me. You look like the fighting sort, so you're exactly what I need." """])
+		elif question == "3":
+			print_stuff([f""""I've already given you my name," {tamara} says. "I assume your asking what I do in life?" """,
+f""""I have a complicated past, but let's just say I have something personal against the {daughters}." """])
+		elif question == "4":
+			print_stuff([f""""I have their clothes, but I do not follow them. As soon as I have some privacy, I shall change from these garments." """,
+f"""{tamara} laughs. "They were too... exposing for me anyway." """])
+			awareness_roll = random.randrange(1, 10)
+			if awareness_roll <= ability.ability["awareness"]:
+				aware = colour_it("aware", Color.AWARENESS)
+				print_stuff([f"You are {aware} enough to notice her use of past tense."])
+				choice = input_stuff("""1. "Why do you use past tense?" 
+2. Say nothing.
+> """, ["1", "2"])
+				if choice == "1":
+					print_stuff([f"""You see {tamara} give a start. "No reason," she says quickly. "Or at least, a reason that I do not wish to reveal currently." """])
+		elif question == "5":
+			break
 	print_stuff([""])

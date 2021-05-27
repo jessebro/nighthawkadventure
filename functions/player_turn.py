@@ -336,7 +336,7 @@ Enter 'b' to go back
 		else:
 			print(random.choice(potion_script))
 			healing = random.randrange(4,9)
-			ability.ability["health"] += healing
+			ability.heal(healing)
 			time.sleep(5)
 			print(f"You regained {healing} health!")
 			time.sleep(5)
