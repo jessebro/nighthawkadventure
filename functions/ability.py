@@ -170,3 +170,25 @@ def level_up(levels):
 		ability["maxhealth"] = int(ability["maxhealth"])
 		ability["health"] = ability["maxhealth"]
 		counter += 1
+
+
+def reaction(difficulty, cycles):
+	cycle = 0
+	while cycle < cycles:
+		choice = None
+		inputs = ["q", "w", "e", "r", "t", "y"]
+		selection = random.choice(inputs)
+		time.sleep(random.randrange(2, 6))
+		if choice != None:
+			return True
+		while choice == None:
+			countdown = time.time()
+			choice = input(selection)
+			print(time.time() - countdown - 0.4)
+			if (time.time() - countdown - 0.4) >= difficulty:
+				return False
+		if choice != selection:
+			return False
+		else:
+			cycle += 1
+	return True

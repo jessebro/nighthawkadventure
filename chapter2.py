@@ -160,7 +160,9 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 					print_stuff([f"""You see {tamara} give a start. "No reason," she says quickly. "Or at least, a reason that I do not wish to reveal currently." """])
 		elif question == "5":
 			break
-	print_stuff([""])
+	print_stuff([f"Suddenly, {tamara} looks over your shoulder and draws her sword. You turn around and see two {daughters} walking towards you.",
+f""""I'll take one," {tamara} says quickly. The {daughters} run forwards, swords in hand. {tamara} lunges towards one of them."""])
+	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
 
 
 def descentb():
@@ -221,4 +223,6 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 					print_stuff([f"""You see {tamara} give a start. "No reason," she says quickly. "Or at least, a reason that I do not wish to reveal currently." """])
 		elif question == "5":
 			break
-	print_stuff([""])
+	print_stuff([f"Suddenly, you hear the sound of footsteps. {tamara} jumps to her feet and runs to the window.",])
+	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
+	print_stuff()
