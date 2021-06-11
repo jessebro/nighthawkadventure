@@ -106,7 +106,6 @@ def enemy_turn(enemy):
 
 
 def enemy_attack(enemy, damage_modi = 1):
-
 	reference = enemy["reference"]
 	initial_script = [f"{reference['object'].capitalize()} lunges in, ready to strike.",
 "You ready yourself as your adversary charges forward, teeth bared in savage fury.",
@@ -127,6 +126,14 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 	enemy_roll = random.randrange(1, 101)
 	time.sleep(5)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
+		agility_roll = random.randrange(1, 15)
+		if agility_roll <= ability.ability["agility"]:
+			print("You see the attack coming, but you will have to react quickly to avoid it.")
+			dodge = ability.reaction(1.3, random.randrange(2, 4))
+			if dodge:
+				return
+			else:
+				print("Despite your efforts, you are too slow to avoid the blow.")
 		print(random.choice(success_script))
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
 		ability.ability["health"] -= enemy_damage

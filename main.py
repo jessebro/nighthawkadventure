@@ -17,12 +17,6 @@ from functions import utils
 import chapter2
 
 
-gamer = ability.reaction(1, 3)
-if gamer:
-	print("You are a great gamer")
-else:
-	print("You are a bad gamer")
-
 def set_default_actions():
 	utils.default_actions = {
 		"e": inventory.show,
