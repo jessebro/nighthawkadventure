@@ -184,7 +184,6 @@ def reaction(difficulty, cycles):
 		while choice == None:
 			countdown = time.time()
 			choice = input(selection)
-			print(time.time() - countdown - 0.4)
 			if (time.time() - countdown - 0.4) >= difficulty:
 				return False
 		if choice != selection:
