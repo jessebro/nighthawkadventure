@@ -163,6 +163,21 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 	print_stuff([f"Suddenly, {tamara} looks over your shoulder and draws her sword. You turn around and see two {daughters} walking towards you.",
 f""""I'll take one," {tamara} says quickly. The {daughters} run forwards, swords in hand. {tamara} lunges towards one of them."""])
 	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
+	if post_combat.victory == False:
+		ability.ability["health"] = (ability.ability["maxhealth"] / 2)
+		print_stuff([f"The light returns to your vision and you see {tamara}'s face looking down at you",
+""""That was quite a hit you took," she says cheekily. She offers her hand to you to help you up.s"""])
+		choice = input_stuff("""1. Take her hand.
+2. Get up by yourself.
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff([f"""You take {tamara}'s hand, and she pulls you to your feet, with surprising strength for someone of her build."""])
+		elif choice == "2":
+			print_stuff([f"You get to your feet without taking {tamara}'s hand. She gives you a look but says nothing."])
+		print_stuff([f"""You look around and see the bodies of the two {daughters} with deep lacerations on them. "My handiwork," {tamara} says. """,
+  """"Don't worry though. I forgive you." But you can tell she's joking. """,
+f""""We should return to {blackburrow}," {tamara} says. "There is much to discuss." """,
+f"""You descend the mountain carefully, returning to the trail and making your way back to {blackburrow}."""])
 
 
 def descentb():
@@ -225,4 +240,20 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 			break
 	print_stuff([f"Suddenly, you hear the sound of footsteps. {tamara} jumps to her feet and runs to the window.",])
 	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
-	print_stuff()
+	if post_combat.victory == False:
+		ability.ability["health"] = (ability.ability["maxhealth"] / 2)
+		print_stuff([f"The light returns to your vision and you see {tamara}'s face looking down at you",
+""""That was quite a hit you took," she says cheekily. She offers her hand to you to help you up.s"""])
+		choice = input_stuff("""1. Take her hand.
+2. Get up by yourself.
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff([f"""You take {tamara}'s hand, and she pulls you to your feet, with surprising strength for someone of her build."""])
+		elif choice == "2":
+			print_stuff([f"You get to your feet without taking {tamara}'s hand. She gives you a look but says nothing."])
+		print_stuff([f"""You look around and see the bodies of the two {daughters} with deep lacerations on them. "My handiwork," {tamara} says. """,
+""""Don't worry though. I forgive you." But you can tell she's joking. """])
+	print_stuff([f"After the fight, you return to {denvar}'s cabin to rest."])
+	rest.rest()
+	print_stuff([f""""We should return to {blackburrow} also," {tamara} says. "There is much to discuss." """,
+f"""After bidding {denvar} farewell and descend the mountain carefully, returning to the trail and making your way back to {blackburrow}."""])

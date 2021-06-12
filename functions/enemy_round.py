@@ -129,7 +129,8 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 		agility_roll = random.randrange(1, 15)
 		if agility_roll <= ability.ability["agility"]:
 			print("You see the attack coming, but you will have to react quickly to avoid it.")
-			dodge = ability.reaction(1.3, random.randrange(2, 4))
+			time.sleep(3)
+			dodge = ability.reaction(1.25, random.randrange(2, 4))
 			if dodge:
 				return
 			else:
