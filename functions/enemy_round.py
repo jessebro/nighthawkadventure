@@ -9,6 +9,7 @@ from functions.player_turn import buffs
 
 gang_size = 0
 gang_lads = []
+gang_index = 0
 combat = True
 
 def combat_flow(enemy):
@@ -231,8 +232,8 @@ f"You lunge forwards, pinning {reference['object']} by the throat and holding it
 
 
 def next_victim(enemies):
-	gang_index = 0
-	gang_index += 1  # This will always equal 1, so why not just set it to 1?
+	global gang_index
+	gang_index += 1
 	enemy = enemies[gang_index]
 	reference = enemy['reference']
 	friend_approach = [

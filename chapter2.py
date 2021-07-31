@@ -257,3 +257,7 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 	rest.rest()
 	print_stuff([f""""We should return to {blackburrow} also," {tamara} says. "There is much to discuss." """,
 f"""After bidding {denvar} farewell and descend the mountain carefully, returning to the trail and making your way back to {blackburrow}."""])
+
+
+def reeturn():
+	print_stuff(["You retrace your steps along"])

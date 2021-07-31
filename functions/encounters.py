@@ -3,9 +3,9 @@ import random
 
 xp_handouts = {
 	"practice": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, 10, " ", " ", " "]),
-	"small": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, random.randrange(25), " ", " ", " "]),
-	"medium": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, random.randrange(50), " ", " ", " "]),
-	"large": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, random.randrange(85), " ", " ", " "])
+	"small": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, 25, " ", " ", " "]),
+	"medium": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, 50, " ", " ", " "]),
+	"large": enemy_round.generate_enemy(*[0, 0, 0, 0, 0, 85, " ", " ", " "])
 }
 
 # maxhp, mindamage, maxdamage, baseskill, agility, xp, type, gender, name
