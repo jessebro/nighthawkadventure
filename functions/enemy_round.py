@@ -11,20 +11,26 @@ gang_size = 0
 gang_lads = []
 gang_index = 0
 combat = True
+assistance = 0
+goad = 0
 
-def combat_flow(enemy):
+def combat_flow(enemy, allies):
 	global combat
 	combat = True
 	while combat:
 		player_turn.turn(enemy)
 		if dead_check(enemy):
 			continue
-		enemy_turn(enemy)
+		for ally in allies:
+			ally_turn(ally, enemy)
+			if dead_check(enemy):
+				continue
+		enemy_turn(enemy, allies)
 		if player_defeat():
 			continue
 
 
-def generate_enemy(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
+def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
 	enemy = {}
 	enemy["maxhp"] = maxhp
 	enemy["hp"] =  enemy["maxhp"]
@@ -72,16 +78,16 @@ def generate_reference(type, gender, name):
 	return reference
 
 
-def initialize(enemies):
+def initialize(enemies: list, allies=()):
 	global gang_size
 	global gang_lads
 	gang_size = len(enemies)
 	gang_lads = enemies
 	for enemy in enemies:
-		combat_flow(enemy)
+		combat_flow(enemy, allies)
 
 
-def enemy_turn(enemy):
+def enemy_turn(enemy, allies):
 	if enemy['bleeding'] > 0:
 		damage = random.randrange(2,6)
 		print(f"Your enemy bleeds for {damage} damage!")
@@ -97,16 +103,16 @@ def enemy_turn(enemy):
 		if action == 2 and enemy["distract"] == False:
 			enemy_distract(enemy)
 		else:
-			enemy_attack(enemy)
+			enemy_attack(enemy, allies=allies)
 	else:
 		action = random.randrange(1,5)
 		if action == 1 and enemy["parry"] == False:
 			enemy_parry(enemy)
 		else:
-			enemy_attack(enemy)
+			enemy_attack(enemy, allies=allies)
 
 
-def enemy_attack(enemy, damage_modi = 1):
+def enemy_attack(enemy, allies, damage_modi = 1):
 	reference = enemy["reference"]
 	initial_script = [f"{reference['object'].capitalize()} lunges in, ready to strike.",
 "You ready yourself as your adversary charges forward, teeth bared in savage fury.",
@@ -120,7 +126,12 @@ f"You are beaten down by a hail of strikes, blocking one after the other. Finall
 f"Though your opponent comes in with speed and ferocity, you avoid everything {reference['he']} tries to strike you with.",
 f"A strike is aimed at your head, but you are too quick for {reference['object']}. You kick {reference['him']} and {reference['he']} staggers before {reference['he']} gets another chance to attack.",
 f"{reference['he'].capitalize()} lunges forwards, missing you and stumbling past you. But {reference['he']} whirls again in another attack. You duck at the last second, the hair on your head whipping with the passing attack.",
-f"As the attack passes to within a hair's breadth of your face, you twist and jump away in a diving roll, coming back to your feet, staring angrily at your opponent."]
+f"As the attack passes to within a hair's breadth of your face, you twist and jump away in a diving roll, coming back to your feet, glaring at your opponent."]
+	target_select = random.randrange(1, len(allies) + 3)
+	if target_select <= len(allies):
+		target = "ally"
+	else:
+		target = "player"
 	enemy["parry"] = False
 	enemy["distract"] = False
 	print(random.choice(initial_script))
@@ -243,3 +254,39 @@ f"You ready your sword, now stained with blood, shouting a challenge to your nex
 	print(random.choice(friend_approach))
 	time.sleep(5)
 	return False
+
+def ally_turn(ally, enemy):
+	action = random.randrange(1, 6)
+	if action == 1 and ally['parry'] == False:
+		ally_assist(ally, enemy)
+	elif action == 2 and ally['distact'] == False:
+		ally_distract(ally, enemy)
+	else:
+		ally_strike(ally, enemy)
+
+def ally_strike(ally, enemy):
+	reference = ally["reference"]
+	ally["parry"] = False
+	ally["distract"] = False
+	ally_roll = random.randrange(1, 101)
+	time.sleep(5)
+	time.sleep(3)
+	if ally_roll <= (ally["skill"] + ally["modifier"]):
+		ally_damage = (random.randrange(ally["mindamage"], ally["maxdamage"] + 1))
+		enemy["health"] -= ally_damage
+		time.sleep(5)
+		print(f"{reference['name']} hits for {ally_damage} damage!")
+		time.sleep(5)
+	else:
+		print(f"{reference['name']} misses!")
+		time.sleep(3)
+
+def ally_assist(ally, enemy):
+	global assistance
+	reference = ally['reference']
+	assistance = 1
+
+def ally_distract(ally, enemy):
+	global goad
+	reference = ally['reference']
+	goad = 1

@@ -5,20 +5,16 @@ from functions import inventory
 from functions import weapon
 from functions import equipment
 from functions import enemy_round
+from functions.combat_scripts import *
 from functions.utils import input_stuff
+
 
 buffs = [0, 0, 0]
 
 
 def get_turn_choice(enemy):
 	reference = enemy["reference"]
-	initial_script = [f"""You circle each other, sizing each other up.""",
-f"""You ready your weapon and glare at your opponent.""",
-f"""You feel your heart pounding, feel your chest rising with smooth, even breaths.""",
-f"""{reference['object'].capitalize()} lunges. You jump aside at the last second."""]
-	if enemy["type"] == "human":
-		initial_script.append("""Steel meets, and you stare at each other, blades locked in a clinch.""")
-	action = input_stuff(random.choice(initial_script) + f""" Do you...
+	action = input_stuff(print_script(turn_start, reference) + f""" Do you...
 	1. Strike
 	2. Parry
 	3. Distract       ~ {ability.ability["health"]} / {ability.ability["maxhealth"]} health ~
@@ -63,6 +59,9 @@ def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
 	prompt = ""
 	counter = 0
 	options = []
+	if enemy_round.assistance >= 1:
+		enemy['playermod'] = 1000
+		enemy_round.assistance -= 1
 	for attack in attacks:
 		counter += 1
 		prompt = prompt + str(counter) + ". " + attack["name"] + attack["description"] + """
@@ -116,7 +115,7 @@ f"As you charge forwards, {reference['object']} slams into you, pushing you back
 f"""You feel your sword find its target, and hear a scream of pain. "A pox on you!" {reference['object']} spits. """])
 		fail_script.extend([f"There's the ring of steel on steel as {reference['object']} brings {reference['his']} sword up just in time.",
 f"""{reference['object'].capitalize()} pushes your attack aside and grins wickedly. "What now, you {reference['insult']}?" {reference['he']} hisses. """])
-	print(random.choice(initial_script))
+	print(print_script(player_attack, reference))
 	time.sleep(5)
 	counter = 0
 	agility_roll = random.randrange(1, 101)
