@@ -1,11 +1,11 @@
 import time
-import random
 from functions import character
 from functions import ability
 from functions import post_combat
 from functions import player_turn
 from functions import equipment
 from functions.player_turn import buffs
+from functions.combat_scripts import *
 
 gang_size = 0
 gang_lads = []
@@ -114,19 +114,6 @@ def enemy_turn(enemy, allies):
 
 def enemy_attack(enemy, allies, damage_modi = 1):
 	reference = enemy["reference"]
-	initial_script = [f"{reference['object'].capitalize()} lunges in, ready to strike.",
-"You ready yourself as your adversary charges forward, teeth bared in savage fury.",
-f"{reference['object'].capitalize()} charges, {reference['his']} eyes gleaming."]
-	success_script = [
-f"You are too slow to react. {reference['object'].capitalize()} strikes you a blow. You hit the ground hard but roll to your feet, panting for breath.",
-f"{reference['he'].capitalize()} takes a swing at you, and the attack finds its mark. You feel blood on your skin, and jump away before further harm.",
-f"Your opponent lunges forwards. Before you can avoid the attack, you are dealt a glancing blow.",
-f"You are beaten down by a hail of strikes, blocking one after the other. Finally, one makes its way through your defenses and you feel a sharp pain."]
-	fail_script = [
-f"Though your opponent comes in with speed and ferocity, you avoid everything {reference['he']} tries to strike you with.",
-f"A strike is aimed at your head, but you are too quick for {reference['object']}. You kick {reference['him']} and {reference['he']} staggers before {reference['he']} gets another chance to attack.",
-f"{reference['he'].capitalize()} lunges forwards, missing you and stumbling past you. But {reference['he']} whirls again in another attack. You duck at the last second, the hair on your head whipping with the passing attack.",
-f"As the attack passes to within a hair's breadth of your face, you twist and jump away in a diving roll, coming back to your feet, glaring at your opponent."]
 	target_select = random.randrange(1, len(allies) + 3)
 	if target_select <= len(allies):
 		target = "ally"
@@ -134,7 +121,7 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 		target = "player"
 	enemy["parry"] = False
 	enemy["distract"] = False
-	print(random.choice(initial_script))
+	print(print_script(enemy_strike, reference))
 	enemy_roll = random.randrange(1, 101)
 	time.sleep(5)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
@@ -147,14 +134,14 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 				return
 			else:
 				print("Despite your efforts, you are too slow to avoid the blow.")
-		print(random.choice(success_script))
+		print(print_script(enemy_hit, reference))
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
 		ability.ability["health"] -= enemy_damage
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")
 		time.sleep(5)
 	else:
-		print(random.choice(fail_script))
+		print(print_script(enemy_miss, reference))
 		time.sleep(5)
 		print(f"Your enemy misses!")
 		time.sleep(3)
@@ -162,13 +149,7 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 
 def enemy_parry(enemy):
 	reference = enemy["reference"]
-	initial_script = [
-f"{reference['object'].capitalize()} braces {reference['him']}self, and glares at you, daring you to fight.",
-f"The other combatant raises {reference['his']} defenses, covering {reference['him']}self.",
-f"Your opponent assumes a defensive stance, flattening {reference['his']} feet and barely moving."]
-	if enemy["type"] == "human":
-		initial_script.append(f"""Your opponent smiles at you wickedly. "Come on, {reference["whore"]}!" {reference['he']} yells.""")
-	print(random.choice(initial_script))
+	print(print_script(enemy_block, reference))
 	enemy["playermod"] -= (10 - enemy["agility"])
 	enemy["parry"] = True
 	time.sleep(5)
@@ -176,10 +157,7 @@ f"Your opponent assumes a defensive stance, flattening {reference['his']} feet a
 
 def enemy_distract(enemy):
 	reference = enemy["reference"]
-	initial_script = [f"You close in, sword leading the way. But at the last second, {reference['he']} jumps away, leaving you staggering past.",
-"Your adversary lunges unexpectedly, and you only recognize the feint when it's too late and have already lept to the side, leaving yourself off balance.",
-f"Suddenly, {reference['object']} jumps forward, shoving your chest with one hand. You stagger, the breath knocked from your body."]
-	print(random.choice(initial_script))
+	print(print_script(enemy_divert, reference))
 	enemy["modifier"] += (10 + enemy["agility"])
 	enemy["distract"] = True
 	time.sleep(5)
@@ -216,23 +194,11 @@ def kill(enemy):
 	global combat
 	gang_size -= 1
 	reference = enemy['reference']
-	human_death = [
-f"As your sword bites deeply into your enemy, {reference['he']} moans in pain, then crumples to the ground, dark blood flowing onto the ground.",
-f"{reference['object'].capitalize()} stares at you for a moment. Then a trickle of blood comes from the corner of {reference['his']} mouth, and {reference['he']} falls, dead.",
-f"You pull your sword from your adversary's chest, and {reference['he']} topples over backwards instantly, dead before {reference['he']} hits the ground.",
-f"You bury your sword up to the hilt into {reference['object']}, the blade protruding from {reference['his']} back. You kick {reference['him']} from your sword, and the body falls, blood pooling.",
-f"For a moment, {reference['he']} stays standing. But then {reference['he']} crashes down to the ground, a scarlet blossom growing around {reference['his']} body.",
-f"{reference['object'].capitalize()} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bringing your sword down like an executioner's axe, taking the head from {reference['his']} shoulders.",
-f"You cut {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry.",
-f"{reference['object'].capitalize()} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood."]
-	monster_death = [f"{reference['object'].capitalize()} growls one last time, then falls to the ground.",
-f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue.",
-f"You lunge forwards, pinning {reference['object']} by the throat and holding it to the ground. You draw your knife and plunge it home into the monster's snarling mouth."]
 	if enemy["type"] == "human":
-		print(random.choice(human_death))
+		print(print_script(human_death, reference))
 		time.sleep(5)
 	else:
-		print(random.choice(monster_death))
+		print(print_script(monster_death, reference))
 		time.sleep(5)
 	if gang_size <= 0:
 		combat = False
@@ -247,11 +213,6 @@ def next_victim(enemies):
 	gang_index += 1
 	enemy = enemies[gang_index]
 	reference = enemy['reference']
-	friend_approach = [
-f"{reference['object'].capitalize()} rushes forward, {reference['pain']}ing with rage at {reference['his']} companion's death.",
-f"{reference['object'].capitalize()} approaches you now, more wary than your previous, now deceased opponent.",
-f"You ready your sword, now stained with blood, shouting a challenge to your next opponent. {reference['he'].capitalize()} responds to the challenge and moves forwards."]
-	print(random.choice(friend_approach))
 	time.sleep(5)
 	return False
 
