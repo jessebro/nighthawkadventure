@@ -1,8 +1,22 @@
 import random
 
+defaults = {
+	"reference": {
+		"object": "",
+		"him": "",
+		"his": "",
+		"he": "",
+		"pain": "",
+		"curse": "",
+		"insult": "",
+		"whore": ""
 
-def print_script(scripts, enemy):
+	}
+}
+
+def print_script(scripts, enemy, ally=defaults):
 	reference = enemy['reference']
+	ally_reference = ally['reference']
 	choices = {
 	"turn_start" : [f"""You circle each other, sizing each other up.""",
 f"""You ready your weapon and glare at your opponent.""",
@@ -127,15 +141,15 @@ f"{reference['object'].capitalize()} rushes forward, {reference['pain']}ing with
 f"{reference['object'].capitalize()} approaches you now, more wary than your previous, now deceased opponent.",
 f"You ready your sword, now stained with blood, shouting a challenge to your next opponent. {reference['he'].capitalize()} responds to the challenge and moves forwards."],
 
-	"ally_attack": [],
+	"ally_attack": [f"{ally_reference['object'].capitalize()} rushed towards your opponent, weapon raised high."],
 
-	"ally_hit": [],
+	"ally_hit": [f"{ally_reference['object'].capitalize()}'s attack strikes true, scoring a hit."],
 
-	"ally_miss": [],
+	"ally_miss": [f"{ally_reference['object'].capitalize()} moves to attack, but {ally_reference['his']} target evades the blow."],
 
-	"ally_assist": [],
+	"ally_assist": [f"""{ally_reference['object'].capitalize()} maneuvers to flank. "Strike now!" {ally_reference['he']} yells."""],
 
-	"ally_distract": [],
+	"ally_distract": [f""""Over here, ugly" {ally_reference['object']} jeers. {reference['object'].capitalize()} turns to face {ally_reference['him']} agrily."""],
 
 	"ally_down": []
 	}

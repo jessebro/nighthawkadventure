@@ -208,7 +208,7 @@ def distract(enemy):
 	for distract in distracts:
 		counter += 1
 		prompt = prompt + str(counter) + ". " + distract["name"] + distract["description"] + """
-		"""
+"""
 		options.append(str(counter))
 	prompt = prompt + "> "
 	distract = input_stuff(prompt, options)

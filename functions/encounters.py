@@ -32,3 +32,10 @@ def special_access(key):
 		"garurt": enemy_round.generate_actor(*[21, 4, 9, 65, 8, 35, "human", "male", "Garurt"]),
 	}
 	return character[key]
+
+
+def ally_access(key):
+	allies = {
+		"tamara": enemy_round.generate_actor(*[20, 3, 7, 70, 10, 0, "human", "female", "Tamara"]),
+	}
+	return allies[key]

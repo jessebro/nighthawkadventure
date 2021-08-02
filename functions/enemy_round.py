@@ -220,7 +220,7 @@ def ally_turn(ally, enemy):
 	action = random.randrange(1, 6)
 	if action == 1 and ally['parry'] == False:
 		ally_assist(ally, enemy)
-	elif action == 2 and ally['distact'] == False:
+	elif action == 2 and ally['distract'] == False:
 		ally_distract(ally, enemy)
 	else:
 		ally_strike(ally, enemy)
@@ -230,24 +230,31 @@ def ally_strike(ally, enemy):
 	ally["parry"] = False
 	ally["distract"] = False
 	ally_roll = random.randrange(1, 101)
+	print(print_script("ally_attack", enemy, ally))
 	time.sleep(5)
-	time.sleep(3)
 	if ally_roll <= (ally["skill"] + ally["modifier"]):
 		ally_damage = (random.randrange(ally["mindamage"], ally["maxdamage"] + 1))
-		enemy["health"] -= ally_damage
+		enemy["hp"] -= ally_damage
+		print(print_script("ally_hit", enemy, ally))
 		time.sleep(5)
-		print(f"{reference['name']} hits for {ally_damage} damage!")
+		print(f"{reference['object']} hits for {ally_damage} damage!")
 		time.sleep(5)
 	else:
-		print(f"{reference['name']} misses!")
+		print(print_script("ally_miss", enemy, ally))
+		time.sleep(5)
+		print(f"{reference['object']} misses!")
 		time.sleep(3)
 
 def ally_assist(ally, enemy):
 	global assistance
 	reference = ally['reference']
+	print(print_script("ally_assist", enemy, ally))
+	time.sleep(5)
 	assistance = 1
 
 def ally_distract(ally, enemy):
 	global goad
 	reference = ally['reference']
+	print(print_script("ally_assist", enemy, ally))
+	time.sleep(5)
 	goad = 1
