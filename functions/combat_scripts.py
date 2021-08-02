@@ -105,11 +105,23 @@ f"A strike is aimed at your head, but you are too quick for {reference['object']
 f"{reference['he'].capitalize()} lunges forwards, missing you and stumbling past you. But {reference['he']} whirls again in another attack. You duck at the last second, the hair on your head whipping with the passing attack.",
 f"As the attack passes to within a hair's breadth of your face, you twist and jump away in a diving roll, coming back to your feet, glaring at your opponent."],
 
-	"enemy_attack_ally": [],
+	"enemy_attack_ally": [
+f"{reference['object'].capitalize()} turns towards {ally_reference['object']} and rushes towards {ally_reference['him']}.",
+f"{ally_reference['object'].capitalize()} braces {ally_reference['him']}self as {reference['object']} moves to attack {ally_reference['him']}.",
+f"You jump out of the way as {reference['object']} charges past you. {reference['he'].capitalize()} turns back around, this time moving to strike at {ally_reference['object']}."
+	],
 
-	"enemy_hit_ally": [],
+	"enemy_hit_ally": [
+f"{ally_reference['object'].capitalize()} staggers away, {ally_reference['his']} attacker having drawn blood.",
+f"{ally_reference['object'].capitalize()} curses as {ally_reference['his']} opponent's attack connects.",
+f""""Alright," says {ally_reference['object']}, jumping away from the danger. "That one stung a little." """
+	],
 
-	"enemy_miss_ally": [],
+	"enemy_miss_ally": [
+f""""Nice try," says {ally_reference['object']}, ducking away from {reference['object']}'s attack.""",
+f"""{ally_reference['object'].capitalize()} sidesteps the blow directed at {ally_reference['him']}, slapping at it with {ally_reference['his']} weapon.""",
+f"""{ally_reference['object'].capitalize()} rolls away from {reference['object']} and the danger, coming to {reference['his']}, panting for breath."""
+	],
 
 	"enemy_block": [
 f"{reference['object'].capitalize()} braces {reference['him']}self, and glares at you, daring you to fight.",
@@ -151,7 +163,7 @@ f"You ready your sword, now stained with blood, shouting a challenge to your nex
 
 	"ally_distract": [f""""Over here, ugly" {ally_reference['object']} jeers. {reference['object'].capitalize()} turns to face {ally_reference['him']} agrily."""],
 
-	"ally_down": []
+	"ally_down": [f"""{ally_reference['object'].capitalize()} clutches {ally_reference['his']} wound, blood seeping through his fingers. "I'm down!" {ally_reference['he']} groans."""]
 	}
 
 	return random.choice(choices[scripts])

@@ -13,12 +13,13 @@ gang_index = 0
 combat = True
 assistance = 0
 goad = 0
+down = False
 
 def combat_flow(enemy, allies):
 	global combat
 	combat = True
 	while combat:
-		player_turn.turn(enemy)
+		player_turn.turn(enemy, allies)
 		if dead_check(enemy):
 			continue
 		enemy_turn(enemy, allies)
@@ -103,45 +104,75 @@ def enemy_turn(enemy, allies):
 		if action == 2 and enemy["distract"] == False:
 			enemy_distract(enemy)
 		else:
-			enemy_attack(enemy, allies=allies)
+			choose_target(enemy, allies=allies)
 	else:
 		action = random.randrange(1,5)
 		if action == 1 and enemy["parry"] == False:
 			enemy_parry(enemy)
 		else:
-			enemy_attack(enemy, allies=allies)
+			choose_target(enemy, allies=allies)
 
 
-def enemy_attack(enemy, allies, damage_modi = 1):
-	reference = enemy["reference"]
-	target_select = random.randrange(1, len(allies) + 3)
-	if target_select <= len(allies):
-		target = "ally"
-	else:
+def choose_target(enemy, allies):
+	targets = ['player' * 3]
+	target = ""
+	ally = {}
+	for allied in allies:
+		targets.append(allied["reference"]['object'])
+	for targetable in targets:
+		if random.randrange(1, 3) == 1:
+			target = targetable
+			break
+	for allied in allies:
+		if allied['reference']['object'] == target:
+			ally = allied
+			break
+	if target == "" or target == "player":
 		target = "player"
+		ally = random.choice(allies)
+	enemy_attack(enemy, ally, target)
+
+
+def enemy_attack(enemy, ally, target, damage_modi = 1):
+	reference = enemy["reference"]
 	enemy["parry"] = False
 	enemy["distract"] = False
-	print(print_script("enemy_strike", enemy))
+	if target == "player":
+		print(print_script("enemy_strike", enemy, ally))
+	else:
+		print(print_script("enemy_attack_ally", enemy, ally))
 	enemy_roll = random.randrange(1, 101)
 	time.sleep(5)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
-		agility_roll = random.randrange(1, 15)
-		if agility_roll <= ability.ability["agility"]:
-			print("You see the attack coming, but you will have to react quickly to avoid it.")
-			time.sleep(3)
-			dodge = ability.reaction(1.25, random.randrange(2, 4))
-			if dodge:
-				return
-			else:
-				print("Despite your efforts, you are too slow to avoid the blow.")
-		print(print_script("enemy_hit", enemy))
+		if target == "player":
+			agility_roll = random.randrange(1, 15)
+			if agility_roll <= ability.ability["agility"]:
+				print("You see the attack coming, but you will have to react quickly to avoid it.")
+				time.sleep(3)
+				dodge = ability.reaction(1.25, random.randrange(2, 4))
+				if dodge:
+					return
+				else:
+					print("Despite your efforts, you are too slow to avoid the blow.")
+			print(print_script("enemy_hit", enemy, ally))
+		else:
+			print(print_script("enemy_hit_ally", enemy, ally))
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
-		ability.ability["health"] -= enemy_damage
+		if target == "player":
+			ability.ability["health"] -= enemy_damage
+		else:
+			ally['hp'] -= enemy_damage
 		time.sleep(5)
-		print(f"You are hit for {enemy_damage} damage!")
+		if target == "player":
+			print(f"You are hit for {enemy_damage} damage!")
+		else:
+			print(f"{ally['reference']['object']} is hit for {enemy_damage} damage!")
 		time.sleep(5)
 	else:
-		print(print_script("enemy_miss", enemy))
+		if target == "player":
+			print(print_script("enemy_miss", enemy, ally))
+		else:
+			print(print_script("enemy_miss_ally", enemy, ally))
 		time.sleep(5)
 		print(f"Your enemy misses!")
 		time.sleep(3)
@@ -213,12 +244,19 @@ def next_victim(enemies):
 	gang_index += 1
 	enemy = enemies[gang_index]
 	reference = enemy['reference']
+	print(print_script("enemy_approach", enemy))
 	time.sleep(5)
 	return False
 
+
 def ally_turn(ally, enemy):
+	global down
+	if ally['hp'] <= 0:
+		down = True
 	action = random.randrange(1, 6)
-	if action == 1 and ally['parry'] == False:
+	if down:
+		return
+	elif action == 1 and ally['parry'] == False:
 		ally_assist(ally, enemy)
 	elif action == 2 and ally['distract'] == False:
 		ally_distract(ally, enemy)
@@ -251,6 +289,7 @@ def ally_assist(ally, enemy):
 	print(print_script("ally_assist", enemy, ally))
 	time.sleep(5)
 	assistance = 1
+
 
 def ally_distract(ally, enemy):
 	global goad

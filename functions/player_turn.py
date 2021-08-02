@@ -23,7 +23,7 @@ def get_turn_choice(enemy):
 	return action
 
 
-def turn(enemy):
+def turn(enemy, allies):
 	global buffs
 	enemy["modifier"] = 0
 	for buff in buffs:
@@ -32,20 +32,20 @@ def turn(enemy):
 			buff = 0
 	action = get_turn_choice(enemy)
 	if action == "1":
-		strike(enemy)
+		strike(enemy, allies)
 	elif action == "2":
-		parry(enemy)
+		parry(enemy, allies)
 	elif action == "3":
-		distract(enemy)
+		distract(enemy, allies)
 	elif action == "4":
-		use_item(enemy)
+		use_item(enemy, allies)
 	elif action == "5":
 		inventory_shown = inventory.show()
 		if not inventory_shown:
-			turn(enemy)
+			turn(enemy, allies)
 
 
-def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
+def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
 	global buffs
 	damage_bonus = bonus
 	critical = critical_bonus
@@ -131,7 +131,7 @@ def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
 				print("Your enemy parries your blow and counter attacks!")
 				time.sleep(3)
 				counter += 1
-				enemy_round.enemy_attack(enemy, allies=[])
+				enemy_round.choose_target(enemy, allies)
 			else:
 				print(print_script("player_miss", enemy))
 				time.sleep(5)
@@ -148,7 +148,7 @@ def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
 			time.sleep(5)
 
 
-def parry(enemy):
+def parry(enemy, allies):
 	reference = enemy["reference"]
 	parries = [known for known in weapon.weapon["parries"] if known['enabled']]
 	opportunist = False
@@ -182,22 +182,22 @@ def parry(enemy):
 		if vengeance:
 			print("You shrug off the pain and lunge forwards in an attempt to take revenge!")
 			time.sleep(3)
-			strike(enemy, bonus=enemy_damage)
-		turn(enemy)
+			strike(enemy, allies, bonus=enemy_damage)
+		turn(enemy, allies)
 	else:
 		print(print_script("player_success_parry", enemy))
 		time.sleep(5)
 		print("Your parry succeeds and you riposte!")
 		time.sleep(3)
 		if opportunist:
-			turn(enemy)
+			turn(enemy, allies)
 			return False
 		if vengeance:
-			strike(enemy)
+			strike(enemy, allies)
 		else:
-			strike(enemy, damage_mod=1.5)
+			strike(enemy, allies, damage_mod=1.5)
 
-def distract(enemy):
+def distract(enemy, allies):
 	reference = enemy["reference"]
 	distracts = [known for known in weapon.weapon["distracts"] if known['enabled']]
 	lacerating = False
@@ -233,13 +233,13 @@ def distract(enemy):
 			enemy["playermod"] += (10 + ability.ability["agility"] + ability.ability["distract_lvl"] * 2)
 			print("Your enemy's loss of focus allows you to make an attack!")
 			time.sleep(3)
-			strike(enemy)
+			strike(enemy, allies)
 	else:
 		return False
 
 
 
-def use_item(enemy):
+def use_item(enemy, allies):
 	global buffs
 	reference = enemy["reference"]
 	plurals = {
@@ -271,13 +271,13 @@ Enter 'b' to go back
 			print("You have no more potions!")
 			equipment.equipment["potions"] = 0
 			time.sleep(2)
-			use_item(enemy)
+			use_item(enemy, allies)
 			return False
 		elif ability.ability["health"] == ability.ability["maxhealth"]:
 			print("You're on max health, and a potion would have no effect.")
 			time.sleep(5)
 			equipment.equipment["potions"] += 1
-			use_item(enemy)
+			use_item(enemy,allies)
 			return False
 		else:
 			print(print_script("player_potion", enemy))
@@ -298,7 +298,7 @@ Enter 'b' to go back
 			print("You have no more knives!")
 			equipment.equipment["knives"] = 0
 			time.sleep(2)
-			use_item(enemy)
+			use_item(enemy, allies)
 		else:
 			print(print_script("player_knife", enemy))
 			knife_damage = random.randrange(2, 6)
@@ -316,7 +316,7 @@ Enter 'b' to go back
 			print("You have no more oils!")
 			equipment.equipment["oils"] = 0
 			time.sleep(2)
-			use_item(enemy)
+			use_item(enemy, allies)
 			return False
 		else:
 			print(print_script("player_oil", enemy))
@@ -328,7 +328,7 @@ Enter 'b' to go back
 				print(f"You strike home with your oil, and it burns {reference['object']} from the inside, killing {reference['him']} instantly.")
 				time.sleep(5)
 			else:
-				strike(enemy, damage_mod=oil)
+				strike(enemy, allies, damage_mod=oil)
 			if enemy['hp'] <= 0:
 				return False
 	if item_use == "4":
@@ -337,14 +337,14 @@ Enter 'b' to go back
 			print("You have no more smoke bombs!")
 			equipment.equipment["smoke bombs"] = 0
 			time.sleep(2)
-			use_item(enemy)
+			use_item(enemy, allies)
 			return False
 		else:
 			print(print_script("player_smoke", enemy))
 			time.sleep(5)
 			if equipment.equipment["disorientating"] == True:
 				enemy["modifier"] -= 10
-			strike(enemy,smoke=True)
+			strike(enemy, allies, smoke=True)
 	if item_use == "b":
-		turn(enemy)
+		turn(enemy, allies)
 		return False
