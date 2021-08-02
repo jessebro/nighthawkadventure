@@ -15,8 +15,12 @@ defaults = {
 }
 
 def print_script(scripts, enemy, ally=defaults):
+	if ally == {}:
+		ally = defaults
 	reference = enemy['reference']
+
 	ally_reference = ally['reference']
+
 	choices = {
 	"turn_start" : [f"""You circle each other, sizing each other up.""",
 f"""You ready your weapon and glare at your opponent.""",
@@ -153,7 +157,7 @@ f"{reference['object'].capitalize()} rushes forward, {reference['pain']}ing with
 f"{reference['object'].capitalize()} approaches you now, more wary than your previous, now deceased opponent.",
 f"You ready your sword, now stained with blood, shouting a challenge to your next opponent. {reference['he'].capitalize()} responds to the challenge and moves forwards."],
 
-	"ally_attack": [f"{ally_reference['object'].capitalize()} rushed towards your opponent, weapon raised high."],
+	"ally_attack": [f"{ally_reference['object'].capitalize()} rushes towards your opponent, weapon raised high."],
 
 	"ally_hit": [f"{ally_reference['object'].capitalize()}'s attack strikes true, scoring a hit."],
 

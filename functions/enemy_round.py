@@ -114,7 +114,7 @@ def enemy_turn(enemy, allies):
 
 
 def choose_target(enemy, allies):
-	targets = ['player' * 3]
+	targets = ['player']
 	target = ""
 	ally = {}
 	for allied in allies:
@@ -129,7 +129,6 @@ def choose_target(enemy, allies):
 			break
 	if target == "" or target == "player":
 		target = "player"
-		ally = random.choice(allies)
 	enemy_attack(enemy, ally, target)
 
 
