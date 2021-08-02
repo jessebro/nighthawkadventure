@@ -13,7 +13,7 @@ buffs = [0, 0, 0]
 
 def get_turn_choice(enemy):
 	reference = enemy["reference"]
-	action = input_stuff(print_script(turn_start, reference) + f""" Do you...
+	action = input_stuff(print_script("turn_start", enemy) + f""" Do you...
 	1. Strike
 	2. Parry
 	3. Distract       ~ {ability.ability["health"]} / {ability.ability["maxhealth"]} health ~
@@ -85,7 +85,7 @@ def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
 	elif attack == "6":
 		damage_mod -= 0.25
 		vampiric = True
-	print(print_script(player_attack, reference))
+	print(print_script("player_attack", enemy))
 	time.sleep(5)
 	counter = 0
 	agility_roll = random.randrange(1, 101)
@@ -99,7 +99,7 @@ def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
 		damage_multi = damage_mod
 		roll = random.randrange(1, 101)
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
-			print(print_script(player_hit, reference))
+			print(print_script("player_hit", enemy))
 			time.sleep(5)
 			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + (buffs[1] * 5)):
 				print("The strike was well aimed, and scored a critical hit!")
@@ -126,21 +126,21 @@ def strike(enemy, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
 			counter += 1
 		else:
 			if enemy["parry"]:
-				print(print_script(player_hit_parry, reference))
+				print(print_script("player_hit_parry", enemy))
 				time.sleep(5)
 				print("Your enemy parries your blow and counter attacks!")
 				time.sleep(3)
 				counter += 1
 				enemy_round.enemy_attack(enemy, allies=[])
 			else:
-				print(print_script(player_miss, reference))
+				print(print_script("player_miss", enemy))
 				time.sleep(5)
 				print(f"You miss your attack!")
 				time.sleep(5)
 				counter += 1
 		if attacks == 3:
 			attacks -= 1
-			print(print_script(player_extra_attack, reference))
+			print(print_script("player_extra_attack", enemy))
 			time.sleep(5)
 		elif attacks == 4:
 			attacks -= 1
@@ -167,12 +167,12 @@ def parry(enemy):
 		opportunist = True
 	elif parry == "3":
 		vengeance = True
-	print(print_script(player_parry, reference))
+	print(print_script("player_parry", enemy))
 	enemy["modifier"] -= (10 + ability.ability["agility"] + ability.ability["parry_lvl"])
 	enemy_roll = random.randrange(1,101)
 	time.sleep(5)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"] - ability.ability['agility']):
-		print(print_script(player_fail_parry, reference))
+		print(print_script("player_fail_parry", enemy))
 		enemy_damage = random.randrange(enemy["mindamage"], enemy["maxdamage"])
 		ability.ability["health"] -= enemy_damage
 		time.sleep(5)
@@ -185,7 +185,7 @@ def parry(enemy):
 			strike(enemy, bonus=enemy_damage)
 		turn(enemy)
 	else:
-		print(print_script(player_success_parry, reference))
+		print(print_script("player_success_parry", enemy))
 		time.sleep(5)
 		print("Your parry succeeds and you riposte!")
 		time.sleep(3)
@@ -216,7 +216,7 @@ def distract(enemy):
 		lacerating = True
 	elif distract == "3":
 		deadly = True
-	print(print_script(player_distract, reference))
+	print(print_script("player_distract", enemy))
 	time.sleep(5)
 	attack_chance = random.randrange(1,101)
 	if attack_chance <= (50 + ability.ability['agility'] + ability.ability["distract_lvl"]):
@@ -280,7 +280,7 @@ Enter 'b' to go back
 			use_item(enemy)
 			return False
 		else:
-			print(print_script(player_potion, reference))
+			print(print_script("player_potion", enemy))
 			healing = random.randrange(4,9)
 			ability.heal(healing)
 			time.sleep(5)
@@ -300,7 +300,7 @@ Enter 'b' to go back
 			time.sleep(2)
 			use_item(enemy)
 		else:
-			print(print_script(player_knife, reference))
+			print(print_script("player_knife", enemy))
 			knife_damage = random.randrange(2, 6)
 			enemy["hp"] -= knife_damage
 			time.sleep(5)
@@ -319,7 +319,7 @@ Enter 'b' to go back
 			use_item(enemy)
 			return False
 		else:
-			print(print_script(player_oil, reference))
+			print(print_script("player_oil", enemy))
 			time.sleep(5)
 			oil = 2
 			fatal = random.randrange(1,101)
@@ -340,7 +340,7 @@ Enter 'b' to go back
 			use_item(enemy)
 			return False
 		else:
-			print(print_script(player_smoke, reference))
+			print(print_script("player_smoke", enemy))
 			time.sleep(5)
 			if equipment.equipment["disorientating"] == True:
 				enemy["modifier"] -= 10

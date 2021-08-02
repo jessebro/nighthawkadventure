@@ -121,7 +121,7 @@ def enemy_attack(enemy, allies, damage_modi = 1):
 		target = "player"
 	enemy["parry"] = False
 	enemy["distract"] = False
-	print(print_script(enemy_strike, reference))
+	print(print_script("enemy_strike", enemy))
 	enemy_roll = random.randrange(1, 101)
 	time.sleep(5)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
@@ -134,14 +134,14 @@ def enemy_attack(enemy, allies, damage_modi = 1):
 				return
 			else:
 				print("Despite your efforts, you are too slow to avoid the blow.")
-		print(print_script(enemy_hit, reference))
+		print(print_script("enemy_hit", enemy))
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
 		ability.ability["health"] -= enemy_damage
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")
 		time.sleep(5)
 	else:
-		print(print_script(enemy_miss, reference))
+		print(print_script("enemy_miss", enemy))
 		time.sleep(5)
 		print(f"Your enemy misses!")
 		time.sleep(3)
@@ -149,7 +149,7 @@ def enemy_attack(enemy, allies, damage_modi = 1):
 
 def enemy_parry(enemy):
 	reference = enemy["reference"]
-	print(print_script(enemy_block, reference))
+	print(print_script("enemy_block", enemy))
 	enemy["playermod"] -= (10 - enemy["agility"])
 	enemy["parry"] = True
 	time.sleep(5)
@@ -157,7 +157,7 @@ def enemy_parry(enemy):
 
 def enemy_distract(enemy):
 	reference = enemy["reference"]
-	print(print_script(enemy_divert, reference))
+	print(print_script("enemy_divert", enemy))
 	enemy["modifier"] += (10 + enemy["agility"])
 	enemy["distract"] = True
 	time.sleep(5)
@@ -195,10 +195,10 @@ def kill(enemy):
 	gang_size -= 1
 	reference = enemy['reference']
 	if enemy["type"] == "human":
-		print(print_script(human_death, reference))
+		print(print_script("human_death", enemy))
 		time.sleep(5)
 	else:
-		print(print_script(monster_death, reference))
+		print(print_script("monster_death", enemy))
 		time.sleep(5)
 	if gang_size <= 0:
 		combat = False
