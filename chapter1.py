@@ -37,7 +37,7 @@ f"You know that the man will not be able to hold the {ghouls} back forever."])
 		print_stuff([f"You rush forwards, {weapon.weapon['weaponname']} in hand. The {ghouls} turn to face you now, but one of them continues to focus on the farmer",
 f"One of the {ghouls} lunges forward suddenly, and you ready your sword."])
 		enemies = [encounters.monster_access("ghoul"), encounters.monster_access("ghoul"), encounters.monster_access("ghoul")]
-		allies = [encounters.ally_access('tamara')]
+		allies = []
 		enemy_round.initialize(enemies, allies)
 		if post_combat.victory == False:
 			print(f"There is no one to save you. The farmer cannot hold the {ghouls} back for much longer, and the {ghouls} will show no mercy to those in the way of their food.")
