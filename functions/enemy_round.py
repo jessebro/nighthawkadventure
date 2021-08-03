@@ -3,7 +3,6 @@ from functions import character
 from functions import ability
 from functions import post_combat
 from functions import player_turn
-from functions import equipment
 from functions.player_turn import buffs
 from functions.combat_scripts import *
 
@@ -13,7 +12,6 @@ gang_index = 0
 combat = True
 assistance = False
 goad = ""
-down = False
 
 def combat_flow(enemy, allies):
 	global combat
@@ -258,15 +256,14 @@ def next_victim(enemies):
 
 
 def ally_turn(ally, enemy):
-	global down
 	assistance = False
 	goad = ""
-	if ally['hp'] <= 0:
+	if ally['hp'] <= 0 and ally['xp'] != 0:
 		print(print_script('ally_down', enemy, ally))
 		time.sleep(5)
-		down = True
+		ally['xp'] = 0
 	action = random.randrange(1, 6)
-	if down:
+	if ally['xp'] == 0:
 		return
 	elif action == 1 and ally['parry'] == False:
 		ally_assist(ally, enemy)
