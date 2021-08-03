@@ -47,7 +47,7 @@ f'''"It's not much, but you deserve a reward, {character.character['titles']['ca
 2. "Keep the money. Your children need it."
 > """, ['1', "2"])
 		if choice == "1":
-			print_stuff(["You take the gold bid the farmer farewell, before continuing on your way.",
+			print_stuff(["You take the gold and bid the farmer farewell, before continuing on your way.",
 "You received 10 gold!"])
 			equipment.equipment["gold"] += 10
 		else:
