@@ -6,6 +6,8 @@ from functions import player_turn
 from functions import equipment
 from functions.player_turn import buffs
 from functions.combat_scripts import *
+from functions.utils import colour_it
+from functions.utils import Color
 
 gang_size = 0
 gang_lads = []
@@ -96,7 +98,8 @@ def initialize(enemies: list, allies=()):
 def enemy_turn(enemy, allies):
 	if enemy['bleeding'] > 0:
 		damage = random.randrange(2,6)
-		print(f"Your enemy bleeds for {damage} damage!")
+		damage_script = colour_it(f"{damage} damage!", Color.YELLOW)
+		print(f"Your enemy bleeds for {damage_script}")
 		time.sleep(4)
 		enemy["modifier"] -= (10 * enemy['bleeding'])
 		enemy["bleeding"] -= 1
@@ -156,26 +159,30 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 		if target == "player":
 			agility_roll = random.randrange(1, 15)
 			if agility_roll <= ability.ability["agility"]:
-				print("You see the attack coming, but you will have to react quickly to avoid it.")
+				print(colour_it("You see the attack coming, but you will have to react quickly to avoid it.", Color.CHECK))
 				time.sleep(3)
 				dodge = ability.reaction(1.25, random.randrange(2, 4))
 				if dodge:
+					print("You are nimble enough to avoid the blow!")
+					time.sleep(3)
 					return
 				else:
 					print("Despite your efforts, you are too slow to avoid the blow.")
+					time.sleep(3)
 			print(print_script("enemy_hit", enemy, ally))
 		else:
 			print(print_script("enemy_hit_ally", enemy, ally))
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
+		enemy_damage_script = colour_it(f"{enemy_damage} damage!", Color.RED)
 		if target == "player":
 			ability.ability["health"] -= enemy_damage
 		else:
 			ally['hp'] -= enemy_damage
 		time.sleep(5)
 		if target == "player":
-			print(f"You are hit for {enemy_damage} damage!")
+			print(f"You are hit for {enemy_damage_script}")
 		else:
-			print(f"{ally['reference']['object']} is hit for {enemy_damage} damage!")
+			print(f"{ally['reference']['object']} is hit for {enemy_damage_script}")
 		time.sleep(5)
 	else:
 		if target == "player":
@@ -183,7 +190,7 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 		else:
 			print(print_script("enemy_miss_ally", enemy, ally))
 		time.sleep(5)
-		print(f"Your enemy misses!")
+		print(colour_it("Your enemy misses!", Color.GREEN))
 		time.sleep(3)
 
 
@@ -289,15 +296,16 @@ def ally_strike(ally, enemy):
 	time.sleep(5)
 	if ally_roll <= (ally["skill"] + ally["modifier"]):
 		ally_damage = (random.randrange(ally["mindamage"], ally["maxdamage"] + 1))
+		ally_damage_script = colour_it(f"{ally_damage} damage!", Color.YELLOW)
 		enemy["hp"] -= ally_damage
 		print(print_script("ally_hit", enemy, ally))
 		time.sleep(5)
-		print(f"{reference['object']} hits for {ally_damage} damage!")
+		print(f"{reference['object']} hits for {ally_damage_script}")
 		time.sleep(5)
 	else:
 		print(print_script("ally_miss", enemy, ally))
 		time.sleep(5)
-		print(f"{reference['object']} misses!")
+		print(colour_it(f"{reference['object']} misses!", Color.RED))
 		time.sleep(3)
 
 def ally_assist(ally, enemy):
