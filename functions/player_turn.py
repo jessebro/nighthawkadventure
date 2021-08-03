@@ -58,9 +58,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	prompt = ""
 	counter = 0
 	options = []
-	if enemy_round.assistance >= 1:
-		enemy['playermod'] = 1000
-		enemy_round.assistance -= 1
+	if enemy_round.assistance:
+		enemy['playermod'] += 10
 	for attack in attacks:
 		counter += 1
 		prompt = prompt + str(counter) + ". " + attack["name"] + attack["description"] + """

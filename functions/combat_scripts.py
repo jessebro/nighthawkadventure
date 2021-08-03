@@ -25,7 +25,10 @@ def print_script(scripts, enemy, ally=defaults):
 	"turn_start" : [f"""You circle each other, sizing each other up.""",
 f"""You ready your weapon and glare at your opponent.""",
 f"""You feel your heart pounding, feel your chest rising with smooth, even breaths.""",
-f"""{reference['object'].capitalize()} lunges. You jump aside at the last second."""],
+f"""{reference['object'].capitalize()} lunges. You jump aside at the last second.""",
+f"""Sword at the ready, you jeer at {reference['object']}.""",
+f"""You flourish your blade, and {reference['object']} flinches at the display."""],
+
 	"player_attack" : ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
 f"""You rush towards {reference["object"]}, sword grasped firmly.""",
@@ -45,7 +48,11 @@ f"With a deft sword movement you explode into action, striking with your whirlin
 
 	"player_miss" : ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
 "You swing your sword in a cruel lateral strike, but your opponent ducks just in time, the wind chasing the blade making a whistling sound.",
-f"""You swing your sword downwards, grunting with the effort. {reference["object"].capitalize()} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body."""],
+f"""You swing your sword downwards, grunting with the effort. {reference["object"].capitalize()} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body.""",
+f"""Despite your best efforts, {reference['object']} is too quick for you, dodging your strikes with ease.""",
+f"""Your sword comes crashing down on {reference['object']}, but your target recoils from the blow just in time, your weapon slamming hard into the ground.""",
+f"You swing your sword, but misjudge the distance. You blade passes harmlessly in front of your opponent.",
+f"Your attempt to strike {reference['object']}, but {reference['he']} steps backwards just in time, the tip of your sword not even scratching {reference['him']}."],
 
 	"player_extra_attack": ["You're quick enough to strike a second time.",
 "You bring your blade back quickly for a second attempt.",

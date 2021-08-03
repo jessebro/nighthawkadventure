@@ -11,8 +11,8 @@ gang_size = 0
 gang_lads = []
 gang_index = 0
 combat = True
-assistance = 0
-goad = 0
+assistance = False
+goad = ""
 down = False
 
 def combat_flow(enemy, allies):
@@ -124,6 +124,10 @@ def choose_target(enemy, allies):
 		if random.randrange(1, 3) == 1:
 			target = targetable
 			break
+	if goad != "":
+		for allied in allies:
+			if allied['reference']['object'] == goad:
+				target = goad
 	for allied in allies:
 		if allied['reference']['object'] == target:
 			ally = allied
@@ -251,6 +255,8 @@ def next_victim(enemies):
 
 def ally_turn(ally, enemy):
 	global down
+	assistance = False
+	goad = ""
 	if ally['hp'] <= 0:
 		down = True
 	action = random.randrange(1, 6)
@@ -288,7 +294,7 @@ def ally_assist(ally, enemy):
 	reference = ally['reference']
 	print(print_script("ally_assist", enemy, ally))
 	time.sleep(5)
-	assistance = 1
+	assistance = True
 
 
 def ally_distract(ally, enemy):
@@ -296,4 +302,4 @@ def ally_distract(ally, enemy):
 	reference = ally['reference']
 	print(print_script("ally_assist", enemy, ally))
 	time.sleep(5)
-	goad = 1
+	goad = reference['object']

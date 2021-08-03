@@ -260,4 +260,9 @@ f"""After bidding {denvar} farewell and descend the mountain carefully, returnin
 
 
 def reeturn():
-	print_stuff(["You retrace your steps along"])
+	save('chapter2.reeturn')
+	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	tamara = colour_it("Tamara", Color.NPC)
+	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
+	print_stuff([f"You retrace your steps along the trail to the {lizardtongue}, this time with another by your side. By the time night falls, the lights of {blackburrow} are visible.",
+f"As you settle down to rest, {tamara}"])
