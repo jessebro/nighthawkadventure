@@ -67,5 +67,4 @@ def generate_loot(enemies):
 			time.sleep(4)
 			equipment.equipment['gold'] += gold
 	ability.gain_xp(enemies)
-	victory("victory")
 	return False

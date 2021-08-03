@@ -81,7 +81,7 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 		enemy_2 = encounters.monster_access("mbandit")
 		gang = [enemy_1, enemy_2]
 		enemy_round.initialize(gang)
-		if post_combat.victory == False:
+		if ability.ability['health'] <= 0:
 			print_stuff(["You wake up lying in the alley. You hurt where you were hit, and you feel that your money was stripped from you.",
 "You lost all gold!"])
 			equipment.equipment["gold"] = 0

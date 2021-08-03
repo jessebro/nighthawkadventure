@@ -3,6 +3,7 @@ from functions import character
 from functions import ability
 from functions import post_combat
 from functions import player_turn
+from functions import equipment
 from functions.player_turn import buffs
 from functions.combat_scripts import *
 
@@ -253,6 +254,8 @@ def kill(enemy):
 def next_victim(enemies):
 	global gang_index
 	gang_index += 1
+	if gang_index >= len(enemies):
+		return
 	enemy = enemies[gang_index]
 	reference = enemy['reference']
 	print(print_script("enemy_approach", enemy))
