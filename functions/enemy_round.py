@@ -262,6 +262,8 @@ def ally_turn(ally, enemy):
 	assistance = False
 	goad = ""
 	if ally['hp'] <= 0:
+		print(print_script('ally_down', enemy, ally))
+		time.sleep(5)
 		down = True
 	action = random.randrange(1, 6)
 	if down:

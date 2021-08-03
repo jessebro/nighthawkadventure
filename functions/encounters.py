@@ -17,7 +17,7 @@ def monster_access(key):
 		"mbandit": enemy_round.generate_actor(*[15, 2, 6, 50, 5, random.randrange(8, 16), "human", "male", "the male bandit"]),
 		"fbandit": enemy_round.generate_actor(*[12, 2, 6, 50, 8, random.randrange(8, 16), "human", "female", "the female bandit"]),
 		"chaos_daughter": enemy_round.generate_actor(*[18, 3, 8, 65, 10, random.randrange(18, 29), "human", "female", "the daughter of chaos"]),
-		"ghoul": enemy_round.generate_actor(*[9, 3, 5, 45, 10, random.randrange(5, 11), "monster", "it", "the ghoul"]),
+		"ghoul": enemy_round.generate_actor(*[900, 3, 5, 450, 10, random.randrange(5, 11), "monster", "it", "the ghoul"]),
 		"bone_hag": enemy_round.generate_actor(*[22, 4, 7, 45, 0, random.randrange(15, 24), "monster", "it", "the bone hag"]),
 		"lalikin": enemy_round.generate_actor(*[17, 3, 6, 55, 5, random.randrange(12, 21), "monster", "it", "the lalikin"]),
 		"crag": enemy_round.generate_actor(*[30, 6, 15, 25, -5, random.randrange(20, 33), "monster", "it", "the crag"]),
@@ -38,6 +38,6 @@ def special_access(key):
 
 def ally_access(key):
 	allies = {
-		"tamara": enemy_round.generate_actor(*[15 * ability.ability['level'], 4, 7, 70, 10, 0, "human", "female", "Tamara"]),
+		"tamara": enemy_round.generate_actor(*[1 * ability.ability['level'], 4, 7, 70, 10, 0, "human", "female", "Tamara"]),
 	}
 	return allies[key]

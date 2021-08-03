@@ -174,7 +174,7 @@ f"You ready your sword, now stained with blood, shouting a challenge to your nex
 
 	"ally_distract": [f""""Over here, ugly" {ally_reference['object']} jeers. {reference['object'].capitalize()} turns to face {ally_reference['him']} agrily."""],
 
-	"ally_down": [f"""{ally_reference['object'].capitalize()} clutches {ally_reference['his']} wound, blood seeping through his fingers. "I'm down!" {ally_reference['he']} groans."""]
+	"ally_down": [f"""{ally_reference['object'].capitalize()} clutches {ally_reference['his']} wound, blood seeping through his fingers. "I'm sorry!" {ally_reference['he']} groans. "I'm out for this one." """]
 	}
 
 	return random.choice(choices[scripts])
