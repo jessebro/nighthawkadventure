@@ -27,7 +27,8 @@ f"""You ready your weapon and glare at your opponent.""",
 f"""You feel your heart pounding, feel your chest rising with smooth, even breaths.""",
 f"""{reference['object'].capitalize()} lunges. You jump aside at the last second.""",
 f"""Sword at the ready, you jeer at {reference['object']}.""",
-f"""You flourish your blade, and {reference['object']} flinches at the display."""],
+f"""You flourish your blade, and {reference['object']} flinches at the display.""",
+f"""Both you and {reference['object']} ready yourselves, ducking, weaving, feinting and striking each trying to gain an advantage."""],
 
 	"player_attack" : ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
@@ -56,27 +57,38 @@ f"Your attempt to strike {reference['object']}, but {reference['he']} steps back
 
 	"player_extra_attack": ["You're quick enough to strike a second time.",
 "You bring your blade back quickly for a second attempt.",
-"You spin with the momentum of the sword, whirling and attacking again swiftly."],
+"You spin with the momentum of the sword, whirling and attacking again swiftly.",
+"You twirl your sword in a figure of eight, carrying your impetus into an addition strike.",
+"You take a swing again, determined to strike true."],
 
 	"player_hit_parry": [
 f"You swing your sword, but {reference['object']} is ready, dodging sideways at the last second.",
-f"As you charge forwards, {reference['object']} slams into you, pushing you back, staggering."],
+f"As you charge forwards, {reference['object']} slams into you, pushing you back, staggering.",
+f"Just as you bring your sword to bare, {reference['object']} ducks behind you, striking at your back.",
+f"Suddenly, your opponent ducks low and strikes at your legs, almost tripping you.",
+f"Too late, you realize the trap. Your foot kicks a stone and you stumble forwards, at the mercy of {reference['object']}"],
 
 	"player_parry": ["You raise your sword in a defensive position.",
 "You brace yourself for your charging adversary, ready and waiting",
-f"You bring your sword to bare, watching {reference['object']} closely."],
+f"You bring your sword to bare, watching {reference['object']} closely.",
+f"You shout a challenge to {reference['object']}, holding your ready.",
+f"{reference['object'].capitalize()} rushes forwards. You grasp your sword firmly before you."],
 
 	"player_success_parry": [
 f"Your enemy runs forward, but at the last second you kick {reference['him']} back, knocking the breath from {reference['his']} body.",
 f"{reference['he'].capitalize()} runs forward suddenly, but you are ready. {reference['his'].capitalize()} attack is caught on your sword and you twirl the blade swifty, knocking {reference['him']} off balance.",
 f"As your opponent charges, you sidestep. {reference['he'].capitalize()} runs straight past you, back exposed, almost asking to be slashed.",
 f"""{reference['object'].capitalize()} attacks, but you spin away from the blow, ending your twirl on your opponent's flank.""",
-f"Your adversary closes in, but at the last second you lunge forwards, slamming your shoulder into {reference['him']}. {reference['he'].capitalize()} stumbles backwards, sputtering for breath."],
+f"Your adversary closes in, but at the last second you lunge forwards, slamming your shoulder into {reference['him']}. {reference['he'].capitalize()} stumbles backwards, sputtering for breath.",
+f"As the expected attack comes in, you duck and spin under the strike, bring your sword around to attack.",
+f"With a swift movement, you cut at the legs of {reference['object']}, sending it stumbling."],
 
 	"player_fail_parry": [
 "You raise your sword against the expected attack, but it comes quicker than you thought. You feel a cut upon your face.",
 "Your opponent rushes forwards. You try and duck to the side at the last second, but are too slow. Pain racks your body and you jump away, cursing.",
-"You deflect the first attack, but the second comes in quicker than you can react. You manage to avoid the worst of the blow, but still, it hurts."],
+"You deflect the first attack, but the second comes in quicker than you can react. You manage to avoid the worst of the blow, but still, it hurts.",
+f"Despite your defensive stance, {reference['object']} is too fast for you, dealing you a glancing blow.",
+f"You move your sword to intercept, but only then realise the feint. Too late. You exposed flank falls easy prey to {reference['object']}."],
 
 	"player_distract": ["Suddenly, you lean down, scoop up a handful of dirt and throw it in your enemy's face.",
 f"You yell fiercely into the face of your opponent. {reference['he'].capitalize()} recoils at the sudden noise.",
@@ -152,12 +164,17 @@ f"You bury your sword up to the hilt into {reference['object']}, the blade protr
 f"For a moment, {reference['he']} stays standing. But then {reference['he']} crashes down to the ground, a scarlet blossom growing around {reference['his']} body.",
 f"{reference['object'].capitalize()} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bringing your sword down like an executioner's axe, taking the head from {reference['his']} shoulders.",
 f"You cut {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry.",
-f"{reference['object'].capitalize()} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood."],
+f"{reference['object'].capitalize()} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood.",
+f"You spin on one foot, and bring your hand in a strong backhand. The attack cuts {reference['object']} clean in half.",],
 
 	"monster_death": [f"{reference['object'].capitalize()} growls one last time, then falls to the ground.",
 f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue.",
 f"You lunge forwards, pinning {reference['object']} by the throat and holding it to the ground. You draw your knife and plunge it home into the monster's snarling mouth.",
-f"{reference['object'].capitalize()} stares at you, collpasped on the ground and growling softly. You walk over and finished it off with a mighty blow."],
+f"{reference['object'].capitalize()} stares at you, collpasped on the ground and growling softly. You walk over and finished it off with a mighty blow.",
+f"You follow up your previous strike with a another one. {reference['object'].capitalize()} has no chance against the hail of blows.",
+f"With a flurry of blows, you hack pieces of {reference['object']} off {reference['his']} main body.",
+f"Your already injured opponent can only watch as you bring you sword down upon it in a lunging strike.",
+f"{reference['object'].capitalize()} knows {reference['his']} time has come. In a last ditch attack, {reference['he']} lunges forward. You sidestep and finish {reference['him']} easily."],
 
 	"enemy_approach": [
 f"{reference['object'].capitalize()} rushes forward, {reference['pain']}ing with rage at {reference['his']} companion's death.",
