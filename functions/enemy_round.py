@@ -19,14 +19,14 @@ def combat_flow(enemy, allies):
 	while combat:
 		player_turn.turn(enemy, allies)
 		if dead_check(enemy):
-			continue
+			break
 		enemy_turn(enemy, allies)
 		if player_defeat():
 			break
 		for ally in allies:
 			ally_turn(ally, enemy)
 			if dead_check(enemy):
-				continue
+				break
 
 
 def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
