@@ -265,4 +265,12 @@ def reeturn():
 	tamara = colour_it("Tamara", Color.NPC)
 	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
 	print_stuff([f"You retrace your steps along the trail to the {lizardtongue}, this time with another by your side. By the time night falls, the lights of {blackburrow} are visible.",
-f"As you settle down to rest, {tamara}"])
+f"As you settle down to rest, {tamara} away from your camp and changes her clothes. Instead of hte strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
+"""She wears tight trousers, a shirt and jacket, and her hair is tied back in a loose ponytail. "Does this look any better?" she asks, holding up her arms and spinning around. """])
+	choice = input_stuff("""1. "Looks fine." 
+2. "Looks like shit." 
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff([f""""I'm glad you like it!" {tamara} then takes a seat beside you around the meager campfire. """])
+	else:
+		print_stuff([f"""{tamara} raises an eyebrow but says nothing, then takes a seat beside you around the meager campfire. """])
