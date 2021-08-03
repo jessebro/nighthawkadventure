@@ -163,7 +163,7 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 	print_stuff([f"Suddenly, {tamara} looks over your shoulder and draws her sword. You turn around and see two {daughters} walking towards you.",
 f""""I'll take one," {tamara} says quickly. The {daughters} run forwards, swords in hand. {tamara} lunges towards one of them."""])
 	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
-	if post_combat.victory == False:
+	if ability.ability['health'] <= 0:
 		ability.ability["health"] = (ability.ability["maxhealth"] / 2)
 		print_stuff([f"The light returns to your vision and you see {tamara}'s face looking down at you",
 """"That was quite a hit you took," she says cheekily. She offers her hand to you to help you up.s"""])
@@ -240,7 +240,7 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 			break
 	print_stuff([f"Suddenly, you hear the sound of footsteps. {tamara} jumps to her feet and runs to the window.",])
 	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
-	if post_combat.victory == False:
+	if ability.ability['health'] <= 0:
 		ability.ability["health"] = (ability.ability["maxhealth"] / 2)
 		print_stuff([f"The light returns to your vision and you see {tamara}'s face looking down at you",
 """"That was quite a hit you took," she says cheekily. She offers her hand to you to help you up.s"""])

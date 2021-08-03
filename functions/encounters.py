@@ -1,5 +1,7 @@
 from functions import enemy_round
+from functions import ability
 import random
+
 
 xp_handouts = {
 	"practice": enemy_round.generate_actor(*[0, 0, 0, 0, 0, 10, " ", " ", " "]),
@@ -36,6 +38,6 @@ def special_access(key):
 
 def ally_access(key):
 	allies = {
-		"tamara": enemy_round.generate_actor(*[20, 3, 7, 70, 10, 0, "human", "female", "Tamara"]),
+		"tamara": enemy_round.generate_actor(*[15 * ability.ability['level'], 4, 7, 70, 10, 0, "human", "female", "Tamara"]),
 	}
 	return allies[key]

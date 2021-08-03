@@ -177,7 +177,8 @@ def parry(enemy, allies):
 		time.sleep(5)
 		print(f"You are hit for {enemy_damage} damage!")
 		time.sleep(5)
-		enemy_round.player_defeat()
+		if enemy_round.player_defeat():
+			return
 		if vengeance:
 			print("You shrug off the pain and lunge forwards in an attempt to take revenge!")
 			time.sleep(3)

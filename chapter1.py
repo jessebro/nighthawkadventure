@@ -4,7 +4,6 @@ from functions import equipment
 from functions import character
 from functions import encounters
 from functions import enemy_round
-from functions import post_combat
 from functions import weapon
 from functions import rest
 from functions.utils import print_stuff
@@ -39,7 +38,7 @@ f"One of the {ghouls} lunges forward suddenly, and you ready your sword."])
 		enemies = [encounters.monster_access("ghoul"), encounters.monster_access("ghoul"), encounters.monster_access("ghoul")]
 		allies = []
 		enemy_round.initialize(enemies, allies)
-		if post_combat.victory == False:
+		if ability.ability['health'] <= 0:
 			print(f"There is no one to save you. The farmer cannot hold the {ghouls} back for much longer, and the {ghouls} will show no mercy to those in the way of their food.")
 			exit()
 		print_stuff([f"You wipe ghoul blood from your sword with a cloth. The farmer approaches you, his own pitchfork stained a dark red.",
@@ -98,7 +97,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 			print_stuff(['Deciding not to disturb the inhabitants - whoever they may be - you trace your steps back to the junction in the trail.'])
 			return False
 		enemy_round.initialize([encounters.monster_access("bone_hag")])
-		if post_combat.victory == False:
+		if ability.ability['health'] <= 0:
 			print("No one knows you came here, and no one can save you now. Unfortunately, you'll probably end up in the hag's cooking pot.")
 			exit()
 		print_stuff([f"With the {bone_hag} dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
@@ -281,7 +280,7 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 """To make sure he causes no more trouble, you kick him in the side of the head, and his body goes still, apart from his chest rising and falling."""])
 			else:
 				enemy_round.initialize([encounters.special_access("garurt")])
-				if post_combat.victory == False:
+				if ability.ability['health'] <= 0:
 					print_stuff(["You wake up, bruised and scratched. You look around and realise that you are in the remains of the camp sight.",
 "You also realise that almost all your belongings are gone. Your sword, your food, and your items remain. However, you money and knives are gone.",
 "You pick yourself up and gather your equipment. It is day time, and despite being knocked unconscious, you feel slightly refreshed.",
@@ -349,7 +348,7 @@ f"Two pointy ears like those of a wolf adorn each head, as well as a long snout.
 f"The {lalikins} turn to you and growl, showing off white, pointy teeth. They flex their claws and begin to approach you.",
 f"You hold {weapon.weapon['weaponname']} at the ready, and the {lalikins} charge."])
 			enemy_round.initialize([encounters.monster_access("lalikin"), encounters.monster_access("lalikin")])
-			if post_combat.victory == False:
+			if ability.ability['health'] <= 0:
 				print_stuff([f"The {lalikins} were already feeding on the woman. They will not complain about extra food."])
 				exit()
 			print_stuff(["You search the body of the woman and find the money she stole from you."])
@@ -392,7 +391,7 @@ f"A beast of animated rock, a {crag} will attack all living creatures it encount
 f"The {crag} swings at you, but you drop and slid between it's legs. The {crag}'s fist hits the ground, blasting rocks to pieces.",
 "You realise that the creature may be slow, but if you get hit, your situation will be grave indeed."])
 		enemy_round.initialize([encounters.monster_access("crag")])
-		if post_combat.victory == False:
+		if ability.ability['health'] <= 0:
 			print_stuff([f"The {crag} cares nothing for food, but it does enjoy killing. Unconscious, you do not see the {crag} raise it's mighty fists."])
 			exit()
 		print_stuff([f"Panting for breath, you watch the {crag}'s body crumble into a pile of boulders and dust.",
@@ -624,7 +623,7 @@ def cave():
 f"The monster is tall and appears to be a wolf-like bipedal creature. You know it to be a {moracka}.",
 f"It has razor sharp teeth, claws, and for its size is extremely fast. The {moracka} bares down on you, teeth bared."])
 		enemy_round.initialize([encounters.monster_access("moracka")])
-		if post_combat.victory == False:
+		if ability.ability['health'] <= 0:
 			print_stuff([f"The {moracka} is a carnivore, and is not picky about what it eats. It will drag you into some dark corner to enjoy its meal undisturbed."])
 			exit()
 		print_stuff(["You continue along the tunnel, and find yourself at a dead end. However, sitting before you is a skeleton wearing a necklace with a black gem."])
@@ -689,7 +688,7 @@ f"You take the gold coins, and also find three throwing {knives}, two vials of s
 				print_stuff(["You are not careful enough, and you kick a stone, which clatters across the floor with alarming loudness.",
 f"The {ogre} wakes with a roar and looks around, sees you and jumps to its feet. Growling with anger, it charges."])
 				enemy_round.initialize([encounters.monster_access("ogre")])
-				if post_combat.victory == False:
+				if ability.ability['health'] <= 0:
 					print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
 					exit()
 				equipment.equipment["gold"] += 75
@@ -709,7 +708,7 @@ f"You take the gold coins, and also find three throwing {knives}, two vials of s
 			print_stuff([f"You rush forwards and slash the {ogre} as it sleeps. Though it doesn't die, it roars with a howl of pain.",
 "Growling with anger, it turns to face you. It springs to its feet and rushes forwards, hands outstretched, teeth bared."])
 			enemy_round.initialize([encounters.monster_access("injured ogre")])
-			if post_combat.victory == False:
+			if ability.ability['health'] <= 0:
 				print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
 				exit()
 			equipment.equipment["gold"] += 75
@@ -763,7 +762,7 @@ f"You find nothing of interest, and turn to leave. But you find yourself cut off
 "They snarl at you and lunge forwards, teeth bared. You jump aside at the last second, drawing your sword."])
 			enemies = [encounters.monster_access("wolf"), encounters.monster_access("wolf"), encounters.monster_access("wolf")]
 			enemy_round.initialize(enemies)
-			if post_combat.victory == False:
+			if ability.ability['health'] <= 0:
 				print_stuff([f"These {wolves} live deep in a cave don't get much food. They are grateful for your entrance."])
 				exit()
 			print_stuff(["Panting for breath after the fight, you walk back the way you came."])

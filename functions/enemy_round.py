@@ -24,7 +24,7 @@ def combat_flow(enemy, allies):
 			continue
 		enemy_turn(enemy, allies)
 		if player_defeat():
-			continue
+			break
 		for ally in allies:
 			ally_turn(ally, enemy)
 			if dead_check(enemy):
@@ -85,6 +85,8 @@ def initialize(enemies: list, allies=()):
 	gang_size = len(enemies)
 	gang_lads = enemies
 	for enemy in enemies:
+		if ability.ability['health'] <= 0:
+			break
 		combat_flow(enemy, allies)
 
 
@@ -207,20 +209,22 @@ def dead_check(enemy):
 	else:
 		return False
 
+
 def player_defeat():
 	global combat
 	if ability.ability["health"] <= 0:
 		combat = False
-		if equipment.equipment["potions"] > 0:
-			equipment.equipment["potions"] -= 1
-			print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
-			time.sleep(5)
-			print("A potion was used to prevent defeat, but only at half it's potency.")
-			ability.ability["health"] = 0
-			ability.ability["health"] += random.randrange(2, 6)
-		else:
-			print("You are struck by your opponent, and the next thing you know, you have fallen. Everything begins to go dark, and there is nothing you can do to stop it.")
-			post_combat.victory("defeat")
+		# if equipment.equipment["potions"] > 0:
+		# 	equipment.equipment["potions"] -= 1
+		# 	print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
+		# 	time.sleep(5)
+		# 	print("A potion was used to prevent defeat, but only at half it's potency.")
+		# 	ability.ability["health"] = 0
+		# 	ability.ability["health"] += random.randrange(2, 6)
+		# 	combat = True
+		# else:
+		print("You are struck by your opponent, and the next thing you know, you have fallen. Everything begins to go dark, and there is nothing you can do to stop it.")
+		return True
 
 
 def kill(enemy):

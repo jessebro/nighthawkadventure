@@ -19,15 +19,8 @@ def end_combat(enemy):
 		generate_loot(enemy)
 	else:
 		ability.gain_xp(enemy)
-		victory("victory")
 		return False
 
-
-def victory(result):
-	if result == "victory":
-		return True
-	else:
-		return False
 
 def generate_loot(enemies):
 	for enemy in enemies:
