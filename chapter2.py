@@ -268,9 +268,54 @@ def reeturn():
 f"As you settle down to rest, {tamara} away from your camp and changes her clothes. Instead of hte strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
 """She wears tight trousers, a shirt and jacket, and her hair is tied back in a loose ponytail. "Does this look any better?" she asks, holding up her arms and spinning around. """])
 	choice = input_stuff("""1. "Looks fine." 
-2. "Looks like shit." 
+2. "Looks terrible." 
 > """, ["1", "2"])
 	if choice == "1":
 		print_stuff([f""""I'm glad you like it!" {tamara} then takes a seat beside you around the meager campfire. """])
 	else:
 		print_stuff([f"""{tamara} raises an eyebrow but says nothing, then takes a seat beside you around the meager campfire. """])
+	print_stuff(['The night begins to grow cold, and the sky gradually fades from a sunset pink-and-orange to a dark blue. Stars appear overhead.',
+f"""Eventually, {tamara} turns to you. "What do you say to a bit of sparring?" she asks, rising to her feet. "To tire us out so we sleep better?". """])
+	sparring = False
+	while True:
+		choice = input_stuff("""1. "As you wish. Ready to lose?" 
+2. "I don't want to hurt you..."
+3. "Sorry. It's not for me."
+> """, ["1", "2", "3"])
+		if choice == "1":
+			sparring = True
+			break
+		elif choice == "2":
+			print_stuff([
+f'''{tamara} laughs. "You make it sound so easy," she says. "Or maybe you're just afraid I'll beat you!" '''])
+			continue
+		elif choice == "3":
+			print_stuff([
+f'''{tamara} raises an eyebrow. "Why not, may I ask?" '''])
+			choice = input_stuff("""1. "I like a challenge." 
+2. "I don't want either of us to be injured."
+3. "I just don't feel like it."
+4. "On second thoughts..."
+> """, ["1", "2", "3", "4"])
+			if choice == "1":
+				print_stuff([f"""{tamara} frowns. "I'm not that bad," she protests. But she sits down again. """])
+				break
+			elif choice == "2":
+				print_stuff([f""""We'd be using the flat of our blades. If you're any good, that shouldn't be too hard." But {tamara} returns to her seat anyway. """])
+			elif choice == "3":
+				print_stuff([f"""{tamara} shrugs. "That's fair. I won't press you." """])
+			elif choice == "4":
+				sparring = True
+				break
+	if sparring == True:
+		print_stuff([f"You and {tamara} lock blades together in a mock battle. You prove to be her superior, and the match ends with your tip pressed gently to her breast.",
+f""""You're incredible!" {tamara} exclaims with excitement. "Where did you learn that?" """])
+		choice = input_stuff(""""1. I'm a Nighthawk." 
+2. "A few things along the road." 
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff([f"""{tamara} gasps in awe. "Amazing!" """])
+		print_stuff([f""""However, I think there's something I may be able to add to your repertoire." {tamara} begins to demonstrate a new sword routine to you...""",
+""""""])
+		weapon.weapon['attacks'][4]['enabled'] = True
+	rest.rest()

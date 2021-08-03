@@ -29,10 +29,10 @@ weapon = {
 	             "accuracy": -10
 	             },
 	            {"name": "Dancing Strike",
-				"description": " (lower damage, always makes two attacks)",
+				"description": " (lower accuracy, always makes two attacks)",
 	             "enabled": False,
-	             "damage": 0.75,
-	             "accuracy": 0
+	             "damage": 1,
+	             "accuracy": -10
 	             },
 	            {"name": "Vampire Strike",
 				"description": " (lower damage, chance to heal damage dealt)",
