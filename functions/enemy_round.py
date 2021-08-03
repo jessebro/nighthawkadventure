@@ -20,7 +20,11 @@ def combat_flow(enemy, allies):
 		player_turn.turn(enemy, allies)
 		if dead_check(enemy):
 			break
+		if player_defeat():
+			break
 		enemy_turn(enemy, allies)
+		if dead_check(enemy):
+			break
 		if player_defeat():
 			break
 		for ally in allies:
