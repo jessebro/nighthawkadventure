@@ -145,7 +145,8 @@ f""""Alright," says {ally_reference['object']}, jumping away from the danger. "T
 f""""Nice try," says {ally_reference['object']}, ducking away from {reference['object']}'s attack.""",
 f"""{ally_reference['object'].capitalize()} sidesteps the blow directed at {ally_reference['him']}, slapping at it with {ally_reference['his']} weapon.""",
 f"""{ally_reference['object'].capitalize()} rolls away from {reference['object']} and the danger, coming to {reference['his']}, panting for breath."""
-	],
+f"""The attack comes so close to {ally_reference['object']} that some of {ally_reference['his']} hair falls to the ground, torn from {ally_reference['his']} head by the strike.""",
+f""""""],
 
 	"enemy_block": [
 f"{reference['object'].capitalize()} braces {reference['him']}self, and glares at you, daring you to fight.",
@@ -191,10 +192,16 @@ f""""Die!" {ally_reference['object']} yells, charging forwards, weapon at the re
 f"""Gritting {ally_reference['his']} teeth, {ally_reference['object']} rushes forwards, weapon poised to strike."""],
 
 	"ally_hit": [f"{ally_reference['object'].capitalize()}'s attack strikes true, scoring a hit.",
-f""""{reference['he'].capitalize()} felt that one!" {ally_reference['object']} shouts gleefullt, jumping away before {reference['his']} opponent can make a counterattack.""",
-f"With a swift blow, {ally_reference['object']}'s weapon meets the body of {reference['object']}."],
+f""""{reference['he'].capitalize()} felt that one!" {ally_reference['object']} shouts gleefully, jumping away before {reference['his']} opponent can make a counterattack.""",
+f"With a swift blow, {ally_reference['object']}'s weapon meets the body of {reference['object']}.",
+f"{ally_reference['object'].capitalize}'s weapon bites deeply into {reference['object']}, accompanied by a {reference['pain']} of pain.",
+f"""With a sudden feint, {reference['object']} stumbles, an easy target for {ally_reference['object']}'s blow."""],
 
-	"ally_miss": [f"{ally_reference['object'].capitalize()} moves to attack, but {ally_reference['his']} target evades the blow."],
+	"ally_miss": [f"{ally_reference['object'].capitalize()} moves to attack, but {ally_reference['his']} target evades the blow.",
+f"Despite {ally_reference['object']}'s best efforts, {reference['object']} is too quick, nimbly dodging all attacks directed at {reference['him']}",
+f"""{ally_reference['object'].capitalize()}'s aim is true, but {ally_reference['his']} target dodges the strike at the last second.""",
+f"""The attack misses by a hair. "I'll get {reference['him']} next time," {ally_reference['object']} says fiercly.""",
+f"""{reference['object'].capitalize()} bats away the attack directed at {reference['him']}, and leaps away from the danger."""],
 
 	"ally_assist": [f"""{ally_reference['object'].capitalize()} maneuvers to flank. "Strike now!" {ally_reference['he']} yells."""],
 
@@ -204,7 +211,7 @@ f"With a swift blow, {ally_reference['object']}'s weapon meets the body of {refe
 f"""As {ally_reference['object']} is struck, {ally_reference['he']} falls and crawls away from the melee.""",
 f"""{ally_reference['object'].capitalize()} is struck in the head. {ally_reference['his'].capitalize()} eyes roll back and {ally_reference['he']} falls, senseless.""",
 f"""The damage {ally_reference['object']} sustains is great, and it is not long before {ally_reference['he']} passes out from the pain.""",
-f"""{ally_reference['object'].capitalize()} tries to jump away from {reference['object']}, but trips and falls. {ally_reference['he'].capitalize()} is too weak to rise again."""]
+f"""{ally_reference['object'].capitalize()} tries to jump away from {reference['object']}, but trips and falls. {ally_reference['he'].capitalize()} is too weak to rise again.""",]
 	}
 
 	return random.choice(choices[scripts])
