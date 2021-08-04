@@ -309,12 +309,12 @@ f'''{tamara} raises an eyebrow. "Why not, may I ask?" '''])
 	if sparring == True:
 		print_stuff([f"You and {tamara} lock blades together in a mock battle. You prove to be her superior, and the match ends with your tip pressed gently to her breast.",
 f""""You're incredible!" {tamara} exclaims with excitement. "Where did you learn that?" """])
-		choice = input_stuff(""""1. I'm a Nighthawk." 
+		choice = input_stuff("""1. "I'm a Nighthawk." 
 2. "A few things along the road." 
 > """, ["1", "2"])
 		if choice == "1":
 			print_stuff([f"""{tamara} gasps in awe. "Amazing!" """])
 		print_stuff([f""""However, I think there's something I may be able to add to your repertoire." {tamara} begins to demonstrate a new sword routine to you...""",
-""""""])
+"""Your learnt Dancing Strike!"""])
 		weapon.weapon['attacks'][4]['enabled'] = True
 	rest.rest()

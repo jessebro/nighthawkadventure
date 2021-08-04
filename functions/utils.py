@@ -65,3 +65,5 @@ def print_stuff(scripts):
 	for script in scripts:
 		print(script)
 		input_stuff(f"""{colour_it("~~", Color.YELLOW)}""", "*")
+
+

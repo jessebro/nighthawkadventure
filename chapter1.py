@@ -101,7 +101,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 			exit()
 		print_stuff([f"With the {bone_hag} dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
 		while True:
-			quest = colour_it(""""Leave""", Color.QUEST)
+			quest = colour_it("""Leave""", Color.QUEST)
 			investigate = input_stuff(f"""1. Search the chest.
 2. Investigate the cauldron.
 3. Check the papers
@@ -145,10 +145,9 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 2. Leave the ring.
 > """, ['1', "2"])
 						if ring == "1":
-							boost = colour_it("Your Strength has been increased by 1!", Color.FUNCTION)
 							ability.ability["strength"] += 1
 							print_stuff(["You feel a tingling sensation as you slip the ring on, and a sudden burst of power.",
-{boost}])
+"Your Strength has been increased by 1!"])
 						else:
 							continue
 					else:
