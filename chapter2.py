@@ -367,15 +367,22 @@ f"You leave {bertholt}'s home, a bit disappointed. You make your way to the tave
 				equipment.equipment['gold'] += 75
 				print_stuff([ f"You storm out of {bertholt}'s home, a disappointed and angry. You make your way to the tavern you agreed to meet {tamara} in."])
 			elif choice == "2":
+				character.story['criminal'] = True
 				print_stuff([f"You draw your sword and hold it to the Baron's throat. You hear {micha}'s cry of protests.",
 f""""What do you want?" {bertholt} gasps. "If you want the full payment, take it!" """])
 				choice = input_stuff("""1. "Give it to me." 
 2. "You caused me trouble, so I want double." 
 > """, ["1", "2"])
 				if choice == "1":
-					pass
+					equipment.equipment['gold'] += 150
+				elif choice == "2":
+					equipment.equipment['gold'] += 300
+				print_stuff(["The Baron hastily passes you the gold, and you flee before anyone can raise the alarm."])
+				return
 		elif choice == "2":
 			return
 
 def answers():
 	save('chapter2.answers')
+	tamara = colour_it("Tamara", Color.NPC)
+	print_stuff([""])

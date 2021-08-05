@@ -17,6 +17,7 @@ character = {
 
 story = {
 	"hag_lair": False,
+	"criminal": False,
 	"eladris": {
 		"exists": True,
 		"knows_name": False
