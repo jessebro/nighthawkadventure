@@ -11,6 +11,7 @@ from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
 from functions.loading import save
+from functions import town
 
 descent = "chapter2.descenta"
 
@@ -261,10 +262,13 @@ f"""After bidding {denvar} farewell and descend the mountain carefully, returnin
 def reeturn():
 	save('chapter2.reeturn')
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	micha = colour_it("Micha", Color.NPC)
 	tamara = colour_it("Tamara", Color.NPC)
+	elfa = colour_it("Elfa", Color.NPC)
+	bertholt = colour_it("Bertholt Omar", Color.NPC)
 	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
 	print_stuff([f"You retrace your steps along the trail to the {lizardtongue}, this time with another by your side. By the time night falls, the lights of {blackburrow} are visible.",
-f"As you settle down to rest, {tamara} away from your camp and changes her clothes. Instead of hte strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
+f"As you settle down to rest, {tamara} walks away from your camp and changes her clothes. Instead of hte strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
 """She wears tight trousers, a shirt and jacket, and her hair is tied back in a loose ponytail. "Does this look any better?" she asks, holding up her arms and spinning around. """])
 	choice = input_stuff("""1. "Looks fine." 
 2. "Looks terrible." 
@@ -307,7 +311,7 @@ f'''{tamara} raises an eyebrow. "Why not, may I ask?" '''])
 				sparring = True
 				break
 	if sparring == True:
-		print_stuff([f"You and {tamara} lock blades together in a mock battle. You prove to be her superior, and the match ends with your tip pressed gently to her breast.",
+		print_stuff([f"You and {tamara} lock blades together in a mock battle. You prove to be her superior, and the match ends with your sword tip pressed gently to her breast.",
 f""""You're incredible!" {tamara} exclaims with excitement. "Where did you learn that?" """])
 		choice = input_stuff("""1. "I'm a Nighthawk." 
 2. "A few things along the road." 
@@ -318,3 +322,60 @@ f""""You're incredible!" {tamara} exclaims with excitement. "Where did you learn
 """Your learnt Dancing Strike!"""])
 		weapon.weapon['attacks'][4]['enabled'] = True
 	rest.rest()
+	print_stuff([f'After your rest, you and {tamara} continue onwards to {blackburrow}. It is late morning when finally you both step through the gates of the town.',
+f""""If you need to prepare," {tamara} says. "I'll be at the tavern. Come to me when you're ready; I have some things to tell you." """,
+f"""{tamara} disappears into the crowded streets, leaving you alone to do as you wish."""])
+	town.town("Blackburrow", "Meet Tamra at the tavern.", True)
+	print_stuff([f"""As you make your way to the tavern, you see {micha} approaching you.""",
+f""""Greetings!" he says cheerfully, but you see sadness behind his eyes. "I was hoping you would return safetly." """,
+""""My father wishes to see you. Something about a reward for finding me." """])
+	choice = input_stuff(f"""1. Go with {micha}.
+2. Continue towards the tavern.
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff([f"{micha} leads the way towards {bertholt}'s home, Baron of {blackburrow}. You both step through the large gates.",
+f"You are flanked by the Baron's personal guards, but they recognise {micha}, so make no move towards you. The house itself is massive and well kept.",
+f"{micha} walks past several rooms through hallways, and ascends two flights of stairs. On the top level, there are only three rooms.",
+f"The first room is a large bedroom, full of luxuries and with a large bed, big enough for three people.",
+f"The second room has a more messy, smaller bed. Next to it is another bed, but this was one folded. A set of woman's clothes is laid across the made one.",
+f"The third room seems to be a study. It's smaller, but probably contains more stuff than any of the other rooms you've seen. Piles of paper are stacked high.",
+f"Sitting behind a desk is {bertholt}, his head bent as he is writing. He is a large man, and is wearing a pair of glasses at the moment.",
+f"He notices your entry, removes the glasses and looks up. He leans back in his chair.",
+f""""Greetings, Nighthawk," the Baron says. "I see you returned. With my son." He raises his eyebrow. "Anyway, here's your reward of seventy five gold." """])
+		choice = input_stuff("""1. "Seventy five? We agreed a hundred and fifty!" 
+2. "Thanks..." 
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff([f""""You completed half the task, so you get half the reward," the Baron says angrily. "You were too slow to save {elfa}. Too slow!" """])
+			choice = input_stuff("""1. "I'm sorry, but we had a deal."
+2. "It's not my fault that she was too stupid to not get herself killed!"
+3. "Fair enough." 
+> """, ["1", "2"])
+			if choice == "1":
+				print_stuff([""""Not good enough, Nighthawk. Take the gold, or be out of my sight!" """])
+			elif choice == "2":
+				print_stuff([""""You dare speak like that about my daughter?! Begone, wretched Nighthawk." """])
+			elif choice == "3":
+				equipment.equipment['gold'] += 75
+				print_stuff([""""I'm glad you see reason. Now take the gold, and begone." """,
+f"You leave {bertholt}'s home, a bit disappointed. You make your way to the tavern you agreed to meet {tamara} in."])
+				return
+			choice = input_stuff("""1. Take the gold.
+2. Threaten the Baron with your sword.
+> """, ["1", "2"])
+			if choice == "1":
+				equipment.equipment['gold'] += 75
+				print_stuff([ f"You storm out of {bertholt}'s home, a disappointed and angry. You make your way to the tavern you agreed to meet {tamara} in."])
+			elif choice == "2":
+				print_stuff([f"You draw your sword and hold it to the Baron's throat. You hear {micha}'s cry of protests.",
+f""""What do you want?" {bertholt} gasps. "If you want the full payment, take it!" """])
+				choice = input_stuff("""1. "Give it to me." 
+2. "You caused me trouble, so I want double." 
+> """, ["1", "2"])
+				if choice == "1":
+					pass
+		elif choice == "2":
+			return
+
+def answers():
+	save('chapter2.answers')

@@ -330,7 +330,7 @@ Enter 'b' to go back
 			time.sleep(5)
 			oil = 2
 			fatal = random.randrange(1,101)
-			if equipment.equipment["fatal"] == True and fatal <= 5:
+			if equipment.equipment["fatal"] == True and fatal <= 15:
 				enemy["hp"] = 0
 				print(f"You strike home with your oil, and it burns {reference['object']} from the inside, killing {reference['him']} instantly.")
 				time.sleep(5)
