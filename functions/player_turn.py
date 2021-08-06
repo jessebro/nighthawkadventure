@@ -8,6 +8,7 @@ from functions.utils import input_stuff
 from functions.combat_scripts import *
 from functions.utils import colour_it
 from functions.utils import Color
+from functions.utils import clear
 
 
 
@@ -28,6 +29,7 @@ def get_turn_choice(enemy):
 
 def turn(enemy, allies):
 	global buffs
+	clear()
 	enemy["modifier"] = 0
 	for buff in buffs:
 		buff -= 1
@@ -120,6 +122,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 				if healing <= 50:
 					ability.ability["health"] += player_damage
 					print(f"You regained {player_damage_script} health from your vampiric attack!")
+					time.sleep(3)
+					enemy_round.health_restored += player_damage
 					if ability.ability["health"] > ability.ability["maxhealth"]:
 						ability.ability["health"] = ability.ability["maxhealth"]
 			enemy["hp"] -= player_damage
@@ -127,6 +131,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 			time.sleep(5)
 			weapon.lose_stability()
 			counter += 1
+			enemy_round.damage_dealt += player_damage
 		else:
 			if enemy["parry"]:
 				print(print_script("player_hit_parry", enemy))
@@ -298,6 +303,7 @@ Enter 'b' to go back
 				buffs[boost] += 3
 				print(f"Your {words[boost]} has been boosted!")
 				time.sleep(3)
+			enemy_round.health_restored += healing
 	if item_use == "2":
 		equipment.equipment["knives"] -= 1
 		if equipment.equipment["knives"] <0:
@@ -310,6 +316,7 @@ Enter 'b' to go back
 			knife_damage = random.randrange(2, 6)
 			knife_damage_script = colour_it(f"{knife_damage} damage!", Color.YELLOW)
 			enemy["hp"] -= knife_damage
+			enemy_round.damage_dealt += knife_damage
 			time.sleep(5)
 			print(f"Your knife hits for {knife_damage_script}")
 			time.sleep(5)

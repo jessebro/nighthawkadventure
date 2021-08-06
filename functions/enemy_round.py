@@ -8,6 +8,7 @@ from functions.player_turn import buffs
 from functions.combat_scripts import *
 from functions.utils import colour_it
 from functions.utils import Color
+from functions.utils import print_stuff
 
 gang_size = 0
 gang_lads = []
@@ -15,8 +16,16 @@ gang_index = 0
 combat = True
 assistance = False
 goad = ""
+damage_dealt = 0
+damage_received = 0
+health_restored = 0
+enemy_status = "Untouched"
+
 
 def combat_flow(enemy, allies):
+	global damage_received
+	global damage_dealt
+	global health_restored
 	global combat
 	combat = True
 	while combat:
@@ -34,6 +43,10 @@ def combat_flow(enemy, allies):
 			ally_turn(ally, enemy)
 			if dead_check(enemy):
 				break
+		round_summary(enemy)
+		damage_dealt = 0
+		damage_received = 0
+		health_restored = 0
 
 
 def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
@@ -146,6 +159,7 @@ def choose_target(enemy, allies):
 
 
 def enemy_attack(enemy, ally, target, damage_modi = 1):
+	global damage_received
 	reference = enemy["reference"]
 	enemy["parry"] = False
 	enemy["distract"] = False
@@ -181,6 +195,7 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 		time.sleep(5)
 		if target == "player":
 			print(f"You are hit for {enemy_damage_script}")
+			damage_received += enemy_damage
 		else:
 			print(f"{ally['reference']['object']} is hit for {enemy_damage_script}")
 		time.sleep(5)
@@ -222,6 +237,7 @@ def dead_check(enemy):
 
 def player_defeat():
 	global combat
+	global health_restored
 	if ability.ability["health"] <= 0:
 		combat = False
 		if equipment.equipment["potions"] > 0:
@@ -231,7 +247,9 @@ def player_defeat():
 			print("A potion was used to prevent defeat, but only at half it's potency.")
 			time.sleep(3)
 			ability.ability["health"] = 0
-			ability.ability["health"] += random.randrange(2, 6)
+			healing = random.randrange(2, 6)
+			ability.ability["health"] += healing
+			health_restored += healing
 			combat = True
 		else:
 			print("You are struck by your opponent, and the next thing you know, you have fallen. Everything begins to go dark, and there is nothing you can do to stop it.")
@@ -250,6 +268,8 @@ def kill(enemy):
 	else:
 		print(print_script("monster_death", enemy))
 		time.sleep(5)
+	print(colour_it(f"{reference['object'].capitalize()} was killed!", Color.BLUE))
+	time.sleep(3)
 	if gang_size <= 0:
 		combat = False
 		post_combat.end_combat(gang_lads)
@@ -288,6 +308,7 @@ def ally_turn(ally, enemy):
 		ally_strike(ally, enemy)
 
 def ally_strike(ally, enemy):
+	global damage_dealt
 	reference = ally["reference"]
 	ally["parry"] = False
 	ally["distract"] = False
@@ -302,6 +323,7 @@ def ally_strike(ally, enemy):
 		time.sleep(5)
 		print(f"{reference['object']} hits for {ally_damage_script}")
 		time.sleep(5)
+		damage_dealt += ally_damage
 	else:
 		print(print_script("ally_miss", enemy, ally))
 		time.sleep(5)
@@ -322,3 +344,22 @@ def ally_distract(ally, enemy):
 	print(print_script("ally_assist", enemy, ally))
 	time.sleep(5)
 	goad = reference['object']
+
+
+def round_summary(enemy):
+	global enemy_status
+	global damage_received
+	global damage_dealt
+	global health_restored
+	if enemy['hp'] >= enemy['maxhp'] / 1.333333333:
+		enemy_status = "Good"
+	elif enemy['hp'] >= enemy['maxhp'] / 2:
+		enemy_status = "Bloodied"
+	elif enemy['hp'] >= enemy['maxhp'] / 4:
+		enemy_status = "Injured"
+	elif enemy['hp'] < enemy['maxhp'] / 4:
+		enemy_status = "Crippled"
+	print_stuff([f"""{colour_it("Damage dealt: ", Color.YELLOW)} {damage_dealt}
+{colour_it("Damage received: ", Color.RED)} {damage_received}
+{colour_it("Health restored: ", Color.GREEN)} {health_restored}
+{colour_it("Enemy Status: ", Color.BLUE)} {enemy_status}"""])

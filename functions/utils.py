@@ -9,6 +9,8 @@ os.system('')
 
 default_actions = {}
 
+clear = lambda: os.system('clear')
+
 
 def input_stuff(prompt, options, actions=None):
 	if not actions:
@@ -69,5 +71,6 @@ def print_stuff(scripts):
 			time.sleep(0.02)
 		print("")
 		input_stuff(f"""{colour_it("~~", Color.YELLOW)}""", "*")
+		clear()
 
 
