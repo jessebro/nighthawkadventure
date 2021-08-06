@@ -402,4 +402,58 @@ f"""{tamara} turns to you. "Share a drink with me?" """])
 		meal = True
 	print_stuff(["The serving girl hurries off. As she walks past a table of a group of men, one of them reaches out and pinches her arse.",
 "She gives a start but keeps walking, and the group of men chuckle quietly to themselves."])
-	choice = input_stuff("""1. Confront the men.""")
+	choice = input_stuff("""1. Confront the men.
+2. Ignore their antics.
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff(["You rise to your feet and walk over to the men. They turn to look at you as you approach.",
+f""""Can I help you, {character.character['titles']['casual']}?" one of them asks. """])
+		choice = input_stuff("""1. "I saw what you did to that serving girl." 
+2. "I've come to chat." 
+3. "I've come to hurt you." 
+> """, ["1", "2", "3"])
+		while True:
+			if choice == "1" and character.character['gender'] == "female":
+				print_stuff(["""The man smiles. "Sorry, lady, but I only do one a day. If you want I can do you tomorrow." """,
+	"His friends laugh and slap him on the back."])
+			elif choice == "1":
+				print_stuff([""""I'm sorry if it offended you, mister, but what I do is my own business. Now push off." """])
+			elif choice == "2":
+				print_stuff([""""What about? Oh! You mean the girl... right?" """])
+			elif choice == "3":
+				print_stuff([f"""The man jumps to his feet. "What?" he protests. "What did I do to you, {character.character['titles']['casual']}?" """])
+				choice = input_stuff("""1. "It's not about what you did to me." 
+	2. "You challenged my morals." 
+	> """, ["1", "2"])
+				if choice == "1":
+					print_stuff([""""You mean what I did to the girl?" The man slumps back in his chair. "I'm sorry... it was stupid." """])
+				elif choice == "2":
+					print_stuff([""""However I achieved that, I apologize for it. Please forgive me." """])
+				choice = input_stuff("""1. "Don't let me catch you doing it again." 
+2. "The funny thing is... I don't believe your apology." [Hit him] 
+> """, ["1", "2"])
+				if choice == "1":
+					print_stuff(["""The man nods his head vigorously. "Thank you. Many apologies for the trouble." """,
+f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. She says nothing, but her face speaks for her."])
+					break
+				elif choice == "2":
+					print_stuff(["You strike the man a blow, and he falls, senseless.",
+f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. She says nothing, but her face speaks for her."])
+					break
+			choice = input_stuff("""1. "Can't let you get away with that."
+2. Hit him. 
+> """, ["1", "2"])
+			if choice == "1":
+				print_stuff([""""Oh yeah? So what're you going to do?" """])
+				input_stuff("""1. "Make you apologize." [Tap you sword for effect.] 
+2. "Hurt you." [Hit him] 
+> """, ["1", "2"])
+				if choice == "1":
+					print_stuff(["The man is already moving towards the serving girl before you lower your hand again.",
+"You don't hear the words of his apology, but you hear the tone. You watch with satisfaction as the serving girl slaps him in the face.",
+"The man, crestfallen, returns to the table. One of his friends lays a hand on his shoulder.",
+f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. She says nothing, but her face speaks for her."])
+					break
+			print_stuff(["You strike the man a blow, and he falls, senseless.",
+f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. She says nothing, but her face speaks for her."])
+			break
