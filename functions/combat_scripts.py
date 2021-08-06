@@ -72,7 +72,7 @@ f"Too late, you realize the trap. Your foot kicks a stone and you stumble forwar
 	"player_parry": ["You raise your sword in a defensive position.",
 "You brace yourself for your charging adversary, ready and waiting",
 f"You bring your sword to bare, watching {reference['object']} closely.",
-f"You shout a challenge to {reference['object']}, holding your ready.",
+f"You shout a challenge to {reference['object']}, holding your sword ready.",
 f"{reference['object'].capitalize()} rushes forwards. You grasp your sword firmly before you."],
 
 	"player_success_parry": [

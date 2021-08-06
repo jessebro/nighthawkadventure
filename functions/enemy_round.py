@@ -321,13 +321,13 @@ def ally_strike(ally, enemy):
 		enemy["hp"] -= ally_damage
 		print(print_script("ally_hit", enemy, ally))
 		time.sleep(5)
-		print(f"{reference['object']} hits for {ally_damage_script}")
+		print(f"{reference['object'].capitalize()} hits for {ally_damage_script}")
 		time.sleep(5)
 		damage_dealt += ally_damage
 	else:
 		print(print_script("ally_miss", enemy, ally))
 		time.sleep(5)
-		print(colour_it(f"{reference['object']} misses!", Color.RED))
+		print(colour_it(f"{reference['object'].capitalize()} misses!", Color.RED))
 		time.sleep(3)
 
 def ally_assist(ally, enemy):
