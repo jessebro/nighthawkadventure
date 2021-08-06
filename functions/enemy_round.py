@@ -394,7 +394,8 @@ def summary(enemy):
 	global damages
 	accuracy = attacks / hits * 100
 	damage_prhit = sum(damages) / len(damages)
-	print_stuff([f"""Turns Taken:{turns_taken}
+	print_stuff([f"""{colour_it("COMBAT SUMMARY", Color.UNDERLINE)}
+Turns Taken: {turns_taken}
 {colour_it("Total Damage Dealt:",Color.YELLOW)} {total_damage_dealt}
 {colour_it("Total Damage Received:",Color.RED)} {total_damage_received}
 {colour_it("Weapon Accuracy:",Color.GREEN)} {round(accuracy, 2)}%

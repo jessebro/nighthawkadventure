@@ -50,7 +50,7 @@ def turn(enemy, allies):
 			turn(enemy, allies)
 
 
-def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
+def strike(enemy, allies, damage_mod=1000.0, smoke=False, bonus=0, critical_bonus=10):
 	global buffs
 	damage_bonus = bonus
 	critical = critical_bonus
@@ -103,7 +103,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 		damage_multi = damage_mod
 		roll = random.randrange(1, 101)
 		enemy_round.attacks += 1
-		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
+		if roll <= (7500 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
 			enemy_round.hits += 1
 			print(print_script("player_hit", enemy))
 			time.sleep(5)
