@@ -5,6 +5,7 @@ from functions import weapon
 from functions import ability
 from functions.utils import colour_it
 from functions.utils import Color
+from functions.utils import print_stuff
 
 def end_combat(enemy):
 	if len(enemy) == 1:

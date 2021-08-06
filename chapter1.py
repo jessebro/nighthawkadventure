@@ -20,6 +20,8 @@ def ghouls_at_farm():
 	global blackburrow
 	ghouls = colour_it("ghouls", Color.ENEMY)
 	save("chapter1.ghouls_at_farm")
+	enemies = [encounters.monster_access("ghoul"), encounters.monster_access("ghoul"), encounters.monster_access("ghoul")]
+	enemy_round.initialize(enemies)
 	print_stuff([f"You make your way outside of {blackburrow}. It is late morning, and the sky is a cobalt blue.",
 "Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
 f"You steer off the main road and onto a dirt track leading to the {lizardtongue}. About an hour into the journey you come across a farm.",

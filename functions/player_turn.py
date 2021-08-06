@@ -102,7 +102,9 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	while counter < attacks:
 		damage_multi = damage_mod
 		roll = random.randrange(1, 101)
+		enemy_round.attacks += 1
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
+			enemy_round.hits += 1
 			print(print_script("player_hit", enemy))
 			time.sleep(5)
 			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + (buffs[1] * 5)):
@@ -132,6 +134,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 			weapon.lose_stability()
 			counter += 1
 			enemy_round.damage_dealt += player_damage
+			enemy_round.total_damage_dealt += player_damage
+			enemy_round.damages.append(player_damage)
 		else:
 			if enemy["parry"]:
 				print(print_script("player_hit_parry", enemy))
@@ -317,6 +321,7 @@ Enter 'b' to go back
 			knife_damage_script = colour_it(f"{knife_damage} damage!", Color.YELLOW)
 			enemy["hp"] -= knife_damage
 			enemy_round.damage_dealt += knife_damage
+			enemy_round.total_damage_dealt += knife_damage
 			time.sleep(5)
 			print(f"Your knife hits for {knife_damage_script}")
 			time.sleep(5)
