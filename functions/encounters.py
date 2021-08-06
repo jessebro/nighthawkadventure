@@ -38,7 +38,7 @@ def special_access(key):
 
 def ally_access(key):
 	allies = {
-		"tamara": enemy_round.generate_actor(*[15 * ability.ability['level'], 4, 7, 70, 10, 1, "human", "female", "Tamara"]),
 		"homeboy": enemy_round.generate_actor(*[15 * ability.ability['level'], 4, 7, 70, 10, 1, "human", "male", "your homeboy"]),
+		"tamara": enemy_round.generate_actor(*[15 * ability.ability['level'], 4, 7, 70, 10, 1, "human", "female", "Tamara"]),
 	}
 	return allies[key]
