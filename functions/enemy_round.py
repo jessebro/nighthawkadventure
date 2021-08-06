@@ -351,7 +351,9 @@ def round_summary(enemy):
 	global damage_received
 	global damage_dealt
 	global health_restored
-	if enemy['hp'] >= enemy['maxhp'] / 1.333333333:
+	if enemy['hp'] == enemy['maxhp']:
+		enemy_status = "Untouched"
+	elif enemy['hp'] >= enemy['maxhp'] / 1.333333333:
 		enemy_status = "Good"
 	elif enemy['hp'] >= enemy['maxhp'] / 2:
 		enemy_status = "Bloodied"
