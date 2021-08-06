@@ -385,4 +385,21 @@ f""""What do you want?" {bertholt} gasps. "If you want the full payment, take it
 def answers():
 	save('chapter2.answers')
 	tamara = colour_it("Tamara", Color.NPC)
-	print_stuff([""])
+	micha = colour_it("Micha", Color.NPC)
+	meal = False
+	ability.gain_xp(encounters.xp_handouts['medium'])
+	print_stuff([f"You enter the tavern and look around. {tamara} is sitting at a table. You quickly take a seat opposite her.",
+f""""I've been waiting for you," {tamara} comments. "You certainly took your time." """])
+	input_stuff(f"""1. "I had business to attend to." 
+2. "I saw {micha} again." 
+> """, ["1", "2"])
+	print_stuff([f"""{tamara} waves a hand. "I don't mind, really." Suddenly, a serving girl comes up beside you. "What'll it be?" she asks shyly. """,
+f"""{tamara} turns to you. "Share a drink with me?" """])
+	choice = input_stuff(f"""1. "Gladly." 
+2. "No thanks". 
+> """, ["1", "2"])
+	if choice == "1":
+		meal = True
+	print_stuff(["The serving girl hurries off. As she walks past a table of a group of men, one of them reaches out and pinches her arse.",
+"She gives a start but keeps walking, and the group of men chuckle quietly to themselves."])
+	choice = input_stuff("""1. Confront the men.""")
