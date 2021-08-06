@@ -387,6 +387,7 @@ def answers():
 	tamara = colour_it("Tamara", Color.NPC)
 	micha = colour_it("Micha", Color.NPC)
 	meal = False
+	justice = False
 	ability.gain_xp(encounters.xp_handouts['medium'])
 	print_stuff([f"You enter the tavern and look around. {tamara} is sitting at a table. You quickly take a seat opposite her.",
 f""""I've been waiting for you," {tamara} comments. "You certainly took your time." """])
@@ -413,6 +414,7 @@ f""""Can I help you, {character.character['titles']['casual']}?" one of them ask
 3. "I've come to hurt you." 
 > """, ["1", "2", "3"])
 		while True:
+			justice = True
 			if choice == "1" and character.character['gender'] == "female":
 				print_stuff(["""The man smiles. "Sorry, lady, but I only do one a day. If you want I can do you tomorrow." """,
 	"His friends laugh and slap him on the back."])
@@ -457,3 +459,6 @@ f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. 
 			print_stuff(["You strike the man a blow, and he falls, senseless.",
 f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. She says nothing, but her face speaks for her."])
 			break
+	print_stuff([f"""{tamara} frowns at the men and clenches her fists. "Bastards," she mutters. "They deserve a beating; the lot of them." """])
+	if justice:
+		print_stuff([f""""Although I'm glad you sorted them out. Nicely done, {character.character['firstname']}." """])
