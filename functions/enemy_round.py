@@ -110,8 +110,8 @@ def generate_reference(type, gender, name):
 
 def initialize(enemies: list, allies=()):
 	global game_state
-	gang_size = len(enemies)
-	gang_lads = enemies
+	game_state['gang_size'] = len(enemies)
+	game_state['gang_lads'] = enemies
 	for enemy in enemies:
 		if ability.ability['health'] <= 0:
 			break
