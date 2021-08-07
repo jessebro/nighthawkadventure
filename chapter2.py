@@ -13,7 +13,6 @@ from functions.utils import Color
 from functions.loading import save
 from functions import town
 from functions import sounds
-from functions import loading
 
 descent = "chapter2.descenta"
 
