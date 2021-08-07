@@ -22,7 +22,7 @@ damage_dealt = 0
 damage_received = 0
 health_restored = 0
 enemy_status = "Untouched"
-turns_taken = 0
+turns_taken = 1
 total_damage_dealt = 0
 total_damage_received = 0
 accuracy = 0
@@ -41,7 +41,6 @@ def combat_flow(enemy, enemies, allies):
 	combat = True
 	sounds.play_combat()
 	while combat:
-		turns_taken += 1
 		player_turn.turn(enemy, allies)
 		if dead_check(enemy, enemies):
 			break
@@ -60,6 +59,7 @@ def combat_flow(enemy, enemies, allies):
 		damage_dealt = 0
 		damage_received = 0
 		health_restored = 0
+		turns_taken += 1
 
 
 def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):

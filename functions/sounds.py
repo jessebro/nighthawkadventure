@@ -74,3 +74,14 @@ def town():
 	song = pygame.mixer.Sound('music/City of Sails.ogg')
 	song.play(-1)
 
+
+def night():
+	global playing
+	if playing == "night":
+		return
+	playing = "night"
+	pygame.init()
+	mixer.init()
+	mixer.fadeout(1000)
+	song = pygame.mixer.Sound('music/A Deep Sky.ogg')
+	song.play(-1)
