@@ -166,7 +166,7 @@ def level_up(levels):
 		print(f"{action_choice.capitalize()} has been upgraded!")
 		time.sleep(3)
 
-		ability["maxhealth"] = ability["endurance"] + 10
+		ability["maxhealth"] = (ability["endurance"] * 3) + 10
 		ability["maxhealth"] += (5 * (ability["level"] - 1))
 		ability["maxhealth"] = int(ability["maxhealth"])
 		ability["health"] = ability["maxhealth"]

@@ -411,7 +411,7 @@ f"""{tamara} turns to you. "Share a drink with me?" """])
 > """, ["1", "2"])
 	if choice == "1":
 		meal = True
-	print_stuff(["The serving girl hurries off. As she walks past a table of a group of men, one of them reaches out and pinches her arse.",
+	print_stuff(["The serving girl hurries off. As she walks past a table of a group of men, one of them reaches out and pinches her backside.",
 "She gives a start but keeps walking, and the group of men chuckle quietly to themselves."])
 	choice = input_stuff("""1. Confront the men.
 2. Ignore their antics.
@@ -457,7 +457,7 @@ f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. 
 > """, ["1", "2"])
 			if choice == "1":
 				print_stuff([""""Oh yeah? So what're you going to do?" """])
-				input_stuff("""1. "Make you apologize." [Tap you sword for effect.] 
+				choice = input_stuff("""1. "Make you apologize." [Tap you sword for effect.] 
 2. "Hurt you." [Hit him] 
 > """, ["1", "2"])
 				if choice == "1":
