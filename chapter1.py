@@ -326,6 +326,7 @@ f"""You search {eladris}' bags and come away with 27 gold coins, a healing {poti
 def thief():
 	lalikins = colour_it("lalikins", Color.ENEMY)
 	save("chapter1.thief")
+	sounds.travel()
 	equipment.equipment["gold"] -= 15
 	if equipment.equipment["gold"] < 0:
 		equipment.equipment["gold"] = 0
@@ -355,6 +356,7 @@ f"You hold {weapon.weapon['weaponname']} at the ready, and the {lalikins} charge
 			if ability.ability['health'] <= 0:
 				print_stuff([f"The {lalikins} were already feeding on the woman. They will not complain about extra food."])
 				exit()
+			sounds.travel()
 			print_stuff(["You search the body of the woman and find the money she stole from you."])
 			equipment.equipment["gold"] += 15
 			action = input_stuff("""1. "Rest in peace." 
@@ -374,6 +376,7 @@ def ascent():
 	denvar = colour_it("Denvar", Color.NPC)
 	chana = colour_it("Chana", Color.NPC)
 	save("chapter1.ascent")
+	sounds.travel()
 	print_stuff([f"It's the middle of the day when you finally reach the base of the {lizardtongue}.",
 "As you climb the largest mountain, the terrain gets steeper and rockier. Many times you stumble on loose gravel.",
 "The wind becomes stronger as you climb, and the air becomes cooler. You know the cave that is your objective is close to the summit.",
@@ -398,6 +401,7 @@ f"The {crag} swings at you, but you drop and slid between it's legs. The {crag}'
 		if ability.ability['health'] <= 0:
 			print_stuff([f"The {crag} cares nothing for food, but it does enjoy killing. Unconscious, you do not see the {crag} raise it's mighty fists."])
 			exit()
+		sounds.travel()
 		print_stuff([f"Panting for breath, you watch the {crag}'s body crumble into a pile of boulders and dust.",
 "You continue your climb, and soon reach the place where you fell, careful not to step in any more gravel patches."])
 	print_stuff(["You continue to climb up the mountain, the final remains of sleepiness gone from you, due to the intense events.",
@@ -631,6 +635,7 @@ f"It has razor sharp teeth, claws, and for its size is extremely fast. The {mora
 		if ability.ability['health'] <= 0:
 			print_stuff([f"The {moracka} is a carnivore, and is not picky about what it eats. It will drag you into some dark corner to enjoy its meal undisturbed."])
 			exit()
+		sounds.dungeon()
 		print_stuff(["You continue along the tunnel, and find yourself at a dead end. However, sitting before you is a skeleton wearing a necklace with a black gem."])
 		choice = input_stuff("""1. Try on the necklace.
 2. Go back the way you came.
@@ -696,6 +701,7 @@ f"The {ogre} wakes with a roar and looks around, sees you and jumps to its feet.
 				if ability.ability['health'] <= 0:
 					print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
 					exit()
+				sounds.dungeon()
 				equipment.equipment["gold"] += 75
 				equipment.equipment["knives"] += 3
 				equipment.equipment["oils"] += 2
@@ -716,6 +722,7 @@ f"You take the gold coins, and also find three throwing {knives}, two vials of s
 			if ability.ability['health'] <= 0:
 				print_stuff([f"{ogre.capitalize()}s like to take valuables from the bodies of their victims. Your equipment will soon join that of others."])
 				exit()
+			sounds.dungeon()
 			equipment.equipment["gold"] += 75
 			equipment.equipment["knives"] += 3
 			equipment.equipment["oils"] += 2
@@ -770,6 +777,7 @@ f"You find nothing of interest, and turn to leave. But you find yourself cut off
 			if ability.ability['health'] <= 0:
 				print_stuff([f"These {wolves} live deep in a cave don't get much food. They are grateful for your entrance."])
 				exit()
+			sounds.dungeon()
 			print_stuff(["Panting for breath after the fight, you walk back the way you came."])
 		elif path == "4":
 			print_stuff(["You walk into the cave full of fireflies. The orange pinpoints of light part as you walk forwards, making way for you.",
@@ -898,7 +906,7 @@ f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 "This time, you try turning the knob the other way."])
 		else:
 			print_stuff([f"You cannot {endure} the spores, and hold you breath too late.",
-"As the spores enter your body, you feel a stiffening sensation in your body, escpecially your lungs. Then you collapse, all feeling lost.",
+"As the spores enter your body, you feel a stiffening sensation in your body, escpecially in your diaphragm. Then you collapse, all feeling lost.",
 "Then everything goes dark. The spores are lethal, and you have no antidode to their poison."])
 			exit()
 	print_stuff(["As you turn the knob clockwise, you hear a small click, followed by a tremendous grating sound. You look up and see that the flat wall is sliding away.",
