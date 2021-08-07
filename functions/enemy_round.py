@@ -12,7 +12,7 @@ from functions.utils import print_stuff
 from functions import sounds
 
 # naughty global state goes here
-game_state = {
+defaults = {
 	"gang_size": 0,
 	"gang_lads": [],
 	"gang_index": 0,
@@ -32,6 +32,8 @@ game_state = {
 	"attacks": 0,
 	"damages": []
 }
+
+game_state = {}
 
 
 
@@ -110,6 +112,8 @@ def generate_reference(type, gender, name):
 
 def initialize(enemies: list, allies=()):
 	global game_state
+	global defaults
+	game_state = defaults
 	game_state['gang_size'] = len(enemies)
 	game_state['gang_lads'] = enemies
 	for enemy in enemies:
