@@ -379,7 +379,7 @@ def round_summary(enemy):
 
 def summary(enemy):
 	global game_state
-	accuracy = game_state['attacks'] / game_state['hits'] * 100
+	accuracy = game_state['hits'] / game_state['attacks'] * 100
 	damage_prhit = sum(game_state['damages']) / len(game_state['damages'])
 	print_stuff([f"""{colour_it("COMBAT SUMMARY", Color.UNDERLINE)}
 Turns Taken: {game_state['turns_taken']}

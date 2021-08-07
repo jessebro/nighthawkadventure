@@ -194,8 +194,7 @@ f'''"I beg your pardon, {character.character["titles"]["formal"]}," he says smoo
 		if choice == "1":
 			print_stuff(["""The lean man's smile increases. "Excellent," he says. You take a seat by the fire, and bask in its warmth.""",
 """The lean man takes a seat beside you, but the large man grumbles something about taking a walk and leaves.""",
-f""""I do not believe we have been properly introduced," the lean man says kindly. He lays a hand on his chest. "I'm {eladris}. And you are?"
-"""])
+f""""I do not believe we have been properly introduced," the lean man says kindly. He lays a hand on his chest. "I'm {eladris}. And you are?" """])
 			reply = input_stuff(f"""1. "I'm {character.character["firstname"]}."
 2. "I'd rather not tell you."
 > """, ['1', "2"])
@@ -300,7 +299,7 @@ f""""That was quite a show you put on," {eladris} says. "Where did you learn tha
 > """, ['1', "2"])
 				if reply == "1":
 					print_stuff([f"""At this, {eladris} chuckles. "Kill me then. I do not fear death. At least let me explain." """])
-			print_stuff([f""""Please forgive Garurt," Eladris says coolly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
+			print_stuff([f""""Please forgive {man_name}," {eladris} says coolly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
 """"We're bandits. We were thrown out of society because of my half-blood status and his friendship with me. We've had to live robbing and hiding for many years.""",
 f"""{eladris} looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
 			action = input_stuff(f"""1. Kill {eladris}.

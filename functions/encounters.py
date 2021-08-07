@@ -32,7 +32,7 @@ def monster_access(key):
 
 def special_access(key):
 	character = {
-		"garurt": enemy_round.generate_actor(*[21, 4, 9, 65, 8, 35, "human", "male", "Garurt"]),
+		"garurt": enemy_round.generate_actor(*[25, 4, 9, 65, 8, 35, "human", "male", "Garurt"]),
 	}
 	return character[key]
 
