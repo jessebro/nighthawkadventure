@@ -3,31 +3,10 @@ from functions import ability
 from functions import equipment
 from functions import character
 from functions import weapon
-from functions import enemy_round
 from functions.utils import print_it
 from functions.utils import Color
 from functions.utils import colour_it
 
-defaults = {
-	"gang_size": 0,
-	"gang_lads": [],
-	"gang_index": 0,
-	"combat": True,
-	"assistance": False,
-	"goad": "",
-	"damage_dealt": 0,
-	"damage_received": 0,
-	"health_restored": 0,
-	"enemy_status": "Untouched",
-	"turns_taken": 1,
-	"total_damage_dealt": 0,
-	"total_damage_received": 0,
-	"accuracy": 0,
-	"damage_prhit": 0,
-	"hits": 0,
-	"attacks": 0,
-	"damages": []
-}
 
 
 def boot():
@@ -62,5 +41,4 @@ def load():
 	ability.ability = data['ability']
 	equipment.equipment = data['equipment']
 	weapon.weapon = data['weapon']
-	enemy_round.game_state = defaults
 	return data["position"]

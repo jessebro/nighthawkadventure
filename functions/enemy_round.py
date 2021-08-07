@@ -16,18 +16,14 @@ defaults = {
 	"gang_size": 0,
 	"gang_lads": [],
 	"gang_index": 0,
-	"combat": True,
 	"assistance": False,
 	"goad": "",
 	"damage_dealt": 0,
 	"damage_received": 0,
-	"health_restored": 0,
-	"enemy_status": "Untouched",
-	"turns_taken": 1,
+	"health_restored": 0,    # Put round summary
+	"turns_taken": 0,
 	"total_damage_dealt": 0,
 	"total_damage_received": 0,
-	"accuracy": 0,
-	"damage_prhit": 0,
 	"hits": 0,
 	"attacks": 0,
 	"damages": []
@@ -39,9 +35,9 @@ game_state = {}
 
 def combat_flow(enemy, enemies, allies):
 	global game_state
-	combat = True
 	sounds.play_combat()
-	while combat:
+	while True:
+		game_state['turns_taken'] += 1
 		player_turn.turn(enemy, allies)
 		if dead_check(enemy, enemies):
 			break
@@ -254,7 +250,6 @@ def dead_check(enemy, enemies):
 def player_defeat():
 	global game_state
 	if ability.ability["health"] <= 0:
-		combat = False
 		if equipment.equipment["potions"] > 0:
 			equipment.equipment["potions"] -= 1
 			print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
@@ -265,7 +260,6 @@ def player_defeat():
 			healing = random.randrange(2, 6)
 			ability.ability["health"] += healing
 			game_state['health_restored'] += healing
-			combat = True
 		else:
 			print("You are struck by your opponent, and the next thing you know, you have fallen. Everything begins to go dark, and there is nothing you can do to stop it.")
 			return True
@@ -284,7 +278,6 @@ def kill(enemy, enemies):
 	print(colour_it(f"{reference['object'].capitalize()} was killed!", Color.BLUE))
 	time.sleep(3)
 	if game_state['gang_size'] <= 0:
-		combat = False
 		sounds.end_combat()
 		summary(enemies)
 		post_combat.end_combat(game_state['gang_lads'])
@@ -348,10 +341,9 @@ def ally_strike(ally, enemy):
 
 def ally_assist(ally, enemy):
 	global game_state
-	reference = ally['reference']
 	print(print_script("ally_assist", enemy, ally))
 	time.sleep(5)
-	assistance = True
+	game_state['assistance'] = True
 
 
 def ally_distract(ally, enemy):
@@ -359,26 +351,31 @@ def ally_distract(ally, enemy):
 	reference = ally['reference']
 	print(print_script("ally_assist", enemy, ally))
 	time.sleep(5)
-	goad = reference['object']
+	game_state['goad'] = reference['object']
 
 
 def round_summary(enemy):
 	global game_state
-	if enemy['hp'] == enemy['maxhp']:
-		game_state['enemy_status'] = "Untouched"
-	elif enemy['hp'] >= enemy['maxhp'] / 1.333333333:
-		game_state['enemy_status'] = "Good"
-	elif enemy['hp'] >= enemy['maxhp'] / 2:
-		game_state['enemy_status'] = "Bloodied"
-	elif enemy['hp'] >= enemy['maxhp'] / 4:
-		game_state['enemy_status'] = "Injured"
-	elif enemy['hp'] < enemy['maxhp'] / 4:
-		game_state['enemy_status'] = "Crippled"
+	status = get_enemy_status(enemy)
 	print_stuff([f"""{colour_it("ROUND SUMMARY", Color.UNDERLINE)}
 {colour_it("Damage dealt: ", Color.YELLOW)} {game_state['damage_dealt']}
 {colour_it("Damage received: ", Color.RED)} {game_state['damage_received']}
 {colour_it("Health restored: ", Color.GREEN)} {game_state['health_restored']}
-{colour_it("Enemy Status: ", Color.BLUE)} {game_state['enemy_status']}"""])
+{colour_it("Enemy Status: ", Color.BLUE)} {status}"""])
+
+
+def get_enemy_status(enemy):
+	if enemy['hp'] == enemy['maxhp']:
+		status = "Untouched"
+	elif enemy['hp'] >= enemy['maxhp'] / 1.333333333:
+		status = "Good"
+	elif enemy['hp'] >= enemy['maxhp'] / 2:
+		status = "Bloodied"
+	elif enemy['hp'] >= enemy['maxhp'] / 4:
+		status = "Injured"
+	elif enemy['hp'] < enemy['maxhp'] / 4:
+		status = "Crippled"
+	return status
 
 
 def summary(enemy):

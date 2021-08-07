@@ -30,7 +30,6 @@ def get_turn_choice(enemy):
 def turn(enemy, allies):
 	global buffs
 	clear()
-	enemy_round.game_state['turns_taken'] += 1
 	enemy["modifier"] = 0
 	for buff in buffs:
 		buff -= 1
