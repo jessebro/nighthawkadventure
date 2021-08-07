@@ -12,6 +12,8 @@ from functions.utils import colour_it
 from functions.utils import Color
 from functions.loading import save
 from functions import town
+from functions import sounds
+from functions import loading
 
 descent = "chapter2.descenta"
 
@@ -20,6 +22,7 @@ def beginning():
 	save('chapter2.beginning')
 	elfa = colour_it("Elfa", Color.NPC)
 	micha = colour_it("Micha", Color.NPC)
+	sounds.travel()
 	print_stuff(["You wake up, your head throbbing painfully. You hear voices, but they are echoing and far away. You look around and find yourself sitting in a large cage.",
 "The cage itself is made of wood, but all your belongings are gone. The wooden cage's bars and supports are thick, and you cannot break them.",
 "To your left is a man and a woman. Each looks only sixteen, and each is covered in blood. It only takes you a moment to realise two things.",
@@ -113,6 +116,7 @@ def descenta():
 	micha = colour_it("Micha", Color.NPC)
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
 	tamara = colour_it("Tamara", Color.NPC)
+	sounds.travel()
 	print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} nods. "At least let us begone from this mountain," she says. "Even if the journey is long and hard." """,
 """The three of you descend the mountain, haste making the journey a lot quicker. You meet with no dangers on the way down, and no one speaks.""",
 f"""As you put distance between yourselves and the cave, you see {character.story['tamara']['name_known']}'s face begin to relax.""",
@@ -185,6 +189,7 @@ def descentb():
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
 	tamara = colour_it("Tamara", Color.NPC)
 	denvar = colour_it("Denvar", Color.NPC)
+	sounds.travel()
 	print_stuff([f"The three of you make your way down the mountain. With your guidance you arrive at {denvar}'s cabin. You notice that {denvar} is home.",
 f"Light shines from the windows, and you see movement from inside. You approach the door and knock sharply. Almost instantly, {denvar} answers the knock."])
 	if character.story["denvar"]["knows_name"]:
@@ -240,6 +245,7 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 			break
 	print_stuff([f"Suddenly, you hear the sound of footsteps. {tamara} jumps to her feet and runs to the window.",])
 	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
+	sounds.travel()
 	if ability.ability['health'] <= 0:
 		ability.ability["health"] = (ability.ability["maxhealth"] / 2)
 		print_stuff([f"The light returns to your vision and you see {tamara}'s face looking down at you",
@@ -267,8 +273,9 @@ def reeturn():
 	elfa = colour_it("Elfa", Color.NPC)
 	bertholt = colour_it("Bertholt Omar", Color.NPC)
 	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
+	sounds.night()
 	print_stuff([f"You retrace your steps along the trail to the {lizardtongue}, this time with another by your side. By the time night falls, the lights of {blackburrow} are visible.",
-f"As you settle down to rest, {tamara} walks away from your camp and changes her clothes. Instead of hte strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
+f"As you settle down to rest, {tamara} walks away from your camp and changes her clothes. Instead of the strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
 """She wears tight trousers, a shirt and jacket, and her hair is tied back in a loose ponytail. "Does this look any better?" she asks, holding up her arms and spinning around. """])
 	choice = input_stuff("""1. "Looks fine." 
 2. "Looks terrible." 
@@ -322,6 +329,7 @@ f""""You're incredible!" {tamara} exclaims with excitement. "Where did you learn
 """Your learnt Dancing Strike!"""])
 		weapon.weapon['attacks'][4]['enabled'] = True
 	rest.rest()
+	sounds.town()
 	print_stuff([f'After your rest, you and {tamara} continue onwards to {blackburrow}. It is late morning when finally you both step through the gates of the town.',
 f""""If you need to prepare," {tamara} says. "I'll be at the tavern. Come to me when you're ready; I have some things to tell you." """,
 f"""{tamara} disappears into the crowded streets, leaving you alone to do as you wish."""])
@@ -388,6 +396,7 @@ def answers():
 	micha = colour_it("Micha", Color.NPC)
 	meal = False
 	justice = False
+	sounds.town()
 	ability.gain_xp(encounters.xp_handouts['medium'])
 	print_stuff([f"You enter the tavern and look around. {tamara} is sitting at a table. You quickly take a seat opposite her.",
 f""""I've been waiting for you," {tamara} comments. "You certainly took your time." """])

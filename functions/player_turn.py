@@ -30,7 +30,7 @@ def get_turn_choice(enemy):
 def turn(enemy, allies):
 	global buffs
 	clear()
-	enemy_round.turns_taken += 1
+	enemy_round.game_state['turns_taken'] += 1
 	enemy["modifier"] = 0
 	for buff in buffs:
 		buff -= 1
@@ -64,7 +64,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	prompt = ""
 	counter = 0
 	options = []
-	if enemy_round.assistance:
+	if enemy_round.game_state['assistance']:
 		enemy['playermod'] += 10
 	for attack in attacks:
 		counter += 1
@@ -103,9 +103,9 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	while counter < attacks:
 		damage_multi = damage_mod
 		roll = random.randrange(1, 101)
-		enemy_round.attacks += 1
+		enemy_round.game_state['attacks'] += 1
 		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
-			enemy_round.hits += 1
+			enemy_round.game_state['hits'] += 1
 			print(print_script("player_hit", enemy))
 			time.sleep(5)
 			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + (buffs[1] * 5)):
@@ -126,7 +126,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 					ability.ability["health"] += player_damage
 					print(f"You regained {player_damage_script} health from your vampiric attack!")
 					time.sleep(3)
-					enemy_round.health_restored += player_damage
+					enemy_round.game_state['health_restored'] += player_damage
 					if ability.ability["health"] > ability.ability["maxhealth"]:
 						ability.ability["health"] = ability.ability["maxhealth"]
 			enemy["hp"] -= player_damage
@@ -134,9 +134,9 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 			time.sleep(5)
 			weapon.lose_stability()
 			counter += 1
-			enemy_round.damage_dealt += player_damage
-			enemy_round.total_damage_dealt += player_damage
-			enemy_round.damages.append(player_damage)
+			enemy_round.game_state['damage_dealt'] += player_damage
+			enemy_round.game_state['total_damage_dealt'] += player_damage
+			enemy_round.game_state['damages'].append(player_damage)
 		else:
 			if enemy["parry"]:
 				print(print_script("player_hit_parry", enemy))
@@ -310,7 +310,7 @@ Enter 'b' to go back
 				buffs[boost] += 3
 				print(f"Your {words[boost]} has been boosted!")
 				time.sleep(3)
-			enemy_round.health_restored += healing
+			enemy_round.game_state['health_restored'] += healing
 	if item_use == "2":
 		equipment.equipment["knives"] -= 1
 		if equipment.equipment["knives"] <0:
@@ -323,8 +323,8 @@ Enter 'b' to go back
 			knife_damage = random.randrange(2, 6)
 			knife_damage_script = colour_it(f"{knife_damage} damage!", Color.YELLOW)
 			enemy["hp"] -= knife_damage
-			enemy_round.damage_dealt += knife_damage
-			enemy_round.total_damage_dealt += knife_damage
+			enemy_round.game_state['damage_dealt'] += knife_damage
+			enemy_round.game_state['total_damage_dealt'] += knife_damage
 			time.sleep(5)
 			print(f"Your knife hits for {knife_damage_script}")
 			time.sleep(5)

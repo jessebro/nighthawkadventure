@@ -692,7 +692,7 @@ f"The creature is an {ogre}, no doubt. This cavern is lit by a large bonfire. Yo
 f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
 f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
-				ability.gain_xp(encounters.xp_handouts["small"])
+				ability.gain_xp([encounters.xp_handouts["small"]])
 				print_stuff(["Satisfied, you leave the cavern and take the other route."])
 			else:
 				print_stuff(["You are not careful enough, and you kick a stone, which clatters across the floor with alarming loudness.",
@@ -854,6 +854,7 @@ f"""{alvyn} trails off. "I'm happy. I love the world, and the natural beauty of 
 						print_stuff([f""""Good fortune, {character.character['titles']['casual']}. Perhaps we shall meet again." """,
 f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 						break
+				break
 	print_stuff(["You walk down the tunnel with a sparkling crystal floor. Some parts of the floor stick up at strange angles and crunch beneath your boots.",
 "A turn in the tunnel leads you out to a narrow expanse. It seems like a small straight tunnel. Before you are two rows of five tiles, each with a picture.",
 "Each slab looks like a pressure plate, and you see circular cranies in the rock next to each row of plates. The plates are flush with each other."])
@@ -888,6 +889,7 @@ f"You get up and bid {alvyn} farewell. With that, you turn and leave."])
 "You stumble back to the start, cursing at your burns."])
 		damage = random.randrange(1,6)
 		print_stuff([f"You took {damage} damage!"])
+		ability.ability['health'] -= damage
 		if ability.ability["health"] <= 0:
 			print_stuff(["Your burns are serious. Suddenly, you body goes weak and you crash to the ground, even as the world goes dark around you."])
 			exit()
