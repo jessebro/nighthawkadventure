@@ -175,7 +175,7 @@ def campers():
 	man_name = "the large man"
 	eladris = colour_it("Eladris", Color.NPC)
 	garurt = colour_it("Garurt", Color.NPC)
-	sounds.travel()
+	sounds.night()
 	print_stuff(["The sky is growing darker. The bird song is giving way to the chirp of the crickets, and the air grows cold.",
 "Even as you begin to consider a place to stop for the night, you see a flickering orange light from behind a clump of high bushes."])
 	choice = input_stuff("""1. Investigate the source of the fire.
@@ -292,30 +292,30 @@ f""""The ploughing {character.character['titles']['insult']} is spying on us!" h
 					equipment.equipment['gold'] = 0
 					equipment.equipment['knives'] = 0
 					return False
-				else:
-					print_stuff([f"""You stand over {man_name}'s corpse. You stop when you hear the sound of clapping.""",
+				sounds.night()
+				print_stuff([f"""You stand over {man_name}'s corpse. You stop when you hear the sound of clapping.""",
 f""""That was quite a show you put on," {eladris} says. "Where did you learn that?" """])
-					reply = input_stuff("""1. "Don't look so cocky. You're next."
+				reply = input_stuff("""1. "Don't look so cocky. You're next."
 2. "Why did he attack me?" 
 > """, ['1', "2"])
-					if reply == "1":
-						print_stuff([f"""At this, {eladris} chuckles. "Kill me then. I do not fear death. At least let me explain." """])
-				print_stuff([f""""Please forgive Garurt," Eladris says coolly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
+				if reply == "1":
+					print_stuff([f"""At this, {eladris} chuckles. "Kill me then. I do not fear death. At least let me explain." """])
+			print_stuff([f""""Please forgive Garurt," Eladris says coolly, not a hint of worry in his voice. "We were just discussing robbing you when you burst in." """,
 """"We're bandits. We were thrown out of society because of my half-blood status and his friendship with me. We've had to live robbing and hiding for many years.""",
 f"""{eladris} looks up at you. "Kill me if you will," he says. "My existence can only get sadder." """])
-				action = input_stuff(f"""1. Kill {eladris}.
+			action = input_stuff(f"""1. Kill {eladris}.
 2. Walk away.
 > """, ['1', "2"])
-				if action == "1":
-					potion = colour_it("potion", Color.LOOT)
-					knives = colour_it("knives", Color.LOOT)
-					print_stuff([f"""You step forward, sword in hand. {eladris} closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
+			if action == "1":
+				potion = colour_it("potion", Color.LOOT)
+				knives = colour_it("knives", Color.LOOT)
+				print_stuff([f"""You step forward, sword in hand. {eladris} closes his eyes, and you impale his heart. His death is painless, and he doesn't even flinch.""",
 f"""You search {eladris}' bags and come away with 27 gold coins, a healing {potion}, and two throwing {knives}."""])
-					equipment.equipment["gold"] += 27
-					equipment.equipment["potions"] += 1
-					equipment.equipment["knives"] += 2
-					character.story["eladris"] = False
-				print_stuff(["""You walk away from the camp, and return to the trail."""])
+				equipment.equipment["gold"] += 27
+				equipment.equipment["potions"] += 1
+				equipment.equipment["knives"] += 2
+				character.story["eladris"] = False
+			print_stuff(["""You walk away from the camp, and return to the trail."""])
 		else:
 			print_stuff(["""The lean man shrugs. "Safe travels," he says. You walk away from the camp sight and back to the trail."""])
 	print_stuff(["""You follow the trail a bit longer. You manage to find a small glade, which seems like a good spot to rest for the night.""",
