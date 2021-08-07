@@ -674,7 +674,7 @@ f"Nearby, you notice some large footprints. You realise an {ogre} could be nearb
 "A large humanoid creature with baggy, fatty skin, piggy eyes and a flat face lies asleep, scratching its belly in a dream.",
 "It smells pungent, and you see a bit of blood on the creature's knuckles. Clearly it has killed recently.",
 f"The creature is an {ogre}, no doubt. This cavern is lit by a large bonfire. You see a chest on the other end of the cavern."])
-		input_stuff(f"""1. {colour_it("Attempt to sneak in to loot the chest without being detected", Color.AGILITY)}.
+		choice = input_stuff(f"""1. {colour_it("Attempt to sneak in to loot the chest without being detected", Color.AGILITY)}.
 2. Attack the {ogre} in its sleep.
 3. Go back the way you came.
 > """, ["1", "2", "3"])
