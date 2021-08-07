@@ -20,7 +20,7 @@ def monster_access(key):
 		"ghoul": enemy_round.generate_actor(*[9, 3, 5, 45, 10, random.randrange(5, 11), "monster", "it", "the ghoul"]),
 		"bone_hag": enemy_round.generate_actor(*[30, 4, 7, 45, 0, random.randrange(15, 24), "monster", "it", "the bone hag"]),
 		"lalikin": enemy_round.generate_actor(*[23, 3, 6, 55, 5, random.randrange(12, 21), "monster", "it", "the lalikin"]),
-		"crag": enemy_round.generate_actor(*[63, 6, 15, 25, -5, random.randrange(20, 33), "monster", "it", "the crag"]),
+		"crag": enemy_round.generate_actor(*[63, 6, 12, 25, -5, random.randrange(20, 33), "monster", "it", "the crag"]),
 		"moracka": enemy_round.generate_actor(*[36, 4, 8, 50, 13, random.randrange(20, 30), "monster", "it", "the moracka"]),
 		"ogre": enemy_round.generate_actor(*[53, 5, 12, 20, -10, random.randrange(19, 27), "monster", "it", "the ogre"]),
 		"injured ogre": enemy_round.generate_actor(*[23, 5, 12, 20, -10, random.randrange(19, 27), "monster", "it", "the ogre"]),

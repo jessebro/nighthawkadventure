@@ -59,7 +59,6 @@ def combat_flow(enemy, enemies, allies):
 		damage_dealt = 0
 		damage_received = 0
 		health_restored = 0
-		turns_taken += 1
 
 
 def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):

@@ -30,6 +30,7 @@ def get_turn_choice(enemy):
 def turn(enemy, allies):
 	global buffs
 	clear()
+	enemy_round.turns_taken += 1
 	enemy["modifier"] = 0
 	for buff in buffs:
 		buff -= 1
@@ -144,6 +145,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 				time.sleep(3)
 				counter += 1
 				enemy_round.choose_target(enemy, allies)
+				if ability.ability['health'] <= 0:
+					enemy_round.player_defeat()
 			else:
 				print(print_script("player_miss", enemy))
 				time.sleep(5)

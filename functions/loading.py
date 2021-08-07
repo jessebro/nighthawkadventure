@@ -5,10 +5,11 @@ from functions import character
 from functions import weapon
 from functions.utils import print_it
 from functions.utils import Color
+from functions.utils import colour_it
 
 
 def boot():
-	start = input("""Do you want to start a new game, or load your previous save?
+	start = input(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. New Game
 2. Load Game
 > """)
