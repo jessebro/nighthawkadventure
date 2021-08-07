@@ -12,6 +12,7 @@ xp_handouts = {
 
 # maxhp, mindamage, maxdamage, baseskill, agility, xp, type, gender, name
 
+
 def monster_access(key):
 	monsters = {
 		"mbandit": enemy_round.generate_actor(*[20, 2, 6, 50, 5, random.randrange(8, 16), "human", "male", "the male bandit"]),

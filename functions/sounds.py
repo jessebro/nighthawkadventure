@@ -24,7 +24,7 @@ def end_combat():
 	playing = "music/Combat_End.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
+	mixer.stop()
 	song = pygame.mixer.Sound('music/Combat_End.ogg')
 	song.play()
 
