@@ -18,6 +18,7 @@ descent = "chapter2.descenta"
 
 
 def beginning():
+	global descent
 	save('chapter2.beginning')
 	elfa = colour_it("Elfa", Color.NPC)
 	micha = colour_it("Micha", Color.NPC)
@@ -100,6 +101,7 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 > """, ["1", "2"])
 		if choice == "1":
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} curses under her breath. "Then we must move quickly. They could be onto us at any moment." """])
+			descent = "chapter2.descenta"
 			break
 		elif choice == "2":
 			tamara = colour_it("Tamara", Color.NPC)
