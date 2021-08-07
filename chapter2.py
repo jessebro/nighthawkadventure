@@ -359,7 +359,7 @@ f""""Greetings, Nighthawk," the Baron says. "I see you returned. With my son." H
 			choice = input_stuff("""1. "I'm sorry, but we had a deal."
 2. "It's not my fault that she was too stupid to not get herself killed!"
 3. "Fair enough." 
-> """, ["1", "2"])
+> """, ["1", "2", "3"])
 			if choice == "1":
 				print_stuff([""""Not good enough, Nighthawk. Take the gold, or be out of my sight!" """])
 			elif choice == "2":
@@ -398,7 +398,7 @@ def answers():
 	meal = False
 	justice = False
 	sounds.town()
-	ability.gain_xp(encounters.xp_handouts['medium'])
+	ability.gain_xp([encounters.xp_handouts['medium']])
 	print_stuff([f"You enter the tavern and look around. {tamara} is sitting at a table. You quickly take a seat opposite her.",
 f""""I've been waiting for you," {tamara} comments. "You certainly took your time." """])
 	input_stuff(f"""1. "I had business to attend to." 
