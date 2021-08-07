@@ -57,9 +57,9 @@ def combat_flow(enemy, enemies, allies):
 			if dead_check(enemy, enemies):
 				break
 		round_summary(enemy)
-		damage_dealt = 0
-		damage_received = 0
-		health_restored = 0
+		game_state['damage_dealt'] = 0
+		game_state['damage_received'] = 0
+		game_state['health_restored'] = 0
 
 
 def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
