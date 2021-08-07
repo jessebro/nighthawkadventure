@@ -9,8 +9,13 @@ from functions.utils import print_stuff
 from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
+from functions import sounds
 
-def town(name, objective,firsttime=False):
+
+def town(name, objective,firsttime=False, music=True):
+	if not music:
+		sounds.town()
+		music = True
 	name = colour_it(name, Color.PLACE)
 	objective = colour_it(objective, Color.QUEST)
 	print(f"""{name}'s citizens are up and about. Merchant's shout their wares, guttersnipes pick the pockets of unsuspecting

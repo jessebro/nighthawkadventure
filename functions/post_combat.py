@@ -38,7 +38,7 @@ def generate_loot(enemies):
 				time.sleep(4)
 				equipment.equipment['knives'] += 1
 			elif item == 8:
-				potion = colour_it("potions", Color.LOOT)
+				potion = colour_it("potion", Color.LOOT)
 				print(f"You also find a {potion}.")
 				time.sleep(4)
 				equipment.equipment['potions'] += 1

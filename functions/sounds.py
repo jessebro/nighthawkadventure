@@ -42,5 +42,10 @@ def travel():
 	song.play(-1)
 
 
-
+def town():
+	pygame.init()
+	mixer.init()
+	mixer.fadeout(1000)
+	song = pygame.mixer.Sound('music/City of Sails.ogg')
+	song.play(-1)
 
