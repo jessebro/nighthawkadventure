@@ -522,11 +522,11 @@ f"""Suddenly, {denvar} leans over to you. "But then there were these other peopl
 						elif reply == "2":
 							persona_roll = random.randrange(1, 101)
 							if persona_roll <= (60 + ability.ability["persona"]):
-								print_stuff(f"""{denvar} smiles. "That is good to know," he says.""")
+								print_stuff([f"""{denvar} smiles. "That is good to know," he says."""])
 								death = False
 								break
 							else:
-								print_stuff(f"""{denvar} examines you for a moment. "You're lying," he says. He closes his eyes. "{chana}'s dead, isn't she?" """)
+								print_stuff([f"""{denvar} examines you for a moment. "You're lying," he says. He closes his eyes. "{chana}'s dead, isn't she?" """])
 								death = True
 								break
 					if death:
@@ -733,7 +733,7 @@ f"You take the gold coins, and also find three throwing {knives}, two vials of s
 f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
 f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])
-			ability.gain_xp(encounters.xp_handouts["small"])
+			ability.gain_xp([encounters.xp_handouts["small"]])
 			print_stuff(["Satisfied, you leave the cavern and take the other route."])
 	print_stuff(["You take the left path, and you follow it without incident. Suddenly, the tunnel gets darker.",
 "Ahead, you see a glowing blue light. You continue on for a bit and see that the tunnel leads in four directions.",
