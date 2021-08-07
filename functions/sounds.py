@@ -1,8 +1,13 @@
 from pygame import mixer
 import pygame
 
+playing = ""
 
 def play_combat():
+	global playing
+	if playing == "combat":
+		return
+	playing = "combat"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -11,6 +16,10 @@ def play_combat():
 
 
 def end_combat():
+	global playing
+	if playing == "end_combat":
+		return
+	playing = "end_combat"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -19,6 +28,10 @@ def end_combat():
 
 
 def dungeon():
+	global playing
+	if playing == "dungeon":
+		return
+	playing = "dungeon"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -27,6 +40,10 @@ def dungeon():
 
 
 def title():
+	global playing
+	if playing == "title":
+		return
+	playing = "title"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -35,6 +52,10 @@ def title():
 
 
 def travel():
+	global playing
+	if playing == "travel":
+		return
+	playing = "travel"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -43,6 +64,10 @@ def travel():
 
 
 def town():
+	global playing
+	if playing == "town":
+		return
+	playing = "town"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)

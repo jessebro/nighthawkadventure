@@ -12,7 +12,6 @@ from functions.utils import print_stuff
 from functions import sounds
 
 
-music = False
 gang_size = 0
 gang_lads = []
 gang_index = 0
@@ -39,11 +38,8 @@ def combat_flow(enemy, enemies, allies):
 	global health_restored
 	global combat
 	global turns_taken
-	global music
 	combat = True
-	if not music:
-		sounds.play_combat()
-		music = True
+	sounds.play_combat()
 	while combat:
 		turns_taken += 1
 		player_turn.turn(enemy, allies)
