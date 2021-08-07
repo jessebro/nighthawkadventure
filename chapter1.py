@@ -687,7 +687,7 @@ f"The creature is an {ogre}, no doubt. This cavern is lit by a large bonfire. Yo
 				knives = colour_it("knives", Color.LOOT)
 				oil = colour_it("oil", Color.LOOT)
 				smoke_bomb = colour_it("smoke bomb", Color.LOOT)
-				print_stuff([f"You manage to traverse the floor without waking the {ogre}. You carefully open the chest and peer inside. You gasp with what you see",
+				print_stuff([f"You manage to traverse the floor without waking the {ogre}. You carefully open the chest and peer inside. You gasp with what you see.",
 f"Many gold coins lie before you, no doubt taken from the corpses of the {ogre}'s victims. Also impressive, but of no use to you, are weapons, armour, bows and arrows.",
 f"You take the gold coins, and also find three throwing {knives}, two vials of sword {oil}, and a {smoke_bomb}. The coins number seventy five.",
 "You also come across a scroll detailing sword maneuvers. You glance over it, then pocket it."])

@@ -22,7 +22,7 @@ def beginning():
 	save('chapter2.beginning')
 	elfa = colour_it("Elfa", Color.NPC)
 	micha = colour_it("Micha", Color.NPC)
-	sounds.travel()
+	sounds.intensity()
 	print_stuff(["You wake up, your head throbbing painfully. You hear voices, but they are echoing and far away. You look around and find yourself sitting in a large cage.",
 "The cage itself is made of wood, but all your belongings are gone. The wooden cage's bars and supports are thick, and you cannot break them.",
 "To your left is a man and a woman. Each looks only sixteen, and each is covered in blood. It only takes you a moment to realise two things.",

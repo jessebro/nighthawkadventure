@@ -89,14 +89,29 @@ def night():
 	song.play(-1)
 
 
+def intensity():
+	global playing
+	if playing == "music/Dire Circumstances.ogg":
+		return
+	playing = "music/Dire Circumstances.ogg"
+	pygame.init()
+	mixer.init()
+	mixer.fadeout(1000)
+	song = pygame.mixer.Sound('music/Dire Circumstances.ogg')
+	song.play(-1)
+
+
 def level_up():
 	global playing
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
+	mixer.stop()
 	song = pygame.mixer.Sound('music/Level Up.ogg')
 	song.play()
 	song = pygame.mixer.Sound(playing)
 	song.play()
+
+
+
 
 
