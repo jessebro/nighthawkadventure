@@ -1,3 +1,5 @@
+import time
+
 from pygame import mixer
 import pygame
 
@@ -5,9 +7,9 @@ playing = ""
 
 def play_combat():
 	global playing
-	if playing == "combat":
+	if playing == "music/Song of the Nighthawk.ogg":
 		return
-	playing = "combat"
+	playing = "music/Song of the Nighthawk.ogg"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -17,9 +19,9 @@ def play_combat():
 
 def end_combat():
 	global playing
-	if playing == "end_combat":
+	if playing == "music/Combat_End.ogg":
 		return
-	playing = "end_combat"
+	playing = "music/Combat_End.ogg"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -29,9 +31,9 @@ def end_combat():
 
 def dungeon():
 	global playing
-	if playing == "dungeon":
+	if playing == "music/Forsaken Halls.ogg":
 		return
-	playing = "dungeon"
+	playing = "music/Forsaken Halls.ogg"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -41,9 +43,9 @@ def dungeon():
 
 def title():
 	global playing
-	if playing == "title":
+	if playing == "music/A Blade and a Bag.ogg":
 		return
-	playing = "title"
+	playing = "music/A Blade and a Bag.ogg"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -53,9 +55,9 @@ def title():
 
 def travel():
 	global playing
-	if playing == "travel":
+	if playing == "music/The Winding Road.ogg":
 		return
-	playing = "travel"
+	playing = "music/The Winding Road.ogg"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -65,9 +67,9 @@ def travel():
 
 def town():
 	global playing
-	if playing == "town":
+	if playing == "music/City of Sails.ogg":
 		return
-	playing = "town"
+	playing = "music/City of Sails.ogg"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
@@ -77,11 +79,24 @@ def town():
 
 def night():
 	global playing
-	if playing == "night":
+	if playing == "music/A Deep Sky.ogg":
 		return
-	playing = "night"
+	playing = "music/A Deep Sky.ogg"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/A Deep Sky.ogg')
 	song.play(-1)
+
+
+def level_up():
+	global playing
+	pygame.init()
+	mixer.init()
+	mixer.fadeout(1000)
+	song = pygame.mixer.Sound('music/Level Up.ogg')
+	song.play()
+	song = pygame.mixer.Sound(playing)
+	song.play()
+
+

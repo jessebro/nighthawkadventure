@@ -4,6 +4,7 @@ from functions.utils import print_stuff
 from functions.utils import input_stuff
 from functions.utils import Color
 from functions.utils import colour_it
+from functions import sounds
 
 MAX_ABILITY_SCORE = 27
 
@@ -135,8 +136,8 @@ def level_up(levels):
 		plurals = "time"
 	else:
 		plurals = "times"
+	sounds.level_up()
 	print_stuff([colour_it(f"You've leveled up {int(levels)} {plurals}!", Color.FUNCTION)])
-	time.sleep(3)
 	ability['level'] += levels
 	ability['xp'] %= 100
 	counter = 0
