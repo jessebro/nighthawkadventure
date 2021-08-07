@@ -15,7 +15,9 @@ from functions.utils import Color
 from functions.utils import print_it
 from functions import utils
 import chapter2
+from functions import sounds
 
+sounds.title()
 
 def set_default_actions():
 	utils.default_actions = {

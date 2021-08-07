@@ -9,7 +9,10 @@ from functions.combat_scripts import *
 from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import print_stuff
+from functions import sounds
 
+
+music = False
 gang_size = 0
 gang_lads = []
 gang_index = 0
@@ -36,7 +39,11 @@ def combat_flow(enemy, enemies, allies):
 	global health_restored
 	global combat
 	global turns_taken
+	global music
 	combat = True
+	if not music:
+		sounds.play_combat()
+		music = True
 	while combat:
 		turns_taken += 1
 		player_turn.turn(enemy, allies)
@@ -284,6 +291,7 @@ def kill(enemy, enemies):
 	time.sleep(3)
 	if gang_size <= 0:
 		combat = False
+		sounds.end_combat()
 		summary(enemies)
 		post_combat.end_combat(gang_lads)
 	else:
@@ -396,8 +404,9 @@ def summary(enemy):
 	damage_prhit = sum(damages) / len(damages)
 	print_stuff([f"""{colour_it("COMBAT SUMMARY", Color.UNDERLINE)}
 Turns Taken: {turns_taken}
-{colour_it("Total Damage Dealt:",Color.YELLOW)} {total_damage_dealt}
+{colour_it("Total Damage Dealt:",Color.YELLOW)} {total_damage_dealt}    
 {colour_it("Total Damage Received:",Color.RED)} {total_damage_received}
 {colour_it("Weapon Accuracy:",Color.GREEN)} {round(accuracy, 2)}%
-{colour_it("Average Damage per Hit",Color.CYAN)} {round(damage_prhit, 2)}
-{colour_it("Enemies Defeated",Color.PURPLE)} {len(enemy)}"""])
+{colour_it("Average Damage per Hit:",Color.CYAN)} {round(damage_prhit, 2)}
+{colour_it("Enemies Defeated:",Color.PURPLE)} {len(enemy)}"""])
+	

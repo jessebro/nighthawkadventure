@@ -2,7 +2,6 @@ from enum import Enum
 import os
 import time
 
-
 # System call - apparently needed for color, see
 # https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
 os.system('')
@@ -72,5 +71,7 @@ def print_stuff(scripts):
 		print("")
 		input_stuff(f"""{colour_it("~~", Color.YELLOW)}""", "*")
 		clear()
+
+
 
 

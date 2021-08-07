@@ -11,6 +11,7 @@ from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
 from functions.loading import save
+from functions import sounds
 
 lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
 blackburrow = colour_it("Blackburrow", Color.PLACE)
@@ -20,8 +21,7 @@ def ghouls_at_farm():
 	global blackburrow
 	ghouls = colour_it("ghouls", Color.ENEMY)
 	save("chapter1.ghouls_at_farm")
-	enemies = [encounters.monster_access("ghoul"), encounters.monster_access("ghoul"), encounters.monster_access("ghoul")]
-	enemy_round.initialize(enemies)
+	sounds.travel()
 	print_stuff([f"You make your way outside of {blackburrow}. It is late morning, and the sky is a cobalt blue.",
 "Birds sing, and the long grass sways in the breeze. The air is cool, but not cold, and fluffy white clouds float in the sky.",
 f"You steer off the main road and onto a dirt track leading to the {lizardtongue}. About an hour into the journey you come across a farm.",
@@ -42,6 +42,7 @@ f"One of the {ghouls} lunges forward suddenly, and you ready your sword."])
 		if ability.ability['health'] <= 0:
 			print(f"There is no one to save you. The farmer cannot hold the {ghouls} back for much longer, and the {ghouls} will show no mercy to those in the way of their food.")
 			exit()
+		sounds.travel()
 		print_stuff([f"You wipe ghoul blood from your sword with a cloth. The farmer approaches you, his own pitchfork stained a dark red.",
 f'"Thank you, kind stranger," the man says. He bites his lip for a second, then pulls a money bag from his belt and holds it out to you.',
 f'''"It's not much, but you deserve a reward, {character.character['titles']['casual']}."'''])
@@ -67,6 +68,7 @@ def hag_lair():
 	save("chapter1.hag_lair")
 	treasure = 0
 	bone_hag = colour_it("bone hag", Color.ENEMY)
+	sounds.travel()
 	print_stuff(['You continue along the trail, and you pass by a few more farms, and sometimes the people maintaining them, nodding in greeting as you pass.',
 '''Finally, the track becomes wilder, the farms become less, before disappearing altogether. Small pockets of trees and undergrowth now dot the countryside.''',
 'It is late in the afternoon when the trail splits suddenly. It is clear which path will lead to the mountains. The other pass leads into a small forest.'])
@@ -588,6 +590,7 @@ def cave():
 	alvyn = colour_it("Alvyn", Color.NPC)
 	loot = False
 	save("chapter1.cave")
+	sounds.dungeon()
 	print_stuff(["After another half hour of trekking, clambering over boulders and glancing at the cloudy sky, you reach your goal.",
 "The summit of the mountain is not far away now, but looming before you is a dark cave. Next to the round, stony entrance is a tablet with words on it.",
 "You walk over and read the tablet.", """
