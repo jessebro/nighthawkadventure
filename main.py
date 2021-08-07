@@ -18,6 +18,7 @@ from functions import sounds
 
 sounds.title()
 
+
 def set_default_actions():
 	utils.default_actions = {
 		"e": inventory.show,
@@ -65,7 +66,7 @@ hoard was said to lie in a cave at the top of the largest mountain.
 - The son is called {micha} and the daughter is called {elfa}. The baron himself is {bertholt}.""",
 """Before setting off on your task, you have the chance to prepare."""])
 
-	town.town("Blackburrow", "Leave to look for the Omar children", True, False)
+	town.town("Blackburrow", "Leave to look for the Omar children", True)
 	print_stuff([f"Your preparations complete, you head towards the main gates of {blackburrow}.",
 "You stop when you hear the sound of a woman crying in an alley, and the harsh voice of a man."])
 	choice = input_stuff("""1. Investigate the sounds.

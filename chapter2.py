@@ -325,7 +325,7 @@ f""""You're incredible!" {tamara} exclaims with excitement. "Where did you learn
 	print_stuff([f'After your rest, you and {tamara} continue onwards to {blackburrow}. It is late morning when finally you both step through the gates of the town.',
 f""""If you need to prepare," {tamara} says. "I'll be at the tavern. Come to me when you're ready; I have some things to tell you." """,
 f"""{tamara} disappears into the crowded streets, leaving you alone to do as you wish."""])
-	town.town("Blackburrow", "Meet Tamra at the tavern.", True, False)
+	town.town("Blackburrow", "Meet Tamra at the tavern.", True)
 	print_stuff([f"""As you make your way to the tavern, you see {micha} approaching you.""",
 f""""Greetings!" he says cheerfully, but you see sadness behind his eyes. "I was hoping you would return safetly." """,
 """"My father wishes to see you. Something about a reward for finding me." """])
