@@ -373,7 +373,7 @@ def get_enemy_status(enemy):
 		status = "Bloodied"
 	elif enemy['hp'] >= enemy['maxhp'] / 4:
 		status = "Injured"
-	elif enemy['hp'] < enemy['maxhp'] / 4:
+	else:
 		status = "Crippled"
 	return status
 
