@@ -13,7 +13,7 @@ def play_combat():
 def end_combat():
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1)
+	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/Combat_End.ogg')
 	song.play()
 
@@ -21,7 +21,7 @@ def end_combat():
 def dungeon():
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1)
+	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/Forsaken Halls.ogg')
 	song.play(-1)
 
@@ -29,7 +29,7 @@ def dungeon():
 def title():
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1)
+	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/A Blade and a Bag.ogg')
 	song.play(-1)
 
@@ -37,7 +37,7 @@ def title():
 def travel():
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1)
+	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/The Winding Road.ogg')
 	song.play(-1)
 
