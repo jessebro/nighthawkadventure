@@ -275,8 +275,6 @@ def reeturn():
 	bertholt = colour_it("Bertholt Omar", Color.NPC)
 	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
 	sounds.night()
-	enemy_round.initialize([encounters.monster_access('fbandit')])
-	enemy_round.initialize([encounters.monster_access('fbandit')])
 	print_stuff([f"You retrace your steps along the trail to the {lizardtongue}, this time with another by your side. By the time night falls, the lights of {blackburrow} are visible.",
 f"As you settle down to rest, {tamara} walks away from your camp and changes her clothes. Instead of the strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
 """She wears tight trousers, a shirt and jacket, and her hair is tied back in a loose ponytail. "Does this look any better?" she asks, holding up her arms and spinning around. """])
