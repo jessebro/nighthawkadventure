@@ -516,8 +516,49 @@ f""""Fifty strokes for the disturbing of the peace," {tamara} says dryly. """,
 
 
 def attack():
+	save('chapter2.attack')
 	tamara = colour_it("Tamara", Color.NPC)
+	corocana = colour_it("Corocana", Color.PLACE)
 	sounds.doom()
 	print_stuff([f"""You hear shouting and a dull roaring from far away. You and {tamara} exchange glances and run outside."""])
 	if character.story['criminal']:
-		print_stuff(["Suddenly, some guards run up to you. You recognize the personal guards of the Baron."])
+		while True:
+			persona = colour_it("There seems to be some misunderstanding. I did no such thing.", Color.PERSONA)
+			print_stuff(["Suddenly, some guards run up to you. You recognize the personal guards of the Baron.",
+f""""You're under arrest {character.character['titles']['formal']}," one of them says. "For the assault of the Baron." """])
+			choice = input_stuff(f"""1. "Go ahead and try it." 
+2. "Alright." 
+3. "{persona}" 
+> """, ["1", "2", "3"])
+			if choice == "3":
+				persona_roll = random.randrange(1, 16)
+				if persona_roll <= ability.ability['persona']:
+					print_stuff([f"""The guard buys your lie. "Sorry, {character.character['titles']['formal']}," he stammered. "Begging your pardon." """,
+f"All of them turn a walk away in unison. {tamara} frowns at you, but you hold up a hand for silence when she tries to speak."])
+					break
+				else:
+					print_stuff([f"""The guard doesn't believe your lie. "Nice try," he says. "But we're taking you in." """])
+			print_stuff([f"""Suddenly, {tamara} steps forward. "Can I have a word, guard?" she asks, gesturing to the tavern. The guard stops to think. """,
+f""""Alright, miss," he says. Both he and {tamara} enter the tavern. The other guards close in around you, blocking your escape. """])
+			awareness_roll = random.randrange(1, 12)
+			aware = colour_it("aware", Color.AWARENESS)
+			if awareness_roll <= ability.ability['awareness']:
+				print_stuff([f"""You are {aware} enough to eavesdrop on the conversation in the tavern.""",
+f""""Look at you," says {tamara}'s voice. "A big strong man, but stuck as one of the Baron's henchmen." """,
+""""Henchmen? Miss, I think..." """,
+""""The pay can't be too good, can it? What if I, say, boosted your wage. In return, I want you to accept that this is all just a big misunderstanding." """,
+"""There's the sound of coins clinking.""",
+f""""I think I can handle that, miss." There's the sound of chairs scraping, and both the guard and {tamara} exit.""",])
+			else:
+				print_stuff([f"You are not {aware} enough to hear what's going on in the tavern. After a few seconds, both {tamara} and the guard step back onto the street."])
+			print_stuff([""""Come on," the guard yells as his followers. "There's been a mixup. A shapeshifter is on the prowl. Let's move!" With that, the guards leave. """,
+f""""It's incredible how guards can be so easily swayed by a woman with a large purse and fluttering eyelids," {tamara} comments. "Not enough women in their lives." """])
+			break
+	print_stuff(["The street is packed with people moving to the gates. You decide to follow the crowd. Once you reach the gates, your hand flinches to your sword.",
+"Standing before you is a massive creature. It's lizard-like in appearance, but walks on its hind legs. It's huge; about as big as a small house.",
+"It gnashes its teeth, which are all as long as your forearm. Its arms aren't very long, however, and stick no further out that its thick, squarish snout.",
+f"Though you don't know what exactly this creature is, you know it must have come out of the jungles of {corocana}. Riding atop its back is a lizardman.",
+"As their name suggests, a lizardman is a humanoid lizard, about as big as a human. They have sharp teeth and a terrible lisp.",
+"This lizardman swings a great staff about, and it dressed in colourful robes. You assume them to be a priest of somesort.",
+""""Warm-bloodssss!" the lizardman cries, their voice carrying over the hubbub of the crowd. "You have darrrred to trrressssspasssss on the Sacred Earth." """,
+""""You have darrred to send your femalessss, arrrmed and angrrrry, to hurrrrt ussss. Now we will hurrrrt youssss unlessss you call them back." """])
