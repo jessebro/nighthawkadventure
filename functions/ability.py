@@ -29,11 +29,11 @@ def get_ability():
 	ability_samples = [0, 0, 0, 0, 0]
 	random_assign = [7, 6, 5, 5, 4]
 	print(f"""Next, determine your statistics. There are five abilities.
-	{colour_it("Strength", Color.RED)} determines your ability to fight, lift things and break things
-	{colour_it("Agility", Color.GREEN)} determines your ability to run away, dodge and your chance to make an extra attack
-	{colour_it("Awareness", Color.BLUE)} determines your ability to detect lies, notice things and identify things
-	{colour_it("Endurance", Color.YELLOW)} determines your ability to withstand pain, hold your breath and determines your health points.
-	{colour_it("Persona", Color.PURPLE)} determines your ability to persuade and interact with people to get what you want.
+	{colour_it("Strength", Color.STRENGTH)} determines your ability to fight, lift things and break things
+	{colour_it("Agility", Color.AGILITY)} determines your ability to run away, dodge and your chance to make an extra attack
+	{colour_it("Awareness", Color.AWARENESS)} determines your ability to detect lies, notice things and identify things
+	{colour_it("Endurance", Color.ENDURANCE)} determines your ability to withstand pain, hold your breath and determines your health points.
+	{colour_it("Persona", Color.PERSONA)} determines your ability to persuade and interact with people to get what you want.
 One by one, type in a number for each stat.
 The total must not exceed 27, and no individual stat can be less than 1 or greater than 10.""")
 	decide = input("""1. Select abilities manually.
