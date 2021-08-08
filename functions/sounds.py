@@ -3,6 +3,7 @@ import pygame
 
 playing = ""
 
+
 def play_combat():
 	global playing
 	if playing == "music/Song of the Nighthawk.ogg":
@@ -120,9 +121,3 @@ def level_up():
 	song.play()
 	song = pygame.mixer.Sound(playing)
 	song.play(-1)
-
-
-
-
-
-
