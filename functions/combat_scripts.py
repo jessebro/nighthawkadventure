@@ -1,4 +1,5 @@
 import random
+import copy
 
 defaults = {
 	"reference": {
@@ -16,7 +17,7 @@ defaults = {
 
 def print_script(scripts, enemy, ally=defaults):
 	if ally == {}:
-		ally = defaults
+		ally = copy.deepcopy(defaults)
 	reference = enemy['reference']
 
 	ally_reference = ally['reference']
