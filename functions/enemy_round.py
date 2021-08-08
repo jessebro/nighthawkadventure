@@ -39,6 +39,9 @@ def combat_flow(enemy, enemies, allies):
 	global game_state
 	sounds.play_combat()
 	while True:
+		game_state['damage_dealt'] = 0
+		game_state['damage_received'] = 0
+		game_state['health_restored'] = 0
 		game_state['turns_taken'] += 1
 		player_turn.turn(enemy, allies)
 		if dead_check(enemy, enemies):
@@ -55,9 +58,6 @@ def combat_flow(enemy, enemies, allies):
 			if dead_check(enemy, enemies):
 				break
 		round_summary(enemy)
-		game_state['damage_dealt'] = 0
-		game_state['damage_received'] = 0
-		game_state['health_restored'] = 0
 
 
 def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
@@ -121,6 +121,7 @@ def initialize(enemies: list, allies=()):
 
 
 def enemy_turn(enemy, enemies, allies):
+	global game_state
 	if enemy['bleeding'] > 0:
 		damage = random.randrange(2,6)
 		damage_script = colour_it(f"{damage} damage!", Color.YELLOW)
@@ -128,6 +129,8 @@ def enemy_turn(enemy, enemies, allies):
 		time.sleep(4)
 		enemy["modifier"] -= (10 * enemy['bleeding'])
 		enemy["bleeding"] -= 1
+		game_state['damage_dealt'] += damage
+		game_state['total_damage_dealt'] += damage
 		if dead_check(enemy, enemies):
 			return
 	enemy["playermod"] = 0
@@ -243,7 +246,6 @@ def dead_check(enemy, enemies):
 	global game_state
 	if enemy['hp'] <= 0:
 		kill(enemy, enemies)
-		combat = False
 		return True
 	else:
 		return False
