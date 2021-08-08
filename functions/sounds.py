@@ -101,6 +101,18 @@ def intensity():
 	song.play(-1)
 
 
+def doom():
+	global playing
+	if playing == "music/Approaching Doom.ogg":
+		return
+	playing = "music/Approaching Doom.ogg"
+	pygame.init()
+	mixer.init()
+	mixer.fadeout(1000)
+	song = pygame.mixer.Sound('music/Approaching Doom.ogg')
+	song.play(-1)
+
+
 def level_up():
 	global playing
 	pygame.init()
@@ -109,7 +121,8 @@ def level_up():
 	song = pygame.mixer.Sound('music/Level Up.ogg')
 	song.play()
 	song = pygame.mixer.Sound(playing)
-	song.play()
+	song.play(-1)
+
 
 
 

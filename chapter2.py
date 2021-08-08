@@ -397,6 +397,8 @@ def answers():
 	micha = colour_it("Micha", Color.NPC)
 	meal = False
 	justice = False
+	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
+	greypass = colour_it("Greypass", Color.PLACE)
 	sounds.town()
 	ability.gain_xp([encounters.xp_handouts['medium']])
 	print_stuff([f"You enter the tavern and look around. {tamara} is sitting at a table. You quickly take a seat opposite her.",
@@ -457,7 +459,7 @@ f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. 
 > """, ["1", "2"])
 			if choice == "1":
 				print_stuff([""""Oh yeah? So what're you going to do?" """])
-				choice = input_stuff("""1. "Make you apologize." [Tap you sword for effect.] 
+				choice = input_stuff("""1. "Make you apologize." [Tap your sword for effect.] 
 2. "Hurt you." [Hit him] 
 > """, ["1", "2"])
 				if choice == "1":
@@ -471,4 +473,51 @@ f"You walk back to your table, where {tamara} is waiting, an eyebrow cocked up. 
 			break
 	print_stuff([f"""{tamara} frowns at the men and clenches her fists. "Bastards," she mutters. "They deserve a beating; the lot of them." """])
 	if justice:
-		print_stuff([f""""Although I'm glad you sorted them out. Nicely done, {character.character['firstname']}." """])
+		print_stuff([f""""Although I'm glad you sorted them out. Nicely done, {character.character['firstname']}." """,
+""""Now, I have things I want to talk to you about. But before I begin, I will tell you two things. First of all, you owe me for saving your life." """,
+""""Second of all, if you help me, I can assure you I will reward you handsomely." """,
+f""""Keep those things in mind as I'm talking to you." {tamara} leans back in her chair and bites her lip. "How to begin..." """,
+f""""The {daughters} are planning something. Something massive, and it's in all of our interests to stop them." """,
+""""I don't know exactly what it is, but I do know that it will result in the destruction of our world as we know it. So I want you to help me stop it." """,
+f""""I have a contact in {greypass} who will provide us with not only information, and may also help us as well." """,
+""""I want us to go there, learn all that we can from him, then act. Time is of the essence." """,
+f"""{tamara} leans forward. "I know it may sound slightly crazy, but I need your help, {character.character['firstname']}. Please, you're the only one I can trust." """])
+
+	quest = colour_it(""""Let's go!" """, Color.QUEST)
+	if meal:
+		print_stuff(["""The serving girl returns to your table, now carrying a pitcher and two cups of ale."""])
+		if justice:
+			print_stuff([""""This one's on the house," she says, smiling at you significantly. You nod your head politely. The serving girl than walks away."""])
+		else:
+			print_stuff([f""""That'll be four gold coins," she says. {tamara} produces the coins and hands them to her. """,
+f""""This one's on me," {tamara} says."""])
+	while True:
+		choice = input_stuff(f"""1. "Why me?" 
+2. {quest}
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff([""""Several reasons. It's in your best interest, as well as mine. And you're a fighter, so I could use your help." """,
+""""Those bitches aren't going to stop hunting you know that you've escaped their cluthes. They act in shadows; they want to stay out of sight." """])
+			choice = input_stuff("""1. "I see."
+2. "Why not tell the authorities?" 
+> """, ["1", "2"])
+			if choice == "2":
+				print_stuff([f"""{tamara} laughs. "You think I haven't tried that? Look." She gets up turns around and lifts the back of her shirt. """,
+"""You see red lines running across the small of her back, and disappearing below the waistband of her trousers. She turns around and sits down again.""",
+f""""Fifty strokes for the disturbing of the peace," {tamara} says dryly. """,
+""""Think about it. An organization that has been peaceful for years, suddenly turning violent and cruel. Sounds like a young fool trying to cause mischeif." """])
+				input_stuff("""1. "I take it you're a young fool." 
+2. "Don't worry. You may be a fool, just not a young one." 
+> """, ["1", "2"])
+				print_stuff([""""I'm only twenty-four. Not that old, but not that young either." """])
+		else:
+			break
+	print_stuff([""""Perfect. Let's get going." It is then that the town bells start ringing. """])
+
+
+def attack():
+	tamara = colour_it("Tamara", Color.NPC)
+	sounds.doom()
+	print_stuff([f"""You hear shouting and a dull roaring from far away. You and {tamara} exchange glances and run outside."""])
+	if character.story['criminal']:
+		print_stuff(["Suddenly, some guards run up to you. You recognize the personal guards of the Baron."])

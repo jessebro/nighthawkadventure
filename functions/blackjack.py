@@ -48,7 +48,7 @@ Before you begin, your opponent speaks to you.
 "It was a pleasure to play with you, {character.character["titles"]['casual']}," they say cheerfully.""")
 			time.sleep(5)
 			if gamble == True:
-				print("He rakes in the pile of coins and puts them in his money bag, grinning broadly.")
+				print("They rake in the pile of coins and puts them in their money bag, grinning broadly.")
 				time.sleep(3)
 			break
 		else:
