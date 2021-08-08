@@ -81,7 +81,7 @@ f"{reference['he'].capitalize()} runs forward suddenly, but you are ready. {refe
 f"As your opponent charges, you sidestep. {reference['he'].capitalize()} runs straight past you, back exposed, almost asking to be slashed.",
 f"""{reference['object'].capitalize()} attacks, but you spin away from the blow, ending your twirl on your opponent's flank.""",
 f"Your adversary closes in, but at the last second you lunge forwards, slamming your shoulder into {reference['him']}. {reference['he'].capitalize()} stumbles backwards, sputtering for breath.",
-f"As the expected attack comes in, you duck and spin under the strike, bring your sword around to attack.",
+f"As the expected attack comes in, you duck and spin under the strike, bringing your sword around to attack.",
 f"With a swift movement, you cut at the legs of {reference['object']}, sending it stumbling."],
 
 	"player_fail_parry": [
