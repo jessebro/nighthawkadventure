@@ -1,4 +1,5 @@
 import time
+import copy
 from functions import character
 from functions import ability
 from functions import post_combat
@@ -10,6 +11,7 @@ from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import print_stuff
 from functions import sounds
+
 
 # naughty global state goes here
 defaults = {
@@ -109,7 +111,7 @@ def generate_reference(type, gender, name):
 def initialize(enemies: list, allies=()):
 	global game_state
 	global defaults
-	game_state = defaults
+	game_state = copy.deepcopy(defaults)
 	game_state['gang_size'] = len(enemies)
 	game_state['gang_lads'] = enemies
 	for enemy in enemies:
