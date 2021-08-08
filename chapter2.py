@@ -437,8 +437,8 @@ f""""Can I help you, {character.character['titles']['casual']}?" one of them ask
 			elif choice == "3":
 				print_stuff([f"""The man jumps to his feet. "What?" he protests. "What did I do to you, {character.character['titles']['casual']}?" """])
 				choice = input_stuff("""1. "It's not about what you did to me." 
-	2. "You challenged my morals." 
-	> """, ["1", "2"])
+2. "You challenged my morals." 
+> """, ["1", "2"])
 				if choice == "1":
 					print_stuff([""""You mean what I did to the girl?" The man slumps back in his chair. "I'm sorry... it was stupid." """])
 				elif choice == "2":
