@@ -103,9 +103,10 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 		if ability.ability['health'] <= 0:
 			print("No one knows you came here, and no one can save you now. Unfortunately, you'll probably end up in the hag's cooking pot.")
 			exit()
-		sounds.travel()
+		sounds.intensity()
 		print_stuff([f"With the {bone_hag} dead, you enter the cabin. You look around, and you see a worn chest, the cauldron of meat soup, a table with papers on it, and a pile of bones."])
 		while True:
+			sounds.intensity()
 			quest = colour_it("""Leave""", Color.QUEST)
 			investigate = input_stuff(f"""1. Search the chest.
 2. Investigate the cauldron.
@@ -166,6 +167,7 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 "Second, the bones have been scraped clean of all flesh, due to the nicks and scratches of something being drawn along them."])
 			else:
 				break
+		sounds.travel()
 		print_stuff(["You leave the cabin, satisfied with what you achieved. You head back along the trail, and back to the junction."])
 	print_stuff([f"You turn onto the path to the {lizardtongue}, and continue your trek."])
 
