@@ -2,8 +2,6 @@ import random
 import copy
 
 
-previous = ""
-
 defaults = {
 	"reference": {
 		"object": "",
@@ -18,7 +16,9 @@ defaults = {
 	}
 }
 
+
 def print_script(scripts, enemy, ally=defaults):
+	global available
 	if ally == {}:
 		ally = copy.deepcopy(defaults)
 	reference = enemy['reference']
