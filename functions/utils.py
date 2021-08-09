@@ -12,7 +12,6 @@ clear = lambda: os.system('clear')
 
 
 def input_stuff(prompt, options, actions=None):
-	clear()
 	if not actions:
 		actions = default_actions
 	while True:
