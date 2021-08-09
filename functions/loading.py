@@ -14,11 +14,11 @@ from functions.utils import colour_it
 
 def boot():
 	clear()
-	start = input(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
+	start = input_stuff(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. New Game
 2. Load Game
 3. Exit
-> """)
+> """, ["1", "2", "3"])
 	if start == "3":
 		exit()
 	elif start != "1":
@@ -63,10 +63,10 @@ def load():
 		loaded = profiles[loaded - 1]
 		clear()
 		print(colour_it("~ THE NIGHTHAWK ~", Color.RED))
-		action = input(f"""1. Load {loaded.strip('.dat')}.
+		action = input_stuff(f"""1. Load {loaded.strip('.dat')}.
 2. Delete {loaded.strip('.dat')}
 3. Cancel
-> """)
+> """, ["1", "2", "3"])
 		if action == "2":
 			confirm = input(f"""Are you sure you want to delete {loaded.strip('.dat')}? Ths action cannot be undone. y/n
 > """)
