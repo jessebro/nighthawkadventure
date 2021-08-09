@@ -41,17 +41,25 @@ def load():
 	profiles = os.listdir("savefiles")
 	counter = 0
 	choices = []
-	for profile in profiles:
-		counter += 1
-		choices.append(counter)
-		print(f"{counter}. {profile.strip('.dat')}")
 	while True:
+		for profile in profiles:
+			counter += 1
+			choices.append(counter)
+			print(f"{counter}. {profile.strip('.dat')}")
 		loaded = int(input("> "))
 		if loaded not in choices:
 			continue
-		break
-	loaded = profiles[loaded - 1]
-
+		loaded = profiles[loaded - 1]
+		while True:
+			action = input(f"""1. Load {loaded.strip('.dat')}.
+2. Delete {loaded.strip('.dat')}
+> """)
+			if action == "2":
+				confirm = input(f"""Are you sure you want to delete {loaded.strip('.dat')}? Ths action cannot be undone. y/n
+> """)
+				if confirm == "y":
+					os.remove(f"savefiles/{loaded}")
+			break
 	with open(f'savefiles/{loaded}', 'rb') as f:
 		data = pickle.load(f)
 	character.character = data['character']
