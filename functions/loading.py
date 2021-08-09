@@ -4,6 +4,8 @@ from functions import ability
 from functions import equipment
 from functions import character
 from functions import weapon
+from functions.utils import input_stuff
+from functions.utils import clear
 from functions.utils import print_it
 from functions.utils import Color
 from functions.utils import colour_it
@@ -11,6 +13,7 @@ from functions.utils import colour_it
 
 
 def boot():
+	clear()
 	start = input(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. New Game
 2. Load Game
@@ -39,6 +42,8 @@ def save(position):
 
 def load():
 	while True:
+		clear()
+		print(colour_it("~ THE NIGHTHAWK ~", Color.RED))
 		profiles = os.listdir("savefiles")
 		counter = 0
 		choices = []
@@ -46,12 +51,19 @@ def load():
 			counter += 1
 			choices.append(counter)
 			print(f"{counter}. {profile.strip('.dat')}")
+
+		print(f"{counter + 1}. Cancel")
+		choices.append(counter + 1)
 		loaded = int(input("> "))
 		if loaded not in choices:
 			continue
+		elif loaded == counter + 1:
+			boot()
+			return
 		loaded = profiles[loaded - 1]
-		action = input(f"""
-1. Load {loaded.strip('.dat')}.
+		clear()
+		print(colour_it("~ THE NIGHTHAWK ~", Color.RED))
+		action = input(f"""1. Load {loaded.strip('.dat')}.
 2. Delete {loaded.strip('.dat')}
 3. Cancel
 > """)
