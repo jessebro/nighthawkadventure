@@ -7,7 +7,9 @@ xp_handouts = {
 	"practice": enemy_round.generate_actor(*[0, 0, 0, 0, 0, 10, " ", " ", " "]),
 	"small": enemy_round.generate_actor(*[0, 0, 0, 0, 0, 25, " ", " ", " "]),
 	"medium": enemy_round.generate_actor(*[0, 0, 0, 0, 0, 50, " ", " ", " "]),
-	"large": enemy_round.generate_actor(*[0, 0, 0, 0, 0, 85, " ", " ", " "])
+	"large": enemy_round.generate_actor(*[0, 0, 0, 0, 0, 85, " ", " ", " "]),
+	"level": enemy_round.generate_actor(*[0, 0, 0, 0, 0, 100, " ", " ", " "]),
+
 }
 
 # maxhp, mindamage, maxdamage, baseskill, agility, xp, type, gender, name
@@ -15,6 +17,7 @@ xp_handouts = {
 
 def monster_access(key):
 	monsters = {
+		"freebee": enemy_round.generate_actor(*[1, 0, 0, 0, -1000, 100, "monster", "it", "the freebee"]),
 		"mbandit": enemy_round.generate_actor(*[20, 2, 6, 50, 5, random.randrange(8, 16), "human", "male", "the male bandit"]),
 		"fbandit": enemy_round.generate_actor(*[15, 2, 6, 50, 8, random.randrange(8, 16), "human", "female", "the female bandit"]),
 		"chaos_daughter": enemy_round.generate_actor(*[29, 3, 8, 65, 10, random.randrange(18, 29), "human", "female", "the daughter of chaos"]),
@@ -26,7 +29,7 @@ def monster_access(key):
 		"ogre": enemy_round.generate_actor(*[53, 5, 12, 20, -10, random.randrange(19, 27), "monster", "it", "the ogre"]),
 		"injured ogre": enemy_round.generate_actor(*[23, 5, 12, 20, -10, random.randrange(19, 27), "monster", "it", "the ogre"]),
 		"wolf": enemy_round.generate_actor(*[13, 3, 8, 65, 10, random.randrange(4, 10), "monster", "it", "the wolf"]),
-		"dinosaur": enemy_round.generate_actor(*[85, 8, 16, 35, -20, 100, "monster", "it", "the jungle creature"])
+		"dinosaur": enemy_round.generate_actor(*[85, 8, 16, 35, -20, 100, "monster", "it", "the jungle creature"]),
 	}
 	return monsters[key]
 

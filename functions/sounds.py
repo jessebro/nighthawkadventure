@@ -1,5 +1,6 @@
 from pygame import mixer
 import pygame
+import time
 
 playing = ""
 
@@ -119,7 +120,8 @@ def level_up():
 	mixer.stop()
 	song = pygame.mixer.Sound('music/Level Up.ogg')
 	song.play()
+
+
+def play_prev():
 	song = pygame.mixer.Sound(playing)
-	if playing == "music/Combat_End.ogg":
-		return
 	song.play(-1)

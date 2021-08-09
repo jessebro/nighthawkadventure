@@ -171,7 +171,7 @@ def level_up(levels):
 		ability["maxhealth"] = int(ability["maxhealth"])
 		ability["health"] = ability["maxhealth"]
 		counter += 1
-
+	sounds.play_prev()
 
 def reaction(difficulty, cycles):
 	cycle = 0
