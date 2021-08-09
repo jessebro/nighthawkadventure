@@ -585,5 +585,6 @@ f"""Knowing that you don't really have a choice, you draw {weapon.weapon['weapon
 		print_stuff([f"With a mightly lunge forwards, the creature snatches up the envoy, swallowing him whole. It then turns towards you and {tamara}."])
 		break
 	print_stuff([f""""We've got to stop it," {tamara} yells. "Before it destroys the town." The creature roars and charges towards the both of you."""])
-	enemy_round.initialize([encounters.monster_access()])
+	enemy_round.initialize([encounters.monster_access("dinosaur")], (encounters.ally_access("tamara")))
+
 
