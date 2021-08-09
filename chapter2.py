@@ -561,4 +561,17 @@ f"Though you don't know what exactly this creature is, you know it must have com
 "As their name suggests, a lizardman is a humanoid lizard, about as big as a human. They have sharp teeth and a terrible lisp.",
 "This lizardman swings a great staff about, and it dressed in colourful robes. You assume them to be a priest of somesort.",
 """"Warm-bloodssss!" the lizardman cries, their voice carrying over the hubbub of the crowd. "You have darrrred to trrressssspasssss on the Sacred Earth." """,
-""""You have darrred to send your femalessss, arrrmed and angrrrry, to hurrrrt ussss. Now we will hurrrrt youssss unlessss you call them back." """])
+""""You have darrred to send your femalessss, arrrmed and angrrrry, to hurrrrt ussss. Now we will hurrrrt youssss unlessss you call them back." """,
+"Many of the citizens have fled from the gates. A crowd of around two score people is around you, and growing smaller and people take shelter in their homes.",
+"""Suddenly, a man in fine clothing emerges from the crowd. He appears nervous, but he walks with an air of authority. The crowd parts before him.""",
+f""""An envoy from the Baron," {tamara} whispers to you. You nod in conformation as the envoy passes. """,
+""""Noble lizardman," the envoy calls, stepping out into the open field between the town and the large creature. "We have no quarrel with you." """,
+""""Korrrel?" the lizardman says testingly. The envoy sighs and continues to deliver the message. """,
+""""The warmbloods that plague you are no doing of ours. Please leave us in peace." The lizardman laughs, a sound like a cross between a sigh and a cough. """,
+""""They are warrrmbloodsssss. They arrre yourrsss. If you can not contrrrol them by authorrrity, then do it by forrrce. You have thrrree weeks..." """,
+"Suddenly, the large creature lurches forwards. The lizardman is thrown to the ground hard, hissing in pain. The creature rushes towards the envoy.",
+f""""Come on, {character.character['firstname']}," {tamara} says, drawing her sword and running forward."""])
+	choice = input_stuff(f"""1. Draw {weapon.weapon['weaponname']} and help {tamara}.
+2. Stay put."
+> """, ["1", "2"])
+
