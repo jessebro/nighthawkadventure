@@ -161,7 +161,6 @@ The two of you tumble outside of the cabin and into the forest. You roll to your
 						treasure = 0
 						continue
 				else:
-					print_stuff([""])
 					continue
 			elif investigate == "4":
 				print_stuff(["You discover two things about the bones. First, it is that of a woman, due to the shape of the bones and the scraps of woman's clothing lying nearby.",
@@ -350,8 +349,8 @@ def thief():
 		if choice == "1":
 			print_stuff(["You run after the woman, and stop after cresting the next hill. What you see makes you draw your sword.",
 "The woman is lying dead in a pool of blood, staring blankly at the sky. Gnawing on her leg is are two strange creature.",
-"Each lanky, and uses both its arms and legs to move, unless it is grabbing something. They are covered in brown fur, and have yellow, reptilian eyes.",
-f"Two pointy ears like those of a wolf adorn each head, as well as a long snout. You recognise the monsters as {lalikins}."
+"Each is lanky, and uses both its arms and legs to move, unless it is grabbing something. They are covered in brown fur, and have yellow, reptilian eyes.",
+f"Two pointy ears like those of a wolf adorn each head, as well as a long snout. You recognise the monsters as {lalikins}.",
 f"The {lalikins} turn to you and growl, showing off white, pointy teeth. They flex their claws and begin to approach you.",
 f"You hold {weapon.weapon['weaponname']} at the ready, and the {lalikins} charge."])
 			enemy_round.initialize([encounters.monster_access("lalikin"), encounters.monster_access("lalikin")])

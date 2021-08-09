@@ -31,7 +31,7 @@ f"""You feel your heart pounding, feel your chest rising with smooth, even breat
 f"""{reference['object'].capitalize()} lunges. You jump aside at the last second.""",
 f"""Sword at the ready, you jeer at {reference['object']}.""",
 f"""You flourish your blade, and {reference['object']} flinches at the display.""",
-f"""Both you and {reference['object']} ready yourselves, ducking, weaving, feinting and striking each trying to gain an advantage."""],
+f"""Both you and {reference['object']} ready yourselves, ducking, weaving, feinting and striking, each trying to gain an advantage."""],
 
 	"player_attack" : ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",

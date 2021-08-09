@@ -120,4 +120,6 @@ def level_up():
 	song = pygame.mixer.Sound('music/Level Up.ogg')
 	song.play()
 	song = pygame.mixer.Sound(playing)
+	if playing == "music/Combat_End.ogg":
+		return
 	song.play(-1)

@@ -103,7 +103,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 		damage_multi = damage_mod
 		roll = random.randrange(1, 101)
 		enemy_round.game_state['attacks'] += 1
-		if roll <= (75 + (ability.ability["strength"] * 1.5) + enemy["playermod"] - enemy["agility"]):
+		if roll <= (75 + ability.ability["strength"] + enemy["playermod"] + (ability.ability['level']) - enemy["agility"]):
 			enemy_round.game_state['hits'] += 1
 			print(print_script("player_hit", enemy))
 			time.sleep(5)
@@ -117,7 +117,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 				time.sleep(4)
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
 			max_damage = int((ability.ability["strength"] + 2) * damage_multi)
-			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"] + damage_bonus + (buffs[0] * 2)
+			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"] + damage_bonus + ability.ability['level'] + (buffs[0] * 2)
 			player_damage_script = colour_it(f"{player_damage} damage!", Color.YELLOW)
 			if vampiric:
 				healing = random.randrange(1,101)
