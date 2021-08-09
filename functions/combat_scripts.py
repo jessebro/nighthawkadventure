@@ -1,6 +1,9 @@
 import random
 import copy
 
+
+previous = ""
+
 defaults = {
 	"reference": {
 		"object": "",
@@ -19,7 +22,6 @@ def print_script(scripts, enemy, ally=defaults):
 	if ally == {}:
 		ally = copy.deepcopy(defaults)
 	reference = enemy['reference']
-
 	ally_reference = ally['reference']
 
 	choices = {
@@ -214,5 +216,5 @@ f"""{ally_reference['object'].capitalize()} is struck in the head. {ally_referen
 f"""The damage {ally_reference['object']} sustains is great, and it is not long before {ally_reference['he']} passes out from the pain.""",
 f"""{ally_reference['object'].capitalize()} tries to jump away from {reference['object']}, but trips and falls. {ally_reference['he'].capitalize()} is too weak to rise again.""",]
 	}
-
-	return random.choice(choices[scripts])
+	script = random.choice(choices[scripts])
+	return script

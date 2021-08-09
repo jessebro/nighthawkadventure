@@ -59,6 +59,7 @@ f'''"Thank you again. But at least let me give you a meal before you leave."''',
 "You accept the man's offer and he brings you into his small house. He gives you a bowl of green soup. You eat it, and it tastes good enough.",
 "The soup energises you, despite its mediocre taste. Once you have finished eating, the farmer bids you farewell, and you continue towards the Lizardtongue Mountains"])
 			ability.heal(5)
+			print_stuff([colour_it("You healed 5 hp!"), Color.FUNCTION])
 			ability.gain_xp([encounters.xp_handouts["small"]])
 
 

@@ -570,8 +570,20 @@ f""""An envoy from the Baron," {tamara} whispers to you. You nod in conformation
 """"The warmbloods that plague you are no doing of ours. Please leave us in peace." The lizardman laughs, a sound like a cross between a sigh and a cough. """,
 """"They are warrrmbloodsssss. They arrre yourrsss. If you can not contrrrol them by authorrrity, then do it by forrrce. You have thrrree weeks..." """,
 "Suddenly, the large creature lurches forwards. The lizardman is thrown to the ground hard, hissing in pain. The creature rushes towards the envoy.",
-f""""Come on, {character.character['firstname']}," {tamara} says, drawing her sword and running forward."""])
-	choice = input_stuff(f"""1. Draw {weapon.weapon['weaponname']} and help {tamara}.
-2. Stay put."
+f""""Come on, {character.character['firstname']}," {tamara} says, drawing her sword and running forward.""",
+f"""Knowing that you don't really have a choice, you draw {weapon.weapon['weaponname']} with a flourish and charge forwards.""",
+"The Baron's envoy is running for his life, the creature hot on his heels."])
+	while True:
+		if equipment.equipment['knives'] >= 1:
+			choice = input_stuff("""1. Use a knife to distract the creature.
+2. Do nothing.
 > """, ["1", "2"])
+			if choice == "1":
+				equipment.equipment['knives'] -= 1
+				print_stuff(["""The knife connects with the creature, and it turns towards you. The envoy, now free of his pursuer, makes it into town safetly."""])
+				break
+		print_stuff([f"With a mightly lunge forwards, the creature snatches up the envoy, swallowing him whole. It then turns towards you and {tamara}."])
+		break
+	print_stuff([f""""We've got to stop it," {tamara} yells. "Before it destroys the town." The creature roars and charges towards the both of you."""])
+	enemy_round.initialize([encounters.monster_access()])
 
