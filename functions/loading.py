@@ -59,7 +59,7 @@ def load():
 			continue
 		elif loaded == counter + 1:
 			boot()
-			return
+			return "Your mother"
 		loaded = profiles[loaded - 1]
 		clear()
 		print(colour_it("~ THE NIGHTHAWK ~", Color.RED))

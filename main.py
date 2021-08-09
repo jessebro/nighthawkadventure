@@ -92,18 +92,24 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave", "chapter2.beginning", chapter2.descent,
 "chapter2.reeturn", "chapter2.answers", "chapter2.attack"
 ]
-position = boot()
-if position in story:
-	idx = story.index(position)
-	story = story[idx:]
-	print_it("Your game loaded successfully!", Color.FUNCTION)
-elif not position:
-	print_stuff(["Your save file could not be accessed, or has been corrupted."])
-	new_game()
-	prologue()
-else:
-	new_game()
-	prologue()
+
+while True:
+	position = boot()
+	if position in story:
+		idx = story.index(position)
+		story = story[idx:]
+		print_it("Your game loaded successfully!", Color.FUNCTION)
+	elif not position:
+		print_stuff(["Your save file could not be accessed, or has been corrupted."])
+		boot()
+	else:
+		confirm = input("""Are you sure you want to begin a new game? y/n
+> """)
+		if confirm != "y":
+			continue
+		new_game()
+		prologue()
+		break
 
 set_default_actions()
 run_adventure(story)
