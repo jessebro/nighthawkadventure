@@ -13,8 +13,11 @@ def boot():
 	start = input(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. New Game
 2. Load Game
+3. Exit
 > """)
-	if start != "1":
+	if start == "3":
+		exit()
+	elif start != "1":
 		return load()
 	return True
 
