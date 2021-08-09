@@ -1,6 +1,8 @@
 import random
 import copy
 
+options = {}
+homeboy = True
 
 defaults = {
 	"reference": {
@@ -17,15 +19,17 @@ defaults = {
 }
 
 
-def print_script(scripts, enemy, ally=defaults):
-	global available
-	if ally == {}:
+def get_scripts(enemy, ally=defaults, specific=""):
+	global options
+	global homeboy
+	homeboy = True
+	if ally == {} or ally == defaults:
 		ally = copy.deepcopy(defaults)
+		homeboy = False
 	reference = enemy['reference']
 	ally_reference = ally['reference']
-
 	choices = {
-	"turn_start" : [f"""You circle each other, sizing each other up.""",
+	"turn_start": [f"""You circle each other, sizing each other up.""",
 f"""You ready your weapon and glare at your opponent.""",
 f"""You feel your heart pounding, feel your chest rising with smooth, even breaths.""",
 f"""{reference['object'].capitalize()} lunges. You jump aside at the last second.""",
@@ -33,7 +37,7 @@ f"""Sword at the ready, you jeer at {reference['object']}.""",
 f"""You flourish your blade, and {reference['object']} flinches at the display.""",
 f"""Both you and {reference['object']} ready yourselves, ducking, weaving, feinting and striking, each trying to gain an advantage."""],
 
-	"player_attack" : ["You lunge forward suddenly, sword leading the way.",
+	"player_attack": ["You lunge forward suddenly, sword leading the way.",
 "You swiftly close the distance between you and your adversary, weapon raised high.",
 f"""You rush towards {reference["object"]}, sword grasped firmly.""",
 f"You approach {reference['object']}, attacking when you are only a few paces away.",
@@ -41,7 +45,7 @@ f"Your opponent jumps towards you. You parry the blow easily, spin your sword, a
 f"You charge forwards, spin on one foot, and bring your sword crashing down on {reference['object']}.",
 "Your opponent moves to attack, but stumbles on some irregular terrain. You seize your chance and lunge forwards."],
 
-	"player_hit" : [
+	"player_hit": [
 f"You feel the tip of your sword bury in your enemy's flesh, accompanied by a {reference['pain']} of pain.",
 "Your opponent tries to duck away from the blow, but you feel a bit of resistance, and see a spurt of blood.",
 f"""You're too fast for your opponent. {reference['he'].capitalize()} raises {reference['his']} defenses weakly, but you easily bat away the blockage and cut into {reference["him"]} with your sword deeply.""",
@@ -51,7 +55,7 @@ f"You enemy tries to step backwards, but {reference['his']} heel hits a raised s
 f"With a deft sword movement you explode into action, striking with your whirling sword, spilling the blood of {reference['object']}.",
 f"You thrust ahead with your sword, shouting in triumph as the tip buries itself into {reference['object']}."],
 
-	"player_miss" : ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
+	"player_miss": ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
 "You swing your sword in a cruel lateral strike, but your opponent ducks just in time, the wind chasing the blade making a whistling sound.",
 f"""You swing your sword downwards, grunting with the effort. {reference["object"].capitalize()} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body.""",
 f"""Despite your best efforts, {reference['object']} is too quick for you, dodging your strikes with ease.""",
@@ -136,13 +140,13 @@ f"As the attack passes to within a hair's breadth of your face, you twist and ju
 f"{reference['object'].capitalize()} turns towards {ally_reference['object']} and rushes towards {ally_reference['him']}.",
 f"{ally_reference['object'].capitalize()} braces {ally_reference['him']}self as {reference['object']} moves to attack {ally_reference['him']}.",
 f"You jump out of the way as {reference['object']} charges past you. {reference['he'].capitalize()} turns back around, this time moving to strike at {ally_reference['object']}."
-	],
+],
 
 	"enemy_hit_ally": [
 f"{ally_reference['object'].capitalize()} staggers away, {ally_reference['his']} attacker having drawn blood.",
 f"{ally_reference['object'].capitalize()} curses as {ally_reference['his']} opponent's attack connects.",
 f""""Alright," says {ally_reference['object']}, jumping away from the danger. "That one stung a little." """
-	],
+],
 
 	"enemy_miss_ally": [
 f""""Nice try," says {ally_reference['object']}, ducking away from {reference['object']}'s attack.""",
@@ -170,7 +174,7 @@ f"For a moment, {reference['he']} stays standing. But then {reference['he']} cra
 f"{reference['object'].capitalize()} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bringing your sword down like an executioner's axe, taking the head from {reference['his']} shoulders.",
 f"You cut {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry.",
 f"{reference['object'].capitalize()} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood.",
-f"You spin on one foot, and bring your hand in a strong backhand. The attack cuts {reference['object']} clean in half.",],
+f"You spin on one foot, and bring your hand in a strong backhand. The attack cuts {reference['object']} clean in half.", ],
 
 	"monster_death": [f"{reference['object'].capitalize()} growls one last time, then falls to the ground.",
 f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue.",
@@ -190,7 +194,7 @@ f"You size up {reference['object']}, and prepare to do battle."],
 
 	"ally_attack": [f"{ally_reference['object'].capitalize()} rushes towards your opponent, weapon raised high.",
 f"""{ally_reference['object'].capitalize()} takes {ally_reference['his']} turn to strike at {reference['object']}.""",
-f"With a suddenly lunge forwards, {ally_reference['object']} attacks at {reference['object']}'s flank.",
+f"With a sudden lunge forwards, {ally_reference['object']} attacks at {reference['object']}'s flank.",
 f""""Die!" {ally_reference['object']} yells, charging forwards, weapon at the ready.""",
 f"""Gritting {ally_reference['his']} teeth, {ally_reference['object']} rushes forwards, weapon poised to strike."""],
 
@@ -200,21 +204,41 @@ f"With a swift blow, {ally_reference['object']}'s weapon meets the body of {refe
 f"{ally_reference['object'].capitalize}'s weapon bites deeply into {reference['object']}, accompanied by a {reference['pain']} of pain.",
 f"""With a sudden feint, {reference['object']} stumbles, an easy target for {ally_reference['object']}'s blow."""],
 
-	"ally_miss": [f"{ally_reference['object'].capitalize()} moves to attack, but {ally_reference['his']} target evades the blow.",
+	"ally_miss": [
+f"{ally_reference['object'].capitalize()} moves to attack, but {ally_reference['his']} target evades the blow.",
 f"Despite {ally_reference['object']}'s best efforts, {reference['object']} is too quick, nimbly dodging all attacks directed at {reference['him']}",
 f"""{ally_reference['object'].capitalize()}'s aim is true, but {ally_reference['his']} target dodges the strike at the last second.""",
 f"""The attack misses by a hair. "I'll get {reference['him']} next time," {ally_reference['object']} says fiercly.""",
 f"""{reference['object'].capitalize()} bats away the attack directed at {reference['him']}, and leaps away from the danger."""],
 
-	"ally_assist": [f"""{ally_reference['object'].capitalize()} maneuvers to flank. "Strike now!" {ally_reference['he']} yells."""],
+	"ally_assist": [
+f"""{ally_reference['object'].capitalize()} maneuvers to flank. "Strike now!" {ally_reference['he']} yells."""],
 
-	"ally_distract": [f""""Over here, ugly" {ally_reference['object']} jeers. {reference['object'].capitalize()} turns to face {ally_reference['him']} agrily."""],
+"ally_distract": [
+f""""Over here, ugly" {ally_reference['object']} jeers. {reference['object'].capitalize()} turns to face {ally_reference['him']} agrily."""],
 
-	"ally_down": [f"""{ally_reference['object'].capitalize()} clutches {ally_reference['his']} wound, blood seeping through his fingers. "I'm sorry!" {ally_reference['he']} groans. "I'm out for this one." """,
+	"ally_down": [
+f"""{ally_reference['object'].capitalize()} clutches {ally_reference['his']} wound, blood seeping through his fingers. "I'm sorry!" {ally_reference['he']} groans. "I'm out for this one." """,
 f"""As {ally_reference['object']} is struck, {ally_reference['he']} falls and crawls away from the melee.""",
 f"""{ally_reference['object'].capitalize()} is struck in the head. {ally_reference['his'].capitalize()} eyes roll back and {ally_reference['he']} falls, senseless.""",
 f"""The damage {ally_reference['object']} sustains is great, and it is not long before {ally_reference['he']} passes out from the pain.""",
-f"""{ally_reference['object'].capitalize()} tries to jump away from {reference['object']}, but trips and falls. {ally_reference['he'].capitalize()} is too weak to rise again.""",]
+f"""{ally_reference['object'].capitalize()} tries to jump away from {reference['object']}, but trips and falls. {ally_reference['he'].capitalize()} is too weak to rise again.""", ]
 	}
-	script = random.choice(choices[scripts])
+	if specific == "":
+		options = copy.deepcopy(choices)
+	else:
+		for key in choices.keys():
+			if specific in key:
+				options[key] = copy.deepcopy(choices[key])
+
+
+def print_script(scripts, enemy, ally=defaults):
+	global options
+	if options == {} or not homeboy:
+		get_scripts(enemy, ally)
+	script = random.choice(options[scripts])
+	options[scripts].remove(script)
+	for option in options:
+		if len(option) <= 0:
+			get_scripts(enemy, ally)
 	return script

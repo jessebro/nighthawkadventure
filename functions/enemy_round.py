@@ -182,6 +182,7 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 	if target == "player":
 		print(print_script("enemy_strike", enemy, ally))
 	else:
+		get_scripts(enemy, ally, "ally")
 		print(print_script("enemy_attack_ally", enemy, ally))
 	enemy_roll = random.randrange(1, 101)
 	time.sleep(5)
@@ -305,6 +306,7 @@ def next_victim(enemies):
 def ally_turn(ally, enemy):
 	assistance = False
 	goad = ""
+	get_scripts(enemy, ally, "ally")
 	if ally['hp'] <= 0 and ally['xp'] != 0:
 		print(print_script('ally_down', enemy, ally))
 		time.sleep(5)
