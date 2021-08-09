@@ -1,4 +1,5 @@
 import pickle
+import os
 from functions import ability
 from functions import equipment
 from functions import character
@@ -32,12 +33,26 @@ def save(position):
 		"story": character.story,
 		"position": position
 	}
-	with open('savefile.dat', 'wb') as f:
+	with open(f'savefiles/{character.character["fullname"]}.dat', 'wb') as f:
 		pickle.dump(data, f, protocol=2)
 
 
 def load():
-	with open('savefile.dat', 'rb') as f:
+	profiles = os.listdir("savefiles")
+	counter = 0
+	choices = []
+	for profile in profiles:
+		counter += 1
+		choices.append(counter)
+		print(f"{counter}. {profile.strip('.dat')}")
+	while True:
+		loaded = int(input("> "))
+		if loaded not in choices:
+			continue
+		break
+	loaded = profiles[loaded - 1]
+
+	with open(f'savefiles/{loaded}', 'rb') as f:
 		data = pickle.load(f)
 	character.character = data['character']
 	character.story = data['story']
