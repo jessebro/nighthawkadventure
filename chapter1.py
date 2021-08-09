@@ -378,7 +378,6 @@ def ascent():
 	chana = colour_it("Chana", Color.NPC)
 	save("chapter1.ascent")
 	sounds.travel()
-	enemy_round.initialize([encounters.monster_access('fbandit')], [encounters.ally_access('homeboy'), encounters.ally_access('tamara')])
 	print_stuff([f"It's the middle of the day when you finally reach the base of the {lizardtongue}.",
 "As you climb the largest mountain, the terrain gets steeper and rockier. Many times you stumble on loose gravel.",
 "The wind becomes stronger as you climb, and the air becomes cooler. You know the cave that is your objective is close to the summit.",
