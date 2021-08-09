@@ -188,10 +188,10 @@ def parry(enemy, allies):
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"] - ability.ability['agility']):
 		print(print_script("player_fail_parry", enemy))
 		enemy_damage = random.randrange(enemy["mindamage"], enemy["maxdamage"])
-		enemy_damage_script = colour_it(str(enemy_damage), Color.YELLOW)
+		enemy_damage_script = f"{colour_it(str(enemy_damage), Color.YELLOW)} damage!"
 		ability.ability["health"] -= enemy_damage
 		time.sleep(5)
-		print(f"You are hit for {enemy_damage_script} damage!")
+		print(f"You are hit for {enemy_damage_script}")
 		time.sleep(5)
 		if enemy_round.player_defeat():
 			return

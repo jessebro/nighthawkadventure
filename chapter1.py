@@ -57,9 +57,9 @@ f'''"It's not much, but you deserve a reward, {character.character['titles']['ca
 			print_stuff(["You push the money bag away, and you notice the man seems to relax a bit. Clearly he was hoping you would refuse.",
 f'''"Thank you again. But at least let me give you a meal before you leave."''',
 "You accept the man's offer and he brings you into his small house. He gives you a bowl of green soup. You eat it, and it tastes good enough.",
-"The soup energises you, despite its mediocre taste. Once you have finished eating, the farmer bids you farewell, and you continue towards the Lizardtongue Mountains"])
+"The soup energises you, despite its mediocre taste. Once you have finished eating, the farmer bids you farewell, and you continue towards the Lizardtongue Mountains."])
 			ability.heal(5)
-			print_stuff([colour_it("You healed 5 hp!"), Color.FUNCTION])
+			print_stuff([colour_it("You healed 5 hp!", Color.FUNCTION)])
 			ability.gain_xp([encounters.xp_handouts["small"]])
 
 
