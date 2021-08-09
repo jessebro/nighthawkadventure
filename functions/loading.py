@@ -11,19 +11,24 @@ from functions.utils import Color
 from functions.utils import colour_it
 
 
-
 def boot():
-	clear()
-	start = input_stuff(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
+	while True:
+		clear()
+		start = input_stuff(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. New Game
 2. Load Game
 3. Exit
 > """, ["1", "2", "3"])
-	if start == "3":
-		exit()
-	elif start != "1":
-		return load()
-	return True
+		if start == "3":
+			exit()
+		elif start != "1":
+			returnable = False
+			while not returnable:
+				returnable = load()
+			if returnable != True:
+				return returnable
+		else:
+			return True
 
 
 def save(position):
@@ -58,8 +63,7 @@ def load():
 		if loaded not in choices:
 			continue
 		elif loaded == counter + 1:
-			boot()
-			return "Your mother"
+			return True
 		loaded = profiles[loaded - 1]
 		clear()
 		print(colour_it("~ THE NIGHTHAWK ~", Color.RED))

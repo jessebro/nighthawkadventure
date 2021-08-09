@@ -99,9 +99,10 @@ while True:
 		idx = story.index(position)
 		story = story[idx:]
 		print_it("Your game loaded successfully!", Color.FUNCTION)
+		break
 	elif not position:
 		print_stuff(["Your save file could not be accessed, or has been corrupted."])
-		boot()
+		continue
 	else:
 		confirm = input("""Are you sure you want to begin a new game? y/n
 > """)
