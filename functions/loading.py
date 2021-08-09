@@ -50,7 +50,8 @@ def load():
 		if loaded not in choices:
 			continue
 		loaded = profiles[loaded - 1]
-		action = input(f"""1. Load {loaded.strip('.dat')}.
+		action = input(f"""
+1. Load {loaded.strip('.dat')}.
 2. Delete {loaded.strip('.dat')}
 3. Cancel
 > """)
