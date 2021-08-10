@@ -623,7 +623,7 @@ def cave():
 "You notice you have walked into a huge spiderweb. Your sword is out of reach, and you know there is no hope of escape.",
 "A giant spider could already be on its way to feast. Struggling will not help you. Nothing will."])
 		exit()
-	print_stuff(["You take the left turn and found yourself walking through a relatively straight tunnel. The air is warmer and the human sounds are getting louder.",
+	print_stuff(["You take the left turn and find yourself walking through a relatively straight tunnel. The air is warmer and the human sounds are getting louder.",
 "You continue along the tunnel, and then another junction stands before you."])
 	choice = input_stuff("""1. Turn right
 2. Turn left.

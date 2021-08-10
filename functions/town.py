@@ -64,7 +64,7 @@ Enter 'b' to leave
 			continue
 		if purchase == "b":
 			break
-		word_keys = ["Potion", "Knife", "Oil", "Smoke bomb"]
+		word_keys = ["Potion", "Knife", "Oil", "Smoke bomb", "potion upgrade", "knife upgrade", "oil upgrade", "smoke bomb upgrade"]
 		prices = [25, 20, 50, 40, 80, 50, 150, 70]
 		choice = int(purchase)
 		choice -= 1

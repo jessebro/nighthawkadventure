@@ -389,6 +389,8 @@ f""""What do you want?" {bertholt} gasps. "If you want the full payment, take it
 				print_stuff(["The Baron hastily passes you the gold, and you flee before anyone can raise the alarm."])
 				return
 		elif choice == "2":
+			equipment.equipment['gold'] += 75
+			print_stuff([f"You walk from {bertholt}'s home, a little disappointed that you only got paid half. You make your way towards the tavern."])
 			return
 
 def answers():
