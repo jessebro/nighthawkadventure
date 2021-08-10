@@ -10,7 +10,7 @@ achievements = {
 	"resourceful": {
 		"name": "Resourceful",
 		"description": "Complete a combat encounter without using items.",
-		"completed": "You completed a combat encounter without using items.", # Unapplied3
+		"completed": "You completed a combat encounter without using items.", # Unapplied
 
 		"unlocked": False
 	},
