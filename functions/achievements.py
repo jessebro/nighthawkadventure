@@ -50,6 +50,18 @@ achievements = {
 		"completed": "You killed an enemy with bleeding damage.",
 		"unlocked": False
 	},
+	"jack_of_all_trades": {
+		"name": "Jack of all Trades",
+		"description": "Complete a combat encounter with at least one strike, parry, and distract.",
+		"completed": "You completed a combat encounter with at least one strike, parry, and distract.",
+		"unlocked": False
+	},
+	"sword_master": {
+		"name": "Sword Master",
+		"description": "Complete a combat encounter while using at least three different strikes.",
+		"completed": "You completed a combat encounter while using at least three different strikes.",
+		"unlocked": False
+	},
 }
 
 backup = copy.deepcopy(achievements)
