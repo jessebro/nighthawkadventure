@@ -586,5 +586,13 @@ f"""Knowing that you don't really have a choice, you draw {weapon.weapon['weapon
 		break
 	print_stuff([f""""We've got to stop it," {tamara} yells. "Before it destroys the town." The creature roars and charges towards the both of you."""])
 	enemy_round.initialize([encounters.monster_access("dinosaur")], [encounters.ally_access("tamara")])
-
-
+	if ability.ability['health'] <= 0:
+		print_stuff([f'With you out of the picture, {tamara} stands little chance.',
+f"Before darkness takes you completely, you see {tamara} falter, the creature strike, a spurt of blood, and {tamara} falls lifeless to the ground."])
+		exit()
+	print_stuff([f"Panting, you kick the large carcass to make sure the creature is dead. {tamara} sidles up next to you. She's covered in sweat.",
+f"""A troop of town guards runs towards you, weapons ready. {tamara} scowls at the guards, hands on hips and her weight shifted onto one leg.""",
+f""""Nice of you to show up {colour_it('after', Color.UNDERLINE)} the thing's dead," she says angrily. """])
+	input_stuff(f"""1. "Easy there, {tamara}." 
+2. "Exactly." 
+> """, ["1", "2"])
