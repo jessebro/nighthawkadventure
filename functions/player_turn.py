@@ -50,7 +50,7 @@ def turn(enemy, allies):
 			turn(enemy, allies)
 
 
-def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10):
+def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=10, counter=False):
 	global buffs
 	damage_bonus = bonus
 	critical = critical_bonus
@@ -58,6 +58,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	bleed_lvl = 1
 	vampiric = False
 	agility_check = 30
+	if not counter:
+		enemy_round.game_state['striked'] = True
 	reference = enemy["reference"]
 	attacks = [known for known in weapon.weapon["attacks"] if known['enabled']]
 	prompt = ""
@@ -171,6 +173,7 @@ def parry(enemy, allies):
 	prompt = ""
 	counter = 0
 	options = []
+	enemy_round.game_state['parried'] = True
 	for parry in parries:
 		counter += 1
 		prompt = prompt + str(counter) + ". " + parry["name"] + parry["description"] + """
@@ -212,13 +215,14 @@ def parry(enemy, allies):
 		if vengeance:
 			strike(enemy, allies)
 		else:
-			strike(enemy, allies, damage_mod=1.5)
+			strike(enemy, allies, damage_mod=1.5, counter=True)
 
 def distract(enemy, allies):
 	reference = enemy["reference"]
 	distracts = [known for known in weapon.weapon["distracts"] if known['enabled']]
 	lacerating = False
 	deadly = False
+	enemy_round.game_state['distracted'] = True
 	prompt = ""
 	counter = 0
 	options = []
@@ -259,6 +263,7 @@ def distract(enemy, allies):
 def use_item(enemy, allies):
 	global buffs
 	reference = enemy["reference"]
+	enemy_round.game_state['used_item'] = True
 	plurals = {
 		"potions": "Potions",
 		"knives": "Knives",
@@ -319,6 +324,7 @@ Enter 'b' to go back
 			time.sleep(2)
 			use_item(enemy, allies)
 		else:
+			enemy_round.game_state['knifed'] = True
 			print(print_script("player_knife", enemy))
 			knife_damage = random.randrange(2, 6)
 			knife_damage_script = colour_it(f"{knife_damage} damage!", Color.YELLOW)

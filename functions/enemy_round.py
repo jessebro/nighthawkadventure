@@ -28,7 +28,13 @@ defaults = {
 	"total_damage_received": 0,
 	"hits": 0,
 	"attacks": 0,
-	"damages": []
+	"damages": [],
+	"striked": False,
+	"parried": False,
+	"distracted": False,
+	"used_item": False,
+	"knifed": False,
+	"countered": False,
 }
 
 game_state = {}
@@ -284,6 +290,8 @@ def kill(enemy, enemies):
 		time.sleep(5)
 	print(colour_it(f"{reference['object'].capitalize()} was killed!", Color.BLUE))
 	time.sleep(3)
+	if game_state['knifed'] and not game_state['striked'] and not achievements.achievements['knife_master']['unlocked']:
+		achievements.get_achievement('knife_master')
 	if game_state['gang_size'] <= 0:
 		sounds.end_combat()
 		summary(enemies)
@@ -403,4 +411,7 @@ Turns Taken: {game_state['turns_taken']}
 		achievements.get_achievement("untouchable")
 	if game_state['turns_taken'] <= len(enemy) and len(enemy) >= 3 and not achievements.achievements['body_count']['unlocked']:
 		achievements.get_achievement("body_count")
-	
+	if game_state['striked'] and game_state['parried'] and game_state['distracted'] and not achievements.achievements['jack_of_all_trades']['unlocked']:
+		achievements.get_achievement("jack_of_all_trades")
+	if not game_state['striked'] and game_state['countered'] and not game_state['distracted'] and not achievements.achievements['counter_kill']['unlocked']:
+		achievements.get_achievement("counter_kill")

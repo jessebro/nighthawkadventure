@@ -29,13 +29,13 @@ achievements = {
 	"knife_master": {
 		"name": "Knife Master",
 		"description": "Kill an enemy using only knives.",
-		"completed": "You killed an enemy using only knives.", # Unapplied
+		"completed": "You killed an enemy using only knives.",
 		"unlocked": False
 	},
 	"counter_kill": {
 		"name": "Counter Kill",
 		"description": "Defeat a group of two or more enemies using only Counter Parry.",
-		"completed": "You defeated a group of two or more enemies using only Counter Parry.", # Unapplied
+		"completed": "You defeated a group of two or more enemies using only Counter Parry.",
 		"unlocked": False
 	},
 	"back_for_more": {
@@ -53,13 +53,13 @@ achievements = {
 	"jack_of_all_trades": {
 		"name": "Jack of all Trades",
 		"description": "Complete a combat encounter with at least one strike, parry, and distract.",
-		"completed": "You completed a combat encounter with at least one strike, parry, and distract.",
+		"completed": "You completed a combat encounter with at least one strike, parry, and distract.", # Unapplied
 		"unlocked": False
 	},
 	"sword_master": {
 		"name": "Sword Master",
 		"description": "Complete a combat encounter while using at least three different strikes.",
-		"completed": "You completed a combat encounter while using at least three different strikes.",
+		"completed": "You completed a combat encounter while using at least three different strikes.", # Unapplied
 		"unlocked": False
 	},
 }
