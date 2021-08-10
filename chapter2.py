@@ -521,6 +521,7 @@ def attack():
 	save('chapter2.attack')
 	tamara = colour_it("Tamara", Color.NPC)
 	corocana = colour_it("Corocana", Color.PLACE)
+	blackburrow = colour_it("Blackburrow", Color.PLACE)
 	sounds.doom()
 	print_stuff([f"""You hear shouting and a dull roaring from far away. You and {tamara} exchange glances and run outside."""])
 	if character.story['criminal']:
@@ -599,3 +600,16 @@ f""""Nice of you to show up {colour_it('after', Color.UNDERLINE)} the thing's de
 	input_stuff(f"""1. "Easy there, {tamara}." 
 2. "Exactly." 
 > """, ["1", "2"])
+	print_stuff(["The guards exchange awkward glances. One of them steps forward and points at the lizardman, lying senseless.",
+f""""What about that?" she demands. {tamara} bites her lip in thought, then seems to reach a conclusion. """,
+""""Leave them with us," she says. "My companion and I will be sure to question them." """,
+f""""If they enter {blackburrow} we're going to arrest them," another of the guards warns.""",
+f""""Don't worry," {tamara} replies, smiling. "We're leaving anyway." """])
+
+
+def to_greypass():
+	save('chapter2.to_greypass')
+	tamara = colour_it("Tamara", Color.NPC)
+	corocana = colour_it("Corocana", Color.PLACE)
+	sounds.travel()
+	print_stuff([''])
