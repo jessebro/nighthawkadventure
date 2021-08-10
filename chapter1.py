@@ -588,6 +588,7 @@ f"""{boost}"""])
 			print_stuff(["You settle down to sleep, watching the dancing flames of the fire. Then you drift off into blackness.",
 "Today, the sky is overcast, the wind colder and stronger than before. Rain is coming.",
 "Wanting to be off the mountain before the rain starts, you make haste up the side of the mountain."])
+			break
 
 
 def cave():

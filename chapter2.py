@@ -559,7 +559,7 @@ f""""It's incredible how guards can be so easily swayed by a woman with a large 
 "It gnashes its teeth, which are all as long as your forearm. Its arms aren't very long, however, and stick no further out that its thick, squarish snout.",
 f"Though you don't know what exactly this creature is, you know it must have come out of the jungles of {corocana}. Riding atop its back is a lizardman.",
 "As their name suggests, a lizardman is a humanoid lizard, about as big as a human. They have sharp teeth and a terrible lisp.",
-"This lizardman swings a great staff about, and it dressed in colourful robes. You assume them to be a priest of somesort.",
+"This lizardman swings a great staff about, and it dressed in colourful robes. You assume them to be a priest of some sort.",
 """"Warm-bloodssss!" the lizardman cries, their voice carrying over the hubbub of the crowd. "You have darrrred to trrressssspasssss on the Sacred Earth." """,
 """"You have darrred to send your femalessss, arrrmed and angrrrry, to hurrrrt ussss. Now we will hurrrrt youssss unlessss you call them back." """,
 "Many of the citizens have fled from the gates. A crowd of around two score people is around you, and growing smaller and people take shelter in their homes.",
@@ -585,6 +585,6 @@ f"""Knowing that you don't really have a choice, you draw {weapon.weapon['weapon
 		print_stuff([f"With a mightly lunge forwards, the creature snatches up the envoy, swallowing him whole. It then turns towards you and {tamara}."])
 		break
 	print_stuff([f""""We've got to stop it," {tamara} yells. "Before it destroys the town." The creature roars and charges towards the both of you."""])
-	enemy_round.initialize([encounters.monster_access("dinosaur")], (encounters.ally_access("tamara")))
+	enemy_round.initialize([encounters.monster_access("dinosaur")], [encounters.ally_access("tamara")])
 
 
