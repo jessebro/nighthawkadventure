@@ -1,5 +1,5 @@
 import time
-import copy
+from functions import achievements
 from functions import character
 from functions import ability
 from functions import post_combat
@@ -397,4 +397,8 @@ Turns Taken: {game_state['turns_taken']}
 {colour_it("Enemies Defeated:",Color.PURPLE)} {len(enemy)}"""])
 	game_state['accuracy'] = accuracy
 	game_state['damage_prhit'] = damage_prhit
+	if game_state['total_damage_received'] <= 0 and len(enemy) >= 3 and not achievements.achievements['untouchable']['unlocked']:
+		achievements.get_achievement("untouchable")
+	if game_state['turns_taken'] <= len(enemy) and len(enemy) >= 3 and not achievements.achievements['body_count']['unlocked']:
+		achievements.get_achievement("body_count")
 	

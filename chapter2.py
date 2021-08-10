@@ -612,4 +612,5 @@ def to_greypass():
 	tamara = colour_it("Tamara", Color.NPC)
 	corocana = colour_it("Corocana", Color.PLACE)
 	sounds.travel()
+	enemy_round.initialize([encounters.monster_access('fbandit'), encounters.monster_access('fbandit'), encounters.monster_access('fbandit')])
 	print_stuff([''])
