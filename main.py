@@ -112,5 +112,6 @@ while True:
 		prologue()
 		break
 
+
 set_default_actions()
 run_adventure(story)

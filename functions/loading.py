@@ -1,9 +1,11 @@
 import pickle
 import os
+import copy
 from functions import ability
 from functions import equipment
 from functions import character
 from functions import weapon
+from functions import achievements
 from functions.utils import input_stuff
 from functions.utils import clear
 from functions.utils import print_it
@@ -12,14 +14,21 @@ from functions.utils import colour_it
 
 
 def boot():
+	path = "Achievements.dat"
+	exists = os.path.isfile(path)
+	if not exists:
+		achievements.save_achievements()
 	while True:
 		clear()
 		start = input_stuff(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. New Game
 2. Load Game
-3. Exit
-> """, ["1", "2", "3"])
+3. View achievements
+4. Exit
+> """, ["1", "2", "3", "4"])
 		if start == "3":
+			achievements.view_achievements()
+		elif start == "4":
 			exit()
 		elif start != "1":
 			returnable = False
