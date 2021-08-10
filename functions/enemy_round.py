@@ -132,6 +132,8 @@ def enemy_turn(enemy, enemies, allies):
 		game_state['damage_dealt'] += damage
 		game_state['total_damage_dealt'] += damage
 		if dead_check(enemy, enemies):
+			if not achievements.achievements['bleed_out']['unlocked']:
+				achievements.get_achievement("bleed_out")
 			return
 	enemy["playermod"] = 0
 	if enemy["type"] == "human":

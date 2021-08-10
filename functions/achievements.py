@@ -1,6 +1,5 @@
 import pickle
 import copy
-import os
 from functions.utils import print_stuff
 from functions.utils import colour_it
 from functions.utils import Color
@@ -11,7 +10,8 @@ achievements = {
 	"resourceful": {
 		"name": "Resourceful",
 		"description": "Complete a combat encounter without using items.",
-		"completed": "You completed a combat encounter without using items.",
+		"completed": "You completed a combat encounter without using items.", # Unapplied3
+
 		"unlocked": False
 	},
 	"untouchable": {
@@ -29,17 +29,30 @@ achievements = {
 	"knife_master": {
 		"name": "Knife Master",
 		"description": "Kill an enemy using only knives.",
-		"completed": "You killed an enemy using only knives.",
+		"completed": "You killed an enemy using only knives.", # Unapplied
 		"unlocked": False
 	},
 	"counter_kill": {
 		"name": "Counter Kill",
 		"description": "Defeat a group of two or more enemies using only Counter Parry.",
-		"completed": "You defeated a group of two or more enemies using only Counter Parry.",
+		"completed": "You defeated a group of two or more enemies using only Counter Parry.", # Unapplied
 		"unlocked": False
-	}
+	},
+	"back_for_more": {
+		"name": "Back for More",
+		"description": "Drop to 0 health three times in the same combat encounter... and win.",
+		"completed": "You dropped to 0 health three times in the same combat encounter... and won.", # Unapplied
+		"unlocked": False
+	},
+	"bleed_out": {
+		"name": "Bleed Out",
+		"description": "Kill an enemy with bleeding damage.",
+		"completed": "You killed an enemy with bleeding damage.",
+		"unlocked": False
+	},
 }
 
+backup = copy.deepcopy(achievements)
 
 def save_achievements():
 	global achievements
@@ -64,9 +77,17 @@ def load_achievements():
 
 def view_achievements():
 	global achievements
+	global backup
 	clear()
-	print(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}""")
+	print(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
+""")
+	keys = achievements.keys()
 	load_achievements()
+	if achievements.keys() != keys:
+		for achievement in achievements:
+			if achievements[achievement]['unlocked']:
+				backup[achievement]['unlocked'] = True
+		achievements = copy.deepcopy(backup)
 	view = ""
 	for achievement in achievements:
 		if achievements[achievement]['unlocked']:
@@ -79,7 +100,8 @@ def view_achievements():
 {achievements[achievement]['description']}
 
 """
-	print_stuff([view])
+	print(view)
+	print_stuff([''])
 
 
 
