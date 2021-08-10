@@ -71,22 +71,23 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 """
 		options.append(str(counter))
 	prompt = prompt + "> "
-	attack = input_stuff(prompt, options)
-	if attack == "2":
+	attack_choice = int(input_stuff(prompt, options))
+	attack_choice -= 1
+	if attacks[attack_choice]['name'] == "Power Strike":
 		enemy["playermod"] -= 10
 		damage_mod += 0.5
-	elif attack == "3":
+	elif attacks[attack_choice]['name'] == "Precision Strike":
 		enemy["playermod"] += 10
 		damage_mod -= 0.25
-	elif attack == "4":
+	elif attacks[attack_choice]['name'] == "Rending Strike":
 		enemy["playermod"] -= 10
 		damage_mod += 1
 		bleeding = 1000
 		bleed_lvl = 2
-	elif attack == "5":
-		damage_mod -= 0.25
+	elif attacks[attack_choice]['name'] == "Dancing Strike":
+		enemy["playermod"] -= 10
 		agility_check = 1000
-	elif attack == "6":
+	elif attacks[attack_choice]['name'] == "Vampire Strike":
 		damage_mod -= 0.25
 		vampiric = True
 	print(print_script("player_attack", enemy))

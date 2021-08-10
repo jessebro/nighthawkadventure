@@ -564,7 +564,7 @@ f"Though you don't know what exactly this creature is, you know it must have com
 "This lizardman swings a great staff about, and it dressed in colourful robes. You assume them to be a priest of some sort.",
 """"Warm-bloodssss!" the lizardman cries, their voice carrying over the hubbub of the crowd. "You have darrrred to trrressssspasssss on the Sacred Earth." """,
 """"You have darrred to send your femalessss, arrrmed and angrrrry, to hurrrrt ussss. Now we will hurrrrt youssss unlessss you call them back." """,
-"Many of the citizens have fled from the gates. A crowd of around two score people is around you, and growing smaller and people take shelter in their homes.",
+"Many of the citizens have fled from the gates. A crowd of around two score people is around you, and growing smaller as people take shelter in their homes.",
 """Suddenly, a man in fine clothing emerges from the crowd. He appears nervous, but he walks with an air of authority. The crowd parts before him.""",
 f""""An envoy from the Baron," {tamara} whispers to you. You nod in conformation as the envoy passes. """,
 """"Noble lizardman," the envoy calls, stepping out into the open field between the town and the large creature. "We have no quarrel with you." """,
@@ -588,6 +588,7 @@ f"""Knowing that you don't really have a choice, you draw {weapon.weapon['weapon
 		break
 	print_stuff([f""""We've got to stop it," {tamara} yells. "Before it destroys the town." The creature roars and charges towards the both of you."""])
 	enemy_round.initialize([encounters.monster_access("dinosaur")], [encounters.ally_access("tamara")])
+	sounds.intensity()
 	if ability.ability['health'] <= 0:
 		print_stuff([f'With you out of the picture, {tamara} stands little chance.',
 f"Before darkness takes you completely, you see {tamara} falter, the creature strike, a spurt of blood, and {tamara} falls lifeless to the ground."])
