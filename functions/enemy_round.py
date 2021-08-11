@@ -413,5 +413,7 @@ Turns Taken: {game_state['turns_taken']}
 		achievements.get_achievement("body_count")
 	if game_state['striked'] and game_state['parried'] and game_state['distracted'] and not achievements.achievements['jack_of_all_trades']['unlocked']:
 		achievements.get_achievement("jack_of_all_trades")
-	if not game_state['striked'] and game_state['countered'] and not game_state['distracted'] and not achievements.achievements['counter_kill']['unlocked']:
+	if not game_state['striked'] and game_state['countered'] and not game_state['distracted'] and not game_state['knifed'] and len(enemy) >= 2 and not achievements.achievements['counter_kill']['unlocked']:
 		achievements.get_achievement("counter_kill")
+	if not game_state['used_item'] and not achievements.achievements['resourceful']['unlocked']:
+		achievements.get_achievement("resourceful")

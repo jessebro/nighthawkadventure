@@ -10,8 +10,7 @@ achievements = {
 	"resourceful": {
 		"name": "Resourceful",
 		"description": "Complete a combat encounter without using items.",
-		"completed": "You completed a combat encounter without using items.", # Unapplied
-
+		"completed": "You completed a combat encounter without using items.",
 		"unlocked": False
 	},
 	"untouchable": {
@@ -53,11 +52,11 @@ achievements = {
 	"jack_of_all_trades": {
 		"name": "Jack of all Trades",
 		"description": "Complete a combat encounter with at least one strike, parry, and distract.",
-		"completed": "You completed a combat encounter with at least one strike, parry, and distract.", # Unapplied
+		"completed": "You completed a combat encounter with at least one strike, parry, and distract.",
 		"unlocked": False
 	},
-	"sword_master": {
-		"name": "Sword Master",
+	"swordmaster": {
+		"name": "Swordmaster",
 		"description": "Complete a combat encounter while using at least three different strikes.",
 		"completed": "You completed a combat encounter while using at least three different strikes.", # Unapplied
 		"unlocked": False
