@@ -40,7 +40,7 @@ achievements = {
 	"back_for_more": {
 		"name": "Back for More",
 		"description": "Drop to 0 health three times in the same combat encounter... and win.",
-		"completed": "You dropped to 0 health three times in the same combat encounter... and won.", # Unapplied
+		"completed": "You dropped to 0 health three times in the same combat encounter... and won.",
 		"unlocked": False
 	},
 	"bleed_out": {

@@ -35,7 +35,8 @@ defaults = {
 	"used_item": False,
 	"knifed": False,
 	"countered": False,
-	"strikes_made": []
+	"strikes_made": [],
+	"deaded": 0
 }
 
 game_state = {}
@@ -264,6 +265,7 @@ def dead_check(enemy, enemies):
 def player_defeat():
 	global game_state
 	if ability.ability["health"] <= 0:
+		game_state['deaded'] += 1
 		if equipment.equipment["potions"] > 0:
 			equipment.equipment["potions"] -= 1
 			print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
@@ -420,4 +422,6 @@ Turns Taken: {game_state['turns_taken']}
 		achievements.get_achievement("resourceful")
 	if len(game_state['strikes_made']) >= 3 and not achievements.achievements['swordmaster']['unlocked']:
 		achievements.get_achievement('swordmaster')
+	if game_state['deaded'] >= 3 and not achievements.achievements['back_for_more']['unlocked']:
+		achievements.get_achievement('back_for_more')
 
