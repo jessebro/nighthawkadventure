@@ -61,6 +61,12 @@ achievements = {
 		"completed": "You completed a combat encounter while using at least three different strikes.",
 		"unlocked": False
 	},
+	"teamwork": {
+		"name": "Teamwork",
+		"description": "Kill an enemy while an ally has either goaded or distracted them.",
+		"completed": "You killed an enemy while an ally has either goaded or distracted them",
+		"unlocked": False
+	},
 }
 
 backup = copy.deepcopy(achievements)

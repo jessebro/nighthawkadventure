@@ -295,6 +295,8 @@ def kill(enemy, enemies):
 	time.sleep(3)
 	if game_state['knifed'] and not game_state['striked'] and not achievements.achievements['knife_master']['unlocked']:
 		achievements.get_achievement('knife_master')
+	if game_state['assistance'] or game_state['goad'] and not achievements.achievements['teamwork']['unlocked']:
+		achievements.get_achievement("teamwork")
 	if game_state['gang_size'] <= 0:
 		sounds.end_combat()
 		summary(enemies)
