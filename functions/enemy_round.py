@@ -35,6 +35,7 @@ defaults = {
 	"used_item": False,
 	"knifed": False,
 	"countered": False,
+	"strikes_made": []
 }
 
 game_state = {}
@@ -417,3 +418,6 @@ Turns Taken: {game_state['turns_taken']}
 		achievements.get_achievement("counter_kill")
 	if not game_state['used_item'] and not achievements.achievements['resourceful']['unlocked']:
 		achievements.get_achievement("resourceful")
+	if len(game_state['strikes_made']) >= 3 and not achievements.achievements['swordmaster']['unlocked']:
+		achievements.get_achievement('swordmaster')
+

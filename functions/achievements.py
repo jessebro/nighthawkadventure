@@ -58,7 +58,7 @@ achievements = {
 	"swordmaster": {
 		"name": "Swordmaster",
 		"description": "Complete a combat encounter while using at least three different strikes.",
-		"completed": "You completed a combat encounter while using at least three different strikes.", # Unapplied
+		"completed": "You completed a combat encounter while using at least three different strikes.",
 		"unlocked": False
 	},
 }

@@ -75,6 +75,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	prompt = prompt + "> "
 	attack_choice = int(input_stuff(prompt, options))
 	attack_choice -= 1
+	if attacks[attack_choice]['name'] not in enemy_round.game_state['strikes_made']:
+		enemy_round.game_state['strikes_made'].append(attacks[attack_choice]['name'])
 	if attacks[attack_choice]['name'] == "Power Strike":
 		enemy["playermod"] -= 10
 		damage_mod += 0.5
