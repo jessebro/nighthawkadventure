@@ -30,6 +30,14 @@ story = {
 	},
 	"tamara": {
 		"name_known": "the woman",
+	},
+	"meel-kar": {
+		"name_known": "the lizardman",
+		"gender": {
+			"his": "their",
+			"him": "them",
+			"he": "they"
+		}
 	}
 
 }

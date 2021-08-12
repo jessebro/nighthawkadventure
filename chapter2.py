@@ -13,6 +13,7 @@ from functions.utils import Color
 from functions.loading import save
 from functions import town
 from functions import sounds
+from functions.loading import boot
 
 descent = "chapter2.descenta"
 
@@ -611,6 +612,47 @@ def to_greypass():
 	save('chapter2.to_greypass')
 	tamara = colour_it("Tamara", Color.NPC)
 	corocana = colour_it("Corocana", Color.PLACE)
+	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	greypass = colour_it("Greypass", Color.PLACE)
 	sounds.travel()
-	enemy_round.initialize([encounters.monster_access('fbandit'), encounters.monster_access('fbandit'), encounters.monster_access('fbandit')])
-	print_stuff([''])
+	print_stuff([f"The road to Greypass is significantly flatter and easier to traverse than the one to the Lizardtongue Mountains.",
+f"Your route takes you along the Barkan road, which will take you straight from {blackburrow} to {greypass}.",
+"After an hour of walking, the lizardman wakes up once more. At the moment, you are carrying them over your shoulder.",
+"The first sign that they are conscious once more is the slapping of their tail against your chest."])
+	choice = input_stuff("""1. Put them on the ground.
+2. Throw them to the ground.
+> """, ["1", "2"])
+	if choice == '1':
+		print_stuff(["You put the lizardman down, and immediately they jump to their feet, eyeing you warily."])
+	elif choice == "2":
+		print_stuff(['The lizardman exhales sharply as you throw them down. They scramble to their feet, eyeing you warily.'])
+	print_stuff([f""""You need not fear," {tamara} says. "You are safe with us. We rescued you from the... warmbloods." """,
+f""""Why?" the lizardman says. "Where am I. Who..." {tamara} waves a hand for silence.""",
+f""""As it happens, we need your help," she says. "In return, we'll let you return to {corocana}." {tamara} turns to you. """,
+""""You can be the first to ask the questions," she says. Then she turns to the lizardman. "Do try to answer truthfully." """])
+	while True:
+		quest = colour_it("We're done here.", Color.QUEST)
+		choice = input_stuff(f"""1. "Who are you?" 
+2. "Why did your creature throw you off?" 
+3. "What's happening in {corocana}?"
+4. "Do lizardmen eat people?"
+5. "Are you male?"
+6. "{quest}"
+> """, ["1", "2"])
+		if choice == "1":
+			name = colour_it("Meel-kar", Color.NPC)
+			character.story['meel-kar']['name_known'] = colour_it("Meel-kar", Color.NPC)
+			print_stuff([f""""I'm {name}," the lizardman says. "High Priesssst of Quarrrr-Gaxxxx, and sssserrrvant to the Chossssen." """,
+""""I wassss ssssent as an envoy to you warrrmbloodsssss, and given a Orrrrah-tai to carrrrry me to you." """,
+""""You warrrrmbloodssss have crrrreated trrrrouble in my home. The Chossssen wassss deterrrrmined to ammend the... sssituation." """])
+		elif choice == "2":
+			print_stuff([''])
+		elif choice == "3":
+			print_stuff([''])
+		elif choice == "4":
+			print_stuff([''])
+		elif choice == "5":
+			print_stuff([''])
+		elif choice == "6":
+			break
+

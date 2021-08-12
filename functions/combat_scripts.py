@@ -174,7 +174,7 @@ f"For a moment, {reference['he']} stays standing. But then {reference['he']} cra
 f"{reference['object'].capitalize()} falls to {reference['his']} knees, head leaning forward. You don't hesitate, bringing your sword down like an executioner's axe, taking the head from {reference['his']} shoulders.",
 f"You cut {reference['object']}'s hand, and {reference['he']} drops {reference['his']} weapon. {reference['he'].capitalize()} tries to punch you, but you duck under the blow and cut {reference['him']} across the back. {reference['he'].capitalize()} falls without a cry.",
 f"{reference['object'].capitalize()} falls onto {reference['his']} back, gasping for air. You lunge forwards and plunge your sword into {reference['his']} chest, spattering your blade with blood.",
-f"You spin on one foot, and bring your hand in a strong backhand. The attack cuts {reference['object']} clean in half.", ],
+f"You spin on one foot, and bring your sword around in a strong backhand. The attack cuts {reference['object']} clean in half.", ],
 
 	"monster_death": [f"{reference['object'].capitalize()} growls one last time, then falls to the ground.",
 f"With a sickening squelch, you tear your sword from the monster, and it topples like an upset statue.",
