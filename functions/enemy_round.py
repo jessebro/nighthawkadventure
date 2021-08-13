@@ -418,18 +418,18 @@ Turns Taken: {game_state['turns_taken']}
 {colour_it("Enemies Defeated:",Color.PURPLE)} {len(enemy)}"""])
 	game_state['accuracy'] = accuracy
 	game_state['damage_prhit'] = damage_prhit
-	if game_state['total_damage_received'] <= 0 and len(enemy) >= 3 and not achievements.achievements['untouchable']['unlocked']:
+	if game_state['total_damage_received'] <= 0 and len(enemy) >= 3:
 		achievements.get_achievement("untouchable")
-	if game_state['turns_taken'] <= len(enemy) and len(enemy) >= 3 and not achievements.achievements['body_count']['unlocked']:
+	if game_state['turns_taken'] <= len(enemy) and len(enemy) >= 3:
 		achievements.get_achievement("body_count")
-	if game_state['striked'] and game_state['parried'] and game_state['distracted'] and not achievements.achievements['jack_of_all_trades']['unlocked']:
+	if game_state['striked'] and game_state['parried'] and game_state['distracted']:
 		achievements.get_achievement("jack_of_all_trades")
-	if not game_state['striked'] and game_state['countered'] and not game_state['distracted'] and not game_state['knifed'] and len(enemy) >= 2 and not achievements.achievements['counter_kill']['unlocked']:
+	if not game_state['striked'] and game_state['countered'] and not game_state['distracted'] and not game_state['knifed'] and len(enemy) >= 2:
 		achievements.get_achievement("counter_kill")
-	if not game_state['used_item'] and not achievements.achievements['resourceful']['unlocked']:
+	if not game_state['used_item']:
 		achievements.get_achievement("resourceful")
-	if len(game_state['strikes_made']) >= 3 and not achievements.achievements['swordmaster']['unlocked']:
+	if len(game_state['strikes_made']) >= 3:
 		achievements.get_achievement('swordmaster')
-	if game_state['deaded'] >= 3 and not achievements.achievements['back_for_more']['unlocked']:
+	if game_state['deaded'] >= 3:
 		achievements.get_achievement('back_for_more')
 

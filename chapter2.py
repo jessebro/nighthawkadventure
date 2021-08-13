@@ -663,5 +663,6 @@ f""""As it happens, we need your help," she says. "In return, we'll let you retu
 > """, ["1", "2"])
 		elif choice == "6":
 			break
-
+	print_stuff([f""""Farrrrwell, warrrmbloodssssss," {story['meel-kar']['name_known']} says. "Forrrr some rrrreassson, I trrrusssst you." """,
+f""""We'll see if we can fix your situation in the jungles," {tamara} says. "Hopefully, we can." """])
 

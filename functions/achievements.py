@@ -80,9 +80,12 @@ def save_achievements():
 
 def get_achievement(gained):
 	global achievements
-	achievements[gained]['unlocked'] = True
-	print_stuff([f'''{colour_it(f"Achievement Unlocked: {achievements[gained]['name']}!", Color.YELLOW)}'''])
-	save_achievements()
+	if achievements[gained]['unlocked'] != True:
+		achievements[gained]['unlocked'] = True
+		print_stuff([f'''{colour_it(f"Achievement Unlocked: {achievements[gained]['name']}!", Color.YELLOW)}'''])
+		save_achievements()
+	else:
+		return
 
 
 def load_achievements():
