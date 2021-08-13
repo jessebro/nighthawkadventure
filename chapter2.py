@@ -616,7 +616,7 @@ def to_greypass():
 	greypass = colour_it("Greypass", Color.PLACE)
 	rookwood = colour_it("Rookwood", Color.PLACE)
 	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
-	bandits = colour_it("bandit", Color.ENEMY)  # Word colouring
+	bandits = colour_it("bandits", Color.ENEMY)  # Word colouring
 	sounds.travel()
 	print_stuff([f"The road to Greypass is significantly flatter and easier to traverse than the one to the Lizardtongue Mountains.",
 f"Your route takes you along the Barkan road, which will take you straight from {blackburrow} to {greypass}.",
@@ -703,7 +703,7 @@ f""""Beautiful place," {tamara} comments. You look at her, noticing something in
 2. Say nothing.
 > """, ["1", "2"])
 		if choice == "1":
-			print_stuff([f""""Mhm" {tamara} says. "I used to travel a lot." She chuckles. "I guess I still am." """])
+			print_stuff([f""""Mhm," {tamara} says. "I used to travel a lot." She chuckles. "I guess I still am." """])
 	print_stuff([f"""It is not long before trouble finds you. Suddenly, a group of five {bandits} jumps out, blocking the path. "Your gold; hand it over." """])
 	if equipment.equipment['gold'] >= 30:
 		stolen = True
@@ -717,6 +717,7 @@ f""""Beautiful place," {tamara} comments. You look at her, noticing something in
 f"""It buries itself into {tamara}'s leg. She screams in pain and falls. The blow is not lethal, but you realise she will be of now help now.""",
 f"""The {bandits} rush forwards eagerly, weapons ready. You brace yourself for the coming battle."""])
 	enemy_round.initialize([encounters.monster_access('mbandit'), encounters.monster_access('fbandit'), encounters.monster_access('mbandit'), encounters.monster_access('fbandit'), encounters.monster_access('cbandit')])
+	sounds.fairy()
 	if stolen:
 		equipment.equipment['gold'] += 30
 		print_stuff([f"""You retrieve the gold that you gave one of the {bandits}, spitting on her body as you do."""])
