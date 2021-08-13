@@ -136,6 +136,18 @@ def jungle():
 	song.play(-1)
 
 
+def fairy():
+	global playing
+	if playing == "music/Whispering Fairies.ogg":
+		return
+	playing = "music/Whispering Fairies.ogg"
+	pygame.init()
+	mixer.init()
+	mixer.stop()
+	song = pygame.mixer.Sound('music/Whispering Fairies.ogg')
+	song.play(-1)
+
+
 def level_up():
 	global playing
 	pygame.init()

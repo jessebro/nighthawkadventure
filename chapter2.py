@@ -690,6 +690,7 @@ f"""You and {tamara} continue continue along the Barkan road. You fit in another
 		print_stuff(["""You ignore the farmhouse and continue past. In the end, you find a nice clearing in a grove of trees."""])
 	print_stuff([f"{tamara} takes first watch, and you will go next. You can't be too careful in the wilds."])
 	rest.rest()
+	sounds.fairy()
 	print_stuff([f"""You continue along the road, and finally you reach {rookwood}, the large forest that surrounds {greypass}.""",
 """Birds sing in the trees, the wind rustles the leaves, and feeble branches crackle and creak in the canopy.""",
 f""""Beautiful place," {tamara} comments. You look at her, noticing something in the way she said it. """])
@@ -719,6 +720,13 @@ f"""The {bandits} rush forwards eagerly, weapons ready. You brace yourself for t
 	if stolen:
 		equipment.equipment['gold'] += 30
 		print_stuff([f"""You retrieve the gold that you gave one of the {bandits}, spitting on her body as you do."""])
+	print_stuff([f"""You walk over to {tamara}. Her leg is soaked in blood, but she has tied a strip of cloth around it as a makeshift bandage."""
+f""""That hurt," {tamara} says weakly. You bend down and pick her up, supporting her legs and back. She grimaces in pain, but says nothing. This looks to be a long walk. """,
+f"""You don't enjoy the picturesque forest anymore. You have more important matters. When {greypass} finally becomes visible, it is a welcome sight indeed."""])
+
+
+def greypass():
+	save('chapter2.greypass')
 
 
 
