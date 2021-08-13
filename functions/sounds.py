@@ -1,6 +1,5 @@
 from pygame import mixer
 import pygame
-import time
 
 playing = ""
 
@@ -89,7 +88,7 @@ def night():
 	song.play(-1)
 
 
-def intensity():
+def dire():
 	global playing
 	if playing == "music/Dire Circumstances.ogg":
 		return

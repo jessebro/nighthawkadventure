@@ -23,7 +23,7 @@ def beginning():
 	save('chapter2.beginning')
 	elfa = colour_it("Elfa", Color.NPC)
 	micha = colour_it("Micha", Color.NPC)
-	sounds.intensity()
+	sounds.dire()
 	print_stuff(["You wake up, your head throbbing painfully. You hear voices, but they are echoing and far away. You look around and find yourself sitting in a large cage.",
 "The cage itself is made of wood, but all your belongings are gone. The wooden cage's bars and supports are thick, and you cannot break them.",
 "To your left is a man and a woman. Each looks only sixteen, and each is covered in blood. It only takes you a moment to realise two things.",
@@ -523,7 +523,7 @@ def attack():
 	tamara = colour_it("Tamara", Color.NPC)
 	corocana = colour_it("Corocana", Color.PLACE)
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
-	sounds.doom()
+	sounds.dire()
 	print_stuff([f"""You hear shouting and a dull roaring from far away. You and {tamara} exchange glances and run outside."""])
 	if character.story['criminal']:
 		while True:
@@ -590,7 +590,7 @@ f"""Knowing that you don't really have a choice, you draw {weapon.weapon['weapon
 		break
 	print_stuff([f""""We've got to stop it," {tamara} yells. "Before it destroys the town." The creature roars and charges towards the both of you."""])
 	enemy_round.initialize([encounters.monster_access("dinosaur")], [encounters.ally_access("tamara")], boss=True)
-	sounds.intensity()
+	sounds.dire()
 	if ability.ability['health'] <= 0:
 		print_stuff([f'With you out of the picture, {tamara} stands little chance.',
 f"Before darkness takes you completely, you see {tamara} falter, the creature strike, a spurt of blood, and {tamara} falls lifeless to the ground."])
