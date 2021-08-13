@@ -33,7 +33,7 @@ story = {
 	},
 	"meel-kar": {
 		"name_known": "the lizardman",
-		"gender": {
+		"reference": {
 			"his": "their",
 			"him": "them",
 			"he": "they"

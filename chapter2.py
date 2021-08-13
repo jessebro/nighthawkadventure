@@ -13,7 +13,7 @@ from functions.utils import Color
 from functions.loading import save
 from functions import town
 from functions import sounds
-from functions.loading import boot
+from functions.character import story
 
 descent = "chapter2.descenta"
 
@@ -638,21 +638,30 @@ f""""As it happens, we need your help," she says. "In return, we'll let you retu
 4. "Do lizardmen eat people?"
 5. "Are you male?"
 6. "{quest}"
-> """, ["1", "2"])
+> """, ["1", "2", "3", "4", "5", "6"])
 		if choice == "1":
 			name = colour_it("Meel-kar", Color.NPC)
-			character.story['meel-kar']['name_known'] = colour_it("Meel-kar", Color.NPC)
+			story['meel-kar']['name_known'] = name
 			print_stuff([f""""I'm {name}," the lizardman says. "High Priesssst of Quarrrr-Gaxxxx, and sssserrrvant to the Chossssen." """,
 """"I wassss ssssent as an envoy to you warrrmbloodsssss, and given a Orrrrah-tai to carrrrry me to you." """,
 """"You warrrrmbloodssss have crrrreated trrrrouble in my home. The Chossssen wassss deterrrrmined to ammend the... sssituation." """])
 		elif choice == "2":
-			print_stuff([''])
+			print_stuff([f""""I don't know," {story['meel-kar']['name_known']} says. "It ssssuddenly went wild, and I losssst contrrrrol." """,
+""""Multiple crrrrreaturrrrresssssss in the jungle have acted ssssstrrrangely, sssssudenly going crrrrrazy." """])
 		elif choice == "3":
-			print_stuff([''])
+			print_stuff([f""""Female warrrrmbloodssss arrrrre storrrrming ourrrr home. It'ssssss chaossssss. They ssssssaid that we mussssst give them the Table of Kingsssss... orrrr die." """,
+""""The Table of Kingsssss will tell ussss who the next king will be. It issss a sssstrrrrong magic item, and what thosssse warrrrmbloodssssss want with it, I can only guess." """])
 		elif choice == "4":
-			print_stuff([''])
+			print_stuff([""""Of coursssssse, but only thossse that dirrrrectly opposssse usssss. Orrrrr corrrpssssessss that arrrre brrrrought to usssss." """])
 		elif choice == "5":
-			print_stuff([''])
+			story['meel-kar']['reference']['his'] = "his"
+			story['meel-kar']['reference']['him'] = "him"
+			story['meel-kar']['reference']['he'] = "he"
+			print_stuff([""""Yesssss. Do I look like a female to you?" """])
+			input_stuff("""1. "Well..."
+2. "It's hard to tell." 
+> """, ["1", "2"])
 		elif choice == "6":
 			break
+
 
