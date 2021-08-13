@@ -113,6 +113,18 @@ def doom():
 	song.play(-1)
 
 
+def end_boss():
+	global playing
+	if playing == "music/Boss_End.ogg":
+		return
+	playing = "music/Boss_End.ogg"
+	pygame.init()
+	mixer.init()
+	mixer.stop()
+	song = pygame.mixer.Sound('music/Boss_End.ogg')
+	song.play()
+
+
 def level_up():
 	global playing
 	pygame.init()

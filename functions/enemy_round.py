@@ -43,27 +43,30 @@ game_state = {}
 
 
 
-def combat_flow(enemy, enemies, allies):
+def combat_flow(enemy, enemies, allies, boss):
 	global game_state
-	sounds.play_combat()
+	if boss:
+		sounds.doom()
+	else:
+		sounds.play_combat()
 	while True:
 		game_state['damage_dealt'] = 0
 		game_state['damage_received'] = 0
 		game_state['health_restored'] = 0
 		game_state['turns_taken'] += 1
 		player_turn.turn(enemy, allies)
-		if dead_check(enemy, enemies):
+		if dead_check(enemy, enemies, boss):
 			break
 		if player_defeat():
 			break
-		enemy_turn(enemy, enemies, allies)
-		if dead_check(enemy, enemies):
+		enemy_turn(enemy, enemies, allies, boss)
+		if dead_check(enemy, enemies, boss):
 			break
 		if player_defeat():
 			break
 		for ally in allies:
 			ally_turn(ally, enemy)
-			if dead_check(enemy, enemies):
+			if dead_check(enemy, enemies, boss):
 				break
 		round_summary(enemy)
 
@@ -116,7 +119,7 @@ def generate_reference(type, gender, name):
 	return reference
 
 
-def initialize(enemies: list, allies=()):
+def initialize(enemies: list, allies=(), boss=False):
 	global game_state
 	global defaults
 	game_state = copy.deepcopy(defaults)
@@ -125,10 +128,10 @@ def initialize(enemies: list, allies=()):
 	for enemy in enemies:
 		if ability.ability['health'] <= 0:
 			break
-		combat_flow(enemy, enemies, allies)
+		combat_flow(enemy, enemies, allies, boss)
 
 
-def enemy_turn(enemy, enemies, allies):
+def enemy_turn(enemy, enemies, allies, boss):
 	global game_state
 	if enemy['bleeding'] > 0:
 		damage = random.randrange(2,6)
@@ -139,7 +142,7 @@ def enemy_turn(enemy, enemies, allies):
 		enemy["bleeding"] -= 1
 		game_state['damage_dealt'] += damage
 		game_state['total_damage_dealt'] += damage
-		if dead_check(enemy, enemies):
+		if dead_check(enemy, enemies, boss):
 			if not achievements.achievements['bleed_out']['unlocked']:
 				achievements.get_achievement("bleed_out")
 			return
@@ -253,10 +256,10 @@ def enemy_distract(enemy):
 	time.sleep(5)
 
 
-def dead_check(enemy, enemies):
+def dead_check(enemy, enemies, boss):
 	global game_state
 	if enemy['hp'] <= 0:
-		kill(enemy, enemies)
+		kill(enemy, enemies, boss)
 		return True
 	else:
 		return False
@@ -281,7 +284,7 @@ def player_defeat():
 			return True
 
 
-def kill(enemy, enemies):
+def kill(enemy, enemies, boss):
 	global game_state
 	game_state['gang_size'] -= 1
 	reference = enemy['reference']
@@ -298,7 +301,10 @@ def kill(enemy, enemies):
 	if game_state['assistance'] or game_state['goad'] and not achievements.achievements['teamwork']['unlocked']:
 		achievements.get_achievement("teamwork")
 	if game_state['gang_size'] <= 0:
-		sounds.end_combat()
+		if boss:
+			sounds.end_boss()
+		else:
+			sounds.end_combat()
 		summary(enemies)
 		post_combat.end_combat(game_state['gang_lads'])
 	else:
