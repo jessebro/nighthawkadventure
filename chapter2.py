@@ -22,7 +22,7 @@ def beginning():
 	global descent
 	save('chapter2.beginning')
 	elfa = colour_it("Elfa", Color.NPC)
-	micha = colour_it("Micha", Color.NPC)
+	micha = colour_it("Micha", Color.NPC)  # Word colouring
 	sounds.dire()
 	print_stuff(["You wake up, your head throbbing painfully. You hear voices, but they are echoing and far away. You look around and find yourself sitting in a large cage.",
 "The cage itself is made of wood, but all your belongings are gone. The wooden cage's bars and supports are thick, and you cannot break them.",
@@ -117,7 +117,7 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 def descenta():
 	micha = colour_it("Micha", Color.NPC)
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
-	tamara = colour_it("Tamara", Color.NPC)
+	tamara = colour_it("Tamara", Color.NPC)  # Word colouring
 	sounds.travel()
 	print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} nods. "At least let us begone from this mountain," she says. "Even if the journey is long and hard." """,
 """The three of you descend the mountain, haste making the journey a lot quicker. You meet with no dangers on the way down, and no one speaks.""",
@@ -190,7 +190,7 @@ def descentb():
 	micha = colour_it("Micha", Color.NPC)
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
 	tamara = colour_it("Tamara", Color.NPC)
-	denvar = colour_it("Denvar", Color.NPC)
+	denvar = colour_it("Denvar", Color.NPC)  # Word colouring
 	sounds.travel()
 	print_stuff([f"The three of you make your way down the mountain. With your guidance you arrive at {denvar}'s cabin. You notice that {denvar} is home.",
 f"Light shines from the windows, and you see movement from inside. You approach the door and knock sharply. Almost instantly, {denvar} answers the knock."])
@@ -274,7 +274,7 @@ def reeturn():
 	tamara = colour_it("Tamara", Color.NPC)
 	elfa = colour_it("Elfa", Color.NPC)
 	bertholt = colour_it("Bertholt Omar", Color.NPC)
-	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)
+	lizardtongue = colour_it("Lizardtongue Mountains", Color.PLACE)  # Word colouring
 	sounds.night()
 	print_stuff([f"You retrace your steps along the trail to the {lizardtongue}, this time with another by your side. By the time night falls, the lights of {blackburrow} are visible.",
 f"As you settle down to rest, {tamara} walks away from your camp and changes her clothes. Instead of the strange, ceremonial appearing apparel she was wearing before, now she wears more traditional clothes.",
@@ -398,10 +398,10 @@ def answers():
 	save('chapter2.answers')
 	tamara = colour_it("Tamara", Color.NPC)
 	micha = colour_it("Micha", Color.NPC)
+	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
+	greypass = colour_it("Greypass", Color.PLACE)  # Word colouring
 	meal = False
 	justice = False
-	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
-	greypass = colour_it("Greypass", Color.PLACE)
 	sounds.town()
 	ability.gain_xp([encounters.xp_handouts['medium']])
 	print_stuff([f"You enter the tavern and look around. {tamara} is sitting at a table. You quickly take a seat opposite her.",
@@ -522,7 +522,7 @@ def attack():
 	save('chapter2.attack')
 	tamara = colour_it("Tamara", Color.NPC)
 	corocana = colour_it("Corocana", Color.PLACE)
-	blackburrow = colour_it("Blackburrow", Color.PLACE)
+	blackburrow = colour_it("Blackburrow", Color.PLACE)  # Word colouring
 	sounds.jungle()
 	print_stuff([f"""You hear shouting and a dull roaring from far away. You and {tamara} exchange glances and run outside."""])
 	if character.story['criminal']:
@@ -614,6 +614,9 @@ def to_greypass():
 	corocana = colour_it("Corocana", Color.PLACE)
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
 	greypass = colour_it("Greypass", Color.PLACE)
+	rookwood = colour_it("Rookwood", Color.PLACE)
+	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
+	bandits = colour_it("bandit", Color.ENEMY)  # Word colouring
 	sounds.travel()
 	print_stuff([f"The road to Greypass is significantly flatter and easier to traverse than the one to the Lizardtongue Mountains.",
 f"Your route takes you along the Barkan road, which will take you straight from {blackburrow} to {greypass}.",
@@ -664,5 +667,58 @@ f""""As it happens, we need your help," she says. "In return, we'll let you retu
 		elif choice == "6":
 			break
 	print_stuff([f""""Farrrrwell, warrrmbloodssssss," {story['meel-kar']['name_known']} says. "Forrrr some rrrreassson, I trrrusssst you." """,
-f""""We'll see if we can fix your situation in the jungles," {tamara} says. "Hopefully, we can." """])
+f""""We'll see if we can fix your situation in the jungles," {tamara} says. "Hopefully, we can." """,
+f"""You watch as {story['meel-kar']['name_known']} walks away, leaving you and {tamara} alone on the road once more.""",
+f""""No doubt, {story['meel-kar']['reference']['he']} was talking about the {daughters}. What could they be doing there?" """])
+	choice = input_stuff("""1. "Whoever this contact of yours is, I'm sure he'd be able to shed some light." 
+2. "Maybe they want to enslave the lizardmen?" 
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff([f""""He'd better," {tamara} growls. "We're going through a lot of effort to see him." """])
+	elif choice == "2":
+		print_stuff([""""Why do I have hunch that you're not too far off track?" """])
+	print_stuff([f""""Anyway, we'd best continue on our way. {greypass} is still a while away." """,
+f"""You and {tamara} continue continue along the Barkan road. You fit in another few hours of walking before night begins to fall."""])
+	sounds.night()
+	print_stuff([f"""As you and {tamara} begin searching for a place to stay, you notice a farmhouse to your left."""])
+	choice = input_stuff("""1. Investigate the farmhouse.
+2. Continue past. 
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff([f"""{tamara} follows you as you make your way into the farmhouse. It appears to be abandoned, and will provide good shelter."""])
+	elif choice == "2":
+		print_stuff(["""You ignore the farmhouse and continue past. In the end, you find a nice clearing in a grove of trees."""])
+	print_stuff([f"{tamara} takes first watch, and you will go next. You can't be too careful in the wilds."])
+	rest.rest()
+	print_stuff([f"""You continue along the road, and finally you reach {rookwood}, the large forest that surrounds {greypass}.""",
+"""Birds sing in the trees, the wind rustles the leaves, and feeble branches crackle and creak in the canopy.""",
+f""""Beautiful place," {tamara} comments. You look at her, noticing something in the way she said it. """])
+	awareness_roll = random.randrange(1,10)
+	aware = colour_it("aware", Color.AWARENESS)
+	stolen = False
+	if awareness_roll <= ability.ability['awareness']:
+		print_stuff([f"You are {aware} enough to notice she says it in a way that implies she's been here before, and with good memories."])
+		choice = input_stuff("""1. "Been here before?" 
+2. Say nothing.
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff([f""""Mhm" {tamara} says. "I used to travel a lot." She chuckles. "I guess I still am." """])
+	print_stuff([f"""It is not long before trouble finds you. Suddenly, a group of five {bandits} jumps out, blocking the path. "Your gold; hand it over." """])
+	if equipment.equipment['gold'] >= 30:
+		stolen = True
+		choice = input_stuff("""1. Give them 30 gold to go away.
+2. "Kiss my arse".
+> """, ["1", "2"])
+		if choice == "1":
+			equipment.equipment['gold'] -= 30
+			print_stuff([f"""You throw the {bandits} a bag of gold. They exchange glances, and ready their weapons."""])
+	print_stuff([f"""{tamara} draws her own weapon, but one of the {bandits} pulls out a knife. Before you or {tamara} can react, she throws the knife.""",
+f"""It buries itself into {tamara}'s leg. She screams in pain and falls. The blow is not lethal, but you realise she will be of now help now.""",
+f"""The {bandits} rush forwards eagerly, weapons ready. You brace yourself for the coming battle."""])
+	enemy_round.initialize([encounters.monster_access('mbandit'), encounters.monster_access('fbandit'), encounters.monster_access('mbandit'), encounters.monster_access('fbandit'), encounters.monster_access('cbandit')])
+	if stolen:
+		equipment.equipment['gold'] += 30
+		print_stuff([f"""You retrieve the gold that you gave one of the {bandits}, spitting on her body as you do."""])
+
+
 
