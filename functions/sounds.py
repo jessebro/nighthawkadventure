@@ -124,6 +124,18 @@ def end_boss():
 	song.play()
 
 
+def jungle():
+	global playing
+	if playing == "music/Jungle of Mysteries.ogg":
+		return
+	playing = "music/Jungle of Mysteries.ogg"
+	pygame.init()
+	mixer.init()
+	mixer.stop()
+	song = pygame.mixer.Sound('music/Jungle of Mysteries.ogg')
+	song.play(-1)
+
+
 def level_up():
 	global playing
 	pygame.init()

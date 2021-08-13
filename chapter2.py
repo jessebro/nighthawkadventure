@@ -523,7 +523,7 @@ def attack():
 	tamara = colour_it("Tamara", Color.NPC)
 	corocana = colour_it("Corocana", Color.PLACE)
 	blackburrow = colour_it("Blackburrow", Color.PLACE)
-	sounds.dire()
+	sounds.jungle()
 	print_stuff([f"""You hear shouting and a dull roaring from far away. You and {tamara} exchange glances and run outside."""])
 	if character.story['criminal']:
 		while True:
