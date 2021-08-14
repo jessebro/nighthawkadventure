@@ -728,6 +728,9 @@ f"""You don't enjoy the picturesque forest anymore. You have more important matt
 
 def greypass():
 	save('chapter2.greypass')
+	sounds.village()
+	tamara = colour_it("Tamara", Color.NPC)
+	print_stuff([f"""Your arms are tired from carrying {tamara}, but you know that you have almost reached your goal. You continue onwards."""])
 
 
 

@@ -148,6 +148,18 @@ def fairy():
 	song.play(-1)
 
 
+def village():
+	global playing
+	if playing == "music/Haven of Humanity.ogg":
+		return
+	playing = "music/Haven of Humanity.ogg"
+	pygame.init()
+	mixer.init()
+	mixer.stop()
+	song = pygame.mixer.Sound('music/Haven of Humanity.ogg')
+	song.play(-1)
+
+
 def level_up():
 	global playing
 	pygame.init()
