@@ -147,7 +147,7 @@ def jungle():
 	playing = "music/Jungle of Mysteries.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.stop()
+	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/Jungle of Mysteries.ogg')
 	song.play(-1)
 
@@ -159,7 +159,7 @@ def fairy():
 	playing = "music/Whispering Fairies.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.stop()
+	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/Whispering Fairies.ogg')
 	song.play(-1)
 
@@ -171,7 +171,7 @@ def village():
 	playing = "music/Haven of Humanity.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.stop()
+	mixer.fadeout(1000)
 	song = pygame.mixer.Sound('music/Haven of Humanity.ogg')
 	song.play(-1)
 

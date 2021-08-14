@@ -792,3 +792,4 @@ f""""Don't be silly. You're not going to d... wow." You and {fenroche} have just
 """There is a deep wound, surrounded by blood. Half her leg has been tinted red, and the wound itself is a dark, blackish colour. """,
 f""""I'll handle this," {fenroche} says. "You go and rest." You happily take {fenroche} up on his offer. """])
 	rest.rest()
+	print_stuff([""""""])
