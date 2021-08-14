@@ -303,6 +303,8 @@ def kill(enemy, enemies, boss):
 	if game_state['gang_size'] <= 0:
 		if boss:
 			sounds.end_boss()
+		elif enemy['type'] == "human":
+			sounds.end_human()
 		else:
 			sounds.end_combat()
 		summary(enemies)

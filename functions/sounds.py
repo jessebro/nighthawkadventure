@@ -32,6 +32,18 @@ def end_combat():
 	song.play()
 
 
+def end_human():
+	global playing
+	if playing == "music/Sworddancers end.ogg":
+		return
+	playing = "music/Sworddancers end.ogg"
+	pygame.init()
+	mixer.init()
+	mixer.stop()
+	song = pygame.mixer.Sound('music/Sworddancers end.ogg')
+	song.play()
+
+
 def dungeon():
 	global playing
 	if playing == "music/Forsaken Halls.ogg":
@@ -174,5 +186,5 @@ def level_up():
 
 
 def play_prev():
-	song = pygame.mixer.Sound(playing)
+	song = pygame.mixer.Sound("music/A Blade and a Bag.ogg")
 	song.play(-1)
