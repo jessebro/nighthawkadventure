@@ -21,7 +21,6 @@ def input_stuff(prompt, options, actions=None):
 	if not actions:
 		actions = default_actions
 	while True:
-		clear()
 		choice = input(prompt)
 		if choice in actions:
 			actions[choice]()
@@ -29,6 +28,7 @@ def input_stuff(prompt, options, actions=None):
 			break
 		elif choice in options:
 			return choice
+		clear()
 
 
 class Color(Enum):
@@ -77,5 +77,7 @@ def print_stuff(scripts):
 			sys.stdout.flush()
 			time.sleep(0.02)
 		print("")
-		input_stuff(f"""{colour_it("~~", Color.YELLOW)}""", "*")
+		leave = input_stuff(f"""{colour_it("~~", Color.YELLOW)}""", "*")
+		if leave == "exit":
+			exit()
 		clear()

@@ -22,7 +22,8 @@ sounds.title()
 def set_default_actions():
 	utils.default_actions = {
 		"e": inventory.show,
-		"i": inventory.show
+		"i": inventory.show,
+		"exit": exit
 	}
 
 
