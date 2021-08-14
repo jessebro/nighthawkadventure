@@ -1,3 +1,4 @@
+import sys
 from enum import Enum
 import os
 import time
@@ -8,7 +9,12 @@ os.system('')
 
 default_actions = {}
 
-clear = lambda: os.system('clear')
+
+def clear():
+	if sys.platform.startswith("win"):
+		os.system('cls')
+	else:
+		os.system('clear')
 
 
 def input_stuff(prompt, options, actions=None):
@@ -66,12 +72,9 @@ def print_it(msg, color):
 def print_stuff(scripts):
 	for script in scripts:
 		for letter in script:
-			print(letter, end="")
+			sys.stdout.write(letter)
+			sys.stdout.flush()
 			time.sleep(0.02)
 		print("")
 		input_stuff(f"""{colour_it("~~", Color.YELLOW)}""", "*")
 		clear()
-
-
-
-
