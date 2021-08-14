@@ -4,15 +4,19 @@ import pygame
 playing = ""
 
 
-def play_combat():
+def play_combat(type):
 	global playing
-	if playing == "music/Song of the Nighthawk.ogg":
+	if type == "human":
+		play = "music/Sworddancers.ogg"
+	else:
+		play = "music/Song of the Nighthawk.ogg"
+	if playing == "fighty":
 		return
-	playing = "music/Song of the Nighthawk.ogg"
+	playing = "fighty"
 	pygame.init()
 	mixer.init()
 	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/Song of the Nighthawk.ogg')
+	song = pygame.mixer.Sound(play)
 	song.play(-1)
 
 

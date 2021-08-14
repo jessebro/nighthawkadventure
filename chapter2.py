@@ -732,6 +732,9 @@ def at_greypass():
 	sounds.village()
 	tamara = colour_it("Tamara", Color.NPC)
 	rookwood = colour_it("Rookwood", Color.PLACE)
+	enemy_round.initialize([encounters.monster_access('ghoul'), encounters.monster_access('fbandit'), encounters.monster_access('fbandit')])
 	print_stuff([f"""Your arms are tired from carrying {tamara}, but you know that you have almost reached your goal. You continue onwards.""",
 f"""{greypass} is only a cluster of about a score of buildings in a large clearing, next to the Raven River. The town itself is in the middle of {rookwood}.""",
-f"""One of the townsfolk approaches you. "Alright there, {character.character['titles']['formal']}?" he asks. """])
+f"""One of the townsfolk approaches you. "Alright there, {character.character['titles']['formal']}?" he asks. {tamara} looks at him.""",
+""""We're fine," she says, her voice husky. "We can take care of ourselves." The man looks at you and you nod in confirmation.""",
+""""""])

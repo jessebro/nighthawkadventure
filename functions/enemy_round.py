@@ -48,7 +48,7 @@ def combat_flow(enemy, enemies, allies, boss):
 	if boss:
 		sounds.doom()
 	else:
-		sounds.play_combat()
+		sounds.play_combat(enemy['type'])
 	while True:
 		game_state['damage_dealt'] = 0
 		game_state['damage_received'] = 0
