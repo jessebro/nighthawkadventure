@@ -104,7 +104,7 @@ def get_title():
 			"his": "her",
 			"him": "her",
 			"casual": "miss",
-			"formal": "m'lady",
+			"formal": "ma'am",
 			"insult": "bitch",
 			"whore": "you whore",
 			"contempt": "girlie"

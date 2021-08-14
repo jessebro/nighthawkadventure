@@ -726,11 +726,12 @@ f""""That hurt," {tamara} says weakly. You bend down and pick her up, supporting
 f"""You don't enjoy the picturesque forest anymore. You have more important matters. When {greypass} finally becomes visible, it is a welcome sight indeed."""])
 
 
-def greypass():
-	save('chapter2.greypass')
+def at_greypass():
+	save('chapter2.at_greypass')
+	greypass = colour_it("Greypass", Color.PLACE)
 	sounds.village()
 	tamara = colour_it("Tamara", Color.NPC)
-	print_stuff([f"""Your arms are tired from carrying {tamara}, but you know that you have almost reached your goal. You continue onwards."""])
-
-
-
+	rookwood = colour_it("Rookwood", Color.PLACE)
+	print_stuff([f"""Your arms are tired from carrying {tamara}, but you know that you have almost reached your goal. You continue onwards.""",
+f"""{greypass} is only a cluster of about a score of buildings in a large clearing, next to the Raven River. The town itself is in the middle of {rookwood}.""",
+f"""One of the townsfolk approaches you. "Alright there, {character.character['titles']['formal']}?" he asks. """])
