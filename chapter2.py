@@ -717,6 +717,9 @@ f""""Beautiful place," {tamara} comments. You look at her, noticing something in
 f"""It buries itself into {tamara}'s leg. She screams in pain and falls. The blow is not lethal, but you realise she will be of now help now.""",
 f"""The {bandits} rush forwards eagerly, weapons ready. You brace yourself for the coming battle."""])
 	enemy_round.initialize([encounters.monster_access('mbandit'), encounters.monster_access('fbandit'), encounters.monster_access('mbandit'), encounters.monster_access('fbandit'), encounters.monster_access('cbandit')])
+	if ability.ability['health'] <= 0:
+		print_stuff([f"With you out of the picture, the {bandits} will make quick work of an injured {tamara}. They'll strip you, and kill you for causing so much trouble."])
+		exit()
 	sounds.fairy()
 	if stolen:
 		equipment.equipment['gold'] += 30
