@@ -734,10 +734,61 @@ def at_greypass():
 	greypass = colour_it("Greypass", Color.PLACE)
 	sounds.village()
 	tamara = colour_it("Tamara", Color.NPC)
+	fenroche = colour_it("Fenroche", Color.NPC)
 	rookwood = colour_it("Rookwood", Color.PLACE)
+	caelfin = colour_it("Caelfin", Color.PLACE)
 	sounds.village()
 	print_stuff([f"""Your arms are tired from carrying {tamara}, but you know that you have almost reached your goal. You continue onwards.""",
 f"""{greypass} is only a cluster of about a score of buildings in a large clearing, next to the Raven River. The town itself is in the middle of {rookwood}.""",
 f"""One of the townsfolk approaches you. "Alright there, {character.character['titles']['formal']}?" he asks. {tamara} looks at him.""",
 """"We're fine," she says, her voice husky. "We can take care of ourselves." The man looks at you and you nod in confirmation.""",
-""""""])
+""""If you need help, just give a holler. Say, what was it that injured you? I'll be knowing there's some mosnters lurking about." """])
+	choice = input_stuff("""1. "Bandits attacked us." 
+2. "Doesn't matter. I sorted out the danger." 
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff([""""Bandits, you say? Well, I'm glad you sorted them out." """])
+	else:
+		print_stuff([""""Good. I'm glad that you have ridded this region of another ne'er do well." """])
+	print_stuff([f"""The man walks away. You look around and see people staring and pointing. You also realise that {tamara} is dripping blood onto the ground.""",
+f""""Go South, on the other side of the Raven River," {tamara} says. "There'll be a house over a small bridge." Obeying {tamara}'s direction, you begin to move.""",
+f"""After a minute, you come to a small wooden bridge, spanning a thinner part of the Raven River. On the other side is the Gladepass Road, leading to {caelfin}.""",
+f"""Branching off from the road is a small trail that leads up to a small house nestled atop a hill. It's simple enough; stone walls, a roof of wooden planks...""",
+"""But something is clearly wrong. The windows are boarded up, and there doesn't seem to be any sign of life from inside.""",
+f""""What happened?" {tamara} says aloud. "Be wary, {character.character['firstname']}. I fear danger may be close." """])
+	awareness_roll = random.randrange(1, 13)
+	aware = colour_it("aware", Color.AWARENESS)
+	if awareness_roll <= ability.ability['awareness']:
+		print_stuff([f"""You are {aware} enough to notice, only for a second, a pair of human eyes looking out of some bushes."""])
+	print_stuff([f"""Keeping your eyes peeled, you carry {tamara} to the door of the house. As you reach the door, she knocks weakly. For a moment, there is no response.""",
+f"""Suddenly, a rectangle of the door slides away, revealing a pair of eyes. "Who..." a gravelly voice begins, but then the eyes travel to {tamara}.""",
+f""""Oh, {tamara}," the voice says. "I see you've gotten yourself into deeper shit than usual." {tamara} glares at the eyes.""",
+f""""Hurry up, {fenroche}," {tamara} hisses. The door swings open, and you hurry inside. As soon as you're inside, the door closes. You turn to look at your host. """,
+f"""He's a tall man, with black hair, a thick beard, dark eyes, and strong looking muscles. He has an air of power around him.""",
+f""""Damn it, {tamara}," he growls in his grating voice. "You've gotten blood all over my nice floor." But he moves to take her from you.""",
+"""As you are revelling in the sudden lightness and freedom of your arms, you look around the house. It seems simple enough.""",
+"""A dining and cooking area, a single wooden chair by a fireplace... and a trapdoor. The trapdoor, other than the man himself, is the only abnormal object.""",
+f"""The man lays {tamara} down on his table. It's long enough to support her entire body. "Come and help me, would you?" the man asks you. You oblige.""",
+f""""First, we'll take a look at the wound." {tamara} is lying compliantly with her eyes closed as you and the man operate.""",
+f"""As you and the man are cutting away part of {tamara}'s trousers, the man speaks. "I'm {fenroche}," he says, not taking his eyes from {tamara}."""])
+	choice = input_stuff(f"""1. "Greetings, {fenroche}. I'm {character.character['firstname']}." 
+2. "Good." 
+> """, ["1", "2"])
+	if choice == "2":
+		print_stuff([f"""In your silence, {tamara} pipes up. "{character.character['he'].capitalize()}'s {character.character['firstname']}," she says. "You can trust {character.character['him']}." """])
+	print_stuff([f""""So, {character.character['firstname']}, what are you doing with... such fine company?" {fenroche} asks. """])
+	choice = input_stuff(f"""1. "{tamara} saved my life." 
+2. "Met her on the road." 
+3. "I keep her around because she can fight." 
+> """, ["1", "2", "3"])
+	if choice == "1":
+		print_stuff([f""""Of course she did. And I take it wasn't long before it started to go the other way around?" """])
+	elif choice == "2":
+		print_stuff([f""""The road? What on earth was she doing on the road?" But the question is rhetorical. """])
+	elif choice == "3":
+		print_stuff([f""""That's all she's good for," {fenroche} agrees. "But even then, she'd get her arse beaten by a drunk, half-blind badger." """])
+	print_stuff([f""""Your comments are as hilarious as they are flattering," {tamara} says, unsuccessfully trying to hide a smile. "I may be dying, but let me do it in dignity." """,
+f""""Don't be silly. You're not going to d... wow." You and {fenroche} have just cut through the final part of {tamara}'s trousers and can see the wound. """,
+"""There is a deep wound, surrounded by blood. Half her leg has been tinted red, and the wound itself is a dark, blackish colour. """,
+f""""I'll handle this," {fenroche} says. "You go and rest." You happily take {fenroche} up on his offer. """])
+	rest.rest()
