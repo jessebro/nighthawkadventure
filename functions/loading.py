@@ -1,6 +1,5 @@
 import pickle
 import os
-import copy
 from functions import ability
 from functions import equipment
 from functions import character

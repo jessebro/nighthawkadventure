@@ -43,7 +43,7 @@ story = {
 }
 
 def get_name():
-	firstname = input("""What is your name?
+	firstname = input("""What is your first name?
 > """)
 	firstname = firstname.title()
 	surname = input("""What is your surname?

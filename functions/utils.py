@@ -21,6 +21,7 @@ def input_stuff(prompt, options, actions=None):
 	if not actions:
 		actions = default_actions
 	while True:
+		clear()
 		choice = input(prompt)
 		if choice in actions:
 			actions[choice]()
