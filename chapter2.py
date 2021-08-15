@@ -825,4 +825,12 @@ f""""As I lay, bleeding and dying, {tamara} happened past. She nursed me back to
 f""""{tamara} was furious at the {daughters} for what they did, and I wasn't too happy either. Together, we began to attempt to foil their schemes." """])
 		elif question == "4":
 			break
-	print_stuff([""""" """])
+	print_stuff([f"""{fenroche} turns to {tamara} once again. "Night is falling," he says. "You'd best get some rest." """,
+f"""You oblige {fenroche}, laying your blankets down on the floor close to the wall. It is not long before sleep finds you.""",
+f"""You are woken early in the morning by a smashing sound. You jump to your feet, sword in hand. You watch as the door gets kicked in.""",
+f"""Three {daughters} jump through the opening, swords at the ready. They lunge forwards, but suddenly {fenroche} is there.""",
+f"""In one hand he holds a hand crossbow, and in another a knife. With a flick of his wrist, the crossbow fires, the bolt piercing his target's neck.""",
+f"""The remaining two {daughters}, caught off guard by this new adversary, are unprepared as {fenroche} lunges forwards.""",
+f"""With a graceful twirl, he slits the throat of another foe. Spinning again, he stabs, burying the knife up to the hilt into the stomach of his last enemy.""",
+f"""The two {daughters} with severed necks are still lying on the ground, gasping and choking for air. {fenroche} approaches each one and finishes them off.""",
+f""""Impressed?" he grins at you, seemingly unconcerned at the three bodies, and the three pools of blood now lying at his front door."""])
