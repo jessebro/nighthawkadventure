@@ -732,11 +732,12 @@ f"""You don't enjoy the picturesque forest anymore. You have more important matt
 def at_greypass():
 	save('chapter2.at_greypass')
 	greypass = colour_it("Greypass", Color.PLACE)
-	sounds.village()
 	tamara = colour_it("Tamara", Color.NPC)
 	fenroche = colour_it("Fenroche", Color.NPC)
 	rookwood = colour_it("Rookwood", Color.PLACE)
 	caelfin = colour_it("Caelfin", Color.PLACE)
+	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
+	misunderstand = False
 	sounds.village()
 	print_stuff([f"""Your arms are tired from carrying {tamara}, but you know that you have almost reached your goal. You continue onwards.""",
 f"""{greypass} is only a cluster of about a score of buildings in a large clearing, next to the Raven River. The town itself is in the middle of {rookwood}.""",
@@ -792,4 +793,36 @@ f""""Don't be silly. You're not going to d... wow." You and {fenroche} have just
 """There is a deep wound, surrounded by blood. Half her leg has been tinted red, and the wound itself is a dark, blackish colour. """,
 f""""I'll handle this," {fenroche} says. "You go and rest." You happily take {fenroche} up on his offer. """])
 	rest.rest()
-	print_stuff([""""""])
+	print_stuff([f"""You complete your short rest, and return to {fenroche} and {tamara}. {tamara} is fast asleep now, and {fenroche} is sitting nearby, watchful.""",
+f""""Poor girl," he says. "She's exhausted from the pain." You are slightly taken aback by this sudden change in attitude.""",
+f"{fenroche} reaches out and strokes a lock of {tamara}'s hair, still not taking his eyes off her."])
+	choice = input_stuff("""1. "Watch the hands." 
+2. Do nothing.
+> """, ["1", "2"])
+	if choice == "1":
+		misunderstand = True
+		print_stuff([f"""{fenroche} laughs. "Clearly you have no idea..." he says, but stops before he is done. He takes his hand away though. """])
+	print_stuff([f""""Now, I do believe some questions and answers are in order. {tamara} has told me of you, so now you will get a chance to know me." """])
+	while True:
+		quest = colour_it(""""I've no further questions." """, Color.QUEST)
+		question = input_stuff(f"""1. "What are you doing here?" 
+2. "Apparently you know things about the {daughters}..." 
+3. "What's your relationship with {tamara}?" 
+4. {quest}
+> """, ["1", "2", "3", "4"])
+		if question == "1":
+			print_stuff([f""""I've been on the hunt for those accursed {daughters}. Finally, I had a theory of what they were up to, but I couldn't be sure." """,
+f""""I came to {greypass} to experiment, but I fear my stay will be long." """])
+		elif question == "2":
+			print_stuff([""""I do indeed. Firstly, they are collecting magic items, and I think I know why. However, I need to make sure that I am correct before I begin to act." """,
+""""Secondly, they are trying to cause mayhem. Political upheaval, war, all to cover their tracks and weaken their enemies." """,
+""""For example, they are fighting on both sides for the racial attacks, both defending and aggravating nonhumans." """])
+		elif question == "3":
+			print_stuff([""""I'm not sure she'd be eager for you to know... However, I will tell you a little bit." """,
+f""""{tamara} met me after an attack by the {daughters}. My small farm and my family were lost that day, and they gave me this." """,
+f"""{fenroche} pulls down the neck of his shirt. There, you can see a jagged red line running across his carotid artery.""",
+f""""As I lay, bleeding and dying, {tamara} happened past. She nursed me back to health, and by some miracle I regained my strength." """,
+f""""{tamara} was furious at the {daughters} for what they did, and I wasn't too happy either. Together, we began to attempt to foil their schemes." """])
+		elif question == "4":
+			break
+	print_stuff([""""" """])
