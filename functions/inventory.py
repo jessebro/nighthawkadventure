@@ -6,10 +6,11 @@ import random
 from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
+from functions.utils import clear
 
 def show():
+	clear()
 	menu = input_stuff(f"""
-
 ~ {character.character["fullname"]} ~
 ~ Level {ability.ability["level"]} ~ [{ability.ability['xp']}/100] xp
 {character.character["gender"].capitalize()}
@@ -24,6 +25,7 @@ Gold: {equipment.equipment["gold"]}
 > """, ["1", "2", "3", "4"])
 
 	if menu == "1":
+		clear()
 		leave1 = input_stuff(f"""
 Your stats are:
 
@@ -49,7 +51,9 @@ Enter 'b' to go back
 
 
 def weapon_stats():
-	menu = input_stuff(f""" ~ {weapon.weapon["weaponname"]} ~
+	clear()
+	menu = input_stuff(f""" 
+~ {weapon.weapon["weaponname"]} ~
 	
 {weapon.weapon["weaponname"]}'s stats are:
 
@@ -68,6 +72,7 @@ Enter 'b' to go back
 		show()
 
 def item_list():
+	clear()
 	while True:
 		plurals = {
 			"potions": "Potions",
@@ -84,11 +89,13 @@ def item_list():
 		if equipment.equipment["smoke bombs"] == 1:
 			plurals["smoke bombs"] = "Smoke Bomb"
 
-		menu = input_stuff(f"""You have:
-	{equipment.equipment["potions"]} {plurals["potions"]}
-	{equipment.equipment["knives"]} {plurals["knives"]}
-	{equipment.equipment["oils"]} {plurals["oils"]}
-	{equipment.equipment["smoke bombs"]} {plurals["smoke bombs"]}
+		menu = input_stuff(f"""
+You have:
+
+{equipment.equipment["potions"]} {plurals["potions"]}
+{equipment.equipment["knives"]} {plurals["knives"]}
+{equipment.equipment["oils"]} {plurals["oils"]}
+{equipment.equipment["smoke bombs"]} {plurals["smoke bombs"]}
 		
 Enter 'h' to consume a healing potion.
 Enter 'b' to go back
