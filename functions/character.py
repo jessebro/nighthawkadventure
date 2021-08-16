@@ -107,5 +107,5 @@ def get_title():
 			"formal": "ma'am",
 			"insult": "bitch",
 			"whore": "you whore",
-			"contempt": "girlie"
+			"contempt": "girl"
 		}

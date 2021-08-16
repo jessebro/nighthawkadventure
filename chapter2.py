@@ -826,11 +826,34 @@ f""""{tamara} was furious at the {daughters} for what they did, and I wasn't too
 		elif question == "4":
 			break
 	print_stuff([f"""{fenroche} turns to {tamara} once again. "Night is falling," he says. "You'd best get some rest." """,
-f"""You oblige {fenroche}, laying your blankets down on the floor close to the wall. It is not long before sleep finds you.""",
-f"""You are woken early in the morning by a smashing sound. You jump to your feet, sword in hand. You watch as the door gets kicked in.""",
+f"""You oblige {fenroche}, laying your blankets down on the floor close to the wall. It is not long before sleep finds you."""])
+	sounds.play_combat("human")
+	print_stuff([f"""You are woken early in the morning by a smashing sound. You jump to your feet, sword in hand. You watch as the door gets kicked in.""",
 f"""Three {daughters} jump through the opening, swords at the ready. They lunge forwards, but suddenly {fenroche} is there.""",
 f"""In one hand he holds a hand crossbow, and in another a knife. With a flick of his wrist, the crossbow fires, the bolt piercing his target's neck.""",
 f"""The remaining two {daughters}, caught off guard by this new adversary, are unprepared as {fenroche} lunges forwards.""",
-f"""With a graceful twirl, he slits the throat of another foe. Spinning again, he stabs, burying the knife up to the hilt into the stomach of his last enemy.""",
-f"""The two {daughters} with severed necks are still lying on the ground, gasping and choking for air. {fenroche} approaches each one and finishes them off.""",
-f""""Impressed?" he grins at you, seemingly unconcerned at the three bodies, and the three pools of blood now lying at his front door."""])
+f"""With a graceful twirl, he slits the throat of another foe. Spinning again, he stabs, burying the knife up to the hilt into the stomach of his last enemy."""])
+	sounds.end_human()
+	print_stuff([f"""The two {daughters} with severed necks are still lying on the ground, gasping and choking for air. {fenroche} approaches each one and finishes them off.""",])
+	sounds.village()
+	print_stuff([f""""Impressed?" he grins at you, seemingly unconcerned at the three bodies, and the three pools of blood now lying at his front door.""",
+f"""{tamara} hobbles into the room, clearly favouring one leg. Her eyes widen in shock when she sees the three corpses.""",
+f""""Who..." she stammers. "How... What the hell is going on?" {fenroche} turns to her, grinning. """,
+f""""Nothing much," he says. "Just another attempted attack." {tamara} frowns. """,
+f""""Nothing much," she echoes. "Just {colour_it('another', Color.UNDERLINE)} attack. Has this happened before?" """,
+f""""Every now and then, they try to attack me. Of course, now I have to mend my door, dismember the bodies and throw them outside, but other than that..." """])
+	choice = input_stuff(f"""1. "Why are the {daughters} attacking you?" 
+2. "You handled that well." 
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff([""""Because I'm meddling in their affairs. They don't want me to disrupt their operations." """])
+	elif choice == "2":
+		print_stuff([""""Of course I did. I have sent nearly a dozen of those women tumbling into Hell." """])
+	print_stuff([f""""But by coming here, {fenroche}," {tamara} cuts in. "Have we..." """,
+f""""Yes. You've put yourselves in danger. But you did so when you came to my door. The best thing I could do was take you in. Then you'd be safer." """,
+f""""You're always getting yourself into trouble, aren't you?" {tamara} says coldly."""])
+	if misunderstand:
+		print_stuff([f""""Speaking of trouble," {fenroche} says. "When you were unconscious, I brushed a bit of your hair." """,
+f"""You watch for {tamara}'s reaction and see that she is unconcerned. "And?" she prompts. """,
+f""""Wonder{character.character['titles']['contempt']} here snapped at me." You see {tamara}'s face tense up. You realise she's holding back a laugh for your sake.""",
+])
