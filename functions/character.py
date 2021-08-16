@@ -18,6 +18,7 @@ character = {
 story = {
 	"hag_lair": False,
 	"criminal": False,
+	"told_romance": False,
 
 # Characters v
 	"eladris": {

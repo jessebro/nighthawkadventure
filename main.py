@@ -91,7 +91,7 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 			ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
 story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave", "chapter2.beginning", chapter2.descent,
-"chapter2.reeturn", "chapter2.answers", "chapter2.attack", 'chapter2.to_greypass', "chapter2.at_greypass"
+"chapter2.reeturn", "chapter2.answers", "chapter2.attack", 'chapter2.to_greypass', "chapter2.at_greypass", 'chapter2.labratory',
 ]
 
 while True:

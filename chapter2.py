@@ -616,7 +616,7 @@ def to_greypass():
 	greypass = colour_it("Greypass", Color.PLACE)
 	rookwood = colour_it("Rookwood", Color.PLACE)
 	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
-	bandits = colour_it("bandits", Color.ENEMY)  # Word colouring
+	bandits = colour_it("bandits", Color.ENEMY)
 	sounds.travel()
 	print_stuff([f"The road to Greypass is significantly flatter and easier to traverse than the one to the Lizardtongue Mountains.",
 f"Your route takes you along the Barkan road, which will take you straight from {blackburrow} to {greypass}.",
@@ -853,7 +853,46 @@ f""""Every now and then, they try to attack me. Of course, now I have to mend my
 f""""Yes. You've put yourselves in danger. But you did so when you came to my door. The best thing I could do was take you in. Then you'd be safer." """,
 f""""You're always getting yourself into trouble, aren't you?" {tamara} says coldly."""])
 	if misunderstand:
+		story['told_romance'] = True
 		print_stuff([f""""Speaking of trouble," {fenroche} says. "When you were unconscious, I brushed a bit of your hair." """,
 f"""You watch for {tamara}'s reaction and see that she is unconcerned. "And?" she prompts. """,
-f""""Wonder{character.character['titles']['contempt']} here snapped at me." You see {tamara}'s face tense up. You realise she's holding back a laugh for your sake.""",
-])
+f""""Wonder{character.character['titles']['contempt']} here snapped at me." You see {tamara}'s face tense up. You realise she's holding back a laugh for your sake."""])
+		input_stuff("""1. "Did I act out of line?" 
+2. "What's the big joke?" 
+> """, ["1", "2"])
+		print_stuff([f""""{character.character['firstname']}..." {tamara} begins. She exchanges a glance with {fenroche}, who nods. """,
+f""""The relationship between {fenroche} and myself is... of a romantic sort." {tamara} goes a bit red, but {fenroche} is grinning broadly."""])
+		choice = input_stuff(f"""1. "Oh... I see."
+2. "But you two seem to hate each other." 
+3. "Seriously? You went for {colour_it('him', Color.UNDERLINE)}?" 
+> """, ["1", "2", "3"])
+		if choice == "2":
+			print_stuff([""""We don't hate each other. We just... rouse on each other a lot for our mistakes." """])
+		elif choice == "3":
+			print_stuff([""""I know, I'm such an ignoramus. Look at him... ugly, brutish, and he just slaughtered a group of women without a thought." """])
+		print_stuff([""""Anyway, we're getting side tracked. Let us return to the matter at hand." """])
+	print_stuff([f""""I think it's time I showed both of you something," {fenroche} says. He walks over to the trap door and opens it, revealing stairs leading downwards. """,
+f""""After you, {character.character['firstname']}," {fenroche} says, gesturing towards the stairs. Carefully, you begin to descend.""",
+f"""As you reach the bottom of the stairs, you gasp in awe. You have found yourself in what may have previously been a sort of cellar.""",
+f"""However, now the place is full of contraptions you've never seen before. Also lying around a books, wands and strange plants.""",
+f"""{fenroche} is coming up behind you, but stops and looks back up the stairs. {tamara} is awkwardly trying to descend, but with her bad leg, its impossible.""",
+f"""{fenroche} moves back up the stairs, and picks {tamara} up, supporting her legs and back. Gently, he carries her down the stairs."""])
+	choice = input_stuff("""1. "Care to tell me what all this hocus pocus is?" 
+2. Walk around and examine the objects.
+> """, ["1", "2"])
+	if choice == "2":
+		print_stuff(["""You walk around, but don't completely understand what is being achieved here. You notice the plants look like they may have come from the jungles.""",
+f"""Other than that, you feel like some of these objects are magical, but their purpose is undetermined. "If you're done snooping around..." {fenroche} calls. """])
+
+
+def labratory():
+	save('chapter2.labratory')
+	greypass = colour_it("Greypass", Color.PLACE)
+	tamara = colour_it("Tamara", Color.NPC)
+	fenroche = colour_it("Fenroche", Color.NPC)
+	rookwood = colour_it("Rookwood", Color.PLACE)
+	caelfin = colour_it("Caelfin", Color.PLACE)
+	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
+	corocana = colour_it("Corocana", Color.PLACE)
+	print_stuff([f"""{fenroche} places {tamara} back on the ground. "It's testing equipment," he says. "The plants are from {corocana}." """,
+""""I'm testing how they react to magic. An animal from the jungle would be good as well, but the lizardmen would eat me alive." """])
