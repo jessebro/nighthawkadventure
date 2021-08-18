@@ -13,6 +13,7 @@ from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import print_it
 from functions import utils
+import chapter2
 from functions import sounds
 
 sounds.title()
@@ -89,8 +90,9 @@ f"""The man behind you speaks up. "Strip the {character.character["titles"]["ins
 			equipment.equipment["gold"] = 0
 			ability.ability["health"] = int(ability.ability["maxhealth"] / 2)
 
-story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave", "chapter2.beginning",
-"chapter2.reeturn", "chapter2.answers", "chapter2.attack", 'chapter2.to_greypass', "chapter2.at_greypass", 'chapter2.labratory']
+story = ["chapter1.ghouls_at_farm", "chapter1.hag_lair", "chapter1.campers", "chapter1.thief", "chapter1.ascent", "chapter1.cave", "chapter2.beginning", chapter2.descent,
+"chapter2.reeturn", "chapter2.answers", "chapter2.attack", 'chapter2.to_greypass', "chapter2.at_greypass", 'chapter2.labratory',
+]
 
 while True:
 	position = boot()

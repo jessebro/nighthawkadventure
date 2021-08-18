@@ -15,6 +15,8 @@ from functions import town
 from functions import sounds
 from functions.character import story
 
+descent = "chapter2.descenta"
+
 
 def beginning():
 	global descent
@@ -101,7 +103,6 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 		if choice == "1":
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} curses under her breath. "Then we must move quickly. They could be onto us at any moment." """])
 			descent = "chapter2.descenta"
-			descenta()
 			break
 		elif choice == "2":
 			tamara = colour_it("Tamara", Color.NPC)
@@ -109,7 +110,7 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 			character.story["tamara"]["name_known"] = tamara
 		elif choice == "3":
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} lifts an eyebrow. "Then let us meet this Denvar." """])
-			descentb()
+			descent = "chapter2.descentb"
 			break
 
 
@@ -924,4 +925,4 @@ f""""If done the right way, you could have absolute power over the jungle, and d
 				break
 	print_stuff([f"""{fenroche} nods. "I'm glad you understand. What the {daughters} will do with such power, I can only guess." """,
 f""""You think the {daughters} want to have the jungle as their own?" {tamara} asks. """,
-f""""Of course. It would explain their sudden move into {corocana}, and their angering of the lizardmen." """])
+f""""Of course. It would explain their sudden move into {corocana}" """])
