@@ -835,7 +835,7 @@ f"""The remaining two {daughters}, caught off guard by this new adversary, are u
 f"""With a graceful twirl, he slits the throat of another foe. Spinning again, he stabs, burying the knife up to the hilt into the stomach of his last enemy."""])
 	sounds.end_human()
 	print_stuff([f"""The two {daughters} with severed necks are still lying on the ground, gasping and choking for air. {fenroche} approaches each one and finishes them off.""",])
-	sounds.village()
+	sounds.dire()
 	print_stuff([f""""Impressed?" he grins at you, seemingly unconcerned at the three bodies, and the three pools of blood now lying at his front door.""",
 f"""{tamara} hobbles into the room, clearly favouring one leg. Her eyes widen in shock when she sees the three corpses.""",
 f""""Who..." she stammers. "How... What the hell is going on?" {fenroche} turns to her, grinning. """,
@@ -895,4 +895,34 @@ def labratory():
 	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
 	corocana = colour_it("Corocana", Color.PLACE)
 	print_stuff([f"""{fenroche} places {tamara} back on the ground. "It's testing equipment," he says. "The plants are from {corocana}." """,
-""""I'm testing how they react to magic. An animal from the jungle would be good as well, but the lizardmen would eat me alive." """])
+""""I'm testing how they react to magic. An animal from the jungle would be good as well, but the lizardmen would eat me alive." """,
+""""My results, though inconclusive, have proven to shed light on some very interesting information." He walks over to one of the tables. """,
+f""""Watch." He pulls out a wand. "This wand is imbued with strong Lunar focus. Look what happens when I hold it close to this flower from {corocana}." """,
+f"""You watch in amazement as the flower begins to become less defined. It seems to blur and swirl before your eyes. "Lunar magic," {fenroche} elaborates. """,
+f""""Are you familiar with what Lunar focus does?" """])
+	choice = input_stuff("""1. "Yes."
+2. "No."
+> """, ["1", "2"])
+	if choice == "2":
+		print_stuff([""""Lunar focus is concerned with how something is perceived. Illusions are the main kind of magic concerned with Lunar focus." """,
+""""That is why the flower is behaving like that. It is reacting to the magical impulses, changing the way it's perceived, just like an illusion." """])
+	print_stuff([f""""This clearly shows that the plants in {corocana}, and possibly the animals, have a strong magical connections." {tamara} sucks in a breath. """,
+f""""I've heard tales of great natural events occurring in {corocana}," she says. "They come from nowhere. Could that be a reaction to focus?" """,
+f"""{fenroche} nods. "It adds up. When the lizardmen believe that something will happen - truly believe - it will happen simply because of their combined faith." """])
+	choice = input_stuff("""1. "So with strong magic you could potentially control the jungle?" 
+2. "I'm so confused." 
+> """, ["1", "2"])
+	if choice == "2":
+		while True:
+			print_stuff([f"""{fenroche} sighs. "Focus, as you should probably know, is the magical energy that touches every object, living or nonliving." """,
+f""""Focus has multiple branches, six in total. Some objects are more susceptible to magic than others. {corocana} is an example of a highly sensetive area." """,
+f""""With strong magical acts, the surrounding area could also be effected. In {corocana}, this could have awesome results." """,
+f""""If done the right way, you could have absolute power over the jungle, and do as you wish with such power. Do you need me to explain it again?" """])
+			choice = input_stuff("""1. "I think I've got it." 
+2. "Run through it again." 
+> """, ["1", "2"])
+			if choice == "1":
+				break
+	print_stuff([f"""{fenroche} nods. "I'm glad you understand. What the {daughters} will do with such power, I can only guess." """,
+f""""You think the {daughters} want to have the jungle as their own?" {tamara} asks. """,
+f""""Of course. It would explain their sudden move into {corocana}, and their angering of the lizardmen." """])
