@@ -925,4 +925,7 @@ f""""If done the right way, you could have absolute power over the jungle, and d
 				break
 	print_stuff([f"""{fenroche} nods. "I'm glad you understand. What the {daughters} will do with such power, I can only guess." """,
 f""""You think the {daughters} want to have the jungle as their own?" {tamara} asks. """,
-f""""Of course. It would explain their sudden move into {corocana}" """])
+f""""Of course. It would explain their sudden move into {corocana}. But the only way to prove their intentions is to go there ourselves." He looks you in the eye. """,
+f""""It will be dangerous, and it will be a journey into the unknown. Our knowledge of the jungles is limited, so we must be ready for the unknown." """,
+f""""But the first step is to get out of here," {tamara} puts in. {fenroche} nods.""",
+f""""We'll construct a plan," he says. "There's no time like the present to make moves. Besides..." He shoots a glance at {tamara}. "What choice do we have?" """])
