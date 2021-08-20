@@ -894,6 +894,7 @@ def labratory():
 	caelfin = colour_it("Caelfin", Color.PLACE)
 	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
 	corocana = colour_it("Corocana", Color.PLACE)
+	sounds.dire()
 	print_stuff([f"""{fenroche} places {tamara} back on the ground. "It's testing equipment," he says. "The plants are from {corocana}." """,
 """"I'm testing how they react to magic. An animal from the jungle would be good as well, but the lizardmen would eat me alive." """,
 """"My results, though inconclusive, have proven to shed light on some very interesting information." He walks over to one of the tables. """,
@@ -926,6 +927,28 @@ f""""If done the right way, you could have absolute power over the jungle, and d
 	print_stuff([f"""{fenroche} nods. "I'm glad you understand. What the {daughters} will do with such power, I can only guess." """,
 f""""You think the {daughters} want to have the jungle as their own?" {tamara} asks. """,
 f""""Of course. It would explain their sudden move into {corocana}. But the only way to prove their intentions is to go there ourselves." He looks you in the eye. """,
-f""""It will be dangerous, and it will be a journey into the unknown. Our knowledge of the jungles is limited, so we must be ready for the unknown." """,
+f""""It will be dangerous, and it will be a journey into the unknown. Our knowledge of the jungles is limited, so we must be ready for anything." """,
 f""""But the first step is to get out of here," {tamara} puts in. {fenroche} nods.""",
-f""""We'll construct a plan," he says. "There's no time like the present to make moves. Besides..." He shoots a glance at {tamara}. "What choice do we have?" """])
+f""""We'll construct a plan," he says. "There's no time like the present to make moves. Besides..." He shoots a glance at {tamara}. "What choice do we have?" """,
+f""""None, as far as I can tell," {tamara} says. "And I think I know where to begin." {fenroche} looks up at her. """,
+f""""The {daughters} are after {fenroche}," {tamara} begins slowly. "So we need a diversion." She smiles knowingly, and {fenroche} groans. """,
+f""""No way. Not with that injured leg of yours. And for my sake?" {fenroche} shakes his head. "Maybe it would work, but the risk is too great." """,
+f""""Before you go making such statements, maybe you'd like to hear my plan in full?" {tamara} raises an eyebrow. "Alright, now here's the idea." """])
+	sounds.jungle()
+	print_stuff([""""They're watching the house, so we can't leave... unless they are looking at something else." """,
+f""""What I propose is that after dark, I leave out the front, with a dummy of sorts wrapped in your cloak, {fenroche}. In the darkness, hopefully the facade will hold." """,
+f""""Because they're after you, {fenroche}, they'll follow, allowing you and {character.character['firstname']} to exit through a back window." """,
+f""""Meanwhile, as soon as the {daughters} show themselves, I'll make myself scarce." """])
+	while True:
+		quest = colour_it(""""Let's get to it!" """, Color.QUEST)
+		choice = input_stuff(f"""1. "So much can go wrong." 
+2. "I'll come with you as a decoy." 
+3. "What if you can't get away?" 
+4. {quest}
+> """, ["1", "2"])
+		if choice == "1":
+			print_stuff([f""""It's not the best plan, but until we have any better ideas... Time is of the essense. Every second is another step closer the {daughters} get to their goal." """])
+		elif choice == "2":
+			print_stuff([f""""No. For all I know, I'll have a hundred foes on my tail. One is harder to follow than two." """])
+		elif choice == "3":
+			print_stuff([f"""{tamara} smiles weakly. "Then you can save the money for my drink at the tavern," she jests grimly. """])
