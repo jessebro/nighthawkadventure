@@ -6,6 +6,7 @@ from functions import character
 from functions import weapon
 from functions import achievements
 from functions.utils import input_stuff
+from functions.utils import print_stuff
 from functions.utils import clear
 from functions.utils import print_it
 from functions.utils import Color
@@ -30,6 +31,9 @@ def boot():
 		elif start == "4":
 			exit()
 		elif start != "1":
+			if not os.path.exists("savefiles/"):
+				print_stuff(["""There are no savefiles yet."""])
+				continue
 			returnable = False
 			while not returnable:
 				returnable = load()
