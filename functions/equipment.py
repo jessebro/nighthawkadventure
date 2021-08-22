@@ -1,3 +1,5 @@
+from functions.utils import input_stuff
+
 START_GOLD = 20
 
 equipment = {
@@ -14,7 +16,7 @@ equipment = {
 
 def get_equipment():
 	equipment_options = [" Potion", " Knife", "n Oil", " Smoke Bomb"]
-	equipment_choice = int(input(f"""Finally, you'll get a look at your starting equipment. You have:
+	equipment_choice = int(input_stuff(f"""Finally, you'll get a look at your starting equipment. You have:
 	1 Longsword (Sharpness 1, Finesse 0, Stability 5)
 	{START_GOLD} gold
 	1 Potion
@@ -28,7 +30,7 @@ Your choice of a consumable item.
 	4. Smoke Bombs (your next attack makes an extra attack)
 
 Type the number of the item you want
-> """))
+> """, ['1', '2', '3', '4']))
 
 	equipment_confirm = input(f"""Are you sure you want a{equipment_options[equipment_choice - 1]}? y/n
 > """)

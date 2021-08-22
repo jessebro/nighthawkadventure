@@ -44,6 +44,8 @@ def boot():
 
 
 def save(position):
+	if not os.path.exists("savefiles/"):
+		os.mkdir("savefiles/")
 	print_it("Your game has been saved!", Color.FUNCTION)
 	data = {
 		"character": character.character,
