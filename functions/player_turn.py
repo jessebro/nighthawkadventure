@@ -141,6 +141,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 			enemy_round.game_state['damage_dealt'] += player_damage
 			enemy_round.game_state['total_damage_dealt'] += player_damage
 			enemy_round.game_state['damages'].append(player_damage)
+			if enemy['hp'] <= 0:
+				return
 		else:
 			if enemy["parry"]:
 				print(print_script("player_hit_parry", enemy))
