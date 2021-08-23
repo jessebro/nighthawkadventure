@@ -145,7 +145,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 			if enemy["parry"]:
 				print(print_script("player_hit_parry", enemy))
 				time.sleep(5)
-				print("Your enemy parries your blow and counter attacks!")
+				print(colour_it("Your enemy parries your blow and counter attacks!", Color.REDF))
 				time.sleep(3)
 				counter += 1
 				enemy_round.choose_target(enemy, allies)
