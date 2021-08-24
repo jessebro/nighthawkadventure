@@ -11,12 +11,10 @@ from functions.utils import Color
 from functions.utils import clear
 
 
-
 buffs = [0, 0, 0]
 
 
 def get_turn_choice(enemy):
-	reference = enemy["reference"]
 	action = input_stuff(print_script("turn_start", enemy) + f""" Do you...
 	1. Strike
 	2. Parry
@@ -60,7 +58,6 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	agility_check = 30
 	if not counter:
 		enemy_round.game_state['striked'] = True
-	reference = enemy["reference"]
 	attacks = [known for known in weapon.weapon["attacks"] if known['enabled']]
 	prompt = ""
 	counter = 0
