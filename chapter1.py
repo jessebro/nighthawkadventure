@@ -237,7 +237,7 @@ f""""They are merely rumours, of course," {eladris} adds quickly. "But rumours c
 				else:
 					print_stuff([f"""{eladris} nods. "Sweet dreams," he says. Just as you are beginning to pull out your blankets, {man_name} returns from his walk.""",
 "He remains silent, until Eladris is fast asleep, at which point he approaches you.",
-""""I know what you are," he says. "You're a fighter; that much is clear to see. But I'm warning you that if you pull a fast one, we'll soon see who's the better fighter." """,])
+""""I know what you are," he says. "You're a fighter; that much is clear to see. But I'm warning you that if you pull a fast one, we'll soon see who's the better." """,])
 					break
 			reply = input_stuff("""1. "Big words for a man with a small prick."
 2. "You need not worry."
