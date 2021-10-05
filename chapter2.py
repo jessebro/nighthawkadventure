@@ -945,10 +945,13 @@ f""""Meanwhile, as soon as the {daughters} show themselves, I'll make myself sca
 2. "I'll come with you as a decoy." 
 3. "What if you can't get away?" 
 4. {quest}
-> """, ["1", "2"])
+> """, ["1", "2", "3", "4"])
 		if choice == "1":
 			print_stuff([f""""It's not the best plan, but until we have any better ideas... Time is of the essense. Every second is another step closer the {daughters} get to their goal." """])
 		elif choice == "2":
 			print_stuff([f""""No. For all I know, I'll have a hundred foes on my tail. One is harder to follow than two." """])
 		elif choice == "3":
 			print_stuff([f"""{tamara} smiles weakly. "Then you can save the money for my drink at the tavern," she jests grimly. """])
+		elif choice == "4":
+			break
+	print_stuff([""])
