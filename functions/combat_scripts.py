@@ -1,4 +1,5 @@
 from functions import weapon
+from functions import settings
 import random
 import copy
 
@@ -243,4 +244,6 @@ def print_script(scripts, enemy, ally=defaults):
 	for option in options:
 		if len(option) <= 0:
 			get_scripts(enemy, ally)
-	return script
+	if settings.settings["immersion"] == "OFF":
+		return ""
+	print(script)

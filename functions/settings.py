@@ -58,7 +58,10 @@ def get_settings():
 6. Exit.
 > """, ["1", "2", "3", "4", "5", "6"])
 			elif choice == "3":
-				settings[immersion] = "OFF"
+				if settings["immersion"] == "ON":
+					settings["immersion"] = "OFF"
+				else:
+					settings["immersion"] = "ON"
 			elif choice == "4":
 				save_settings()
 				return

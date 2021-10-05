@@ -9,13 +9,20 @@ from functions.combat_scripts import *
 from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import clear
+from functions import settings
+
+delay = 5
+if settings.settings['immersion'] == "OFF":
+	delay = 0
+
 
 
 buffs = [0, 0, 0]
 
 
 def get_turn_choice(enemy):
-	action = input_stuff(print_script("turn_start", enemy) + f""" Do you...
+	print_script("turn_start", enemy)
+	action = input_stuff(f"""Do you...
 	1. Strike
 	2. Parry
 	3. Distract       ~ {ability.ability["health"]} / {ability.ability["maxhealth"]} health ~
@@ -91,8 +98,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	elif attacks[attack_choice]['name'] == "Vampire Strike":
 		damage_mod -= 0.25
 		vampiric = True
-	print(print_script("player_attack", enemy))
-	time.sleep(5)
+	print_script("player_attack", enemy)
+	time.sleep(delay)
 	counter = 0
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
@@ -107,16 +114,16 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 		enemy_round.game_state['attacks'] += 1
 		if roll <= (75 + ability.ability["strength"] + enemy["playermod"] + (ability.ability['level']) - enemy["agility"]):
 			enemy_round.game_state['hits'] += 1
-			print(print_script("player_hit", enemy))
-			time.sleep(5)
+			print_script("player_hit", enemy)
+			time.sleep(delay)
 			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + (buffs[1] * 5)):
 				print("The strike was well aimed, and scored a critical hit!")
-				time.sleep(3)
+				time.sleep(delay)
 				damage_multi += 1
 			if roll <= (bleeding + (weapon.weapon["sharpness"] + ability.ability["strength"])):
 				enemy["bleeding"] += bleed_lvl
 				print("Your attack cuts deep, and causes your enemy to bleed!")
-				time.sleep(4)
+				time.sleep(delay)
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
 			max_damage = int((ability.ability["strength"] + 2) * damage_multi)
 			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"] + damage_bonus + ability.ability['level'] + (buffs[0] * 2)
@@ -126,13 +133,13 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 				if healing <= 50:
 					ability.ability["health"] += player_damage
 					print(f"You regained {player_damage_script} health from your vampiric attack!")
-					time.sleep(3)
+					time.sleep(delay)
 					enemy_round.game_state['health_restored'] += player_damage
 					if ability.ability["health"] > ability.ability["maxhealth"]:
 						ability.ability["health"] = ability.ability["maxhealth"]
 			enemy["hp"] -= player_damage
 			print(f"You hit for {player_damage_script}")
-			time.sleep(5)
+			time.sleep(delay)
 			weapon.lose_stability()
 			counter += 1
 			enemy_round.game_state['damage_dealt'] += player_damage
@@ -142,28 +149,28 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 				return
 		else:
 			if enemy["parry"]:
-				print(print_script("player_hit_parry", enemy))
-				time.sleep(5)
+				print_script("player_hit_parry", enemy)
+				time.sleep(delay)
 				print(colour_it("Your enemy parries your blow and counter attacks!", Color.REDF))
-				time.sleep(3)
+				time.sleep(delay)
 				counter += 1
 				enemy_round.choose_target(enemy, allies)
 				if ability.ability['health'] <= 0:
 					enemy_round.player_defeat()
 			else:
-				print(print_script("player_miss", enemy))
-				time.sleep(5)
+				print_script("player_miss", enemy)
+				time.sleep(delay)
 				print(colour_it("You miss your attack!", Color.RED))
-				time.sleep(5)
+				time.sleep(delay)
 				counter += 1
 		if attacks == 3:
 			attacks -= 1
-			print(print_script("player_extra_attack", enemy))
-			time.sleep(5)
+			print_script("player_extra_attack", enemy)
+			time.sleep(delay)
 		elif attacks == 4:
 			attacks -= 1
 			print("You use the smoke to disappear, then emerge again suddenly.")
-			time.sleep(5)
+			time.sleep(delay)
 
 
 def parry(enemy, allies):
@@ -186,30 +193,30 @@ def parry(enemy, allies):
 		opportunist = True
 	elif parry == "3":
 		vengeance = True
-	print(print_script("player_parry", enemy))
+	print_script("player_parry", enemy)
 	enemy["modifier"] -= (10 + ability.ability["agility"] + ability.ability["parry_lvl"])
 	enemy_roll = random.randrange(1,101)
-	time.sleep(5)
+	time.sleep(delay)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"] - ability.ability['agility']):
-		print(print_script("player_fail_parry", enemy))
+		print_script("player_fail_parry", enemy)
 		enemy_damage = random.randrange(enemy["mindamage"], enemy["maxdamage"])
 		enemy_damage_script = f"{colour_it(str(enemy_damage) + ' damage!', Color.YELLOW)}"
 		ability.ability["health"] -= enemy_damage
-		time.sleep(5)
+		time.sleep(delay)
 		print(f"You are hit for {enemy_damage_script}")
-		time.sleep(5)
+		time.sleep(delay)
 		if enemy_round.player_defeat():
 			return
 		if vengeance:
 			print("You shrug off the pain and lunge forwards in an attempt to take revenge!")
-			time.sleep(3)
+			time.sleep(delay)
 			strike(enemy, allies, bonus=enemy_damage)
 		turn(enemy, allies)
 	else:
-		print(print_script("player_success_parry", enemy))
-		time.sleep(5)
+		print_script("player_success_parry", enemy)
+		time.sleep(delay)
 		print(colour_it("Your parry succeeds and you riposte!", Color.GREEN))
-		time.sleep(3)
+		time.sleep(delay)
 		if opportunist:
 			turn(enemy, allies)
 			return False
@@ -238,23 +245,23 @@ def distract(enemy, allies):
 		lacerating = True
 	elif distract == "3":
 		deadly = True
-	print(print_script("player_distract", enemy))
-	time.sleep(5)
+	print_script("player_distract", enemy)
+	time.sleep(delay)
 	attack_chance = random.randrange(1,101)
 	if attack_chance <= (50 + ability.ability['agility'] + ability.ability["distract_lvl"]):
 		if lacerating == True:
 			enemy["bleeding"] += 2
 			print(colour_it("Your enemy's loss of focus allows you to cut them, causing them to bleed!", Color.GREEN))
-			time.sleep(3)
+			time.sleep(delay)
 		elif deadly == True:
 			buffs[0] += 2
 			buffs[1] += 2
 			print(colour_it("Your enemy's loss of focus opens them up to significant damage!", Color.GREEN))
-			time.sleep(3)
+			time.sleep(delay)
 		else:
 			enemy["playermod"] += (10 + ability.ability["agility"] + ability.ability["distract_lvl"] * 2)
 			print(colour_it("Your enemy's loss of focus allows you to make an attack!", Color.GREEN))
-			time.sleep(3)
+			time.sleep(delay)
 			strike(enemy, allies)
 	else:
 		return False
@@ -293,69 +300,69 @@ Enter 'b' to go back
 		if equipment.equipment["potions"] <0:
 			print("You have no more potions!")
 			equipment.equipment["potions"] = 0
-			time.sleep(2)
+			time.sleep(delay)
 			use_item(enemy, allies)
 			return False
 		elif ability.ability["health"] == ability.ability["maxhealth"]:
 			print("You're on max health, and a potion would have no effect.")
-			time.sleep(5)
+			time.sleep(delay)
 			equipment.equipment["potions"] += 1
 			use_item(enemy,allies)
 			return False
 		else:
-			print(print_script("player_potion", enemy))
+			print_script("player_potion", enemy)
 			healing = random.randrange(4,9)
 			healing_script = colour_it(f"{healing} health!", Color.GREEN)
 			ability.heal(healing)
-			time.sleep(5)
+			time.sleep(delay)
 			print(f"You regained {healing_script}")
-			time.sleep(5)
+			time.sleep(delay)
 			if equipment.equipment["empowering"] == True:
 				boost = random.choice([0, 1, 2])
 				words = [colour_it("damage", Color.YELLOW), colour_it("critical chance", Color.RED), colour_it("damage resistance", Color.CYAN)]
 				buffs[boost] += 3
 				print(f"Your {words[boost]} has been boosted!")
-				time.sleep(3)
+				time.sleep(delay)
 			enemy_round.game_state['health_restored'] += healing
 	if item_use == "2":
 		equipment.equipment["knives"] -= 1
 		if equipment.equipment["knives"] <0:
 			print("You have no more knives!")
 			equipment.equipment["knives"] = 0
-			time.sleep(2)
+			time.sleep(delay)
 			use_item(enemy, allies)
 		else:
 			enemy_round.game_state['knifed'] = True
-			print(print_script("player_knife", enemy))
+			print_script("player_knife", enemy)
 			knife_damage = random.randrange(2, 6)
 			knife_damage_script = colour_it(f"{knife_damage} damage!", Color.YELLOW)
 			enemy["hp"] -= knife_damage
 			enemy_round.game_state['damage_dealt'] += knife_damage
 			enemy_round.game_state['total_damage_dealt'] += knife_damage
-			time.sleep(5)
+			time.sleep(delay)
 			print(f"Your knife hits for {knife_damage_script}")
-			time.sleep(5)
+			time.sleep(delay)
 			if equipment.equipment["serrated"] == True:
 				enemy["bleeding"] += 1
 				print(f"Your knife causes the enemy to bleed!")
-				time.sleep(3)
+				time.sleep(delay)
 	if item_use == "3":
 		equipment.equipment["oils"] -= 1
 		if equipment.equipment["oils"] <0:
 			print("You have no more oils!")
 			equipment.equipment["oils"] = 0
-			time.sleep(2)
+			time.sleep(delay)
 			use_item(enemy, allies)
 			return False
 		else:
-			print(print_script("player_oil", enemy))
-			time.sleep(5)
+			print_script("player_oil", enemy)
+			time.sleep(delay)
 			oil = 2
 			fatal = random.randrange(1,101)
 			if equipment.equipment["fatal"] == True and fatal <= 15:
 				enemy["hp"] = 0
 				print(f"You strike home with your oil, and it burns {reference['object']} from the inside, killing {reference['him']} instantly.")
-				time.sleep(5)
+				time.sleep(delay)
 			else:
 				strike(enemy, allies, damage_mod=oil)
 			if enemy['hp'] <= 0:
@@ -365,12 +372,12 @@ Enter 'b' to go back
 		if equipment.equipment["smoke bombs"] <0:
 			print("You have no more smoke bombs!")
 			equipment.equipment["smoke bombs"] = 0
-			time.sleep(2)
+			time.sleep(delay)
 			use_item(enemy, allies)
 			return False
 		else:
-			print(print_script("player_smoke", enemy))
-			time.sleep(5)
+			print_script("player_smoke", enemy)
+			time.sleep(delay)
 			if equipment.equipment["disorientating"] == True:
 				enemy["modifier"] -= 10
 			strike(enemy, allies, smoke=True)

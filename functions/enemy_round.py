@@ -11,7 +11,11 @@ from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import print_stuff
 from functions import sounds
+from functions import settings
 
+delay = 5
+if settings.settings['immersion'] == "OFF":
+		delay = 0
 
 # naughty global state goes here
 defaults = {
@@ -137,7 +141,7 @@ def enemy_turn(enemy, enemies, allies, boss):
 		damage = random.randrange(2,6)
 		damage_script = colour_it(f"{damage} damage!", Color.YELLOW)
 		print(f"Your enemy bleeds for {damage_script}")
-		time.sleep(4)
+		time.sleep(delay)
 		enemy["modifier"] -= (10 * enemy['bleeding'])
 		enemy["bleeding"] -= 1
 		game_state['damage_dealt'] += damage
@@ -193,67 +197,67 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 	enemy["parry"] = False
 	enemy["distract"] = False
 	if target == "player":
-		print(print_script("enemy_strike", enemy, ally))
+		print_script("enemy_strike", enemy, ally)
 	else:
 		get_scripts(enemy, ally, "ally")
-		print(print_script("enemy_attack_ally", enemy, ally))
+		print_script("enemy_attack_ally", enemy, ally)
 	enemy_roll = random.randrange(1, 101)
-	time.sleep(5)
+	time.sleep(delay)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"]):
 		if target == "player":
 			agility_roll = random.randrange(1, 15)
 			if agility_roll <= ability.ability["agility"]:
 				print(colour_it("You see the attack coming, but you will have to react quickly to avoid it.", Color.CHECK))
-				time.sleep(3)
+				time.sleep(delay)
 				dodge = ability.reaction(1.25, random.randrange(2, 4))
 				if dodge:
 					print("You are nimble enough to avoid the blow!")
-					time.sleep(3)
+					time.sleep(delay)
 					return
 				else:
 					print("Despite your efforts, you are too slow to avoid the blow.")
-					time.sleep(3)
-			print(print_script("enemy_hit", enemy, ally))
+					time.sleep(delay)
+			print_script("enemy_hit", enemy, ally)
 		else:
-			print(print_script("enemy_hit_ally", enemy, ally))
+			print_script("enemy_hit_ally", enemy, ally)
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
 		enemy_damage_script = colour_it(f"{enemy_damage} damage!", Color.RED)
 		if target == "player":
 			ability.ability["health"] -= enemy_damage
 		else:
 			ally['hp'] -= enemy_damage
-		time.sleep(5)
+		time.sleep(delay)
 		if target == "player":
 			print(f"You are hit for {enemy_damage_script}")
 			game_state["damage_received"] += enemy_damage
 			game_state['total_damage_received'] += enemy_damage
 		else:
 			print(f"{ally['reference']['object']} is hit for {enemy_damage_script}")
-		time.sleep(5)
+		time.sleep(delay)
 	else:
 		if target == "player":
-			print(print_script("enemy_miss", enemy, ally))
+			print_script("enemy_miss", enemy, ally)
 		else:
-			print(print_script("enemy_miss_ally", enemy, ally))
-		time.sleep(5)
+			print_script("enemy_miss_ally", enemy, ally)
+		time.sleep(delay)
 		print(colour_it("Your enemy misses!", Color.GREEN))
-		time.sleep(3)
+		time.sleep(delay)
 
 
 def enemy_parry(enemy):
 	reference = enemy["reference"]
-	print(print_script("enemy_block", enemy))
+	print_script("enemy_block", enemy)
 	enemy["playermod"] -= (10 - enemy["agility"])
 	enemy["parry"] = True
-	time.sleep(5)
+	time.sleep(delay)
 
 
 def enemy_distract(enemy):
 	reference = enemy["reference"]
-	print(print_script("enemy_divert", enemy))
+	print_script("enemy_divert", enemy)
 	enemy["modifier"] += (10 + enemy["agility"])
 	enemy["distract"] = True
-	time.sleep(5)
+	time.sleep(delay)
 
 
 def dead_check(enemy, enemies, boss):
@@ -272,9 +276,9 @@ def player_defeat():
 		if equipment.equipment["potions"] > 0:
 			equipment.equipment["potions"] -= 1
 			print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
-			time.sleep(5)
+			time.sleep(delay)
 			print("A potion was used to prevent defeat, but only at half it's potency.")
-			time.sleep(3)
+			time.sleep(delay)
 			ability.ability["health"] = 0
 			healing = random.randrange(2, 6)
 			ability.ability["health"] += healing
@@ -289,13 +293,13 @@ def kill(enemy, enemies, boss):
 	game_state['gang_size'] -= 1
 	reference = enemy['reference']
 	if enemy["type"] == "human":
-		print(print_script("human_death", enemy))
-		time.sleep(5)
+		print_script("human_death", enemy)
+		time.sleep(delay)
 	else:
-		print(print_script("monster_death", enemy))
-		time.sleep(5)
+		print_script("monster_death", enemy)
+		time.sleep(delay)
 	print(colour_it(f"{reference['object'].capitalize()} was killed!", Color.BLUE))
-	time.sleep(3)
+	time.sleep(delay)
 	if game_state['knifed'] and not game_state['striked'] and not achievements.achievements['knife_master']['unlocked']:
 		achievements.get_achievement('knife_master')
 	if game_state['assistance'] or game_state['goad'] and not achievements.achievements['teamwork']['unlocked']:
@@ -321,8 +325,8 @@ def next_victim(enemies):
 		return
 	enemy = enemies[game_state['gang_index']]
 	reference = enemy['reference']
-	print(print_script("enemy_approach", enemy))
-	time.sleep(5)
+	print_script("enemy_approach", enemy)
+	time.sleep(delay)
 	return False
 
 
@@ -331,8 +335,8 @@ def ally_turn(ally, enemy):
 	goad = ""
 	get_scripts(enemy, ally, "ally")
 	if ally['hp'] <= 0 and ally['xp'] != 0:
-		print(print_script('ally_down', enemy, ally))
-		time.sleep(5)
+		print_script('ally_down', enemy, ally)
+		time.sleep(delay)
 		ally['xp'] = 0
 	action = random.randrange(1, 6)
 	if ally['xp'] == 0:
@@ -350,36 +354,36 @@ def ally_strike(ally, enemy):
 	ally["parry"] = False
 	ally["distract"] = False
 	ally_roll = random.randrange(1, 101)
-	print(print_script("ally_attack", enemy, ally))
-	time.sleep(5)
+	print_script("ally_attack", enemy, ally)
+	time.sleep(delay)
 	if ally_roll <= (ally["skill"] + ally["modifier"]):
 		ally_damage = (random.randrange(ally["mindamage"], ally["maxdamage"] + 1))
 		ally_damage_script = colour_it(f"{ally_damage} damage!", Color.YELLOW)
 		enemy["hp"] -= ally_damage
-		print(print_script("ally_hit", enemy, ally))
-		time.sleep(5)
+		print_script("ally_hit", enemy, ally)
+		time.sleep(delay)
 		print(f"{reference['object'].capitalize()} hits for {ally_damage_script}")
-		time.sleep(5)
+		time.sleep(delay)
 		game_state['damage_dealt'] += ally_damage
 		game_state['total_damage_dealt'] += ally_damage
 	else:
-		print(print_script("ally_miss", enemy, ally))
-		time.sleep(5)
+		print_script("ally_miss", enemy, ally)
+		time.sleep(delay)
 		print(colour_it(f"{reference['object'].capitalize()} misses!", Color.RED))
-		time.sleep(3)
+		time.sleep(delay)
 
 def ally_assist(ally, enemy):
 	global game_state
-	print(print_script("ally_assist", enemy, ally))
-	time.sleep(5)
+	print_script("ally_assist", enemy, ally)
+	time.sleep(delay)
 	game_state['assistance'] = True
 
 
 def ally_distract(ally, enemy):
 	global game_state
 	reference = ally['reference']
-	print(print_script("ally_assist", enemy, ally))
-	time.sleep(5)
+	print_script("ally_assist", enemy, ally)
+	time.sleep(delay)
 	game_state['goad'] = reference['object']
 
 

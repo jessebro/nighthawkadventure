@@ -328,6 +328,7 @@ def thief():
 	lalikins = colour_it("lalikins", Color.ENEMY)
 	save("chapter1.thief")
 	sounds.travel()
+	enemy_round.initialize([encounters.monster_access("fbandit")])
 	equipment.equipment["gold"] -= 15
 	if equipment.equipment["gold"] < 0:
 		equipment.equipment["gold"] = 0
