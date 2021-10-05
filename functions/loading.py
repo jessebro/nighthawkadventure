@@ -5,6 +5,7 @@ from functions import equipment
 from functions import character
 from functions import weapon
 from functions import achievements
+from functions import settings
 from functions.utils import input_stuff
 from functions.utils import print_stuff
 from functions.utils import clear
@@ -23,12 +24,15 @@ def boot():
 		start = input_stuff(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. New Game
 2. Load Game
-3. View achievements
-4. Exit
-> """, ["1", "2", "3", "4"])
+3. Settings
+4. View achievements
+5. Exit
+> """, ["1", "2", "3", "4", "5"])
 		if start == "3":
-			achievements.view_achievements()
+			settings.get_settings()
 		elif start == "4":
+			achievements.view_achievements()
+		elif start == "5":
 			exit()
 		elif start != "1":
 			if not os.path.exists("savefiles/"):

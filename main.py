@@ -18,7 +18,6 @@ from functions import sounds
 
 sounds.title()
 
-
 def set_default_actions():
 	utils.default_actions = {
 		"e": inventory.show,

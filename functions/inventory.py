@@ -3,6 +3,7 @@ from functions import character
 from functions import equipment
 from functions import weapon
 import random
+from functions import settings
 from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
@@ -21,8 +22,9 @@ Gold: {equipment.equipment["gold"]}
 1. Character Stats
 2. Weapon
 3. Items
-4. Exit
-> """, ["1", "2", "3", "4"])
+4. Settings
+5. Exit
+> """, ["1", "2", "3", "4", "5"])
 
 	if menu == "1":
 		clear()
@@ -47,6 +49,9 @@ Enter 'b' to go back
 		item_list()
 
 	elif menu == "4":
+		settings.get_settings()
+
+	elif menu == "5":
 		return False
 
 

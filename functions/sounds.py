@@ -1,8 +1,17 @@
 from pygame import mixer
 import pygame
+from functions import settings
 
 playing = ""
+settings.load_settings()
 
+mixer.init()
+mixer.music.set_volume(settings.settings["music"] / 10)
+
+def get_volume():
+	volume = settings.check_settings()
+	volume = volume["music"]
+	return volume
 
 def play_combat(type):
 	global playing
@@ -15,9 +24,9 @@ def play_combat(type):
 	playing = "fighty"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound(play)
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load(play)
+	mixer.music.play(-1)
 
 
 def end_combat():
@@ -28,8 +37,8 @@ def end_combat():
 	pygame.init()
 	mixer.init()
 	mixer.stop()
-	song = pygame.mixer.Sound('music/Combat_End.ogg')
-	song.play()
+	mixer.music.load('music/Combat_End.ogg')
+	mixer.music.play()
 
 
 def end_human():
@@ -40,8 +49,8 @@ def end_human():
 	pygame.init()
 	mixer.init()
 	mixer.stop()
-	song = pygame.mixer.Sound('music/Sworddancers end.ogg')
-	song.play()
+	mixer.music.load('music/Sworddancers end.ogg')
+	mixer.music.play()
 
 
 def dungeon():
@@ -51,9 +60,9 @@ def dungeon():
 	playing = "music/Forsaken Halls.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/Forsaken Halls.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/Forsaken Halls.ogg')
+	mixer.music.play(-1)
 
 
 def title():
@@ -63,9 +72,9 @@ def title():
 	playing = "music/A Blade and a Bag.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/A Blade and a Bag.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/A Blade and a Bag.ogg')
+	mixer.music.play(-1)
 
 
 def travel():
@@ -75,9 +84,9 @@ def travel():
 	playing = "music/The Winding Road.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/The Winding Road.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/The Winding Road.ogg')
+	mixer.music.play(-1)
 
 
 def town():
@@ -87,9 +96,9 @@ def town():
 	playing = "music/City of Sails.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/City of Sails.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/City of Sails.ogg')
+	mixer.music.play(-1)
 
 
 def night():
@@ -99,9 +108,9 @@ def night():
 	playing = "music/A Deep Sky.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/A Deep Sky.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/A Deep Sky.ogg')
+	mixer.music.play(-1)
 
 
 def dire():
@@ -111,9 +120,9 @@ def dire():
 	playing = "music/Dire Circumstances.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/Dire Circumstances.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/Dire Circumstances.ogg')
+	mixer.music.play(-1)
 
 
 def doom():
@@ -123,9 +132,9 @@ def doom():
 	playing = "music/Approaching Doom.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/Approaching Doom.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/Approaching Doom.ogg')
+	mixer.music.play(-1)
 
 
 def end_boss():
@@ -136,8 +145,8 @@ def end_boss():
 	pygame.init()
 	mixer.init()
 	mixer.stop()
-	song = pygame.mixer.Sound('music/Boss_End.ogg')
-	song.play()
+	mixer.music.load('music/Boss_End.ogg')
+	mixer.music.play()
 
 
 def jungle():
@@ -147,9 +156,9 @@ def jungle():
 	playing = "music/Jungle of Mysteries.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/Jungle of Mysteries.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/Jungle of Mysteries.ogg')
+	mixer.music.play(-1)
 
 
 def fairy():
@@ -159,9 +168,9 @@ def fairy():
 	playing = "music/Whispering Fairies.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/Whispering Fairies.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/Whispering Fairies.ogg')
+	mixer.music.play(-1)
 
 
 def village():
@@ -171,9 +180,9 @@ def village():
 	playing = "music/Haven of Humanity.ogg"
 	pygame.init()
 	mixer.init()
-	mixer.fadeout(1000)
-	song = pygame.mixer.Sound('music/Haven of Humanity.ogg')
-	song.play(-1)
+	mixer.music.fadeout(500)
+	mixer.music.load('music/Haven of Humanity.ogg')
+	mixer.music.play(-1)
 
 
 def level_up():
@@ -181,10 +190,10 @@ def level_up():
 	pygame.init()
 	mixer.init()
 	mixer.stop()
-	song = pygame.mixer.Sound('music/Level Up.ogg')
-	song.play()
+	mixer.music.load('music/Level Up.ogg')
+	mixer.music.play()
 
 
 def play_prev():
-	song = pygame.mixer.Sound("music/A Blade and a Bag.ogg")
-	song.play(-1)
+	mixer.music.load("music/A Blade and a Bag.ogg")
+	mixer.music.play(-1)
