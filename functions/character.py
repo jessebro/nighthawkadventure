@@ -17,10 +17,11 @@ character = {
 
 story = {
 	"hag_lair": False,
+	"descended": "a",
 	"criminal": False,
 	"told_romance": False,
 
-# Characters v
+# Characters
 	"eladris": {
 		"exists": True,
 		"knows_name": False
