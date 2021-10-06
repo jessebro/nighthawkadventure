@@ -15,15 +15,14 @@ from functions import town
 from functions import sounds
 from functions.character import story
 
-descent = "chapter2.descenta"
-
 
 def beginning():
-	global descent
+	global descent_choice
 	save('chapter2.beginning')
 	elfa = colour_it("Elfa", Color.NPC)
 	micha = colour_it("Micha", Color.NPC)  # Word colouring
 	sounds.dire()
+	character.story["denvar"]["exists"] = True
 	print_stuff(["You wake up, your head throbbing painfully. You hear voices, but they are echoing and far away. You look around and find yourself sitting in a large cage.",
 "The cage itself is made of wood, but all your belongings are gone. The wooden cage's bars and supports are thick, and you cannot break them.",
 "To your left is a man and a woman. Each looks only sixteen, and each is covered in blood. It only takes you a moment to realise two things.",
@@ -102,7 +101,7 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 > """, ["1", "2"])
 		if choice == "1":
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} curses under her breath. "Then we must move quickly. They could be onto us at any moment." """])
-			descent = "chapter2.descenta"
+			character.story["descended"] = "a"
 			break
 		elif choice == "2":
 			tamara = colour_it("Tamara", Color.NPC)
@@ -110,9 +109,14 @@ f"""{micha} shakes his head, and the woman turns to you."""])
 			character.story["tamara"]["name_known"] = tamara
 		elif choice == "3":
 			print_stuff([f"""{character.story['tamara']['name_known'].capitalize()} lifts an eyebrow. "Then let us meet this Denvar." """])
-			descent = "chapter2.descentb"
+			character.story["descended"] = "b"
 			break
 
+def descent():
+	if character.story['descended'] == "a":
+		descenta()
+	else:
+		descentb()
 
 def descenta():
 	micha = colour_it("Micha", Color.NPC)
@@ -245,7 +249,9 @@ f"""{tamara} laughs. "They were too... exposing for me anyway." """])
 					print_stuff([f"""You see {tamara} give a start. "No reason," she says quickly. "Or at least, a reason that I do not wish to reveal currently." """])
 		elif question == "5":
 			break
-	print_stuff([f"Suddenly, you hear the sound of footsteps. {tamara} jumps to her feet and runs to the window.",])
+	print_stuff([f"Suddenly, you hear the sound of footsteps. {tamara} jumps to her feet and runs to the window.",
+f""""Curses," she groans. "They've caught up with us." She runs outside, sword in hand. You follow suit, drawing {weapon.weapon['weaponname']}.""",
+f"""Two of those women stand, ready for battle. "I'll take one," {tamara} says. "Careful; they're quick." """])
 	enemy_round.initialize([encounters.monster_access("chaos_daughter")])
 	sounds.travel()
 	if ability.ability['health'] <= 0:
@@ -887,11 +893,8 @@ f"""Other than that, you feel like some of these objects are magical, but their 
 
 def labratory():
 	save('chapter2.labratory')
-	greypass = colour_it("Greypass", Color.PLACE)
 	tamara = colour_it("Tamara", Color.NPC)
 	fenroche = colour_it("Fenroche", Color.NPC)
-	rookwood = colour_it("Rookwood", Color.PLACE)
-	caelfin = colour_it("Caelfin", Color.PLACE)
 	daughters = colour_it("Daughters of Chaos", Color.ENEMY)
 	corocana = colour_it("Corocana", Color.PLACE)
 	sounds.dire()
@@ -940,15 +943,36 @@ f""""What I propose is that after dark, I leave out the front, with a dummy of s
 f""""Because they're after you, {fenroche}, they'll follow, allowing you and {character.character['firstname']} to exit through a back window." """,
 f""""Meanwhile, as soon as the {daughters} show themselves, I'll make myself scarce." """])
 	while True:
-		quest = colour_it(""""Let's get to it!" """, Color.QUEST)
+		quest = colour_it(""""Let's get this done." """, Color.QUEST)
 		choice = input_stuff(f"""1. "So much can go wrong." 
 2. "I'll come with you as a decoy." 
 3. "What if you can't get away?" 
 4. {quest}
-> """, ["1", "2"])
+> """, ["1", "2", "3", "4"])
 		if choice == "1":
 			print_stuff([f""""It's not the best plan, but until we have any better ideas... Time is of the essense. Every second is another step closer the {daughters} get to their goal." """])
 		elif choice == "2":
 			print_stuff([f""""No. For all I know, I'll have a hundred foes on my tail. One is harder to follow than two." """])
 		elif choice == "3":
 			print_stuff([f"""{tamara} smiles weakly. "Then you can save the money for my drink at the tavern," she jests grimly. """])
+		elif choice == "4":
+			break
+	print_stuff([f"""{fenroche} nods. "I agree. Time is against us." He leads you and {tamara} upstairs, and pulls his cloak down from a peg on the wall.""",
+f"""Meanwhile, {tamara} is busily forming a crude model of a human form. It consists of a broom attached to a sack of flour, with a large round fruit on top.""",
+f""""Not my best work," {tamara} says grimly. "But it will have to do." With that, everything is ready. The three of you sit in silence as the sun begins to set. """])
+
+
+def escape():
+	save('chapter2.escape')
+	greypass = colour_it("Greypass", Color.PLACE)
+	tamara = colour_it("Tamara", Color.NPC)
+	fenroche = colour_it("Fenroche", Color.NPC)
+	print_stuff([f""""Night has fallen. The time to act has come." {tamara} is the one speaking, and you hear her voice crack with nervous excitement. {fenroche} has his crowbow loaded.""",
+f""""Come, {character.character['firstname']}," {fenroche} says. He rises, and draws his dagger. {tamara} rises also, and takes hold of the dummy.""",
+f"""You approach {tamara} one last time."""])
+	if equipment.equipment['smoke bombs'] >= 1:
+		choice = input_stuff("""1. "Good luck." 
+2. "Remember, your life is more important than the mission." 
+3. "If it gets too tough, use this." [Give smoke bomb] 
+> """, ["1", "2", "3"])
+
