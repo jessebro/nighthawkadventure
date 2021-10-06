@@ -77,11 +77,11 @@ def combat_flow(enemy, enemies, allies, boss):
 
 def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type, gender, name):
 	enemy = {}
-	enemy["maxhp"] = maxhp
+	enemy["maxhp"] = maxhp * settings.settings["difficulty"]["health_mult"]
 	enemy["hp"] =  enemy["maxhp"]
 	enemy["mindamage"] = mindamage
 	enemy["maxdamage"] = maxdamage
-	enemy["baseskill"] = baseskill
+	enemy["baseskill"] = baseskill * settings.settings["difficulty"]["accuracy_mult"]
 	enemy["skill"] = enemy["baseskill"]
 	enemy["type"] = type
 	enemy["baseagility"] = baseagility
@@ -94,6 +94,7 @@ def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type
 	enemy["bleeding"] = 0
 	enemy["xp"] = xp
 	enemy["reference"] = generate_reference(type, gender, name)
+
 	return enemy
 
 

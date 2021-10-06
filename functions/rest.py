@@ -2,9 +2,12 @@ from functions import encounters
 from functions import inventory
 from functions import weapon
 from functions import ability
+from functions import settings
 import time
 
 def rest():
+	if not settings.settings["difficulty"]["rests"]:
+		return
 	activity = input(f"""What would you like to do?
 1. Eat food and get some downtime (restores all health)
 2. Sharpen {weapon.weapon["weaponname"]} (increases weapon's sharpness by 1)
