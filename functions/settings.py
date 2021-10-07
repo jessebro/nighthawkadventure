@@ -4,9 +4,6 @@ import pickle
 from functions.utils import input_stuff
 from pygame import mixer
 from functions.utils import clear
-from functions.utils import print_stuff
-from functions.utils import clear
-from functions.utils import print_it
 from functions.utils import Color
 from functions.utils import colour_it
 
@@ -55,7 +52,7 @@ def get_settings():
 		clear()
 		choice = input_stuff(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
 1. Music [{music_status}]
-2. Difficulty [{difficulty}]
+2. Difficulty [{difficulty["name"]}]
 3. Immersive Scripts [{immersion}]
 4. Cancel
 > """, ["1", "2", "3", "4"])
@@ -65,9 +62,11 @@ def get_settings():
 > """, map(str, range(0,11))))
 				mixer.music.set_volume(settings["music"] / 10)
 			elif choice == "2":
+				clear()
 				difficulties = ["Storybook", "Fair Fight", "Warrior's Path", "The Walk of Death", "Custom"]
 				mults = [0.7, 1.0, 1.3, 1.7]
-				choice = int(input_stuff("""1. Storybook. Enemies have reduced health and accuracy. Enjoy the story, and hasten the battles.
+				choice = int(input_stuff(f"""{colour_it("~ THE NIGHTHAWK ~", Color.RED)}
+1. Storybook. Enemies have reduced health and accuracy. Enjoy the story, and hasten the battles.
 2. Fair Fight. Presents a small challenge. Balanced combat.
 3. Warrior's Path. Enemies have increased health and accuracy. For those that lust after challenges.
 4. The Walk of Death. Enemies have increased health and accuracy, can score critical hits, and rests are disable. For the most hardcore players.
@@ -83,6 +82,8 @@ def get_settings():
 					else:
 						settings["difficulty"]["health_mult"] = mults[choice - 1]
 						settings["difficulty"]["accuracy_mult"] = mults[choice - 1]
+					if choice == 4:
+						settings["difficulty"]["rests"] = False
 			elif choice == "3":
 				if settings["immersion"] == "ON":
 					settings["immersion"] = "OFF"
