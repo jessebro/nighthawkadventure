@@ -1,7 +1,6 @@
 import time
 from functions import ability
 from functions import inventory
-from functions import weapon
 from functions import equipment
 from functions import enemy_round
 from functions.utils import input_stuff
@@ -125,8 +124,8 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 				print("Your attack cuts deep, and causes your enemy to bleed!")
 				time.sleep(delay)
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
-			max_damage = int((ability.ability["strength"] + 2) * damage_multi)
-			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + weapon.weapon["sharpness"] + damage_bonus + ability.ability['level'] + (buffs[0] * 2)
+			max_damage = int((ability.ability["strength"]) * damage_multi)
+			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + int(weapon.weapon["sharpness"] / 2) + damage_bonus + (buffs[0] * 2)
 			player_damage_script = colour_it(f"{player_damage} damage!", Color.YELLOW)
 			if vampiric:
 				healing = random.randrange(1,101)
