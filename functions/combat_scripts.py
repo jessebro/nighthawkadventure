@@ -154,7 +154,7 @@ f""""Alright," says {ally_reference['object']}, jumping away from the danger. "T
 	"enemy_miss_ally": [
 f""""Nice try," says {ally_reference['object']}, ducking away from {reference['object']}'s attack.""",
 f"""{ally_reference['object'].capitalize()} sidesteps the blow directed at {ally_reference['him']}, slapping at it with {ally_reference['his']} weapon.""",
-f"""{ally_reference['object'].capitalize()} rolls away from {reference['object']} and the danger, coming to {reference['his']}, panting for breath."""
+f"""{ally_reference['object'].capitalize()} rolls away from {reference['object']} and the danger, coming to {ally_reference['his']}, panting for breath.""",
 f"""The attack comes so close to {ally_reference['object']} that some of {ally_reference['his']} hair falls to the ground, torn from {ally_reference['his']} head by the strike.""",
 f""""""],
 
