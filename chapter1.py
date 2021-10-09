@@ -221,7 +221,7 @@ f""""I do not believe we have been properly introduced," the lean man says kindl
 > """, ['1', "2", '3', '4'])
 				if question == "1":
 					print_stuff([f"""{eladris} grins at you. "You noticed?" he says. "Was it the name, or my appearance?" """,
-"""He shrugs. "Honestly, it's reason enough to escape the racists. But you are a 'doyana', so you wouldn't understand." """,
+"""He shrugs. "Honestly, it's reason enough to escape the racists. But you are a human, so you wouldn't understand." """,
 """"Travelling has always calmed my nerves. I do it for the simple purpose of enjoyment." """])
 					continue
 				elif question == "2":

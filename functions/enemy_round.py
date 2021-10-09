@@ -93,6 +93,8 @@ def generate_actor(maxhp, mindamage, maxdamage, baseskill, baseagility, xp, type
 	enemy["distract"] = False
 	enemy["bleeding"] = 0
 	enemy["xp"] = xp
+	if enemy['type'] == "human":
+		enemy['yield'] = False
 	enemy["reference"] = generate_reference(type, gender, name)
 
 	return enemy

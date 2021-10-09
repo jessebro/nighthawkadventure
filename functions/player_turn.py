@@ -115,7 +115,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 			enemy_round.game_state['hits'] += 1
 			print_script("player_hit", enemy)
 			time.sleep(delay)
-			if roll <= (critical + (weapon.weapon["finesse"] * 2) + ability.ability["strike_lvl"] + (buffs[1] * 5)):
+			if roll <= (critical + (weapon.weapon["finesse"] * 2) + (buffs[1] * 5)):
 				print("The strike was well aimed, and scored a critical hit!")
 				time.sleep(delay)
 				damage_multi += 1
@@ -125,7 +125,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 				time.sleep(delay)
 			min_damage = int((ability.ability["strength"] / 2) * damage_multi)
 			max_damage = int((ability.ability["strength"]) * damage_multi)
-			player_damage = random.randrange(min_damage, max_damage) + ability.ability["strike_lvl"] + int(weapon.weapon["sharpness"] / 2) + damage_bonus + (buffs[0] * 2)
+			player_damage = random.randrange(min_damage, max_damage) + int(weapon.weapon["sharpness"] / 2) + damage_bonus + (buffs[0] * 2)
 			player_damage_script = colour_it(f"{player_damage} damage!", Color.YELLOW)
 			if vampiric:
 				healing = random.randrange(1,101)
@@ -193,7 +193,7 @@ def parry(enemy, allies):
 	elif parry == "3":
 		vengeance = True
 	print_script("player_parry", enemy)
-	enemy["modifier"] -= (10 + ability.ability["agility"] + ability.ability["parry_lvl"])
+	enemy["modifier"] -= (10 + ability.ability["agility"])
 	enemy_roll = random.randrange(1,101)
 	time.sleep(delay)
 	if enemy_roll <= (enemy["skill"] + enemy["modifier"] - ability.ability['agility']):
@@ -247,7 +247,7 @@ def distract(enemy, allies):
 	print_script("player_distract", enemy)
 	time.sleep(delay)
 	attack_chance = random.randrange(1,101)
-	if attack_chance <= (50 + ability.ability['agility'] + ability.ability["distract_lvl"]):
+	if attack_chance <= (50 + ability.ability['agility']):
 		if lacerating == True:
 			enemy["bleeding"] += 2
 			print(colour_it("Your enemy's loss of focus allows you to cut them, causing them to bleed!", Color.GREEN))
@@ -258,7 +258,7 @@ def distract(enemy, allies):
 			print(colour_it("Your enemy's loss of focus opens them up to significant damage!", Color.GREEN))
 			time.sleep(delay)
 		else:
-			enemy["playermod"] += (10 + ability.ability["agility"] + ability.ability["distract_lvl"] * 2)
+			enemy["playermod"] += (10 + ability.ability["agility"] * 2)
 			print(colour_it("Your enemy's loss of focus allows you to make an attack!", Color.GREEN))
 			time.sleep(delay)
 			strike(enemy, allies)

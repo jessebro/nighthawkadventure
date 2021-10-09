@@ -32,7 +32,14 @@ def end_combat(enemy):
 def generate_loot(enemies):
 	for enemy in enemies:
 		reference = enemy["reference"]
-		if enemy["type"] == "human":
+		if enemy["type"] != "human":
+			print(f"Though {reference['object']} does not carry equipment, you find some coins in its stomach, no doubt the remains of {reference['object']}'s victims.")
+			gold = random.randrange(1, 5)
+			time.sleep(delay)
+			print(f"You find {gold} gold on {reference['object']}'s body.")
+			time.sleep(delay)
+			equipment.equipment['gold'] += gold
+		elif not enemy["yield"]:
 			gold = random.randrange(1,11)
 			print(f"You find {gold} gold on {reference['object']}'s body.")
 			time.sleep(delay)
@@ -66,12 +73,5 @@ def generate_loot(enemies):
 				weapon.weapon[boosted] += 1
 				print(f"{weapon.weapon['weaponname'].capitalize()}'s {boosted} has been increased by 1!")
 				time.sleep(delay)
-		else:
-			print(f"Though {reference['object']} does not carry equipment, you find some coins in its stomach, no doubt the remains of {reference['object']}'s victims.")
-			gold = random.randrange(1, 5)
-			time.sleep(delay)
-			print(f"You find {gold} gold on {reference['object']}'s body.")
-			time.sleep(delay)
-			equipment.equipment['gold'] += gold
 	ability.gain_xp(enemies)
 	return False

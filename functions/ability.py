@@ -19,9 +19,49 @@ ability = {
 	"armour": 0,
 	"level": 1,
 	"xp": 0,
-	"strike_lvl": 0,
-	"parry_lvl": 0,
-	"distract_lvl": 0
+}
+
+perks = {
+	"vengence": {
+		"description": "Channeling your pain into fury, you can make a counter attack immediately after taking damage.",
+		"level": "0",
+	},
+
+	"blood lust": {
+		"description": "Using your aggression to block out pain, defeating a foe can restore some health.",
+		"level": "0",
+	},
+
+	"whirlwind": {
+		"description": "Building on techniques of speed and ferocity, your chances to make a second attack increase further.",
+		"level": "0",
+	},
+
+	"precision": {
+		"description": "By measuring your attacks, your chance of scoring a critical hit increase.",
+		"level": "0",
+	},
+
+	"second wind": {
+		"description": "Through discipline, even death can be delayed.",
+		"level": "0",
+	},
+
+	"scavenger": {
+		"description": "A more thorough search of enemies can yield extra coin.",
+		"level": "0",
+	},
+
+	"recycling": {
+		"description": "With proper management, used consumables can be used again.",
+		"level": "0",
+	},
+
+	"brutality": {
+		"description": "If left alone to face a fierce opponent, human enemies may yield, handing over their gold.",
+		"level": "0",
+	},
+
 }
 
 
