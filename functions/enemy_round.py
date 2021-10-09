@@ -232,11 +232,14 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 		else:
 			print_script("enemy_hit_ally", enemy, ally)
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
-		enemy_damage_script = colour_it(f"{enemy_damage} damage!", Color.RED)
 		if target == "player":
+			if random.randrange(1, 101) <= ability.perks['lightning reflexes']['effect']:
+				enemy_damage = 1
+				print("Through your lightning reflexes, the attack only scrapes you.")
 			ability.ability["health"] -= enemy_damage
 		else:
 			ally['hp'] -= enemy_damage
+		enemy_damage_script = colour_it(f"{enemy_damage} damage!", Color.RED)
 		time.sleep(delay)
 		if target == "player":
 			print(f"You are hit for {enemy_damage_script}")

@@ -44,7 +44,7 @@ perks = {
 		"mult": 2
 	},
 	"scavenger": {
-		"description": "A more thorough search of enemies can yield extra coin.", # Unapplied
+		"description": "A more thorough search of enemies can yield extra coin.",
 		"mult": 10
 	},
 	"recycling": {
@@ -55,6 +55,10 @@ perks = {
 		"description": "After a display of skill and ferocity, a human enemy may yield and surrender their gold.",
 		"mult": 3
 	},
+	"lightning reflexes": {
+		"description": "Honed reflexes allow you to have a chance to reduce damage received to 1.", # Unapplied
+		"mult": 3
+	}
 }
 
 perk_values = ['effect', 'level']

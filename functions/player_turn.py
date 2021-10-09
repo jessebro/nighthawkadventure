@@ -224,6 +224,7 @@ def parry(enemy, allies):
 		else:
 			strike(enemy, allies, damage_mod=1.5, counter=True)
 
+
 def distract(enemy, allies):
 	reference = enemy["reference"]
 	distracts = [known for known in weapon.weapon["distracts"] if known['enabled']]
