@@ -24,53 +24,35 @@ ability = {
 perks = {
 	"vengence": {
 		"description": "Channeling your pain into fury, you can make a counter attack immediately after taking damage.", # Unapplied
-		"level": 0,
-		"effect": 0
 	},
-
 	"blood lust": {
 		"description": "Using your aggression to block out pain, defeating a foe can restore some health.", # Unapplied
-		"level": 0,
-		"effect": 0
 	},
-
 	"whirlwind": {
 		"description": "Building on techniques of speed and ferocity, your chances to make a second attack increase further.", # Unapplied
-		"level": 0,
-		"effect": 0
 	},
-
 	"precision": {
 		"description": "By measuring your attacks, your chance of scoring a critical hit increase.", # Unapplied
-		"level": 0,
-		"effect": 0
 	},
-
 	"second wind": {
 		"description": "Through discipline, even death can be delayed.", # Unapplied
-		"level": 0,
-		"effect": 0
 	},
-
 	"scavenger": {
 		"description": "A more thorough search of enemies can yield extra coin.", # Unapplied
-		"level": 0,
-		"effect": 0
 	},
-
 	"recycling": {
 		"description": "With proper management, used consumables can be used again.", # Unapplied
-		"level": 0,
-		"effect": 0
 	},
-
 	"bluster": {
 		"description": "After a display of skill and ferocity, a human enemy may yield and surrender their gold.",
-		"level": 0,
-		"effect": 0
 	},
-
 }
+
+perk_values = ['effect', 'level']
+for perk in perks.values():
+	for val in perk_values:
+		if val not in perk:
+			perk[val] = 0
 
 
 def get_ability():
@@ -203,15 +185,25 @@ def level_up(levels):
 		print(f"Your {choice.capitalize()} increased by 1!")
 		time.sleep(3)
 
-		print("""Which action do you want to improve?
-1. Strike
-2. Parry
-3. Distract""")
-		action_boost = int(input_stuff('> ', ["1", "2", "3"]))
-		action_choices = ["strike", "parry", "distract"]
-		action_choice = action_choices[(action_boost - 1)]
-		ability[f"{action_choice}_lvl"] += 1
-		print(f"{action_choice.capitalize()} has been upgraded!")
+		keys = list(perks.keys())
+		choices_left = 0
+		action_choices = []
+		while choices_left <= 3:
+			new_choice = random.choice(keys)
+			if new_choice in action_choices:
+				continue
+			action_choices.append(new_choice)
+			choices_left += 1
+
+		prompt = ""
+		action_input = 0
+		for action in action_choices:
+			action_input += 1
+			prompt += f"{action_input}. {action.title()} ({perks[action]['description']})"
+
+		boost = input_stuff(prompt + """
+> """, ['1', '2', '3'])
+		perks[action_choices[int(boost)]]['level'] += 1
 		time.sleep(3)
 
 		ability["maxhealth"] = (ability["endurance"] * 3) + 10
@@ -220,6 +212,7 @@ def level_up(levels):
 		ability["health"] = ability["maxhealth"]
 		counter += 1
 	sounds.play_prev()
+
 
 def reaction(difficulty, cycles):
 	cycle = 0
