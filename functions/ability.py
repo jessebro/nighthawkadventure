@@ -212,7 +212,7 @@ def level_up(levels):
 		action_input = 0
 		for action in action_choices:
 			action_input += 1
-			prompt += f"""{action_input}. {action.title()} {int_to_roman(perks[action]['level'] + 1)} ({perks[action]['description']}) {perks[action]["level"] * perks[action]["mult"]}% --> {(perks[action]["level"] + 1) * perks[action]["mult"]}%
+			prompt += f"""{action_input}. {action.title()} {int_to_roman(perks[action]['level'] + 1)}: {perks[action]['description']} [{perks[action]["level"] * perks[action]["mult"]}% --> {(perks[action]["level"] + 1) * perks[action]["mult"]}%]
 """
 
 		boost = input_stuff(prompt + "> ", ['1', '2', '3'])

@@ -8,6 +8,7 @@ from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
 from functions.utils import clear
+from functions.utils import int_to_roman
 
 def show():
 	clear()
@@ -22,9 +23,10 @@ Gold: {equipment.equipment["gold"]}
 1. Character Stats
 2. Weapon
 3. Items
-4. Settings
-5. Exit
-> """, ["1", "2", "3", "4", "5"])
+4. Perks
+5. Settings
+6. Exit
+> """, ["1", "2", "3", "4", "5", "6"])
 
 	if menu == "1":
 		clear()
@@ -41,17 +43,16 @@ Enter 'b' to go back
 > """, ["b"])
 		if leave1 == "b":
 			show()
-
 	elif menu == "2":
 		weapon_stats()
-
 	elif menu == "3":
 		item_list()
-
 	elif menu == "4":
-		settings.get_settings()
-
+		perk_list()
 	elif menu == "5":
+		settings.get_settings()
+		show()
+	elif menu == "6":
 		return False
 
 
@@ -114,4 +115,19 @@ Enter 'b' to go back
 				print()
 		elif menu == "b":
 			break
+	show()
+
+
+def perk_list():
+	clear()
+	keys = ability.perks.keys()
+	display = ""
+	for key in keys:
+		if ability.perks[key]['level'] >= 1:
+			display += f"""{key.title()} {int_to_roman(ability.perks[key]['level'])}: {ability.perks[key]['description']} [{ability.perks[key]['effect']}%]
+"""
+	display += """
+Enter 'b' to go back
+> """
+	input_stuff(display, ['b'])
 	show()

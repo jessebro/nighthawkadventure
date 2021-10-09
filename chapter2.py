@@ -635,7 +635,7 @@ f"Your route takes you along the Barkan road, which will take you straight from 
 		print_stuff(["You put the lizardman down, and immediately they jump to their feet, eyeing you warily."])
 	elif choice == "2":
 		print_stuff(['The lizardman exhales sharply as you throw them down. They scramble to their feet, eyeing you warily.'])
-	print_stuff([f""""You need not fear," {tamara} says. "You are safe with us. We rescued you from the... warmbloods." """,
+	print_stuff([f""""You need not fear," {tamara} says. "You are safe with us. We rescued you from the... warmbloods." The last words comes from her mouth tentatively.""",
 f""""Why?" the lizardman says. "Where am I. Who..." {tamara} waves a hand for silence.""",
 f""""As it happens, we need your help," she says. "In return, we'll let you return to {corocana}." {tamara} turns to you. """,
 """"You can be the first to ask the questions," she says. Then she turns to the lizardman. "Do try to answer truthfully." """])

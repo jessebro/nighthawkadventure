@@ -54,7 +54,7 @@ def get_settings():
 1. Music [{music_status}]
 2. Difficulty [{difficulty["name"]}]
 3. Immersive Scripts [{immersion}]
-4. Cancel
+4. Back
 > """, ["1", "2", "3", "4"])
 		if choice:
 			if choice == "1":

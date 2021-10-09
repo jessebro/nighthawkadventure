@@ -87,7 +87,7 @@ def load():
 		loaded = profiles[loaded - 1]
 		clear()
 		print(colour_it("~ THE NIGHTHAWK ~", Color.RED))
-		action = input_stuff(f"""1. Load {loaded.strip('.dat')}.
+		action = input_stuff(f"""1. Load {loaded.strip('.dat')}
 2. Delete {loaded.strip('.dat')}
 3. Cancel
 > """, ["1", "2", "3"])
