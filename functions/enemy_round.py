@@ -142,7 +142,7 @@ def initialize(enemies: list, allies=(), boss=False):
 
 def enemy_turn(enemy, enemies, allies, boss):
 	global game_state
-	if get_enemy_status(enemy) == "Crippled":
+	if get_enemy_status(enemy) == "Crippled" and enemy['type'] == 'human':
 		save = random.randrange(1,101)
 		if save <= ability.perks["bluster"]["effect"]:
 			enemy['yield'] = True
