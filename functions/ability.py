@@ -213,6 +213,7 @@ def level_up(levels):
 
 		boost = input_stuff(prompt + "> ", ['1', '2', '3'])
 		perks[action_choices[int(boost)]]['level'] += 1
+		print(f"You upgraded the perk {action_choices[int(boost) - 1].title()}")
 		time.sleep(3)
 
 		ability["maxhealth"] = (ability["endurance"] * 3) + 10
