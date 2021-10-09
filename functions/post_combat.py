@@ -35,12 +35,14 @@ def generate_loot(enemies):
 		if enemy["type"] != "human":
 			print(f"Though {reference['object']} does not carry equipment, you find some coins in its stomach, no doubt the remains of {reference['object']}'s victims.")
 			gold = random.randrange(1, 5)
+			gold += int(gold/100) * ability.perks['scavenger']['effect']
 			time.sleep(delay)
 			print(f"You find {gold} gold on {reference['object']}'s body.")
 			time.sleep(delay)
 			equipment.equipment['gold'] += gold
 		elif not enemy["yield"]:
-			gold = random.randrange(1,11)
+			gold = random.randrange(1,21)
+			gold += int(gold / 100) * ability.perks['scavenger']['effect']
 			print(f"You find {gold} gold on {reference['object']}'s body.")
 			time.sleep(delay)
 			equipment.equipment['gold'] += gold

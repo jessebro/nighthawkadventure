@@ -215,6 +215,7 @@ def level_up(levels):
 		perks[action_choices[int(boost)]]['level'] += 1
 		print(f"You upgraded the perk {action_choices[int(boost) - 1].title()}")
 		time.sleep(3)
+		perks[action_choices[int(boost)]]['effect'] = perks[action_choices[int(boost)]]['level'] * perks[action_choices[int(boost)]]['mult']
 
 		ability["maxhealth"] = (ability["endurance"] * 3) + 10
 		ability["maxhealth"] += (5 * (ability["level"] - 1))
