@@ -203,11 +203,11 @@ f"Light shines from the windows, and you see movement from inside. You approach 
 	else:
 		print_stuff([f""""Greetings, traveller," {denvar} says warmly. "How may I help you?" """])
 	ability.heal(15)
-	print_stuff([f"Quickly, you usher {tamara} inside, but {micha} is shaking his head.",
+	print_stuff([f"Quickly, you usher {character.story['tamara']['name_known']} inside, but {micha} is shaking his head.",
 f""""I'm shall return to {blackburrow}," he says. "I've had enough madness for one day." After a brief farewell, {micha} leaves alone, descending the mountain. """,
-f"The next thing you know, you and {tamara} are sitting at a table with bowls of steaming meat stew. {denvar} crouches by the fireplace, coaxing a small blaze.",
+f"The next thing you know, you and {character.story['tamara']['name_known']} are sitting at a table with bowls of steaming meat stew. {denvar} crouches by the fireplace, coaxing a small blaze.",
 f"The stew restores 15 health!",
-f"""{tamara} looks up at you."""])
+f"""{character.story['tamara']['name_known']} looks up at you."""])
 	if character.story["tamara"]["name_known"] != tamara:
 		print_stuff([f""""I should probably introduce myself," she says. "I'm {tamara}." """])
 	print_stuff([f"What's your name, {character.character['titles']['casual']}?"])
@@ -571,7 +571,7 @@ f"Though you don't know what exactly this creature is, you know it must have com
 "As their name suggests, a lizardman is a humanoid lizard, about as big as a human. They have sharp teeth and a terrible lisp.",
 "This lizardman swings a great staff about, and it dressed in colourful robes. You assume them to be a priest of some sort.",
 """"Warm-bloodssss!" the lizardman cries, their voice carrying over the hubbub of the crowd. "You have darrrred to trrressssspasssss on the Sacred Earth." """,
-""""You have darrred to send your femalessss, arrrmed and angrrrry, to hurrrrt ussss. Now we will hurrrrt youssss unlessss you call them back." """,
+""""You have darrred to send your femalessss, arrrmed and fiercccccce, to hurrrrt ussss. Now we will hurrrrt youssss unlessss you call them back." """,
 "Many of the citizens have fled from the gates. A crowd of around two score people is around you, and growing smaller as people take shelter in their homes.",
 """Suddenly, a man in fine clothing emerges from the crowd. He appears nervous, but he walks with an air of authority. The crowd parts before him.""",
 f""""An envoy from the Baron," {tamara} whispers to you. You nod in conformation as the envoy passes. """,

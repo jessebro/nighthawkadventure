@@ -204,12 +204,12 @@ f"""Gritting {ally_reference['his']} teeth, {ally_reference['object']} rushes fo
 	"ally_hit": [f"{ally_reference['object'].capitalize()}'s attack strikes true, scoring a hit.",
 f""""{reference['he'].capitalize()} felt that one!" {ally_reference['object']} shouts gleefully, jumping away before {reference['his']} opponent can make a counterattack.""",
 f"With a swift blow, {ally_reference['object']}'s weapon meets the body of {reference['object']}.",
-f"{ally_reference['object'].capitalize}'s weapon bites deeply into {reference['object']}, accompanied by a {reference['pain']} of pain.",
+f"{ally_reference['object'].capitalize()}'s weapon bites deeply into {reference['object']}, accompanied by a {reference['pain']} of pain.",
 f"""With a sudden feint, {reference['object']} stumbles, an easy target for {ally_reference['object']}'s blow."""],
 
 	"ally_miss": [
 f"{ally_reference['object'].capitalize()} moves to attack, but {ally_reference['his']} target evades the blow.",
-f"Despite {ally_reference['object']}'s best efforts, {reference['object']} is too quick, nimbly dodging all attacks directed at {reference['him']}",
+f"Despite {ally_reference['object']}'s best efforts, {reference['object']} is too quick, nimbly dodging all attacks directed at {reference['him']}.",
 f"""{ally_reference['object'].capitalize()}'s aim is true, but {ally_reference['his']} target dodges the strike at the last second.""",
 f"""The attack misses by a hair. "I'll get {reference['him']} next time," {ally_reference['object']} says fiercly.""",
 f"""{reference['object'].capitalize()} bats away the attack directed at {reference['him']}, and leaps away from the danger."""],

@@ -547,7 +547,7 @@ f"""Suddenly, {denvar} leans over to you. "But then there were these other peopl
 """He lays the food down beside you. You see the basket contains bread, a small bottle of wine, and a various fruits.""",
 f""""The bounty from my last trip to market," {denvar} says. "Eat and rest, my friend." """,
 """You eat the food and drink the wine, and it is delicious and refreshing.""",
-f"""{colour_it("You regained all lost health!", Color.FUNCTION)}""",
+f"""{colour_it("You regained all lost health!", Color.GREEN)}""",
 """The following morning, you wake up and look around. Denvar has gone, but a piece of paper is lying next to you. You pick it up and read it.""",
 """
 	____________________________________

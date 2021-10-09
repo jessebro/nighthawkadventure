@@ -64,7 +64,7 @@ def combat_flow(enemy, enemies, allies, boss):
 		if player_defeat():
 			break
 		enemy_turn(enemy, enemies, allies, boss)
-		if enemy['yield']:
+		if enemy['type'] == "human" and enemy['yield']:
 			break
 		if dead_check(enemy, enemies, boss):
 			break
@@ -446,6 +446,7 @@ def enemy_yield(enemy):
 	reference = enemy["reference"]
 	money = random.randrange(1,11)
 	print(f"""{reference['object'].capitalize()} throws down {reference['his']} weapon. "Enough! I yield!" {reference['he']} says, dropping {money} onto the ground.""")
+	equipment.equipment['gold'] += money
 
 
 

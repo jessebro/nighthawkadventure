@@ -10,7 +10,7 @@ def rest():
 		return
 	activity = input(f"""What would you like to do?
 1. Eat food and get some downtime (restores all health)
-2. Sharpen {weapon.weapon["weaponname"]} (increases weapon's sharpness by 1)
+2. Sharpen {weapon.weapon["weaponname"]} (increases weapon's Sharpness by 1)
 3. Practice your swordplay (gives a small amount of xp)
 4. Check your inventory
 
