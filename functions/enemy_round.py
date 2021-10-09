@@ -199,10 +199,10 @@ def choose_target(enemy, allies):
 			break
 	if target == "" or target == "player":
 		target = "player"
-	enemy_attack(enemy, ally, target)
+	enemy_attack(enemy, ally, target, allies)
 
 
-def enemy_attack(enemy, ally, target, damage_modi = 1):
+def enemy_attack(enemy, ally, target, allies, damage_modi = 1):
 	global game_state
 	reference = enemy["reference"]
 	enemy["parry"] = False
@@ -247,6 +247,10 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 			print(f"You are hit for {enemy_damage_script}")
 			game_state["damage_received"] += enemy_damage
 			game_state['total_damage_received'] += enemy_damage
+			if random.randrange(1, 101) <= ability.perks['vengeance']['effect']:
+				print("The pain of the blow fills you with rage, and you strike back.")
+				time.sleep(delay)
+				player_turn.strike(enemy, allies)
 		else:
 			print(f"{ally['reference']['object']} is hit for {enemy_damage_script}")
 		time.sleep(delay)
@@ -289,7 +293,11 @@ def player_defeat():
 	global game_state
 	if ability.ability["health"] <= 0:
 		game_state['deaded'] += 1
-		if equipment.equipment["potions"] > 0:
+		if random.randrange(1, 101) <= ability.perks['second wind']['effect']:
+			print("You feel a sudden rush of energy, and you are able to continue with the battle.")
+			ability.ability['health'] = 1
+			time.sleep(delay)
+		elif equipment.equipment["potions"] > 0:
 			equipment.equipment["potions"] -= 1
 			print("Your enemy deals you a blow, and suddenly everything swirls before your eyes. Quickly, you drink a potion, and the light returns. You continue to fight,")
 			time.sleep(delay)
@@ -316,6 +324,13 @@ def kill(enemy, enemies, boss):
 		time.sleep(delay)
 	print(colour_it(f"{reference['object'].capitalize()} was killed!", Color.BLUE))
 	time.sleep(delay)
+	if random.randrange(1, 101) <= ability.perks['blood lust']['effect']:
+		healing = random.randrange(3, 7)
+		healing_script = colour_it(f"{healing} health!", Color.GREEN)
+		ability.heal(healing)
+		print(f"The sight of your fallen enemy re engerises you, restoring {healing_script}")
+		time.sleep(delay)
+		game_state['health_restored'] += healing
 	if game_state['knifed'] and not game_state['striked'] and not achievements.achievements['knife_master']['unlocked']:
 		achievements.get_achievement('knife_master')
 	if game_state['assistance'] or game_state['goad'] and not achievements.achievements['teamwork']['unlocked']:

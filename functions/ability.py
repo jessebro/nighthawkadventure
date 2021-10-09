@@ -23,24 +23,24 @@ ability = {
 }
 
 perks = {
-	"vengence": {
-		"description": "Channeling your pain into fury, you can make a counter attack immediately after taking damage.", # Unapplied
+	"vengeance": {
+		"description": "Channeling your pain into fury, you can make a counter attack immediately after taking damage.",
 		"mult": 2
 	},
 	"blood lust": {
-		"description": "Using your aggression to block out pain, defeating a foe can restore some health.", # Unapplied
+		"description": "Using your aggression to block out pain, defeating a foe can restore some health.",
 		"mult": 3
 	},
 	"whirlwind": {
-		"description": "Building on techniques of speed and ferocity, your chances to make a second attack increase further.", # Unapplied
-		"mult": 5
+		"description": "Building on techniques of speed and ferocity, your chances to make a second attack increase further.",
+		"mult": 4
 	},
 	"precision": {
-		"description": "By measuring your attacks, your chance of scoring a critical hit increase.", # Unapplied
+		"description": "By measuring your attacks, your chance of scoring a critical hit increase.",
 		"mult": 2
 	},
 	"second wind": {
-		"description": "Through discipline, even death can be delayed.", # Unapplied
+		"description": "Through discipline, even death can be delayed.",
 		"mult": 2
 	},
 	"scavenger": {
@@ -48,7 +48,7 @@ perks = {
 		"mult": 10
 	},
 	"recycling": {
-		"description": "With proper management, used consumables can be used again.", # Unapplied
+		"description": "With proper management, used consumables can be used again.",
 		"mult": 10
 	},
 	"bluster": {
@@ -56,7 +56,7 @@ perks = {
 		"mult": 3
 	},
 	"lightning reflexes": {
-		"description": "Honed reflexes allow you to have a chance to reduce damage received to 1.", # Unapplied
+		"description": "Honed reflexes allow you to have a chance to reduce damage received to 1.",
 		"mult": 3
 	}
 }

@@ -102,7 +102,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 	counter = 0
 	agility_roll = random.randrange(1, 101)
 	attacks = 1
-	if agility_roll <= (agility_check + (ability.ability["agility"])):
+	if agility_roll <= (agility_check + ability.ability["agility"] + ability.perks['whirlwind']['effect']):
 		attacks = 3
 	if smoke:
 		attacks = 4
@@ -115,7 +115,7 @@ def strike(enemy, allies, damage_mod=1.0, smoke=False, bonus=0, critical_bonus=1
 			enemy_round.game_state['hits'] += 1
 			print_script("player_hit", enemy)
 			time.sleep(delay)
-			if roll <= (critical + (weapon.weapon["finesse"] * 2) + (buffs[1] * 5)):
+			if roll <= (critical + (weapon.weapon["finesse"] * 2) + (buffs[1] * 5) + ability.perks['precision']['effect']):
 				print("The strike was well aimed, and scored a critical hit!")
 				time.sleep(delay)
 				damage_multi += 1
@@ -307,7 +307,7 @@ Enter 'b' to go back
 			print("You're on max health, and a potion would have no effect.")
 			time.sleep(delay)
 			equipment.equipment["potions"] += 1
-			use_item(enemy,allies)
+			use_item(enemy, allies)
 			return False
 		else:
 			print_script("player_potion", enemy)
@@ -324,6 +324,8 @@ Enter 'b' to go back
 				print(f"Your {words[boost]} has been boosted!")
 				time.sleep(delay)
 			enemy_round.game_state['health_restored'] += healing
+			if random.randrange(1, 101) <= ability.perks['recycling']['effect']:
+				equipment.equipment['potions'] += 1
 	if item_use == "2":
 		equipment.equipment["knives"] -= 1
 		if equipment.equipment["knives"] <0:
@@ -346,6 +348,8 @@ Enter 'b' to go back
 				enemy["bleeding"] += 1
 				print(f"Your knife causes the enemy to bleed!")
 				time.sleep(delay)
+			if random.randrange(1, 101) <= ability.perks['recycling']['effect']:
+				equipment.equipment['knives'] += 1
 	if item_use == "3":
 		equipment.equipment["oils"] -= 1
 		if equipment.equipment["oils"] <0:
@@ -367,6 +371,8 @@ Enter 'b' to go back
 				strike(enemy, allies, damage_mod=oil)
 			if enemy['hp'] <= 0:
 				return False
+			if random.randrange(1, 101) <= ability.perks['recycling']['effect']:
+				equipment.equipment['oils'] += 1
 	if item_use == "4":
 		equipment.equipment["smoke bombs"] -= 1
 		if equipment.equipment["smoke bombs"] <0:
@@ -381,6 +387,8 @@ Enter 'b' to go back
 			if equipment.equipment["disorientating"] == True:
 				enemy["modifier"] -= 10
 			strike(enemy, allies, smoke=True)
+			if random.randrange(1, 101) <= ability.perks['recycling']['effect']:
+				equipment.equipment['smoke bombs'] += 1
 	if item_use == "b":
 		turn(enemy, allies)
 		return False
