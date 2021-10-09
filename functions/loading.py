@@ -54,10 +54,12 @@ def save(position):
 	data = {
 		"character": character.character,
 		"ability": ability.ability,
+		"perks": ability.perks,
 		"equipment": equipment.equipment,
 		"weapon": weapon.weapon,
 		"story": character.story,
 		"position": position
+
 	}
 	with open(f'savefiles/{character.character["fullname"]}.dat', 'wb') as f:
 		pickle.dump(data, f, protocol=2)
@@ -104,6 +106,7 @@ def load():
 	character.character = data['character']
 	character.story = data['story']
 	ability.ability = data['ability']
+	ability.perks = data['perks']
 	equipment.equipment = data['equipment']
 	weapon.weapon = data['weapon']
 	return data["position"]
