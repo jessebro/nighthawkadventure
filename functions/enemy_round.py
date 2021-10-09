@@ -64,6 +64,8 @@ def combat_flow(enemy, enemies, allies, boss):
 		if player_defeat():
 			break
 		enemy_turn(enemy, enemies, allies, boss)
+		if enemy['yield']:
+			break
 		if dead_check(enemy, enemies, boss):
 			break
 		if player_defeat():
@@ -140,6 +142,12 @@ def initialize(enemies: list, allies=(), boss=False):
 
 def enemy_turn(enemy, enemies, allies, boss):
 	global game_state
+	if get_enemy_status(enemy) == "Crippled":
+		save = random.randrange(1,101)
+		if save <= ability.perks["bluster"]["effect"]:
+			enemy['yield'] = True
+			enemy_yield(enemy)
+			return
 	if enemy['bleeding'] > 0:
 		damage = random.randrange(2,6)
 		damage_script = colour_it(f"{damage} damage!", Color.YELLOW)
@@ -412,6 +420,13 @@ def get_enemy_status(enemy):
 	else:
 		status = "Crippled"
 	return status
+
+
+def enemy_yield(enemy):
+	reference = enemy["reference"]
+	money = random.randrange(1,11)
+	print(f"""{reference['object'].capitalize()} throws down {reference['his']} weapon. "Enough! I yield!" {reference['he']} says, dropping {money} onto the ground.""")
+
 
 
 def summary(enemy):
