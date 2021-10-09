@@ -106,7 +106,8 @@ def load():
 	character.character = data['character']
 	character.story = data['story']
 	ability.ability = data['ability']
-	ability.perks = data['perks']
+	if 'perks' in data:
+		ability.perks = data['perks']
 	equipment.equipment = data['equipment']
 	weapon.weapon = data['weapon']
 	return data["position"]

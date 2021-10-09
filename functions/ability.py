@@ -24,27 +24,35 @@ ability = {
 perks = {
 	"vengence": {
 		"description": "Channeling your pain into fury, you can make a counter attack immediately after taking damage.", # Unapplied
+		"mult": 2
 	},
 	"blood lust": {
 		"description": "Using your aggression to block out pain, defeating a foe can restore some health.", # Unapplied
+		"mult": 3
 	},
 	"whirlwind": {
 		"description": "Building on techniques of speed and ferocity, your chances to make a second attack increase further.", # Unapplied
+		"mult": 5
 	},
 	"precision": {
 		"description": "By measuring your attacks, your chance of scoring a critical hit increase.", # Unapplied
+		"mult": 2
 	},
 	"second wind": {
 		"description": "Through discipline, even death can be delayed.", # Unapplied
+		"mult": 2
 	},
 	"scavenger": {
 		"description": "A more thorough search of enemies can yield extra coin.", # Unapplied
+		"mult": 10
 	},
 	"recycling": {
 		"description": "With proper management, used consumables can be used again.", # Unapplied
+		"mult": 10
 	},
 	"bluster": {
 		"description": "After a display of skill and ferocity, a human enemy may yield and surrender their gold.",
+		"mult": 3
 	},
 }
 
@@ -188,7 +196,7 @@ def level_up(levels):
 		keys = list(perks.keys())
 		choices_left = 0
 		action_choices = []
-		while choices_left <= 3:
+		while choices_left < 3:
 			new_choice = random.choice(keys)
 			if new_choice in action_choices:
 				continue
@@ -199,10 +207,10 @@ def level_up(levels):
 		action_input = 0
 		for action in action_choices:
 			action_input += 1
-			prompt += f"{action_input}. {action.title()} ({perks[action]['description']})"
+			prompt += f"""{action_input}. {action.title()} ({perks[action]['description']}) {perks[action]["level"] * perks[action]["mult"]}% --> {perks[action]["level"] * (perks[action]["mult"] + 1)}%
+"""
 
-		boost = input_stuff(prompt + """
-> """, ['1', '2', '3'])
+		boost = input_stuff(prompt + "> ", ['1', '2', '3'])
 		perks[action_choices[int(boost)]]['level'] += 1
 		time.sleep(3)
 
