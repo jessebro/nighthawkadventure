@@ -232,6 +232,8 @@ def enemy_attack(enemy, ally, target, damage_modi = 1):
 		else:
 			print_script("enemy_hit_ally", enemy, ally)
 		enemy_damage = (random.randrange(enemy["mindamage"] * damage_modi, (enemy["maxdamage"] * damage_modi) + 1) - ability.ability["armour"] - buffs[2])
+		if enemy_damage <= 0:
+			enemy_damage = 1
 		if target == "player":
 			if random.randrange(1, 101) <= ability.perks['lightning reflexes']['effect']:
 				enemy_damage = 1
