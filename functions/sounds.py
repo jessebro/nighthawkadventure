@@ -195,5 +195,5 @@ def level_up():
 
 
 def play_prev():
-	mixer.music.load("music/A Blade and a Bag.ogg")
+	mixer.music.load(playing)
 	mixer.music.play(-1)
