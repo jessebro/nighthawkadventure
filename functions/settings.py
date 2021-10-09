@@ -82,6 +82,7 @@ def get_settings():
 					else:
 						settings["difficulty"]["health_mult"] = mults[choice - 1]
 						settings["difficulty"]["accuracy_mult"] = mults[choice - 1]
+						settings["difficulty"]["rests"] = True
 					if choice == 4:
 						settings["difficulty"]["rests"] = False
 			elif choice == "3":
