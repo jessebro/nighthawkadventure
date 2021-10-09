@@ -3,20 +3,23 @@ from functions import inventory
 from functions import weapon
 from functions import ability
 from functions import settings
+from functions.utils import clear
+from functions.utils import input_stuff
 import time
 
 def rest():
+	clear()
 	if not settings.settings["difficulty"]["rests"]:
 		return
-	activity = input(f"""What would you like to do?
+	activity = input_stuff(f"""What would you like to do?
 1. Eat food and get some downtime (restores all health)
 2. Sharpen {weapon.weapon["weaponname"]} (increases weapon's Sharpness by 1)
 3. Practice your swordplay (gives a small amount of xp)
 4. Check your inventory
 
-> """)
+> """, ["1", "2", "3", "4"])
 	if activity == "1":
-		print("You rest and eat food, restoring your energy.")
+		print("You rest and eat food, restoring your energy. ")
 		time.sleep(3)
 		print("All lost health as been restored!")
 		time.sleep(3)

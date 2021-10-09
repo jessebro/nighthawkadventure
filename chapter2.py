@@ -635,7 +635,7 @@ f"Your route takes you along the Barkan road, which will take you straight from 
 		print_stuff(["You put the lizardman down, and immediately they jump to their feet, eyeing you warily."])
 	elif choice == "2":
 		print_stuff(['The lizardman exhales sharply as you throw them down. They scramble to their feet, eyeing you warily.'])
-	print_stuff([f""""You need not fear," {tamara} says. "You are safe with us. We rescued you from the... warmbloods." The last words comes from her mouth tentatively.""",
+	print_stuff([f""""You need not fear," {tamara} says. "You are safe with us. We rescued you from the... warmbloods." The last word comes from her mouth tentatively.""",
 f""""Why?" the lizardman says. "Where am I. Who..." {tamara} waves a hand for silence.""",
 f""""As it happens, we need your help," she says. "In return, we'll let you return to {corocana}." {tamara} turns to you. """,
 """"You can be the first to ask the questions," she says. Then she turns to the lizardman. "Do try to answer truthfully." """])
@@ -675,7 +675,7 @@ f""""As it happens, we need your help," she says. "In return, we'll let you retu
 	print_stuff([f""""Farrrrwell, warrrmbloodssssss," {story['meel-kar']['name_known']} says. "Forrrr some rrrreassson, I trrrusssst you." """,
 f""""We'll see if we can fix your situation in the jungles," {tamara} says. "Hopefully, we can." """,
 f"""You watch as {story['meel-kar']['name_known']} walks away, leaving you and {tamara} alone on the road once more.""",
-f""""No doubt, {story['meel-kar']['reference']['he']} was talking about the {daughters}. What could they be doing there?" """])
+f""""No doubt, they were talking about the {daughters}. What could they be doing there?" """])
 	choice = input_stuff("""1. "Whoever this contact of yours is, I'm sure he'd be able to shed some light." 
 2. "Maybe they want to enslave the lizardmen?" 
 > """, ["1", "2"])

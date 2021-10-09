@@ -67,6 +67,14 @@ for perk in perks.values():
 		if val not in perk:
 			perk[val] = 0
 
+def load_perks(perks_saved):
+	result = {}
+	for perk_name in perks.keys():
+		if perk_name in perks_saved:
+			result[perk_name] = perks_saved[perk_name]
+		else:
+			result[perk_name] = perks[perk_name]
+	return result
 
 def get_ability():
 	ability_samples = [0, 0, 0, 0, 0]
