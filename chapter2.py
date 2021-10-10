@@ -10,6 +10,7 @@ from functions.utils import print_stuff
 from functions.utils import input_stuff
 from functions.utils import colour_it
 from functions.utils import Color
+from functions.utils import clear
 from functions.loading import save
 from functions import town
 from functions import sounds
@@ -940,7 +941,7 @@ f""""Before you go making such statements, maybe you'd like to hear my plan in f
 	print_stuff([""""They're watching the house, so we can't leave... unless they are looking at something else." """,
 f""""What I propose is that after dark, I leave out the front, with a dummy of sorts wrapped in your cloak, {fenroche}. In the darkness, hopefully the facade will hold." """,
 f""""Because they're after you, {fenroche}, they'll follow, allowing you and {character.character['firstname']} to exit through a back window." """,
-f""""Meanwhile, as soon as the {daughters} show themselves, I'll make myself scarce." """])
+f""""Meanwhile, as soon as the {daughters} show themselves, I'll make myself scarce. We'll regroup a mile upstream of the Raven River." """])
 	while True:
 		quest = colour_it(""""Let's get this done." """, Color.QUEST)
 		choice = input_stuff(f"""1. "So much can go wrong." 
@@ -967,6 +968,7 @@ def escape():
 	tamara = colour_it("Tamara", Color.NPC)
 	fenroche = colour_it("Fenroche", Color.NPC)
 	daughter = colour_it("Daughter of Chaos", Color.ENEMY)
+	corocana = colour_it("Corocana", Color.PLACE)
 	smoke_bomb = False
 	sounds.jungle()
 	print_stuff([f""""Night has fallen. The time to act has come." {tamara} is the one speaking, and you hear her voice crack with nervous excitement. {fenroche} has his crowbow loaded.""",
@@ -1003,5 +1005,47 @@ f"""She squirms in your grip, trying to release herself."""])
 	elif choice == "2":
 		print_stuff(["You tighten your grip, cutting off her air supply. She struggles for a bit longer, then ceases to move, unconscious."])
 	equipment.equipment['gold'] += 8
-	equipment.equipment['oil'] += 1
-	print_stuff([f"""A quick search of the {daughter}'s pockets yields 8 gold and a sword {colour_it('oil', Color.LOOT)}."""])
+	equipment.equipment['oils'] += 1
+	print_stuff([f"""A quick search of the {daughter}'s pockets yields 8 gold and a sword {colour_it('oil', Color.LOOT)}.""",
+f"""At this point, {fenroche} catches up to you, and nods his approval. "Quick," he says. "There may be more of them." You continue onwards.""",
+f"""You are able to get away without incident, but dimly you hear the sounds of battle, and shouting. {fenroche} frowns.""",
+f""""I should never have let her go alone," he snarls, almost to himself. A few agonising minutes later, you finally get to a safe distance from {fenroche}'s house.""",
+f"""You continue to walk through the night, more at ease. {fenroche}, despite his worries for {tamara}, is smiling. "First time out of the house," he explains.""",
+f"""You reach the Raven River, then follow it upstream. You count your steps, and stop at about a mile upriver."""])
+	sounds.night()
+	print_stuff([f"""{fenroche} sits down, and you follow suit. "We shall wait till {tamara} arrives," he says in a tone that invites no argument."""])
+	if smoke_bomb:
+		print_stuff([f"""In about ten minutes, {tamara} suddenly steps from the bushes, causing both you and {fenroche} to flinch towards weapons. You never realised how quietly she could move.""",
+f""""Made it," {tamara} comments, both addressing you and herself. "And all thanks to you, {character.character['firstname']}. If you hadn't given me that smoke bomb I surely wouldn't have made it." """,
+f""""With that behind us, we can continue on our way." The three of you set off for the jungles, only stopping to rest once you are another couple of miles away."""])
+	else:
+		print_stuff([f"""However, you wait for a full hour, and there is no sign of {tamara}. Suddenly, {fenroche} gives a start. "Hide!" he hisses with urgency. """,
+f"""He swiftly rolls behinds some bushes, and you crouch behind some rocks. You watch as a large row boat moves upstream. From the boat, you hear voices."""])
+		awareness = random.randrange(1,11)
+		if awareness <= ability.ability['awareness']:
+			print_stuff([f"""You are {colour_it('aware', Color.AWARENESS)} enough to hear what they are saying.""",
+f""""...three of them. Two of them escaped, but we got {tamara}." There's the sound of an evil chuckle. "Oh, I can't wait to give her a punch in that treacherous face." """,
+f""""But what of the others? Shouldn't we be searching for them?" """,
+f""""I have a feeling they will be coming to..." The boat gets too far away to hear any more. From the look on {fenroche}'s face, he also heard."""])
+		else:
+			print_stuff([f"""You are not {colour_it('aware', Color.AWARENESS)} enough to hear what they are saying. But clearly {fenroche} is."""])
+		print_stuff([f""""They have {tamara}," he says angrily. "We must go after them." """])
+		input_stuff(f"""1. "What about getting to {corocana}?" 
+> """, ["1"])
+		print_stuff([f"""{fenroche} swears under his breath. "I don't know what we should do, but I don't think there's a correct answer. Personally, I think we should rescue {tamara}." """,
+f""""However, I shall let you have the final decision." """])
+		while True:
+			clear()
+			choice = input_stuff(f"""1. "We should come to {tamara}'s aid first." 
+2. "To much is at stake. We go to {corocana}, then get {tamara} afterwards." 
+> """, ["1", "2"])
+			prompt = """Are you sure you want to take this course of action?"""
+			if choice == "1":
+				prompt += f""" You will rescue {tamara} but events in {corocana} will escalate. (y/n)
+> """
+			else:
+				prompt += f""" You will respond to the events in {corocana} but {tamara} will remain imprisoned. (y/n)
+> """
+			confirm = input_stuff(prompt, ["y", "n"])
+			if confirm == "y":
+				break
