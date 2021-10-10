@@ -991,4 +991,17 @@ f"""You approach {tamara} one last time."""])
 f"With that, {tamara} sprints through the hole that used to be the front door. {fenroche} begins to remove the boards from one of the windows.",
 f"""It is not long before you hear a shout, and running feet. "The decoy worked," {fenroche} says as he removes the last of the window's wooden boards. """,
 f"""Stealthily, the two of you creep out into the night. In the darkness, you can hardly see. The only light comes from the full moon overhead.""",
-f"""You take point, sneaking away a solid twenty paces ahead of {fenroche}. So it is that you are the first to see a {daughter}"""])
+f"""You take point, sneaking away a solid twenty paces ahead of {fenroche}. So it is that you are the first to see a {daughter}.""",
+f"""She has her back turned to you, and with relative ease you rush up behind her, one arm wrapped around her neck, preventing her from uttering a sound.""",
+f"""She squirms in your grip, trying to release herself."""])
+	choice = input_stuff("""1. Kill her.
+2. Knock her out.
+> """, ["1", "2"])
+	if choice == "1":
+		print_stuff(["With the most subtle scraping noise, you draw you knife and plunge it deep into her back. She struggles for a bit longer, her eyes wide with shock.",
+"Then blood begins to trickle out of her mouth, and she stops moving. Silently, you lower her body to the grass."])
+	elif choice == "2":
+		print_stuff(["You tighten your grip, cutting off her air supply. She struggles for a bit longer, then ceases to move, unconscious."])
+	equipment.equipment['gold'] += 8
+	equipment.equipment['oil'] += 1
+	print_stuff([f"""A quick search of the {daughter}'s pockets yields 8 gold and a sword {colour_it('oil', Color.LOOT)}."""])
