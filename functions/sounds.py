@@ -88,6 +88,8 @@ def play(song, loop=-1, fade=500):
 	combat_songs = ('music/Sworddancers.ogg', 'music/Song of the Nighthawk.ogg')
 	if song in combat_songs and playing in combat_songs:
 		return
+	if playing == song:
+		return
 	if song != "music/Level Up.ogg":
 		playing = song
 	pygame.init()

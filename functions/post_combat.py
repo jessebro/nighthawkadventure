@@ -5,12 +5,11 @@ from functions import weapon
 from functions import ability
 from functions.utils import colour_it
 from functions.utils import Color
-from functions.utils import print_stuff
 from functions import settings
 
 delay = 5
 if settings.settings['immersion'] == "OFF":
-		delay = 0
+	delay = 0
 
 
 def end_combat(enemy):
@@ -41,12 +40,12 @@ def generate_loot(enemies):
 			time.sleep(delay)
 			equipment.equipment['gold'] += gold
 		elif not enemy["yield"]:
-			gold = random.randrange(1,21)
+			gold = random.randrange(1, 21)
 			gold += int(gold / 100) * ability.perks['scavenger']['effect']
 			print(f"You find {gold} gold on {reference['object']}'s body.")
 			time.sleep(delay)
 			equipment.equipment['gold'] += gold
-			item = random.randrange(1,11)
+			item = random.randrange(1, 11)
 			if item == 6 or item == 7:
 				knife = colour_it("knife", Color.LOOT)
 				print(f"You also find a {knife}.")
@@ -67,13 +66,13 @@ def generate_loot(enemies):
 				print(f"You also find a {smoke_bomb}.")
 				time.sleep(delay)
 				equipment.equipment['smoke bombs'] += 1
-			sword_boost = random.randrange(1,11)
+			sword_boost = random.randrange(1, 11)
 			if sword_boost >= 8:
 				print(f"You find a whetstone to improve your weapon.")
 				time.sleep(delay)
-				boosted = random.choice(["sharpness", "sharpness", "max stability", "finesse"])
+				boosted = random.choice(["sharpness", "max stability", "finesse"])
 				weapon.weapon[boosted] += 1
-				print(f"{weapon.weapon['weaponname'].capitalize()}'s {boosted} has been increased by 1!")
+				print(f"{weapon.weapon['weaponname'].capitalize()}'s {boosted.capitalize()} has been increased by 1!")
 				time.sleep(delay)
 	ability.gain_xp(enemies)
 	return False

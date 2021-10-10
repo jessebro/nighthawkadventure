@@ -712,13 +712,13 @@ f""""Beautiful place," {tamara} comments. You look at her, noticing something in
 			print_stuff([f""""Mhm," {tamara} says. "I used to travel a lot." She chuckles. "I guess I still am." """])
 	print_stuff([f"""It is not long before trouble finds you. Suddenly, a group of five {bandits} jumps out, blocking the path. "Your gold; hand it over." """])
 	if equipment.equipment['gold'] >= 30:
-		stolen = True
 		choice = input_stuff("""1. Give them 30 gold to go away.
 2. "Kiss my arse".
 > """, ["1", "2"])
 		if choice == "1":
+			stolen = True
 			equipment.equipment['gold'] -= 30
-			print_stuff([f"""You throw the {bandits} a bag of gold. They exchange glances, and ready their weapons."""])
+			print_stuff([f"""You throw the {bandits} a bag of gold. They exchange smug looks, and ready their weapons."""])
 	print_stuff([f"""{tamara} draws her own weapon, but one of the {bandits} pulls out a knife. Before you or {tamara} can react, she throws the knife.""",
 f"""It buries itself into {tamara}'s leg. She screams in pain and falls. The blow is not lethal, but you realise she will be of now help now.""",
 f"""The {bandits} rush forwards eagerly, weapons ready. You brace yourself for the coming battle."""])
@@ -730,7 +730,7 @@ f"""The {bandits} rush forwards eagerly, weapons ready. You brace yourself for t
 	if stolen:
 		equipment.equipment['gold'] += 30
 		print_stuff([f"""You retrieve the gold that you gave one of the {bandits}, spitting on her body as you do."""])
-	print_stuff([f"""You walk over to {tamara}. Her leg is soaked in blood, but she has tied a strip of cloth around it as a makeshift bandage."""
+	print_stuff([f"""You walk over to {tamara}. Her leg is soaked in blood, but she has tied a strip of cloth around it as a makeshift bandage.""",
 f""""That hurt," {tamara} says weakly. You bend down and pick her up, supporting her legs and back. She grimaces in pain, but says nothing. This looks to be a long walk. """,
 f"""You don't enjoy the picturesque forest anymore. You have more important matters. When {greypass} finally becomes visible, it is a welcome sight indeed."""])
 
@@ -839,7 +839,6 @@ f"""Three {daughters} jump through the opening, swords at the ready. They lunge 
 f"""In one hand he holds a hand crossbow, and in another a knife. With a flick of his wrist, the crossbow fires, the bolt piercing his target's neck.""",
 f"""The remaining two {daughters}, caught off guard by this new adversary, are unprepared as {fenroche} lunges forwards.""",
 f"""With a graceful twirl, he slits the throat of another foe. Spinning again, he stabs, burying the knife up to the hilt into the stomach of his last enemy."""])
-	sounds.end_human()
 	print_stuff([f"""The two {daughters} with severed necks are still lying on the ground, gasping and choking for air. {fenroche} approaches each one and finishes them off.""",])
 	sounds.dire()
 	print_stuff([f""""Impressed?" he grins at you, seemingly unconcerned at the three bodies, and the three pools of blood now lying at his front door.""",
@@ -880,7 +879,7 @@ f""""The relationship between {fenroche} and myself is... of a romantic sort." {
 	print_stuff([f""""I think it's time I showed both of you something," {fenroche} says. He walks over to the trap door and opens it, revealing stairs leading downwards. """,
 f""""After you, {character.character['firstname']}," {fenroche} says, gesturing towards the stairs. Carefully, you begin to descend.""",
 f"""As you reach the bottom of the stairs, you gasp in awe. You have found yourself in what may have previously been a sort of cellar.""",
-f"""However, now the place is full of contraptions you've never seen before. Also lying around a books, wands and strange plants.""",
+f"""However, now the place is full of contraptions you've never seen before. Also lying around are books, wands and strange plants.""",
 f"""{fenroche} is coming up behind you, but stops and looks back up the stairs. {tamara} is awkwardly trying to descend, but with her bad leg, its impossible.""",
 f"""{fenroche} moves back up the stairs, and picks {tamara} up, supporting her legs and back. Gently, he carries her down the stairs."""])
 	choice = input_stuff("""1. "Care to tell me what all this hocus pocus is?" 
@@ -967,6 +966,9 @@ def escape():
 	greypass = colour_it("Greypass", Color.PLACE)
 	tamara = colour_it("Tamara", Color.NPC)
 	fenroche = colour_it("Fenroche", Color.NPC)
+	daughter = colour_it("Daughter of Chaos", Color.ENEMY)
+	smoke_bomb = False
+	sounds.jungle()
 	print_stuff([f""""Night has fallen. The time to act has come." {tamara} is the one speaking, and you hear her voice crack with nervous excitement. {fenroche} has his crowbow loaded.""",
 f""""Come, {character.character['firstname']}," {fenroche} says. He rises, and draws his dagger. {tamara} rises also, and takes hold of the dummy.""",
 f"""You approach {tamara} one last time."""])
@@ -975,4 +977,18 @@ f"""You approach {tamara} one last time."""])
 2. "Remember, your life is more important than the mission." 
 3. "If it gets too tough, use this." [Give smoke bomb] 
 > """, ["1", "2", "3"])
-
+	else:
+		choice = input_stuff("""1. "Good luck." 
+2. "Remember, your life is more important than the mission." 
+> """, ["1", "2"])
+	if choice == "3":
+		smoke_bomb = True
+		equipment.equipment['smoke bombs'] -= 1
+		print_stuff([f"""{tamara} accepts the smoke bomb, and puts it in a pocket. """""])
+	elif choice == "2":
+		print_stuff([""""Perhaps. But if the mission fails, then our lives won't be worth much in any case." """])
+	print_stuff([f""""Thank you, {character.character['firstname']}," {tamara} says. "For everything. With any luck, I'll see you soon." """,
+f"With that, {tamara} sprints through the hole that used to be the front door. {fenroche} begins to remove the boards from one of the windows.",
+f"""It is not long before you hear a shout, and running feet. "The decoy worked," {fenroche} says as he removes the last of the window's wooden boards. """,
+f"""Stealthily, the two of you creep out into the night. In the darkness, you can hardly see. The only light comes from the full moon overhead.""",
+f"""You take point, sneaking away a solid twenty paces ahead of {fenroche}. So it is that you are the first to see a {daughter}"""])

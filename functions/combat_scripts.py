@@ -58,7 +58,7 @@ f"You enemy tries to step backwards, but {reference['his']} heel hits a raised s
 f"With a deft sword movement you explode into action, striking with your whirling sword, spilling the blood of {reference['object']}.",
 f"You thrust ahead with {name}, shouting in triumph as the tip buries itself into {reference['object']}."],
 
-	"player_miss": ["Your sword slices through the air, but meets nothing as your adversary sidesteps",
+	"player_miss": ["Your sword slices through the air, but meets nothing as your adversary sidesteps.",
 "You swing your sword in a cruel lateral strike, but your opponent ducks just in time, the wind chasing the blade making a whistling sound.",
 f"""You swing {name} downwards, grunting with the effort. {reference["object"].capitalize()} jumps back at the last second, the tip of your sword barely a inch from {reference["his"]} body.""",
 f"""Despite your best efforts, {reference['object']} is too quick for you, dodging your strikes with ease.""",
