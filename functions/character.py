@@ -20,7 +20,7 @@ story = {
 	"descended": "a",
 	"criminal": False,
 	"told_romance": False,
-
+	"crossroads1": "",
 # Characters
 	"eladris": {
 		"exists": True,
@@ -40,7 +40,7 @@ story = {
 			"him": "them",
 			"he": "they"
 		}
-	}
+	},
 
 }
 
@@ -111,3 +111,7 @@ def get_title():
 			"whore": "you whore",
 			"contempt": "girl"
 		}
+
+
+def get_crossroads(crossroad_number):
+	return story['crossroads' + crossroad_number]
