@@ -1015,7 +1015,7 @@ f"""You reach the Raven River, then follow it upstream. You count your steps, an
 	sounds.night()
 	print_stuff([f"""{fenroche} sits down, and you follow suit. "We shall wait till {tamara} arrives," he says in a tone that invites no argument."""])
 	if smoke_bomb:
-		character.story['crossroads1'] = "chapter3.jungle_tamara"
+		character.story['crossroads1'] = "chapter3_jungle_tamara"
 		print_stuff([f"""In about ten minutes, {tamara} suddenly steps from the bushes, causing both you and {fenroche} to flinch towards weapons. You never realised how quietly she could move.""",
 f""""Made it," {tamara} comments, both addressing you and herself. "And all thanks to you, {character.character['firstname']}. If you hadn't given me that smoke bomb I surely wouldn't have made it." """,
 f""""With that behind us, we can continue on our way." The three of you set off for the jungles, only stopping to rest once you are another couple of miles away."""])
@@ -1042,11 +1042,11 @@ f""""However, I shall let you have the final decision." """])
 > """, ["1", "2"])
 			prompt = """Are you sure you want to take this course of action?"""
 			if choice == "1":
-				character.story['crossroads1'] = "chapter3.tamara"
+				character.story['crossroads1'] = "chapter3_tamara"
 				prompt += f""" You will rescue {tamara} but events in {corocana} will escalate. (y/n)
 > """
 			else:
-				character.story['crossroads1'] = "chapter3.jungle"
+				character.story['crossroads1'] = "chapter3_jungle"
 				prompt += f""" You will respond to the events in {corocana} but {tamara} will remain imprisoned. (y/n)
 > """
 			confirm = input_stuff(prompt, ["y", "n"])
